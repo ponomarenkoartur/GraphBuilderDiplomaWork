@@ -32,8 +32,8 @@
 		0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708D241AE3D900897335 /* FakeRecognizer.swift */; };
 		04187090241AE3E500897335 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708F241AE3E500897335 /* Equation.swift */; };
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
+		04187094241AE87C00897335 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187093241AE87C00897335 /* Array extension.swift */; };
 		04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D182241AE0E100C4FBEB /* AppDelegate.swift */; };
-		04F3D187241AE0E100C4FBEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D186241AE0E100C4FBEB /* ViewController.swift */; };
 		04F3D18A241AE0E100C4FBEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D188241AE0E100C4FBEB /* Main.storyboard */; };
 		04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18B241AE0E200C4FBEB /* Assets.xcassets */; };
 		04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */; };
@@ -79,9 +79,9 @@
 		0418708D241AE3D900897335 /* FakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecognizer.swift; sourceTree = "<group>"; };
 		0418708F241AE3E500897335 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		04187093241AE87C00897335 /* Array extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array extension.swift"; sourceTree = "<group>"; };
 		04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphBuilderDiplomaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F3D182241AE0E100C4FBEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04F3D186241AE0E100C4FBEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04F3D189241AE0E100C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F3D18E241AE0E200C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,6 +133,7 @@
 				04187068241AE3B800897335 /* Double.swift */,
 				04187069241AE3B800897335 /* Number extension.swift */,
 				0418706A241AE3B800897335 /* WolframAlpha.swift */,
+				04187093241AE87C00897335 /* Array extension.swift */,
 			);
 			name = Extensions;
 			path = "../../../../../University/Диплом/EquationRecognition/EquationRecognition/Extensions";
@@ -233,7 +234,6 @@
 				04187061241AE3B400897335 /* AlertBuilder.swift */,
 				0418705C241AE3B100897335 /* GraphBuilding */,
 				04F3D182241AE0E100C4FBEB /* AppDelegate.swift */,
-				04F3D186241AE0E100C4FBEB /* ViewController.swift */,
 				04F3D188241AE0E100C4FBEB /* Main.storyboard */,
 				04F3D18B241AE0E200C4FBEB /* Assets.xcassets */,
 				04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */,
@@ -377,11 +377,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F3D187241AE0E100C4FBEB /* ViewController.swift in Sources */,
 				04187060241AE3B100897335 /* BezierArtist.swift in Sources */,
 				0418705F241AE3B100897335 /* GraphBuilder.swift in Sources */,
 				04187071241AE3B800897335 /* WolframAlpha.swift in Sources */,
 				04187089241AE3C000897335 /* GraphARSCNView.swift in Sources */,
+				04187094241AE87C00897335 /* Array extension.swift in Sources */,
 				04187070241AE3B800897335 /* Number extension.swift in Sources */,
 				0418706C241AE3B800897335 /* RecognitionResult extension.swift in Sources */,
 				0418706D241AE3B800897335 /* SCNVector3 extension.swift in Sources */,
