@@ -17,6 +17,22 @@ class EquationCell: UITableViewCell {
     @IBOutlet weak var latexLabel: MTMathUILabel!
     
     
+    
+    // MARK: - View Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupLabelUI()
+    }
+    
+    
+    // MARK: - Setup Methods
+    
+    private func setupLabelUI() {
+        latexLabel.textColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
+    }
+    
+    
     // MARK: - API Methods
     
     func setLatex(_ string: String?) {
