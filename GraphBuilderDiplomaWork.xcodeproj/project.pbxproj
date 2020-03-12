@@ -3,27 +3,93 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04187059241AE2B000897335 /* Pods_GraphBuilderDiplomaWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D252380291A489E5B0442D4C /* Pods_GraphBuilderDiplomaWork.framework */; };
+		0418705A241AE2B000897335 /* Pods_GraphBuilderDiplomaWork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D252380291A489E5B0442D4C /* Pods_GraphBuilderDiplomaWork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0418705F241AE3B100897335 /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418705D241AE3B100897335 /* GraphBuilder.swift */; };
+		04187060241AE3B100897335 /* BezierArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418705E241AE3B100897335 /* BezierArtist.swift */; };
+		04187062241AE3B400897335 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187061241AE3B400897335 /* AlertBuilder.swift */; };
+		0418706B241AE3B800897335 /* UIImage extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187064241AE3B800897335 /* UIImage extension.swift */; };
+		0418706C241AE3B800897335 /* RecognitionResult extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187065241AE3B800897335 /* RecognitionResult extension.swift */; };
+		0418706D241AE3B800897335 /* SCNVector3 extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187066241AE3B800897335 /* SCNVector3 extension.swift */; };
+		0418706E241AE3B800897335 /* Error extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187067241AE3B800897335 /* Error extension.swift */; };
+		0418706F241AE3B800897335 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187068241AE3B800897335 /* Double.swift */; };
+		04187070241AE3B800897335 /* Number extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187069241AE3B800897335 /* Number extension.swift */; };
+		04187071241AE3B800897335 /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418706A241AE3B800897335 /* WolframAlpha.swift */; };
+		04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187073241AE3BC00897335 /* EquationRecognizer.swift */; };
+		04187077241AE3BC00897335 /* MathpixRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187075241AE3BC00897335 /* MathpixRecognizer.swift */; };
+		04187085241AE3C000897335 /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418707A241AE3C000897335 /* RecognitionViewController.swift */; };
+		04187086241AE3C000897335 /* EquationTransformator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418707C241AE3C000897335 /* EquationTransformator.swift */; };
+		04187087241AE3C000897335 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418707D241AE3C000897335 /* Graph.swift */; };
+		04187088241AE3C000897335 /* VectorAdapeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418707E241AE3C000897335 /* VectorAdapeter.swift */; };
+		04187089241AE3C000897335 /* GraphARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187080241AE3C000897335 /* GraphARSCNView.swift */; };
+		0418708A241AE3C000897335 /* EquationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04187082241AE3C000897335 /* EquationCell.xib */; };
+		0418708B241AE3C000897335 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187083241AE3C000897335 /* EquationCell.swift */; };
+		0418708C241AE3C000897335 /* RecognitionContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187084241AE3C000897335 /* RecognitionContentView.swift */; };
+		0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708D241AE3D900897335 /* FakeRecognizer.swift */; };
+		04187090241AE3E500897335 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708F241AE3E500897335 /* Equation.swift */; };
+		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
 		04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D182241AE0E100C4FBEB /* AppDelegate.swift */; };
-		04F3D185241AE0E100C4FBEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D184241AE0E100C4FBEB /* SceneDelegate.swift */; };
 		04F3D187241AE0E100C4FBEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D186241AE0E100C4FBEB /* ViewController.swift */; };
 		04F3D18A241AE0E100C4FBEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D188241AE0E100C4FBEB /* Main.storyboard */; };
 		04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18B241AE0E200C4FBEB /* Assets.xcassets */; };
 		04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */; };
+		A960E93AB63585F0BBD864EF /* Pods_GraphBuilderDiplomaWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBAF5203556E0C80148A611 /* Pods_GraphBuilderDiplomaWork.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0418705B241AE2B000897335 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0418705A241AE2B000897335 /* Pods_GraphBuilderDiplomaWork.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		04187056241AE29900897335 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0418705D241AE3B100897335 /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
+		0418705E241AE3B100897335 /* BezierArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierArtist.swift; sourceTree = "<group>"; };
+		04187061241AE3B400897335 /* AlertBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		04187064241AE3B800897335 /* UIImage extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage extension.swift"; sourceTree = "<group>"; };
+		04187065241AE3B800897335 /* RecognitionResult extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecognitionResult extension.swift"; sourceTree = "<group>"; };
+		04187066241AE3B800897335 /* SCNVector3 extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3 extension.swift"; sourceTree = "<group>"; };
+		04187067241AE3B800897335 /* Error extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error extension.swift"; sourceTree = "<group>"; };
+		04187068241AE3B800897335 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		04187069241AE3B800897335 /* Number extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number extension.swift"; sourceTree = "<group>"; };
+		0418706A241AE3B800897335 /* WolframAlpha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WolframAlpha.swift; sourceTree = "<group>"; };
+		04187073241AE3BC00897335 /* EquationRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationRecognizer.swift; sourceTree = "<group>"; };
+		04187075241AE3BC00897335 /* MathpixRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathpixRecognizer.swift; sourceTree = "<group>"; };
+		0418707A241AE3C000897335 /* RecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionViewController.swift; sourceTree = "<group>"; };
+		0418707C241AE3C000897335 /* EquationTransformator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationTransformator.swift; sourceTree = "<group>"; };
+		0418707D241AE3C000897335 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		0418707E241AE3C000897335 /* VectorAdapeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorAdapeter.swift; sourceTree = "<group>"; };
+		04187080241AE3C000897335 /* GraphARSCNView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphARSCNView.swift; sourceTree = "<group>"; };
+		04187082241AE3C000897335 /* EquationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquationCell.xib; sourceTree = "<group>"; };
+		04187083241AE3C000897335 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationCell.swift; sourceTree = "<group>"; };
+		04187084241AE3C000897335 /* RecognitionContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionContentView.swift; sourceTree = "<group>"; };
+		0418708D241AE3D900897335 /* FakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecognizer.swift; sourceTree = "<group>"; };
+		0418708F241AE3E500897335 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
+		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphBuilderDiplomaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F3D182241AE0E100C4FBEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04F3D184241AE0E100C4FBEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04F3D186241AE0E100C4FBEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04F3D189241AE0E100C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F3D18E241AE0E200C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04F3D190241AE0E200C4FBEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DBAF5203556E0C80148A611 /* Pods_GraphBuilderDiplomaWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraphBuilderDiplomaWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A588A3814B49284DE045E8EE /* Pods-GraphBuilderDiplomaWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphBuilderDiplomaWork.release.xcconfig"; path = "Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork.release.xcconfig"; sourceTree = "<group>"; };
+		C5E0A477AFD955E3D4448F97 /* Pods-GraphBuilderDiplomaWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphBuilderDiplomaWork.debug.xcconfig"; path = "Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork.debug.xcconfig"; sourceTree = "<group>"; };
+		D252380291A489E5B0442D4C /* Pods_GraphBuilderDiplomaWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraphBuilderDiplomaWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +97,122 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04187059241AE2B000897335 /* Pods_GraphBuilderDiplomaWork.framework in Frameworks */,
+				A960E93AB63585F0BBD864EF /* Pods_GraphBuilderDiplomaWork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04187055241AE28200897335 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D252380291A489E5B0442D4C /* Pods_GraphBuilderDiplomaWork.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		0418705C241AE3B100897335 /* GraphBuilding */ = {
+			isa = PBXGroup;
+			children = (
+				0418705D241AE3B100897335 /* GraphBuilder.swift */,
+				0418705E241AE3B100897335 /* BezierArtist.swift */,
+			);
+			name = GraphBuilding;
+			path = "../../../../../University/Диплом/EquationRecognition/EquationRecognition/GraphBuilding";
+			sourceTree = "<group>";
+		};
+		04187063241AE3B800897335 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04187064241AE3B800897335 /* UIImage extension.swift */,
+				04187065241AE3B800897335 /* RecognitionResult extension.swift */,
+				04187066241AE3B800897335 /* SCNVector3 extension.swift */,
+				04187067241AE3B800897335 /* Error extension.swift */,
+				04187068241AE3B800897335 /* Double.swift */,
+				04187069241AE3B800897335 /* Number extension.swift */,
+				0418706A241AE3B800897335 /* WolframAlpha.swift */,
+			);
+			name = Extensions;
+			path = "../../../../../University/Диплом/EquationRecognition/EquationRecognition/Extensions";
+			sourceTree = "<group>";
+		};
+		04187072241AE3BC00897335 /* Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				04187073241AE3BC00897335 /* EquationRecognizer.swift */,
+				04187074241AE3BC00897335 /* Recognizers */,
+				0418708F241AE3E500897335 /* Equation.swift */,
+				04187091241AE3F800897335 /* Function.swift */,
+			);
+			path = Recognition;
+			sourceTree = "<group>";
+		};
+		04187074241AE3BC00897335 /* Recognizers */ = {
+			isa = PBXGroup;
+			children = (
+				04187075241AE3BC00897335 /* MathpixRecognizer.swift */,
+				0418708D241AE3D900897335 /* FakeRecognizer.swift */,
+			);
+			path = Recognizers;
+			sourceTree = "<group>";
+		};
+		04187078241AE3C000897335 /* Recognition screen */ = {
+			isa = PBXGroup;
+			children = (
+				04187079241AE3C000897335 /* Controller */,
+				0418707B241AE3C000897335 /* Model */,
+				0418707F241AE3C000897335 /* View */,
+			);
+			path = "Recognition screen";
+			sourceTree = "<group>";
+		};
+		04187079241AE3C000897335 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0418707A241AE3C000897335 /* RecognitionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0418707B241AE3C000897335 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0418707C241AE3C000897335 /* EquationTransformator.swift */,
+				0418707D241AE3C000897335 /* Graph.swift */,
+				0418707E241AE3C000897335 /* VectorAdapeter.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0418707F241AE3C000897335 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04187080241AE3C000897335 /* GraphARSCNView.swift */,
+				04187081241AE3C000897335 /* EquationCell */,
+				04187084241AE3C000897335 /* RecognitionContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04187081241AE3C000897335 /* EquationCell */ = {
+			isa = PBXGroup;
+			children = (
+				04187082241AE3C000897335 /* EquationCell.xib */,
+				04187083241AE3C000897335 /* EquationCell.swift */,
+			);
+			path = EquationCell;
+			sourceTree = "<group>";
+		};
 		04F3D176241AE0E100C4FBEB = {
 			isa = PBXGroup;
 			children = (
 				04F3D181241AE0E100C4FBEB /* GraphBuilderDiplomaWork */,
 				04F3D180241AE0E100C4FBEB /* Products */,
+				A893E208966DCC519B593018 /* Pods */,
+				3CBE016ED2AB5CF486F208CD /* Frameworks */,
+				04187055241AE28200897335 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +227,12 @@
 		04F3D181241AE0E100C4FBEB /* GraphBuilderDiplomaWork */ = {
 			isa = PBXGroup;
 			children = (
+				04187078241AE3C000897335 /* Recognition screen */,
+				04187072241AE3BC00897335 /* Recognition */,
+				04187063241AE3B800897335 /* Extensions */,
+				04187061241AE3B400897335 /* AlertBuilder.swift */,
+				0418705C241AE3B100897335 /* GraphBuilding */,
 				04F3D182241AE0E100C4FBEB /* AppDelegate.swift */,
-				04F3D184241AE0E100C4FBEB /* SceneDelegate.swift */,
 				04F3D186241AE0E100C4FBEB /* ViewController.swift */,
 				04F3D188241AE0E100C4FBEB /* Main.storyboard */,
 				04F3D18B241AE0E200C4FBEB /* Assets.xcassets */,
@@ -67,6 +242,24 @@
 			path = GraphBuilderDiplomaWork;
 			sourceTree = "<group>";
 		};
+		3CBE016ED2AB5CF486F208CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04187056241AE29900897335 /* SnapKit.framework */,
+				4DBAF5203556E0C80148A611 /* Pods_GraphBuilderDiplomaWork.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A893E208966DCC519B593018 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5E0A477AFD955E3D4448F97 /* Pods-GraphBuilderDiplomaWork.debug.xcconfig */,
+				A588A3814B49284DE045E8EE /* Pods-GraphBuilderDiplomaWork.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +267,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04F3D193241AE0E200C4FBEB /* Build configuration list for PBXNativeTarget "GraphBuilderDiplomaWork" */;
 			buildPhases = (
+				F97067244FBE70A2077C60A7 /* [CP] Check Pods Manifest.lock */,
 				04F3D17B241AE0E100C4FBEB /* Sources */,
 				04F3D17C241AE0E100C4FBEB /* Frameworks */,
 				04F3D17D241AE0E100C4FBEB /* Resources */,
+				60CCB83BA720AA06344FB909 /* [CP] Embed Pods Frameworks */,
+				0418705B241AE2B000897335 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,10 +324,53 @@
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
 				04F3D18A241AE0E100C4FBEB /* Main.storyboard in Resources */,
+				0418708A241AE3C000897335 /* EquationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60CCB83BA720AA06344FB909 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F97067244FBE70A2077C60A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GraphBuilderDiplomaWork-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04F3D17B241AE0E100C4FBEB /* Sources */ = {
@@ -139,8 +378,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F3D187241AE0E100C4FBEB /* ViewController.swift in Sources */,
+				04187060241AE3B100897335 /* BezierArtist.swift in Sources */,
+				0418705F241AE3B100897335 /* GraphBuilder.swift in Sources */,
+				04187071241AE3B800897335 /* WolframAlpha.swift in Sources */,
+				04187089241AE3C000897335 /* GraphARSCNView.swift in Sources */,
+				04187070241AE3B800897335 /* Number extension.swift in Sources */,
+				0418706C241AE3B800897335 /* RecognitionResult extension.swift in Sources */,
+				0418706D241AE3B800897335 /* SCNVector3 extension.swift in Sources */,
+				04187085241AE3C000897335 /* RecognitionViewController.swift in Sources */,
+				0418708C241AE3C000897335 /* RecognitionContentView.swift in Sources */,
+				04187077241AE3BC00897335 /* MathpixRecognizer.swift in Sources */,
+				04187090241AE3E500897335 /* Equation.swift in Sources */,
+				04187087241AE3C000897335 /* Graph.swift in Sources */,
+				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,
 				04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */,
-				04F3D185241AE0E100C4FBEB /* SceneDelegate.swift in Sources */,
+				04187092241AE3F800897335 /* Function.swift in Sources */,
+				04187088241AE3C000897335 /* VectorAdapeter.swift in Sources */,
+				0418706B241AE3B800897335 /* UIImage extension.swift in Sources */,
+				0418708B241AE3C000897335 /* EquationCell.swift in Sources */,
+				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
+				0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */,
+				0418706F241AE3B800897335 /* Double.swift in Sources */,
+				04187086241AE3C000897335 /* EquationTransformator.swift in Sources */,
+				0418706E241AE3B800897335 /* Error extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,10 +542,11 @@
 		};
 		04F3D194241AE0E200C4FBEB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5E0A477AFD955E3D4448F97 /* Pods-GraphBuilderDiplomaWork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6D4PZMC7DM;
+				DEVELOPMENT_TEAM = BD5CJ8U5EG;
 				INFOPLIST_FILE = GraphBuilderDiplomaWork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,10 +561,11 @@
 		};
 		04F3D195241AE0E200C4FBEB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A588A3814B49284DE045E8EE /* Pods-GraphBuilderDiplomaWork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6D4PZMC7DM;
+				DEVELOPMENT_TEAM = BD5CJ8U5EG;
 				INFOPLIST_FILE = GraphBuilderDiplomaWork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
