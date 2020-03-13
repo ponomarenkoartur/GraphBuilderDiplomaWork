@@ -34,12 +34,12 @@ class EquationTransformator {
     private func getPoints(_ f: (_ x: Float, _ z: Float) -> Float) -> [Point] {
         var points: [Point] = []
         
-        for x in stride(from: -1, to: 1, by: 0.1) {
-            for z in stride(from: -1, to: 1, by: 0.1) {
+        for x in stride(from: -10, to: 10, by: 0.25) {
+            for z in stride(from: -10, to: 10, by: 0.25) {
                 let x = Float(x)
                 let z = Float(z)
                 let vector = Vector3(x: x, y: f(x, z), z: z)
-                print(vector)
+//                print(vector)
                 points.append(vector)
             }
         }

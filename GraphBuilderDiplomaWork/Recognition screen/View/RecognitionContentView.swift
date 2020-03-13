@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import iosMath
 import ARKit
+import RxCocoa
+import RxSwift
 
 
 protocol RecognitionContentViewDataSource: class {
@@ -20,6 +22,8 @@ protocol RecognitionContentViewDataSource: class {
 protocol RecognitionContentViewDelegate: class {
     func recognizedEquationContentView(_ view: RecognitionContentView,
                                        didSelectEquationAt index: Int)
+    func recognizedEquationContentView(_ view: RecognitionContentView,
+                                       sliderValueChanges value: Float)
 }
 
 
@@ -39,6 +43,8 @@ class RecognitionContentView: UIView {
     private var errorLabel: UILabel!
     private var resultView: UIView!
     
+    private var slider = UISlider()
+    
     
     
     // MARK: - Properties
@@ -49,6 +55,8 @@ class RecognitionContentView: UIView {
     weak var delegate: RecognitionContentViewDelegate!
     
     private var resultViewIsHidden = false
+    
+    private var bag = DisposeBag()
     
     
     // MARK: - Callbacks
@@ -78,6 +86,7 @@ class RecognitionContentView: UIView {
     private func markup() {
         markupTableView()
         markupARView()
+        markupSlider()
     }
     
     private func markupARView() {
@@ -98,6 +107,23 @@ class RecognitionContentView: UIView {
             $0.left.right.bottom.equalToSuperview()
             $0.height.equalTo(150)
         }
+    }
+    
+    private func markupSlider() {
+        addSubview(slider)
+        slider.minimumValue = -10
+        slider.maximumValue = 10
+        addSubview(slider)
+        slider.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview().offset(10)
+        }
+        
+        slider.rx.value
+            .throttle(DispatchTimeInterval.milliseconds(50), scheduler: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.delegate?.recognizedEquationContentView(self, sliderValueChanges: $0)
+            })
+            .disposed(by: bag)
     }
     
     

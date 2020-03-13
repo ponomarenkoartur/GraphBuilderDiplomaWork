@@ -138,4 +138,19 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
             self.present(alert, animated: true)
         }
     }
+    
+    func recognizedEquationContentView(_ view: RecognitionContentView, sliderValueChanges value: Float) {
+        let equation = Equation(latex: "", function: { (x: Float, y: Float) -> Float in sin(sin(sin(x)))*sin(sin(sin(y*value))) })
+        let graph = transformator.getGraph(from: equation)!
+        do {
+            try self.arView.build(graph)
+        } catch let error {
+            let alert = AlertBuilder(
+                title: (error as? GraphBuilder.GrapghBuildingError)?
+                    .localizedDescription ?? error.localizedDescription)
+                .addOkButton()
+                .build()
+            self.present(alert, animated: true)
+        }
+    }
 }

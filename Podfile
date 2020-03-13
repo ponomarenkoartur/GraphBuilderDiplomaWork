@@ -9,5 +9,7 @@ target 'GraphBuilderDiplomaWork' do
 
   pod 'SnapKit'
   pod 'iosMath'
+  pod 'RxSwift'
+  pod 'RxCocoa' 
 
 end
