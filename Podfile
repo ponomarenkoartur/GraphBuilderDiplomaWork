@@ -4,12 +4,23 @@ platform :ios, '10.0'
 target 'GraphBuilderDiplomaWork' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for GraphBuilderDiplomaWork
-
+  
   pod 'SnapKit'
   pod 'iosMath'
   pod 'RxSwift'
-  pod 'RxCocoa' 
-
+  pod 'RxCocoa'
+  pod 'MathpixClient'
+  
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if ['MathpixClient'].include? target.name
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4'
+        end
+      end
+    end
+  end
+  
 end

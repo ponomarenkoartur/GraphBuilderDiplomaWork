@@ -39,7 +39,6 @@ class EquationTransformator {
                 let x = Float(x)
                 let z = Float(z)
                 let vector = Vector3(x: x, y: f(x, z), z: z)
-//                print(vector)
                 points.append(vector)
             }
         }
