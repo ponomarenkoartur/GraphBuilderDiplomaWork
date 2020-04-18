@@ -24,6 +24,9 @@
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
 		044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */; };
 		046E98C7244B4DE400611091 /* Collection extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98C6244B4DE400611091 /* Collection extension.swift */; };
+		046E98CA244B50B200611091 /* TopicsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98C9244B50B200611091 /* TopicsListVC.swift */; };
+		046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CB244B532500611091 /* NavigationBarPresenter.swift */; };
+		046E98CE244B549100611091 /* TopicsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CD244B549100611091 /* TopicsListVM.swift */; };
 		0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FA244B20700065BB63 /* Shortcuts.swift */; };
 		0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FC244B326E0065BB63 /* WelcomeVM.swift */; };
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
@@ -113,6 +116,9 @@
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		046E98C6244B4DE400611091 /* Collection extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection extension.swift"; sourceTree = "<group>"; };
+		046E98C9244B50B200611091 /* TopicsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVC.swift; sourceTree = "<group>"; };
+		046E98CB244B532500611091 /* NavigationBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarPresenter.swift; sourceTree = "<group>"; };
+		046E98CD244B549100611091 /* TopicsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVM.swift; sourceTree = "<group>"; };
 		0473F3FA244B20700065BB63 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		0473F3FC244B326E0065BB63 /* WelcomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
@@ -277,6 +283,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		046E98C8244B509E00611091 /* Topics Screen */ = {
+			isa = PBXGroup;
+			children = (
+				046E98C9244B50B200611091 /* TopicsListVC.swift */,
+				046E98CD244B549100611091 /* TopicsListVM.swift */,
+			);
+			path = "Topics Screen";
+			sourceTree = "<group>";
+		};
 		0473F3F9244B1FCC0065BB63 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +301,7 @@
 				04CE0E48244B174B006B19B0 /* SafeAreaInsets.swift */,
 				04CE0E36244B142C006B19B0 /* Bases */,
 				0473F3FA244B20700065BB63 /* Shortcuts.swift */,
+				046E98CB244B532500611091 /* NavigationBarPresenter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -345,6 +361,7 @@
 				04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */,
 				04187078241AE3C000897335 /* Recognition screen */,
 				04CE0E33244B13D8006B19B0 /* Main screen */,
+				046E98C8244B509E00611091 /* Topics Screen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -638,12 +655,15 @@
 				04CE0E49244B174B006B19B0 /* SafeAreaInsets.swift in Sources */,
 				04CE0E70244B1839006B19B0 /* UICollectionViewCell extension.swift in Sources */,
 				04187077241AE3BC00897335 /* MathpixRecognizer.swift in Sources */,
+				046E98CE244B549100611091 /* TopicsListVM.swift in Sources */,
 				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
 				04CE0E69244B1839006B19B0 /* UIColor extension.swift in Sources */,
 				04CE0E82244B18A7006B19B0 /* Range extension.swift in Sources */,
+				046E98CA244B50B200611091 /* TopicsListVC.swift in Sources */,
 				04187090241AE3E500897335 /* Equation.swift in Sources */,
 				04187087241AE3C000897335 /* Graph.swift in Sources */,
+				046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */,
 				04CE0E30244B1227006B19B0 /* BezierArtist.swift in Sources */,
 				04CE0E6B244B1839006B19B0 /* UIButton extension.swift in Sources */,
 				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,

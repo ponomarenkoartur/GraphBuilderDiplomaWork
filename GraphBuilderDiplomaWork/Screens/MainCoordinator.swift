@@ -48,10 +48,30 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopics() {
         print("pushing topics")
+        let vm = TopicsListVM()
+        navVC.push(vm.viewController)
     }
     
     private func pushSandbox() {
         print("pushing sandbox")
     }
     
+}
+
+
+// MARK: - UINavigationControllerDelegate
+
+extension MainCoordinator {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController, animated: Bool) {
+        guard navigationController == navVC else { return }
+        
+        if let vc = viewController as? NavigationBarPresenter {
+            navigationController.setNavigationBarHidden(
+                !vc.shouldPresentNavigationBar, animated: true)
+            navigationController.navigationBar.prefersLargeTitles =
+                vc.shouldPreferLargeTitle
+        }
+    }
 }
