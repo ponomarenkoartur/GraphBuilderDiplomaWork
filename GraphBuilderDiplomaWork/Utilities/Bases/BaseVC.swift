@@ -12,7 +12,7 @@ import RxSwift
 import RxKeyboard
 
 
-class BaseVC: UIViewController {
+class BaseVC: UIViewController, NavigationBarPresenter {
     
     
     // MARK: - Properties
@@ -23,6 +23,8 @@ class BaseVC: UIViewController {
     private var attachedToKeyboard:
         [(view: UIView, offset: CGFloat, animatesWithKeyboard: Bool)] = []
     var bag = DisposeBag()
+    var shouldPresentNavigationBar = true
+    var shouldPreferLargeTitle = true
     
     
     // MARK: - Initialization

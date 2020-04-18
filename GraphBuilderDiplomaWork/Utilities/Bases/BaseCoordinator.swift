@@ -25,17 +25,14 @@ class BaseCoordinator: NSObject, Coordinator, Router {
     // MARK: - Initialization
     
     init(navigationVC: UINavVC = UINavVC()) {
-        navigationVC.navigationBar.isHidden = true
         self.navVC = navigationVC
+        super.init()
+        navVC.delegate = self
+        navVC.navigationBar.tintColor = Color.turquoise()
     }
     
-    func start() {
-        navVC.delegate = self
-    }
-    
-    func start(with option: DeepLinkOption?) {
-        navVC.delegate = self
-    }
+    func start() {}
+    func start(with option: DeepLinkOption?) {}
 }
 
 
