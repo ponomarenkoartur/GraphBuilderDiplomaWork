@@ -6,9 +6,10 @@
 //  Copyright © 2020 Artur. All rights reserved.
 //
 
-import Foundation
+import UIFontComplete
 
 
 typealias Color = R.color
-//typealias Font = R.font
+typealias Font = R.font
+typealias DefaultFont = Font
 typealias Image = R.image

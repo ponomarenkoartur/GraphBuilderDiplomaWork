@@ -9,17 +9,22 @@
 import RxSwift
 
 
-class BaseVM: NSObject, BaseVMProtocol {
+class BaseVM<VC, FinishCompletionReason>: NSObject, ViewModelProtocol where VC: BaseVC {
     
+    typealias FinishCompletionReason = FinishCompletionReason
+    typealias View = VC
     
     // MARK: - Properties
     
     let bag = DisposeBag()
+    var viewController: View
+    var finishCompletion: (FinishCompletionReason) -> () = { _ in }
     
     
     // MARK: - Initialization
     
-    override required init() {
+    init(view: View = View()) {
+        self.viewController = view
         super.init()
     }
 }

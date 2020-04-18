@@ -12,21 +12,6 @@ import RxSwift
 import RxKeyboard
 
 
-class BaseVCWithVM<VM>: BaseVC, BaseVCWithVMProtocol where VM: BaseVMProtocol {
-    typealias VMType = VM
-    var viewModel: VM
-    
-    init(viewModel: VM = VM()) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        viewModel = VM()
-        super.init(coder: coder)
-    }
-}
-
 class BaseVC: UIViewController {
     
     
@@ -38,6 +23,17 @@ class BaseVC: UIViewController {
     private var attachedToKeyboard:
         [(view: UIView, offset: CGFloat, animatesWithKeyboard: Bool)] = []
     var bag = DisposeBag()
+    
+    
+    // MARK: - Initialization
+    
+    required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     // MARK: - View Lifecycle

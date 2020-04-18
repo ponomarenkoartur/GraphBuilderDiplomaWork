@@ -9,6 +9,6 @@
 import UIKit
 
 protocol BaseVCWithVMProtocol where Self: BaseVC {
-    associatedtype VMType: BaseVMProtocol
-    var viewModel: VMType { get }
+    associatedtype VMType: ViewModelProtocol
+    var viewModel: VMType? { get }
 }

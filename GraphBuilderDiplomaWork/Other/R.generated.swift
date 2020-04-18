@@ -85,6 +85,7 @@ struct R: Rswift.Validatable {
   }
 
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
 
@@ -105,10 +106,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 2 colors.
+  /// This `R.color` struct is generated, and contains static references to 3 colors.
   struct color {
     /// Color `background`.
     static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
+    /// Color `default-text`.
+    static let defaultText = Rswift.ColorResource(bundle: R.hostingBundle, name: "default-text")
     /// Color `turquoise`.
     static let turquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "turquoise")
 
@@ -118,6 +121,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "default-text", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func defaultText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.defaultText, compatibleWith: traitCollection)
     }
     #endif
 
@@ -133,15 +145,55 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `SF-Pro-Display-Regular.otf`.
+    static let sfProDisplayRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Regular", pathExtension: "otf")
+
+    /// `bundle.url(forResource: "SF-Pro-Display-Regular", withExtension: "otf")`
+    static func sfProDisplayRegularOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.sfProDisplayRegularOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.font` struct is generated, and contains static references to 1 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `SFProDisplay-Regular`.
+    static let sfProDisplayRegular = Rswift.FontResource(fontName: "SFProDisplay-Regular")
+
+    /// `UIFont(name: "SFProDisplay-Regular", size: ...)`
+    static func sfProDisplayRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: sfProDisplayRegular, size: size)
+    }
+
+    static func validate() throws {
+      if R.font.sfProDisplayRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Regular' could not be loaded, is 'SF-Pro-Display-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 2 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
+    /// Image `left-arrow-welcome-menu`.
+    static let leftArrowWelcomeMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-arrow-welcome-menu")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "AR graph logo", bundle: ..., traitCollection: ...)`
     static func arGraphLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.arGraphLogo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "left-arrow-welcome-menu", bundle: ..., traitCollection: ...)`
+    static func leftArrowWelcomeMenu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.leftArrowWelcomeMenu, compatibleWith: traitCollection)
     }
     #endif
 

@@ -34,8 +34,24 @@ class MainCoordinator: BaseCoordinator {
     // MARK: - Private Methods
     
     private func pushWelcomeScreen() {
-        let vc = WelcomeVC()
-        navVC.push(vc)
+        let vm = WelcomeVM()
+        vm.finishCompletion = { reason in
+            switch reason {
+            case .didTapSandbox:
+                self.pushSandbox()
+            case .didTapTopics:
+                self.pushTopics()
+            }
+        }
+        navVC.push(vm.viewController)
+    }
+    
+    private func pushTopics() {
+        print("pushing topics")
+    }
+    
+    private func pushSandbox() {
+        print("pushing sandbox")
     }
     
 }
