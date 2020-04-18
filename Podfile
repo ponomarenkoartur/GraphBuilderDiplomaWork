@@ -7,11 +7,29 @@ target 'GraphBuilderDiplomaWork' do
   
   # Pods for GraphBuilderDiplomaWork
   
+  
+  # Coding speedup
+  
   pod 'SnapKit'
+  pod 'R.swift'
+  pod 'UIFontComplete'
+  pod 'AttributedString'
+  
+  
+  # Math
+  
   pod 'iosMath'
+  pod 'MathpixClient'
+  
+  # Rx
+  
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'MathpixClient'
+  pod 'RxGesture'
+  pod 'RxKeyboard'
+  
+  
+  # Defining Swift version
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|
