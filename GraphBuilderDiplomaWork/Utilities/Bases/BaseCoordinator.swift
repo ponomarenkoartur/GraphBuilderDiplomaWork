@@ -13,28 +13,28 @@ class BaseCoordinator: NSObject, Coordinator, Router {
     
     // MARK: - Properties
     
-    var presenter: UINavigationVC? { navigationVC }
+    var presenter: UINavVC? { navVC }
     
     
     // MARK: - Properties
     
     var children: [Coordinator] = []
-    var navigationVC: UINavigationVC
+    var navVC: UINavVC
     
     
     // MARK: - Initialization
     
-    init(navigationVC: UINavigationVC = UINavigationVC()) {
+    init(navigationVC: UINavVC = UINavVC()) {
         navigationVC.navigationBar.isHidden = true
-        self.navigationVC = navigationVC
+        self.navVC = navigationVC
     }
     
     func start() {
-        navigationVC.delegate = self
+        navVC.delegate = self
     }
     
     func start(with option: DeepLinkOption?) {
-        navigationVC.delegate = self
+        navVC.delegate = self
     }
 }
 

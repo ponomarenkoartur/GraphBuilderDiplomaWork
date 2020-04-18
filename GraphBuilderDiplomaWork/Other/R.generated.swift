@@ -105,10 +105,21 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  /// This `R.color` struct is generated, and contains static references to 2 colors.
   struct color {
+    /// Color `background`.
+    static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
     /// Color `turquoise`.
     static let turquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "turquoise")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "turquoise", bundle: ..., traitCollection: ...)`
@@ -122,24 +133,15 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 1 images.
   struct image {
-    /// Image `AR graph logo black theme`.
-    static let arGraphLogoBlackTheme = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo black theme")
-    /// Image `AR graph logo white theme`.
-    static let arGraphLogoWhiteTheme = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo white theme")
+    /// Image `AR graph logo`.
+    static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "AR graph logo black theme", bundle: ..., traitCollection: ...)`
-    static func arGraphLogoBlackTheme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.arGraphLogoBlackTheme, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "AR graph logo white theme", bundle: ..., traitCollection: ...)`
-    static func arGraphLogoWhiteTheme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.arGraphLogoWhiteTheme, compatibleWith: traitCollection)
+    /// `UIImage(named: "AR graph logo", bundle: ..., traitCollection: ...)`
+    static func arGraphLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arGraphLogo, compatibleWith: traitCollection)
     }
     #endif
 

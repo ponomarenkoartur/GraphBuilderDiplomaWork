@@ -17,6 +17,9 @@ class WelcomeVC: BaseVC {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.snp.makeConstraints { $0.height.equalTo(111) }
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = Image.arGraphLogo()
         return imageView
     }()
     
@@ -24,9 +27,19 @@ class WelcomeVC: BaseVC {
     
     // MARK: - Setup Methods
     
-    override func setupUI() {
-        super.setupUI()
-        
+    override func addSubviews() {
+        super.addSubviews()
+        view.addSubviews([
+            imageView
+        ])
+    }
+    
+    override func setupConstraints() {
+        super.setupConstraints()
+        imageView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets.top).offset(174)
+            imageView.snp.makeConstraints { $0.width.equalToSuperview() }
+        }
     }
     
 }

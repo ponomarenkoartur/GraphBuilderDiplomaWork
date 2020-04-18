@@ -38,7 +38,7 @@ class InitialScreenSetter: InitialScreenSetterProtocol {
     
     func setup() -> MainCoordinator {
         let coordinator = MainCoordinator()
-        window.rootViewController = coordinator.navigationVC
+        window.rootViewController = coordinator.navVC
         window.makeKeyAndVisible()
         return coordinator
     }

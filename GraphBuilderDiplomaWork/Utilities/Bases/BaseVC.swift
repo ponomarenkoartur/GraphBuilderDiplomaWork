@@ -58,7 +58,7 @@ class BaseVC: UIViewController {
     /// Call 'addSubview' methods before caliing super.setupUI()
     /// in overrided methods
     func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = Color.background()
         addSubviews()
         setupConstraints()
     }

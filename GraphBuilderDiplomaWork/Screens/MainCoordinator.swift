@@ -23,10 +23,19 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
+        pushWelcomeScreen()
     }
     
     override func start(with option: DeepLinkOption?) {
         start()
+    }
+    
+    
+    // MARK: - Private Methods
+    
+    private func pushWelcomeScreen() {
+        let vc = WelcomeVC()
+        navVC.push(vc)
     }
     
 }

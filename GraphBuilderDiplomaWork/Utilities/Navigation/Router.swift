@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol Router {
-    var presenter: UINavigationVC? { get }
+    var presenter: UINavVC? { get }
     func present(_ controller: UIVC, animated: Bool)
     func push(_ controller: UIVC, animated: Bool)
     func pop(animated: Bool)

@@ -9,4 +9,4 @@
 import UIKit
 
 typealias UIVC = UIViewController
-typealias UINavigationVC = UINavigationController
+typealias UINavVC = UINavigationController

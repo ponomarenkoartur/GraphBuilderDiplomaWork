@@ -11,12 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
+    // MARK: - Properties
 
     var window: UIWindow?
+    var coordinator: MainCoordinator!
+    
+    
+    // MARK: - Lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let coordinator = InitialScreenSetter(window: window!).setup()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        
+        coordinator = InitialScreenSetter(window: window).setup()
         coordinator.start()
         return true
     }
