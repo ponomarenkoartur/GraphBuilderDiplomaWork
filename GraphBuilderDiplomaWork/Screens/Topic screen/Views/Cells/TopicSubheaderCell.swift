@@ -1,5 +1,5 @@
 //
-//  TopicVC.swift
+//  TopicSubheaderCell.swift
 //  GraphBuilderDiplomaWork
 //
 //  Created by Artur on 20.04.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-
-class TopicVC: BaseVC {
+class TopicSubheaderCell: UITableViewCell {
+    
     
 }

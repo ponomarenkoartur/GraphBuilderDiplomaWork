@@ -27,7 +27,7 @@ class TopicsListVM: BaseVM<TopicsListVC, TopicsListVM.FinishCompletionReason> {
               imagePreview: nil),
         Topic(title: "World",
               shortDescription: "This is short description of \"World\" topic",
-              imagePreview: nil),
+              imagePreview: nil, items: [TopicSubheader(text: "Subheader")]),
     ])
     
     private var topicsList: Observable<[Topic]> {

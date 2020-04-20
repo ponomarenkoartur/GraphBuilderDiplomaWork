@@ -19,9 +19,10 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     
     // MARK: - Initialization
     
-    init(topic: Topic, view: BaseVM<TopicVC, NSNull>.View? = View()) {
+    init(topic: Topic, view: TopicVC? = TopicVC()) {
         self.topic = topic
         super.init(view: view)
+        view?.setItems(topic.items)
     }
     
 }
