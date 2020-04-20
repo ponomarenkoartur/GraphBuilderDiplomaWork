@@ -29,7 +29,12 @@ class EquationCell: UITableViewCell {
     // MARK: - Setup Methods
     
     private func setupLabelUI() {
-        latexLabel.textColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
+        if #available(iOS 12.0, *) {
+            latexLabel.textColor = traitCollection.userInterfaceStyle == .dark ?
+                .white : .black
+        } else {
+            latexLabel.textColor = .black
+        }
     }
     
     

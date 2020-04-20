@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +13,41 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oqj-sR-XMZ">
+                                <rect key="frame" x="0.0" y="210" width="812" height="122"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="122" id="XY3-kv-Kxa"/>
+                                </constraints>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="ZcO-oh-F6x">
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AR graph logo" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-Ww-cgP">
+                                <rect key="frame" x="0.0" y="50" width="812" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="Xv5-lm-333"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="oqj-sR-XMZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="E3L-lf-0QW"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="MOd-MK-fBL"/>
+                            <constraint firstItem="oqj-sR-XMZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PIs-Ww-cgP" secondAttribute="bottom" constant="20" id="Nx8-Xz-xyg"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="998" constant="50" id="OEy-ur-3tN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oqj-sR-XMZ" secondAttribute="bottom" priority="998" constant="92" id="fVs-un-7jH"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="irM-br-S06"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oqj-sR-XMZ" secondAttribute="bottom" priority="999" constant="5" id="k4b-oo-770"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="997" constant="174" id="ld4-oX-pJ3"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="x4A-Dj-GEq"/>
+                            <constraint firstItem="oqj-sR-XMZ" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="yVg-zB-5qA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +56,10 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AR graph logo" width="2777" height="923"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
