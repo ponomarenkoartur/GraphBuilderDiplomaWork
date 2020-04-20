@@ -9,15 +9,10 @@
 import UIKit
 
 
-struct TopicSubheader: CellPresentable {
+struct TopicSubheader {
     
 
     // MARK: - Properties
     
     let text: String
-    
-    
-    // MARK: - CellPresentable
-    
-    var cellPresentation: UITableViewCell.Type { TopicSubheaderCell.self }
 }

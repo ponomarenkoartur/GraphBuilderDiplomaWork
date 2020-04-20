@@ -15,8 +15,8 @@ class TopicVC: BaseVC {
     
     // MARK: - Properties
     
-    private let itemsSubject = BehaviorSubject<[CellPresentable]>(value: [])
-    var items: Observable<[CellPresentable]>? { itemsSubject.asObservable() }
+    private let itemsSubject = BehaviorSubject<[Any]>(value: [])
+    var items: Observable<[Any]>? { itemsSubject.asObservable() }
     
     
     // MARK: Views
@@ -51,7 +51,7 @@ class TopicVC: BaseVC {
     override func setupBinding() {
         super.setupBinding()
         items?.bind(to: tableView.rx.items) {
-            (tableView: UITableView, index: Int, item: CellPresentable) in
+            (tableView: UITableView, index: Int, item: Any) in
             return TopicItemCellConfigurator(tableView: tableView, item: item)
                 .configure(for: IndexPath(row: index, section: 0)) ??
                 UITableViewCell()
@@ -61,8 +61,10 @@ class TopicVC: BaseVC {
     
     // MARK: - API Methods
     
-    func setItems(_ items: [CellPresentable]) {
-        items.forEach { tableView.register($0.cellPresentation) }
+    func setItems(_ items: [Any]) {
+        items
+            .compactMap { $0.self as? AnyClass }
+            .forEach { tableView.register($0) }
         itemsSubject.onNext(items)
     }
 }

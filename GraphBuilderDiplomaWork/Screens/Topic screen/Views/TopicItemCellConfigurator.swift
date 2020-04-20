@@ -14,18 +14,23 @@ struct TopicItemCellConfigurator {
     // MARK: - Properties
     
     let tableView: UITableView
-    let item: CellPresentable
+    let item: Any
 
 
     // MARK: - API Methods
     
     func configure(for indexPath: IndexPath) -> UITableViewCell? {
-        let cellType = item.cellPresentation
-        let cell = tableView.dequeue(cellType, for: indexPath) ?? cellType.init()
+        var cell: UITableViewCell?
         
-        if cellType == TopicSubheaderCell.self,
-            let cell = cell as? TopicSubheaderCell {
-            configureSubheaderCell(cell)
+        switch item {
+        case is TopicSubheader:
+            if let subheaderCell = tableView.dequeue(TopicSubheaderCell.self,
+                                                     for: indexPath) {
+                configureSubheaderCell(subheaderCell)
+                cell = subheaderCell
+            }
+        default:
+            break
         }
         
         return cell

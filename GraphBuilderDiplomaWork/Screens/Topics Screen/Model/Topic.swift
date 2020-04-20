@@ -17,13 +17,13 @@ struct Topic {
     let title: String
     let shortDescription: String?
     let imagePreview: UIImage?
-    let items: [CellPresentable]
+    let items: [Any]
     
     
     // MARK: - Initialization
     
     init(title: String, shortDescription: String?, imagePreview: UIImage? = nil,
-         items: [CellPresentable] = []) {
+         items: [Any] = []) {
         self.title = title
         self.shortDescription = shortDescription
         self.imagePreview = imagePreview
