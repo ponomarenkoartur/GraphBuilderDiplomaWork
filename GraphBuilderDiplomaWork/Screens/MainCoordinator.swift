@@ -23,7 +23,7 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        pushTopics()
+        pushWelcomeScreen()
     }
     
     override func start(with option: DeepLinkOption?) {
