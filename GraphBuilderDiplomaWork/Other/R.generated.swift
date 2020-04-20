@@ -145,10 +145,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `SF-Pro-Display-Regular.otf`.
     static let sfProDisplayRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Regular", pathExtension: "otf")
+    /// Resource file `SF-Pro-Display-Semibold.otf`.
+    static let sfProDisplaySemiboldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Semibold", pathExtension: "otf")
 
     /// `bundle.url(forResource: "SF-Pro-Display-Regular", withExtension: "otf")`
     static func sfProDisplayRegularOtf(_: Void = ()) -> Foundation.URL? {
@@ -156,32 +158,48 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "SF-Pro-Display-Semibold", withExtension: "otf")`
+    static func sfProDisplaySemiboldOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.sfProDisplaySemiboldOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 1 fonts.
+  /// This `R.font` struct is generated, and contains static references to 2 fonts.
   struct font: Rswift.Validatable {
     /// Font `SFProDisplay-Regular`.
     static let sfProDisplayRegular = Rswift.FontResource(fontName: "SFProDisplay-Regular")
+    /// Font `SFProDisplay-Semibold`.
+    static let sfProDisplaySemibold = Rswift.FontResource(fontName: "SFProDisplay-Semibold")
 
     /// `UIFont(name: "SFProDisplay-Regular", size: ...)`
     static func sfProDisplayRegular(size: CGFloat) -> UIKit.UIFont? {
       return UIKit.UIFont(resource: sfProDisplayRegular, size: size)
     }
 
+    /// `UIFont(name: "SFProDisplay-Semibold", size: ...)`
+    static func sfProDisplaySemibold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: sfProDisplaySemibold, size: size)
+    }
+
     static func validate() throws {
       if R.font.sfProDisplayRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Regular' could not be loaded, is 'SF-Pro-Display-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.sfProDisplaySemibold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Semibold' could not be loaded, is 'SF-Pro-Display-Semibold.otf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
     /// Image `left-arrow-welcome-menu`.
     static let leftArrowWelcomeMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-arrow-welcome-menu")
+    /// Image `topic-placeholder`.
+    static let topicPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "topic-placeholder")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "AR graph logo", bundle: ..., traitCollection: ...)`
@@ -194,6 +212,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "left-arrow-welcome-menu", bundle: ..., traitCollection: ...)`
     static func leftArrowWelcomeMenu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.leftArrowWelcomeMenu, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "topic-placeholder", bundle: ..., traitCollection: ...)`
+    static func topicPlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.topicPlaceholder, compatibleWith: traitCollection)
     }
     #endif
 

@@ -23,10 +23,10 @@ class WelcomeVM: BaseVM<WelcomeVC, WelcomeVM.FinishCompletionReason> {
     
     // MARK: - Initialization
     
-    override init(view: View = View()) {
+    override init(view: View? = View()) {
         super.init(view: view)
-        view.menuItems = menuItems
-        view.didSelectRow = { index in
+        view?.menuItems = menuItems
+        view?.didSelectRow = { index in
             if let item = self.menuItems[safe: index],
                 let reason = self.finishCompletionReason(for: item) {
                 self.finishCompletion(reason)

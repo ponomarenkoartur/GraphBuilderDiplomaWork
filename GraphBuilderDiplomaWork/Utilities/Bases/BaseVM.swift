@@ -17,13 +17,13 @@ class BaseVM<VC, FinishCompletionReason>: NSObject, ViewModelProtocol where VC: 
     // MARK: - Properties
     
     let bag = DisposeBag()
-    var viewController: View
+    var viewController: View?
     var finishCompletion: (FinishCompletionReason) -> () = { _ in }
     
     
     // MARK: - Initialization
     
-    init(view: View = View()) {
+    init(view: View? = View()) {
         self.viewController = view
         super.init()
     }

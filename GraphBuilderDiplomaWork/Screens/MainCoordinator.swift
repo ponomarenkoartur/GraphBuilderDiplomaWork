@@ -23,7 +23,7 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        pushWelcomeScreen()
+        pushTopics()
     }
     
     override func start(with option: DeepLinkOption?) {
@@ -43,13 +43,12 @@ class MainCoordinator: BaseCoordinator {
                 self.pushTopics()
             }
         }
-        navVC.push(vm.viewController)
+        navVC.push(vm.viewController!)
     }
     
     private func pushTopics() {
-        print("pushing topics")
         let vm = TopicsListVM()
-        navVC.push(vm.viewController)
+        navVC.push(vm.viewController!)
     }
     
     private func pushSandbox() {

@@ -27,9 +27,13 @@
 		046E98CA244B50B200611091 /* TopicsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98C9244B50B200611091 /* TopicsListVC.swift */; };
 		046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CB244B532500611091 /* NavigationBarPresenter.swift */; };
 		046E98CE244B549100611091 /* TopicsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CD244B549100611091 /* TopicsListVM.swift */; };
+		046E98D1244B563000611091 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98D0244B563000611091 /* TopicCell.swift */; };
+		046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */; };
 		0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FA244B20700065BB63 /* Shortcuts.swift */; };
 		0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FC244B326E0065BB63 /* WelcomeVM.swift */; };
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
+		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
+		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1E244B11E8006B19B0 /* Error extension.swift */; };
 		04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */; };
 		04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
@@ -119,9 +123,13 @@
 		046E98C9244B50B200611091 /* TopicsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVC.swift; sourceTree = "<group>"; };
 		046E98CB244B532500611091 /* NavigationBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarPresenter.swift; sourceTree = "<group>"; };
 		046E98CD244B549100611091 /* TopicsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVM.swift; sourceTree = "<group>"; };
+		046E98D0244B563000611091 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		0473F3FA244B20700065BB63 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		0473F3FC244B326E0065BB63 /* WelcomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
+		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04CE0E1E244B11E8006B19B0 /* Error extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error extension.swift"; sourceTree = "<group>"; };
 		04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecognitionResult extension.swift"; sourceTree = "<group>"; };
 		04CE0E20244B11E8006B19B0 /* Array extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array extension.swift"; sourceTree = "<group>"; };
@@ -278,6 +286,7 @@
 		044B6593244B36BB0037D904 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */,
 				044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */,
 			);
 			path = Fonts;
@@ -286,10 +295,21 @@
 		046E98C8244B509E00611091 /* Topics Screen */ = {
 			isa = PBXGroup;
 			children = (
-				046E98C9244B50B200611091 /* TopicsListVC.swift */,
+				04AE7B52244DAB8600AF4AB5 /* Model */,
+				046E98CF244B561E00611091 /* Views */,
 				046E98CD244B549100611091 /* TopicsListVM.swift */,
 			);
 			path = "Topics Screen";
+			sourceTree = "<group>";
+		};
+		046E98CF244B561E00611091 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				046E98C9244B50B200611091 /* TopicsListVC.swift */,
+				046E98D0244B563000611091 /* TopicCell.swift */,
+				04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0473F3F9244B1FCC0065BB63 /* Utilities */ = {
@@ -320,6 +340,14 @@
 			children = (
 			);
 			path = Pod;
+			sourceTree = "<group>";
+		};
+		04AE7B52244DAB8600AF4AB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04AE7B53244DAB8C00AF4AB5 /* Topic.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04CE0E1D244B11DE006B19B0 /* Extensions */ = {
@@ -565,6 +593,7 @@
 			files = (
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
+				046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */,
 				044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */,
 				0418708A241AE3C000897335 /* EquationCell.xib in Resources */,
 			);
@@ -671,6 +700,7 @@
 				04CE0E35244B13F0006B19B0 /* WelcomeVC.swift in Sources */,
 				04CE0E73244B1839006B19B0 /* UICollectionView extension.swift in Sources */,
 				04CE0E2B244B11E8006B19B0 /* SCNVector3 extension.swift in Sources */,
+				046E98D1244B563000611091 /* TopicCell.swift in Sources */,
 				04CE0E40244B1468006B19B0 /* BaseCollectionViewCell.swift in Sources */,
 				04CE0E42244B1468006B19B0 /* BaseVM.swift in Sources */,
 				04CE0E83244B18A7006B19B0 /* String extension.swift in Sources */,
@@ -693,8 +723,10 @@
 				04CE0E68244B1839006B19B0 /* UIViewController extension.swift in Sources */,
 				04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */,
 				04CE0E6A244B1839006B19B0 /* UILabel extension.swift in Sources */,
+				04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */,
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
+				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04CE0E29244B11E8006B19B0 /* Double.swift in Sources */,
 				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
 				04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */,
