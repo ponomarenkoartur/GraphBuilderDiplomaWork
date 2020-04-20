@@ -34,6 +34,8 @@
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
 		04A0FE60244DF78A000C9F6E /* TopicItemCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE5F244DF78A000C9F6E /* TopicItemCellConfigurator.swift */; };
 		04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE62244DFF12000C9F6E /* TopicSubheader.swift */; };
+		04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */; };
+		04A0FE67244E152C000C9F6E /* TopicParagraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -135,6 +137,8 @@
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
 		04A0FE5F244DF78A000C9F6E /* TopicItemCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicItemCellConfigurator.swift; sourceTree = "<group>"; };
 		04A0FE62244DFF12000C9F6E /* TopicSubheader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicSubheader.swift; sourceTree = "<group>"; };
+		04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicParagraph.swift; sourceTree = "<group>"; };
+		04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicParagraphCell.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				04A0FE62244DFF12000C9F6E /* TopicSubheader.swift */,
+				04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */,
+				04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -733,6 +739,7 @@
 				04CE0E70244B1839006B19B0 /* UICollectionViewCell extension.swift in Sources */,
 				04187077241AE3BC00897335 /* MathpixRecognizer.swift in Sources */,
 				046E98CE244B549100611091 /* TopicsListVM.swift in Sources */,
+				04A0FE67244E152C000C9F6E /* TopicParagraphCell.swift in Sources */,
 				04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */,
 				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
@@ -762,6 +769,7 @@
 				04CE0E87244B1937006B19B0 /* R.generated.swift in Sources */,
 				04CE0E6F244B1839006B19B0 /* UITableView extension.swift in Sources */,
 				04CE0E79244B186B006B19B0 /* Completable extension.swift in Sources */,
+				04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */,
 				04CE0E3F244B1468006B19B0 /* BaseView.swift in Sources */,
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
 				04CE0E6C244B1839006B19B0 /* UIEdgeInsets extension.swift in Sources */,

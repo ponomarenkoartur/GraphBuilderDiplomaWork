@@ -106,12 +106,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 3 colors.
+  /// This `R.color` struct is generated, and contains static references to 4 colors.
   struct color {
     /// Color `background`.
     static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
     /// Color `default-text`.
     static let defaultText = Rswift.ColorResource(bundle: R.hostingBundle, name: "default-text")
+    /// Color `gray-text`.
+    static let grayText = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray-text")
     /// Color `turquoise`.
     static let turquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "turquoise")
 
@@ -130,6 +132,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func defaultText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.defaultText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray-text", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func grayText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.grayText, compatibleWith: traitCollection)
     }
     #endif
 

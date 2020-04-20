@@ -20,15 +20,16 @@ struct TopicItemCellConfigurator {
     // MARK: - API Methods
     
     func configure(for indexPath: IndexPath) -> UITableViewCell? {
-        var cell: UITableViewCell?
+        guard let cellClass = Self.cellClass(for: item),
+            let cell = tableView.dequeue(cellClass, for: indexPath) else {
+            return nil
+        }
         
-        switch item {
-        case let subheader as TopicSubheader:
-            if let subheaderCell = tableView
-                .dequeue(TopicSubheaderCell.self, for: indexPath) {
-                configureSubheaderCell(subheaderCell, subheader: subheader)
-                cell = subheaderCell
-            }
+        switch (cell, item) {
+        case (let cell as TopicSubheaderCell, let subheader as TopicSubheader):
+            configureSubheaderCell(cell, subheader: subheader)
+        case (let cell as TopicParagraphCell, let paragraph as TopicParagraph):
+            configureParagraphCell(cell, paragraph: paragraph)
         default:
             break
         }
@@ -44,6 +45,15 @@ struct TopicItemCellConfigurator {
         cell.subheaderText = subheader.text
     }
     
+    private func configureParagraphCell(
+        _ cell: TopicParagraphCell, paragraph: TopicParagraph) {
+        if let attributedText = paragraph.attributedText {
+            cell.paragraphAttributedText = attributedText
+        } else {
+            cell.paragraphText = paragraph.text
+        }
+    }
+    
     
     // MARK: - Static Methods
     
@@ -51,6 +61,8 @@ struct TopicItemCellConfigurator {
         switch item {
         case is TopicSubheader:
             return TopicSubheaderCell.self
+        case is TopicParagraph:
+            return TopicParagraphCell.self
         default:
             return nil
         }
