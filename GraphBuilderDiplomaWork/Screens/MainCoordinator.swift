@@ -48,11 +48,21 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopics() {
         let vm = TopicsListVM()
+        vm.finishCompletion = { reason in
+            if case .didSelectTopic(let topic) = reason {
+                self.pushTopic(topic)
+            }
+        }
         navVC.push(vm.viewController!)
     }
     
     private func pushSandbox() {
         print("pushing sandbox")
+    }
+    
+    private func pushTopic(_ topic: Topic) {
+        let vm = TopicVM(topic: topic)
+        navVC.push(vm.viewController!)
     }
     
 }

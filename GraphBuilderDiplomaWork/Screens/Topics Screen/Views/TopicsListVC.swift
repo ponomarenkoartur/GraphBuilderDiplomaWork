@@ -18,11 +18,17 @@ class TopicsListVC: BaseVC {
     var topicsList: Observable<[Topic]>
     
     
+    // MARK: Callbacks
+    
+    var didSelectTopic: (_ index: Int) -> () = { _ in }
+    
+    
     // MARK: Views
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TopicCell.self)
+        tableView.delegate = self
         return tableView
     }()
     
@@ -70,5 +76,16 @@ class TopicsListVC: BaseVC {
             TopicCellConfigurator(cell: cell).configure(with: topic)
             return cell
         }.disposed(by: bag)
+    }
+}
+
+
+// MARK: UITableViewDelegate
+
+extension TopicsListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectTopic(indexPath.row)
     }
 }

@@ -26,7 +26,14 @@ class WelcomeVM: BaseVM<WelcomeVC, WelcomeVM.FinishCompletionReason> {
     override init(view: View? = View()) {
         super.init(view: view)
         view?.menuItems = menuItems
-        view?.didSelectRow = { index in
+        setupCallbacks()
+    }
+    
+    
+    // MARK: - Setup Methods
+    
+    private func setupCallbacks() {
+        viewController?.didSelectRow = { index in
             if let item = self.menuItems[safe: index],
                 let reason = self.finishCompletionReason(for: item) {
                 self.finishCompletion(reason)
@@ -37,7 +44,8 @@ class WelcomeVM: BaseVM<WelcomeVC, WelcomeVM.FinishCompletionReason> {
     
     // MARK: - Private Methods
     
-    private func finishCompletionReason(for menuItem: String) -> FinishCompletionReason? {
+    private func finishCompletionReason(for menuItem: String)
+        -> FinishCompletionReason? {
         switch menuItem {
         case menuItems[0]:
             return .didTapTopics
