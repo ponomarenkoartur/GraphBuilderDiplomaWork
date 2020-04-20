@@ -23,6 +23,7 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
         self.topic = topic
         super.init(view: view)
         view?.setItems(topic.items)
+        view?.title = topic.title
     }
     
 }

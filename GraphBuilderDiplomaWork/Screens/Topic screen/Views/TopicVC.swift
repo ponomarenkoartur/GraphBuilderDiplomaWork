@@ -26,17 +26,13 @@ class TopicVC: BaseVC {
         tableView.register(TopicCell.self)
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
 
     // MARK: - Setup Methods
-    
-    override func setupUI() {
-        super.setupUI()
-        title = "Topics"
-    }
     
     override func addSubviews() {
         super.addSubviews()
@@ -63,7 +59,7 @@ class TopicVC: BaseVC {
     
     func setItems(_ items: [Any]) {
         items
-            .compactMap { $0.self as? AnyClass }
+            .compactMap { TopicItemCellConfigurator.cellClass(for: $0) }
             .forEach { tableView.register($0) }
         itemsSubject.onNext(items)
     }

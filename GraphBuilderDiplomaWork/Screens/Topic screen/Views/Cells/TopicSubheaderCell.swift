@@ -7,8 +7,22 @@
 //
 
 import UIKit
+import AttributedString
+
 
 class TopicSubheaderCell: UITableViewCell {
     
     
+    // MARK: - Properties
+    
+    var subheaderText: String? {
+        get {
+            textLabel?.text
+        }
+        set {
+            textLabel?.attributed.text = """
+            \(newValue ?? "", .font(Font.sfProDisplaySemibold(size: 15)!))
+            """
+        }
+    }
 }
