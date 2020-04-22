@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 4 colors.
+  /// This `R.color` struct is generated, and contains static references to 5 colors.
   struct color {
     /// Color `background`.
     static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
@@ -114,6 +114,8 @@ struct R: Rswift.Validatable {
     static let defaultText = Rswift.ColorResource(bundle: R.hostingBundle, name: "default-text")
     /// Color `gray-text`.
     static let grayText = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray-text")
+    /// Color `inverse-text`.
+    static let inverseText = Rswift.ColorResource(bundle: R.hostingBundle, name: "inverse-text")
     /// Color `turquoise`.
     static let turquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "turquoise")
 
@@ -145,6 +147,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "inverse-text", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func inverseText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.inverseText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "turquoise", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -156,12 +167,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
+    /// Resource file `SF-Pro-Display-Medium.otf`.
+    static let sfProDisplayMediumOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Medium", pathExtension: "otf")
     /// Resource file `SF-Pro-Display-Regular.otf`.
     static let sfProDisplayRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Regular", pathExtension: "otf")
     /// Resource file `SF-Pro-Display-Semibold.otf`.
     static let sfProDisplaySemiboldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Semibold", pathExtension: "otf")
+
+    /// `bundle.url(forResource: "SF-Pro-Display-Medium", withExtension: "otf")`
+    static func sfProDisplayMediumOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.sfProDisplayMediumOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "SF-Pro-Display-Regular", withExtension: "otf")`
     static func sfProDisplayRegularOtf(_: Void = ()) -> Foundation.URL? {
@@ -178,12 +197,19 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  /// This `R.font` struct is generated, and contains static references to 3 fonts.
   struct font: Rswift.Validatable {
+    /// Font `SFProDisplay-Medium`.
+    static let sfProDisplayMedium = Rswift.FontResource(fontName: "SFProDisplay-Medium")
     /// Font `SFProDisplay-Regular`.
     static let sfProDisplayRegular = Rswift.FontResource(fontName: "SFProDisplay-Regular")
     /// Font `SFProDisplay-Semibold`.
     static let sfProDisplaySemibold = Rswift.FontResource(fontName: "SFProDisplay-Semibold")
+
+    /// `UIFont(name: "SFProDisplay-Medium", size: ...)`
+    static func sfProDisplayMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: sfProDisplayMedium, size: size)
+    }
 
     /// `UIFont(name: "SFProDisplay-Regular", size: ...)`
     static func sfProDisplayRegular(size: CGFloat) -> UIKit.UIFont? {
@@ -196,6 +222,7 @@ struct R: Rswift.Validatable {
     }
 
     static func validate() throws {
+      if R.font.sfProDisplayMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Medium' could not be loaded, is 'SF-Pro-Display-Medium.otf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.sfProDisplayRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Regular' could not be loaded, is 'SF-Pro-Display-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.sfProDisplaySemibold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFProDisplay-Semibold' could not be loaded, is 'SF-Pro-Display-Semibold.otf' added to the UIAppFonts array in this targets Info.plist?") }
     }

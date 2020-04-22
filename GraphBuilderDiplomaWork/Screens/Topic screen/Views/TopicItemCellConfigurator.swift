@@ -74,6 +74,8 @@ struct TopicItemCellConfigurator {
             return TopicParagraphCell.self
         case is TopicIllustration:
             return TopicIllustrationCell.self
+        case is TopicProccedToPlotBuildingItem:
+            return TopicProccedToPlotBuildingCell.self
         default:
             return nil
         }

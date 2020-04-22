@@ -23,6 +23,9 @@
 		04187090241AE3E500897335 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708F241AE3E500897335 /* Equation.swift */; };
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
 		044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */; };
+		0450332B24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */; };
+		0450332D24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */; };
+		0450332F24503D4700C6F763 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0450332E24503D4100C6F763 /* SF-Pro-Display-Medium.otf */; };
 		046E98C7244B4DE400611091 /* Collection extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98C6244B4DE400611091 /* Collection extension.swift */; };
 		046E98CA244B50B200611091 /* TopicsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98C9244B50B200611091 /* TopicsListVC.swift */; };
 		046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CB244B532500611091 /* NavigationBarPresenter.swift */; };
@@ -129,6 +132,9 @@
 		0418708F241AE3E500897335 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicProccedToPlotBuildingItem.swift; sourceTree = "<group>"; };
+		0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicProccedToPlotBuildingCell.swift; sourceTree = "<group>"; };
+		0450332E24503D4100C6F763 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		046E98C6244B4DE400611091 /* Collection extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection extension.swift"; sourceTree = "<group>"; };
 		046E98C9244B50B200611091 /* TopicsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVC.swift; sourceTree = "<group>"; };
 		046E98CB244B532500611091 /* NavigationBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarPresenter.swift; sourceTree = "<group>"; };
@@ -306,6 +312,7 @@
 		044B6593244B36BB0037D904 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0450332E24503D4100C6F763 /* SF-Pro-Display-Medium.otf */,
 				046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */,
 				044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */,
 			);
@@ -369,6 +376,7 @@
 				04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */,
 				04D43FFA2450384F00034A89 /* TopicIllustration.swift */,
 				04D43FF8245035ED00034A89 /* TopicContentItem.swift */,
+				0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +415,7 @@
 				04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */,
 				04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */,
 				04D43FF62450331600034A89 /* TopicIllustrationCell.swift */,
+				0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -653,6 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0450332F24503D4700C6F763 /* SF-Pro-Display-Medium.otf in Resources */,
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
 				046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */,
@@ -795,6 +805,7 @@
 				04CE0E68244B1839006B19B0 /* UIViewController extension.swift in Sources */,
 				04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */,
 				04CE0E6A244B1839006B19B0 /* UILabel extension.swift in Sources */,
+				0450332B24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift in Sources */,
 				04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */,
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
@@ -802,6 +813,7 @@
 				04CE0E29244B11E8006B19B0 /* Double.swift in Sources */,
 				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
 				04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */,
+				0450332D24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift in Sources */,
 				04CE0E45244B1468006B19B0 /* BaseVCWithVMProtocol.swift in Sources */,
 				04CE0E44244B1468006B19B0 /* BaseCoordinator.swift in Sources */,
 				04CE0E7C244B186B006B19B0 /* SingleEvent extension.swift in Sources */,

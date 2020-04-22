@@ -24,7 +24,15 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     init(topic: Topic, view: TopicVC? = TopicVC()) {
         self.topicSubject = BehaviorSubject<Topic>(value: topic)
         super.init(view: view)
-        view?.topic = self.topic
+        setupViewController(view)
+    }
+    
+    
+    // MARK: - Setup Methods
+    
+    private func setupViewController(_ vc: TopicVC?) {
+        vc?.topic = self.topic
+        
     }
     
 }

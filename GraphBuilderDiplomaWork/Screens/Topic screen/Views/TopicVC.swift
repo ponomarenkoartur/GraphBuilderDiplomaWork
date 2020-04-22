@@ -19,6 +19,8 @@ class TopicVC: BaseVC {
     var topicItems: Observable<[TopicContentItem]>? {
         topic?.map { $0.content }
     }
+    var didTapProceedToPlotBuildingItem:
+        (_ item: TopicProccedToPlotBuildingItem) -> () = { _ in }
     
     // MARK: Views
     
@@ -60,9 +62,22 @@ class TopicVC: BaseVC {
         topicItems?
             .bind(to: tableView.rx.items) {
                 (tableView: UITableView, index: Int, item: TopicContentItem) in
-                TopicItemCellConfigurator(tableView: tableView, item: item)
-                    .configure(for: IndexPath(row: index, section: 0)) ??
+                
+                // Configuring appearance
+                let cell =
+                    TopicItemCellConfigurator(tableView: tableView, item: item)
+                        .configure(for: IndexPath(row: index, section: 0)) ??
                     UITableViewCell()
+                
+                // Settings callbacks
+                if let cell = cell as? TopicProccedToPlotBuildingCell,
+                    let item = item as? TopicProccedToPlotBuildingItem {
+                    cell.didTap = {
+                        self.didTapProceedToPlotBuildingItem(item)
+                    }
+                }
+                
+                return cell
             }
             .disposed(by: bag)
     }

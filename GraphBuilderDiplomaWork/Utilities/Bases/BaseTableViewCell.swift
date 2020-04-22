@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 
 class BaseTableViewCell: UITableViewCell {
+    
+    
+    // MARK: - Properties
+    
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization

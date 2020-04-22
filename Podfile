@@ -14,6 +14,7 @@ target 'GraphBuilderDiplomaWork' do
   pod 'R.swift'
   pod 'UIFontComplete'
   pod 'AttributedString'
+  pod 'SwiftyAttributes'
   
   
   # Math
