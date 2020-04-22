@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artur. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 
 class TopicVM: BaseVM<TopicVC, NSNull> {
@@ -14,16 +14,17 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     
     // MARK: - Properties
     
-    private let topic: Topic
+    private let topicSubject: BehaviorSubject<Topic>
+    var topic: Observable<Topic> { topicSubject.asObservable() }
+    var topicItems: Observable<[TopicContentItem]> { topic.map { $0.content } }
     
     
     // MARK: - Initialization
     
     init(topic: Topic, view: TopicVC? = TopicVC()) {
-        self.topic = topic
+        self.topicSubject = BehaviorSubject<Topic>(value: topic)
         super.init(view: view)
-        view?.setItems(topic.items)
-        view?.title = topic.title
+        view?.topic = self.topic
     }
     
 }

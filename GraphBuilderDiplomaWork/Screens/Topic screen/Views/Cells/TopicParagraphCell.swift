@@ -14,21 +14,13 @@ class TopicParagraphCell: BaseTableViewCell {
     // MARK: - Properties
     
     var paragraphText: String? {
-        get {
-            textLabel?.text
-        }
-        set {
-            textLabel?.text = newValue
-        }
+        get { textLabel?.text }
+        set { textLabel?.text = newValue }
     }
     
     var paragraphAttributedText: NSAttributedString? {
-        get {
-            textLabel?.attributedText
-        }
-        set {
-            textLabel?.attributedText = newValue
-        }
+        get { textLabel?.attributedText }
+        set { textLabel?.attributedText = newValue }
     }
     
     

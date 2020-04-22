@@ -17,16 +17,16 @@ struct Topic {
     let title: String
     let shortDescription: String?
     let imagePreview: UIImage?
-    let items: [Any]
+    let content: [TopicContentItem]
     
     
     // MARK: - Initialization
     
     init(title: String, shortDescription: String?, imagePreview: UIImage? = nil,
-         items: [Any] = []) {
+          content: [TopicContentItem] = []) {
         self.title = title
         self.shortDescription = shortDescription
         self.imagePreview = imagePreview
-        self.items = items
+        self.content = content
     }
 }

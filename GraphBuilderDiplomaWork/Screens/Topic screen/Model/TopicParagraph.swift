@@ -28,3 +28,6 @@ struct TopicParagraph {
         self.attributedText = attributedText
     }
 }
+
+
+extension TopicParagraph: TopicContentItem {}

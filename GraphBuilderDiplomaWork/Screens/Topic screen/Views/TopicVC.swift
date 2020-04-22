@@ -15,9 +15,10 @@ class TopicVC: BaseVC {
     
     // MARK: - Properties
     
-    private let itemsSubject = BehaviorSubject<[Any]>(value: [])
-    var items: Observable<[Any]>? { itemsSubject.asObservable() }
-    
+    var topic: Observable<Topic>?
+    var topicItems: Observable<[TopicContentItem]>? {
+        topic?.map { $0.content }
+    }
     
     // MARK: Views
     
@@ -46,21 +47,23 @@ class TopicVC: BaseVC {
     
     override func setupBinding() {
         super.setupBinding()
-        items?.bind(to: tableView.rx.items) {
-            (tableView: UITableView, index: Int, item: Any) in
-            return TopicItemCellConfigurator(tableView: tableView, item: item)
-                .configure(for: IndexPath(row: index, section: 0)) ??
-                UITableViewCell()
-        }.disposed(by: bag)
-    }
-    
-    
-    // MARK: - API Methods
-    
-    func setItems(_ items: [Any]) {
-        items
-            .compactMap { TopicItemCellConfigurator.cellClass(for: $0) }
-            .forEach { tableView.register($0) }
-        itemsSubject.onNext(items)
+        topic?
+            .subscribe(onNext: { self.title = $0.title })
+            .disposed(by: bag)
+        topicItems?
+            .subscribe(onNext: { items in
+                items
+                    .compactMap { TopicItemCellConfigurator.cellClass(for: $0) }
+                    .forEach { self.tableView.register($0) }
+            })
+            .disposed(by: bag)
+        topicItems?
+            .bind(to: tableView.rx.items) {
+                (tableView: UITableView, index: Int, item: TopicContentItem) in
+                TopicItemCellConfigurator(tableView: tableView, item: item)
+                    .configure(for: IndexPath(row: index, section: 0)) ??
+                    UITableViewCell()
+            }
+            .disposed(by: bag)
     }
 }

@@ -16,3 +16,6 @@ struct TopicSubheader {
     
     let text: String
 }
+
+
+extension TopicSubheader: TopicContentItem {}

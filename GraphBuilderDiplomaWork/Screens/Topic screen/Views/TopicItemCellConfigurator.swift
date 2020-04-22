@@ -14,7 +14,7 @@ struct TopicItemCellConfigurator {
     // MARK: - Properties
     
     let tableView: UITableView
-    let item: Any
+    let item: TopicContentItem
 
 
     // MARK: - API Methods
@@ -30,6 +30,9 @@ struct TopicItemCellConfigurator {
             configureSubheaderCell(cell, subheader: subheader)
         case (let cell as TopicParagraphCell, let paragraph as TopicParagraph):
             configureParagraphCell(cell, paragraph: paragraph)
+        case (let cell as TopicIllustrationCell,
+              let illustration as TopicIllustration):
+            configureIllustrationCell(cell, illustration: illustration)
         default:
             break
         }
@@ -54,6 +57,12 @@ struct TopicItemCellConfigurator {
         }
     }
     
+    private func configureIllustrationCell(
+        _ cell: TopicIllustrationCell, illustration: TopicIllustration) {
+        cell.illustrationImage = illustration.image
+        cell.imageViewHeight = illustration.height
+    }
+    
     
     // MARK: - Static Methods
     
@@ -63,6 +72,8 @@ struct TopicItemCellConfigurator {
             return TopicSubheaderCell.self
         case is TopicParagraph:
             return TopicParagraphCell.self
+        case is TopicIllustration:
+            return TopicIllustrationCell.self
         default:
             return nil
         }
