@@ -53,11 +53,21 @@ class TopicFooterView: BaseView {
         return stackView
     }()
     
-    private lazy var prevTopicButton: UIButton = self.createButton(
-        title: "Previous topic", tapAction: didTapPreviousTopic)
+    private lazy var prevTopicButton: UIButton = {
+        let button = self.createButton(title: "Previous topic")
+        button.rx.tap
+            .subscribe(onNext: { _ in self.didTapPreviousTopic() })
+            .disposed(by: bag)
+        return button
+    }()
     
-    private lazy var nextTopicButton: UIButton = self.createButton(
-        title: "Next topic", tapAction: didTapNextTopic)
+    private lazy var nextTopicButton: UIButton = {
+        let button = self.createButton(title: "Next topic")
+        button.rx.tap
+            .subscribe(onNext: { _ in self.didTapNextTopic() })
+            .disposed(by: bag)
+        return button
+    }()
     
     
     
@@ -94,8 +104,7 @@ class TopicFooterView: BaseView {
     
     // MARK: - Private Methods
     
-    private func createButton(title: String,
-                              tapAction: @escaping () -> () = {}) -> UIButton {
+    private func createButton(title: String) -> UIButton {
         let button = UIButton()
         
         button.layer.cornerRadius = 10
@@ -110,10 +119,6 @@ class TopicFooterView: BaseView {
             $0.height.equalTo(36)
             $0.width.greaterThanOrEqualTo(150)
         }
-        
-        button.rx.tap
-            .subscribe(onNext: { _ in tapAction() })
-            .disposed(by: bag)
         
         return button
     }

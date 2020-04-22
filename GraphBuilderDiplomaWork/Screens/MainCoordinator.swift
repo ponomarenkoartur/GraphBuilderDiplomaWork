@@ -40,17 +40,17 @@ class MainCoordinator: BaseCoordinator {
             case .didTapSandbox:
                 self.pushSandbox()
             case .didTapTopics:
-                self.pushTopics()
+                self.pushTopicsList()
             }
         }
         navVC.push(vm.viewController!)
     }
     
-    private func pushTopics() {
+    private func pushTopicsList() {
         let vm = TopicsListVM()
         vm.finishCompletion = { reason in
-            if case .didSelectTopic(let topic, let position) = reason {
-                self.pushTopic(topic, serialPosition: position)
+            if case .didSelectTopic(_, let position) = reason {
+                self.pushTopicsContainer(vm.topicsList, selectedTopicIndex: position)
             }
         }
         navVC.push(vm.viewController!)
@@ -59,9 +59,15 @@ class MainCoordinator: BaseCoordinator {
     private func pushSandbox() {
         print("pushing sandbox")
     }
+//
+//    private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
+//        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
+//        navVC.push(vm.viewController!)
+//    }
     
-    private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
-        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
+    private func pushTopicsContainer(_ topicsList: Observable<[Topic]>, selectedTopicIndex: Int) {
+        let vm = TopicsContainerVM(topicsList: topicsList,
+                                   selectedTopicIndex: selectedTopicIndex)
         navVC.push(vm.viewController!)
     }
     

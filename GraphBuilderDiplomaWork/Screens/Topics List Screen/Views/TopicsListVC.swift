@@ -65,6 +65,7 @@ class TopicsListVC: BaseVC {
     override func setupConstraints() {
         super.setupConstraints()
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        view.layoutIfNeeded()
     }
     
     override func setupBinding() {
