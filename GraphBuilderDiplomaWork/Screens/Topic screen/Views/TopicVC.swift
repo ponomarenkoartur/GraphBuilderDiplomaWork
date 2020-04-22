@@ -8,10 +8,11 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
 
 
 class TopicVC: BaseVC {
-
+    
     
     // MARK: - Properties
     
@@ -21,6 +22,8 @@ class TopicVC: BaseVC {
     }
     var didTapProceedToPlotBuildingItem:
         (_ item: TopicProccedToPlotBuildingItem) -> () = { _ in }
+    var serialPosition: Observable<SerialPosition?>?
+    
     
     // MARK: Views
     
@@ -28,13 +31,15 @@ class TopicVC: BaseVC {
         let tableView = UITableView()
         tableView.register(TopicCell.self)
         tableView.allowsSelection = false
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = tableViewFooter
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
-
+    private lazy var tableViewFooter = TopicFooterView()
+    
+    
     // MARK: - Setup Methods
     
     override func addSubviews() {
@@ -59,6 +64,16 @@ class TopicVC: BaseVC {
                     .forEach { self.tableView.register($0) }
             })
             .disposed(by: bag)
+        serialPosition?
+            .subscribe(onNext: {
+                self.tableViewFooter.buttons = self.getFooterButtons(for: $0)
+            })
+            .disposed(by: bag)
+        setupTableViewDataBinding()
+    }
+    
+    
+    private func setupTableViewDataBinding() {
         topicItems?
             .bind(to: tableView.rx.items) {
                 (tableView: UITableView, index: Int, item: TopicContentItem) in
@@ -66,19 +81,34 @@ class TopicVC: BaseVC {
                 // Configuring appearance
                 let cell =
                     TopicItemCellConfigurator(tableView: tableView, item: item)
-                        .configure(for: IndexPath(row: index, section: 0)) ??
-                    UITableViewCell()
+                        .configure(for: IndexPath(row: index)) ??
+                        UITableViewCell()
                 
                 // Settings callbacks
                 if let cell = cell as? TopicProccedToPlotBuildingCell,
                     let item = item as? TopicProccedToPlotBuildingItem {
-                    cell.didTap = {
-                        self.didTapProceedToPlotBuildingItem(item)
-                    }
+                    cell.didTap = { self.didTapProceedToPlotBuildingItem(item) }
                 }
                 
                 return cell
+        }
+        .disposed(by: bag)
+    }
+    
+    
+    // MARK: - Setup Methods
+    
+    private func getFooterButtons(for serialPosistion: SerialPosition?)
+        -> Set<TopicFooterView.Button> {
+            switch serialPosistion {
+            case .first:
+                return [.next]
+            case .middle:
+                return [.previous, .next]
+            case .last:
+                return [.previous]
+            case .none:
+                return []
             }
-            .disposed(by: bag)
     }
 }

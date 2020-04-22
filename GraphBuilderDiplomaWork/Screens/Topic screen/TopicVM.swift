@@ -18,11 +18,18 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     var topic: Observable<Topic> { topicSubject.asObservable() }
     var topicItems: Observable<[TopicContentItem]> { topic.map { $0.content } }
     
+    private let serialPositionSubject: BehaviorSubject<SerialPosition?>
+    var serialPosition: Observable<SerialPosition?> {
+        serialPositionSubject.asObservable()
+    }
+    
     
     // MARK: - Initialization
     
-    init(topic: Topic, view: TopicVC? = TopicVC()) {
-        self.topicSubject = BehaviorSubject<Topic>(value: topic)
+    init(topic: Topic, serialPosition: SerialPosition?,
+         view: TopicVC? = TopicVC()) {
+        self.serialPositionSubject = BehaviorSubject(value: serialPosition)
+        self.topicSubject = BehaviorSubject(value: topic)
         super.init(view: view)
         setupViewController(view)
     }
@@ -32,7 +39,7 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     
     private func setupViewController(_ vc: TopicVC?) {
         vc?.topic = self.topic
-        
+        vc?.serialPosition = serialPosition
     }
     
 }

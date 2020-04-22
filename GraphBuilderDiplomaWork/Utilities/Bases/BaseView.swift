@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+
 
 class BaseView: UIView {
+    
+    
+    // MARK: - Properties
+    
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization

@@ -49,8 +49,8 @@ class MainCoordinator: BaseCoordinator {
     private func pushTopics() {
         let vm = TopicsListVM()
         vm.finishCompletion = { reason in
-            if case .didSelectTopic(let topic) = reason {
-                self.pushTopic(topic)
+            if case .didSelectTopic(let topic, let position) = reason {
+                self.pushTopic(topic, serialPosition: position)
             }
         }
         navVC.push(vm.viewController!)
@@ -60,8 +60,8 @@ class MainCoordinator: BaseCoordinator {
         print("pushing sandbox")
     }
     
-    private func pushTopic(_ topic: Topic) {
-        let vm = TopicVM(topic: topic)
+    private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
+        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
         navVC.push(vm.viewController!)
     }
     

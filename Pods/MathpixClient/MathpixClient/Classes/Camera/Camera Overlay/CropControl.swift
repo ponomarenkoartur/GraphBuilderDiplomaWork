@@ -12,7 +12,7 @@ class CropControl: UIView {
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
     var initialTouchOffset = CGPoint.zero
-    var panStateCallback: ((_ state: UIGestureRecognizerState) -> ())?
+    var panStateCallback: ((_ state: UIGestureRecognizer.State) -> ())?
     var cropFrameDidChangedCallback: ((_ bottomCenter: CGPoint) -> ())?
     let imageOverlay = UIImageView()
     var boxOverlay : MPOverlayView?

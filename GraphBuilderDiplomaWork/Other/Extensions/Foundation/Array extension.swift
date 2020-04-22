@@ -16,6 +16,12 @@ extension Array {
         return selfCopy
     }
     
+    func appending(_ element: Element) -> Array {
+        var selfCopy = self
+        selfCopy.append(element)
+        return selfCopy
+    }
+    
     func hasIndex(_ index: Int) -> Bool {
         return index >= 0 && index < count
     }
