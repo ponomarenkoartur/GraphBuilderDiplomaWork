@@ -89,9 +89,8 @@ class TopicPlotInfoCell: BaseCollectionCell {
     
     override func setupUI() {
         super.setupUI()
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
-        contentView.round([.topLeft, .topRight], radius: 5)
+        contentView.backgroundColor = Color.grayBackground()
+        contentView.round([.topLeft, .topRight], radius: 10)
     }
     
     override func addSubviews() {

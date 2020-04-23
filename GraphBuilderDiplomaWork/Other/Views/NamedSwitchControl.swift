@@ -48,8 +48,8 @@ class NamedSwitchControl: BaseView {
     private let circleColor = UIColor.white
     
     // Text Colors
-    private let leftBackgroundTextColor = Color.inverseText()
-    private let rightBackgroundTextColor = Color.defaultText()
+    private let leftBackgroundTextColor = Color.defaultText()
+    private let rightBackgroundTextColor = UIColor.black
     private let circleTextColor = UIColor.black
     
     // Other Colors
@@ -64,7 +64,7 @@ class NamedSwitchControl: BaseView {
     
     // MARK: - Properties
     
-    private var positionSubject = BehaviorSubject<Position>(value: .left)
+    fileprivate var positionSubject = BehaviorSubject<Position>(value: .left)
     var position: Position { try! positionSubject.value() }
     
     private var leftTextSubject = BehaviorSubject<String>(value: "A")
@@ -82,13 +82,18 @@ class NamedSwitchControl: BaseView {
         position == .left ? leftText : rightText
     }
     
+    
+    // MARK: Callbacks
+    
+    var didChangePosition: (_ position: Position) -> () = { _ in }
+    
     // MARK: Views
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = leftBackgroundColor
         view.layer.borderColor = borderColor.cgColor
-        view.layer.borderWidth = 0.5
+        view.layer.borderWidth = 1
         view.layer.cornerRadius = fixedHeight / 2
         view.snp.makeConstraints {
             $0.height.equalTo(fixedHeight)
@@ -101,7 +106,7 @@ class NamedSwitchControl: BaseView {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.borderColor = borderColor.cgColor
-        view.layer.borderWidth = 0.5
+        view.layer.borderWidth = 1
         view.snp.makeConstraints { $0.size.equalTo(circleSideSize) }
         view.layer.cornerRadius = circleSideSize / 2
         return view
@@ -109,12 +114,14 @@ class NamedSwitchControl: BaseView {
     
     private lazy var leftBackgroundLabel: UILabel = {
         let label = UILabel()
+        label.textColor = leftBackgroundTextColor
         label.font = backgroundTextFont
         return label
     }()
     
     private lazy var rightBackgroundLabel: UILabel = {
         let label = UILabel()
+        label.textColor = rightBackgroundTextColor
         label.font = backgroundTextFont
         return label
     }()
@@ -208,6 +215,7 @@ class NamedSwitchControl: BaseView {
         
         positionSubject.asObservable()
             .subscribe(onNext: { position in
+                self.didChangePosition(position)
                 UIView.animate(withDuration: 0.1, animations: {
                     self.circleView.snp.updateConstraints {
                         $0.width.equalTo(self.circleSideSize * 1.5)
@@ -266,5 +274,14 @@ class NamedSwitchControl: BaseView {
     
     func `switch`() {
         self.positionSubject.onNext(position.switched())
+    }
+}
+
+
+// MARK: Rx
+
+extension Reactive where Base: NamedSwitchControl {
+    var position: Observable<NamedSwitchControl.Position> {
+        self.base.positionSubject.asObservable()
     }
 }

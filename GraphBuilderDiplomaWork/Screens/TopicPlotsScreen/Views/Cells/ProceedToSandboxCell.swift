@@ -29,7 +29,7 @@ class ProceedToSandboxCell: BaseTableViewCell {
         
         let title = "To sandbox".uppercased()
             .withFont(Font.sfProDisplayMedium(size: 15)!)
-            .withTextColor(Color.inverseText()!)
+            .withTextColor(.white)
         button.setAttributedTitle(title)
         button.setImage(Image.sandbox())
         
