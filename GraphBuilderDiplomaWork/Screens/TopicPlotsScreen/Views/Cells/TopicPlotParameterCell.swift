@@ -64,7 +64,9 @@ class TopicPlotParameterCell: BaseTableViewCell {
     
     override func setupUI() {
         super.setupUI()
+        selectionStyle = .none
         backgroundColor = .clear
+        contentView.backgroundColor = .clear
     }
     
     override func addSubviews() {

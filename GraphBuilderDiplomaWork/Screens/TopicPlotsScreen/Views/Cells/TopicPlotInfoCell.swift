@@ -64,14 +64,6 @@ class TopicPlotInfoCell: BaseCollectionCell {
         return label
     }()
     
-    private lazy var headerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Parameters"
-        label.textColor = Color.defaultText()
-        label.font = Font.sfProDisplayRegular(size: 15)
-        return label
-    }()
-    
     private lazy var parametersTableView: UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = UITableView.automaticDimension
@@ -79,6 +71,10 @@ class TopicPlotInfoCell: BaseCollectionCell {
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.register(TopicPlotParameterCell.self)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.tableHeaderView = TopicPlotParameterHeaderView(
+            frame: CGRect(height: 30))
+        tableView.tableFooterView = UIView(frame: CGRect(height: 100))
         return tableView
     }()
     
@@ -97,7 +93,7 @@ class TopicPlotInfoCell: BaseCollectionCell {
         super.addSubviews()
         contentView.addSubviews([
             blurView, previousPlotButton, equationLabel, nextPlotButton,
-            headerLabel, parametersTableView
+            parametersTableView
         ])
     }
     
@@ -112,12 +108,9 @@ class TopicPlotInfoCell: BaseCollectionCell {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(previousPlotButton.snp.centerY)
         }
-        headerLabel.snp.makeConstraints {
-            $0.leading.equalTo(16)
-            $0.top.equalTo(previousPlotButton.snp.bottom).offset(30)
-        }
         parametersTableView.snp.makeConstraints {
-            $0.top.equalTo(headerLabel.snp.bottom).offset(10)
+            $0.top.equalTo(previousPlotButton.snp.bottom)
+                .offset(UIApplication.shared.keyWindow!.safeAreaInsets.bottom + 5)
             $0.bottom.equalToSuperview()
             $0.width.centerX.equalToSuperview()
         }

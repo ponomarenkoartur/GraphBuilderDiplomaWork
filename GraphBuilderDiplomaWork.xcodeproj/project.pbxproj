@@ -207,6 +207,7 @@
 		04D1F8DD2451D139004155FC /* TopicPlotParameterCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DC2451D139004155FC /* TopicPlotParameterCellConfigurator.swift */; };
 		04D1F8E02451D672004155FC /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DF2451D672004155FC /* Plot.swift */; };
 		04D1F8E22451D694004155FC /* PlotEquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* PlotEquationParameter.swift */; };
+		04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */; };
 		04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF62450331600034A89 /* TopicIllustrationCell.swift */; };
 		04D43FF9245035ED00034A89 /* TopicContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF8245035ED00034A89 /* TopicContentItem.swift */; };
 		04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FFA2450384F00034A89 /* TopicIllustration.swift */; };
@@ -354,6 +355,7 @@
 		04D1F8DC2451D139004155FC /* TopicPlotParameterCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotParameterCellConfigurator.swift; sourceTree = "<group>"; };
 		04D1F8DF2451D672004155FC /* Plot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		04D1F8E12451D694004155FC /* PlotEquationParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotEquationParameter.swift; sourceTree = "<group>"; };
+		04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotParameterHeaderView.swift; sourceTree = "<group>"; };
 		04D43FF62450331600034A89 /* TopicIllustrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustrationCell.swift; sourceTree = "<group>"; };
 		04D43FF8245035ED00034A89 /* TopicContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentItem.swift; sourceTree = "<group>"; };
 		04D43FFA2450384F00034A89 /* TopicIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustration.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */,
 				0456F22E2451D08C009E469C /* TopicPlotParameterCell.swift */,
 				04D1F8DC2451D139004155FC /* TopicPlotParameterCellConfigurator.swift */,
+				04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1264,6 +1267,7 @@
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
 				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04CE0E29244B11E8006B19B0 /* Double.swift in Sources */,
+				04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */,
 				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
 				04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */,
 				0450332D24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift in Sources */,
