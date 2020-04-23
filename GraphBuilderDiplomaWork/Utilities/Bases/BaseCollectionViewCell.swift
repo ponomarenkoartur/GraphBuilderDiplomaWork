@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 
 class BaseCollectionCell: UICollectionViewCell {
+    
+    
+    // MARK: - Properties
+    
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization

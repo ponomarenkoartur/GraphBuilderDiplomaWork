@@ -10,40 +10,68 @@ import RxSwift
 
 
 protocol TopicPlotsVMProtocol: ViewModelProtocol {
-    var graphList: Observable<[String]> { get }
+    var plotsList: Observable<[String]> { get }
     var selectedPlotIndex: Observable<Int?> { get }
     var topicTitle: Observable<String?> { get }
-    var graphTitle: Observable<String?> { get }
-    func setSelectedPlotIndex(_ index: Int)
+    var plotTitle: Observable<String?> { get }
+    func setSelectedPlotIndex(_ index: Int) throws
+    func nextPlot() throws
+    func previousPlot() throws
 }
 
 class TopicPlotsVM: BaseVM<NSNull>, TopicPlotsVMProtocol {
     
+    
+    enum Error: Swift.Error {
+        case plotWithSuchIndexDoesntExists
+    }
         
     
     // MARK: - Properties
     
-    private let graphListSubject = BehaviorSubject<[String]>(value: [])
-    var graphList: Observable<[String]> { graphListSubject.asObservable() }
+    private let plotsListSubject = BehaviorSubject<[String]>(value: [])
+    var plotsList: Observable<[String]> { plotsListSubject.asObservable() }
+    private var plotsListValue: [String] {
+        (try? plotsListSubject.value()) ?? []
+    }
     
     private let selectedPlotIndexSubject = BehaviorSubject<Int?>(value: nil)
     var selectedPlotIndex: Observable<Int?> {
         selectedPlotIndexSubject.asObservable()
     }
+    private var selectedPlotIndexValue: Int? {
+        try? selectedPlotIndexSubject.value()
+    }
     
-    var topicTitleSubject = BehaviorSubject<String?>(value: nil)
-    var graphTitleSubject = BehaviorSubject<String?>(value: nil)
+    private let topicTitleSubject = BehaviorSubject<String?>(value: nil)
+    private let plotTitleSubject = BehaviorSubject<String?>(value: nil)
     var topicTitle: Observable<String?> { topicTitleSubject.asObservable() }
-    var graphTitle: Observable<String?> { graphTitleSubject.asObservable() }
+    var plotTitle: Observable<String?> { plotTitleSubject.asObservable() }
     
     
     // MARK: - API Methods
     
-    func setSelectedPlotIndex(_ index: Int) {
+    func setSelectedPlotIndex(_ index: Int) throws {
+        guard plotsListValue.hasIndex(index) else {
+            throw Error.plotWithSuchIndexDoesntExists
+        }
         selectedPlotIndexSubject.onNext(index)
     }
     
+    func nextPlot() throws {
+        guard let index = selectedPlotIndexValue else { return }
+        try setSelectedPlotIndex(index + 1)
+    }
+    
+    func previousPlot() throws {
+        guard let index = selectedPlotIndexValue else { return }
+        try setSelectedPlotIndex(index - 1)
+    }
+    
     func setPlotList(_ list: [String]) {
-        graphListSubject.onNext(list)
+        plotsListSubject.onNext(list)
+        if !list.isEmpty {
+            try? setSelectedPlotIndex(0)            
+        }
     }
 }

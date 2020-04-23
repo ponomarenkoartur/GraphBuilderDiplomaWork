@@ -10,13 +10,15 @@ import Foundation
 
 
 class TopicPlotInfoCellConfigurator:
-    BaseCollectionCellConfigurator<String, TopicPlotInfoCell> {
+    BaseCollectionCellConfigurator<(SerialPosition, String), TopicPlotInfoCell> {
     
     
     // MARK: - API Methods
     
-    override func configure(with data: String) {
-        
+    override func configure(with data: (position: SerialPosition, data: String)) {
+        let cell = item
+        cell.previousPlotButton.isHidden = [.first, .alone].contains(data.position)
+        cell.nextPlotButton.isHidden = [.last, .alone].contains(data.position)
     }
     
 }

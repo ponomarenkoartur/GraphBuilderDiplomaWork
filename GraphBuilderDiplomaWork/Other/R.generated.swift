@@ -246,7 +246,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -254,6 +254,10 @@ struct R: Rswift.Validatable {
     static let camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "camera")
     /// Image `left-arrow-welcome-menu`.
     static let leftArrowWelcomeMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-arrow-welcome-menu")
+    /// Image `nextPlot`.
+    static let nextPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "nextPlot")
+    /// Image `prevPlot`.
+    static let prevPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "prevPlot")
     /// Image `topic-placeholder`.
     static let topicPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "topic-placeholder")
 
@@ -275,6 +279,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "left-arrow-welcome-menu", bundle: ..., traitCollection: ...)`
     static func leftArrowWelcomeMenu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.leftArrowWelcomeMenu, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "nextPlot", bundle: ..., traitCollection: ...)`
+    static func nextPlot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.nextPlot, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "prevPlot", bundle: ..., traitCollection: ...)`
+    static func prevPlot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.prevPlot, compatibleWith: traitCollection)
     }
     #endif
 

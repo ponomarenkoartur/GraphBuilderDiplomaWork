@@ -11,10 +11,14 @@ import Foundation
 
 /// Represents position of item in sequence
 enum SerialPosition {
-    case first, middle, last
+    case first, middle, last, alone
     
     static func get(forIndex index: Int, in sequence: Array<Any>) -> Self? {
         guard !sequence.isEmpty, sequence.hasIndex(index) else { return nil }
+        
+        if sequence.count == 1 {
+            return .alone
+        }
         
         switch index {
         case 0:

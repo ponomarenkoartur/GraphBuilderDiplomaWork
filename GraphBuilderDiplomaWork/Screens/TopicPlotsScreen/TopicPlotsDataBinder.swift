@@ -17,7 +17,7 @@ class TopicPlotsDataBinder<ViewModel>:
     // MARK: - API Methods
     
     override func bind() {
-        viewModel.graphList
+        viewModel.plotsList
             .subscribe(onNext: { list in
                 self.views.forEach { $0.setPlotList(list) }
             })
@@ -30,7 +30,7 @@ class TopicPlotsDataBinder<ViewModel>:
             })
             .disposed(by: bag)
         
-        Observable.combineLatest(viewModel.topicTitle, viewModel.graphTitle)
+        Observable.combineLatest(viewModel.topicTitle, viewModel.plotTitle)
             .map { [$0, $1].compactMap { $0 }.joined(separator: " – ") }
             .subscribe(onNext: { fullTitle in
                 self.views.forEach { $0.title = fullTitle }
@@ -39,7 +39,13 @@ class TopicPlotsDataBinder<ViewModel>:
         
         views.forEach {
             $0.didChangeSelectedPlotIndex = { index in
-                self.viewModel.setSelectedPlotIndex(index)
+                try? self.viewModel.setSelectedPlotIndex(index)
+            }
+            $0.didTapPreviousPlotButton = {
+                try? self.viewModel.previousPlot()
+            }
+            $0.didTapNextPlotButton = {
+                try? self.viewModel.nextPlot()
             }
         }
     }

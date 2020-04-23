@@ -64,6 +64,8 @@ class TopicPlotsVC: BaseVC, TopicPlotsVCProtocol {
     // MARK: Callbacks
     
     var didChangeSelectedPlotIndex: (_ index: Int) -> () = { _ in }
+    var didTapPreviousPlotButton: () -> () = { }
+    var didTapNextPlotButton: () -> () = { }
     
     // MARK: Views
     
@@ -206,10 +208,21 @@ extension TopicPlotsVC: UICollectionViewDataSource {
         let cell = collectionView
             .dequeue(TopicPlotInfoCell.self, for: indexPath) ??
             TopicPlotInfoCell()
-        if let item = plotsList[safe: indexPath.row] {
-            TopicPlotInfoCellConfigurator(cell: cell).configure(with: item)
-        }
+        prepare(cell, at: indexPath.row)
+        
         return cell
+    }
+    
+    private func prepare(_ cell: TopicPlotInfoCell, at index: Int) {
+        guard let item = plotsList[safe: index],
+            let position = SerialPosition
+                .get(forIndex: index, in: plotsList) else { return }
+                                                
+        TopicPlotInfoCellConfigurator(cell: cell)
+            .configure(with: (position, item))
+        
+        cell.didTapPreviousPlotButton = didTapPreviousPlotButton
+        cell.didTapNextPlotButton = didTapNextPlotButton
     }
 }
 

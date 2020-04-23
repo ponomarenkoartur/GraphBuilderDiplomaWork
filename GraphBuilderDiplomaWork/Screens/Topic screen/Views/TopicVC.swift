@@ -141,7 +141,7 @@ class TopicVC: BaseVC {
                 return [.previous, .next]
             case .last:
                 return [.previous]
-            case .none:
+            case .none, .alone:
                 return []
             }
     }
