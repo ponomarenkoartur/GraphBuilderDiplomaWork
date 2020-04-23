@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class TopicVM: BaseVM<TopicVC, NSNull> {
+class TopicVM: BaseVMWithVC<TopicVC, NSNull> {
     
     
     // MARK: - Properties
@@ -27,11 +27,11 @@ class TopicVM: BaseVM<TopicVC, NSNull> {
     // MARK: - Initialization
     
     init(topic: Topic, serialPosition: SerialPosition?,
-         view: TopicVC? = TopicVC()) {
+         viewController: TopicVC? = TopicVC()) {
         self.serialPositionSubject = BehaviorSubject(value: serialPosition)
         self.topicSubject = BehaviorSubject(value: topic)
-        super.init(view: view)
-        setupViewController(view)
+        super.init(viewController: viewController)
+        setupViewController(viewController)
     }
     
     

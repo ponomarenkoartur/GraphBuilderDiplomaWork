@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class TopicsListVM: BaseVM<TopicsListVC, TopicsListVM.FinishCompletionReason> {
+class TopicsListVM: BaseVMWithVC<TopicsListVC, TopicsListVM.FinishCompletionReason> {
     
     
     // MARK: - Enums
@@ -58,7 +58,7 @@ class TopicsListVM: BaseVM<TopicsListVC, TopicsListVM.FinishCompletionReason> {
     // MARK: - Initialization
     
     init() {
-        super.init(view:
+        super.init(viewController:
             TopicsListVC(topicsList: topicsListSubject.asObservable()))
         setupCallbacks()
     }

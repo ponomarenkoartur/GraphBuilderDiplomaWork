@@ -72,6 +72,15 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(vm.viewController!)
     }
     
+    private func pushTopicPlot() {
+        let vm = TopicPlotsVM()
+        let vc = TopicPlotsVC()
+        let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
+        navVC.push(vc)
+    }
+    
 }
 
 

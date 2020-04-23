@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class WelcomeVM: BaseVM<WelcomeVC, WelcomeVM.FinishCompletionReason> {
+class WelcomeVM: BaseVMWithVC<WelcomeVC, WelcomeVM.FinishCompletionReason> {
     
     enum FinishCompletionReason {
         case didTapTopics, didTapSandbox
@@ -23,9 +23,9 @@ class WelcomeVM: BaseVM<WelcomeVC, WelcomeVM.FinishCompletionReason> {
     
     // MARK: - Initialization
     
-    override init(view: View? = View()) {
-        super.init(view: view)
-        view?.menuItems = menuItems
+    override init(viewController: WelcomeVC? = WelcomeVC()) {
+        super.init(viewController: viewController)
+        viewController?.menuItems = menuItems
         setupCallbacks()
     }
     

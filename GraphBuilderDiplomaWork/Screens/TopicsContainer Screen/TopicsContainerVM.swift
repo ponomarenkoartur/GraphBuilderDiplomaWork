@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class TopicsContainerVM: BaseVM<TopicsContainerVC, TopicsContainerVM.FinishCompletionReason> {
+class TopicsContainerVM: BaseVMWithVC<TopicsContainerVC, TopicsContainerVM.FinishCompletionReason> {
     
     
     // MARK: - Enums
@@ -32,7 +32,7 @@ class TopicsContainerVM: BaseVM<TopicsContainerVC, TopicsContainerVM.FinishCompl
     init(topicsList: Observable<[Topic]>, selectedTopicIndex: Int) {
         selectedTopicIndexSubject = BehaviorSubject(value: selectedTopicIndex)
         self.topicsList = topicsList
-        super.init(view: TopicsContainerVC(topicsList: topicsList))
+        super.init(viewController: TopicsContainerVC(topicsList: topicsList))
         setupViewController()
     }
     
