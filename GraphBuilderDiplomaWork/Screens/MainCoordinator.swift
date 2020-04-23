@@ -23,11 +23,7 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        
-        let vc = TestViewController()
-        push(vc)
-        
-//        pushWelcomeScreen()
+        pushWelcomeScreen()
     }
     
     override func start(with option: DeepLinkOption?) {
@@ -63,13 +59,14 @@ class MainCoordinator: BaseCoordinator {
     private func pushSandbox() {
         print("pushing sandbox")
     }
-//
-//    private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
-//        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
-//        navVC.push(vm.viewController!)
-//    }
+
+    private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
+        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
+        navVC.push(vm.viewController!)
+    }
     
-    private func pushTopicsContainer(_ topicsList: Observable<[Topic]>, selectedTopicIndex: Int) {
+    private func pushTopicsContainer(_ topicsList: Observable<[Topic]>,
+                                     selectedTopicIndex: Int) {
         let vm = TopicsContainerVM(topicsList: topicsList,
                                    selectedTopicIndex: selectedTopicIndex)
         navVC.push(vm.viewController!)
