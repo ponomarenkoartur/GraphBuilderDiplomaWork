@@ -115,7 +115,7 @@ class TopicPlotInfoCell: BaseCollectionCell {
         }
         parametersTableView.snp.makeConstraints {
             $0.top.equalTo(previousPlotButton.snp.bottom)
-                .offset(UIApplication.shared.keyWindow!.safeAreaInsets.bottom + 5)
+                .offset(WindowSafeArea.insets.bottom + 5)
             $0.bottom.equalToSuperview()
             $0.width.centerX.equalToSuperview()
         }

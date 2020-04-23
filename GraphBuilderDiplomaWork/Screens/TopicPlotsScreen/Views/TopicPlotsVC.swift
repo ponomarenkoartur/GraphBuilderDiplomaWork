@@ -26,13 +26,10 @@ class TopicPlotsVC: BaseVC, TopicPlotsVCProtocol {
     
     // MARK: - Constants
     
-    private let bottomSafeArea =
-        UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-    
     private lazy var collectionViewBottomOffset: [CollectionAppearance: CGFloat] = {[
-        .full: -(view.frame.height / 3 * 2) - bottomSafeArea,
-        .hidden: 0 + bottomSafeArea,
-        .short: -67 - bottomSafeArea
+        .full: -(view.frame.height / 3 * 2) - WindowSafeArea.insets.bottom,
+        .hidden: 0 + WindowSafeArea.insets.bottom,
+        .short: -67 - WindowSafeArea.insets.bottom
     ]}()
     
     
