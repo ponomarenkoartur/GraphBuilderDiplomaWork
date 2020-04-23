@@ -112,6 +112,11 @@
 		042BC5A424505E8400950B15 /* TopicsContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BC5A324505E8400950B15 /* TopicsContainerVC.swift */; };
 		042BC5A72450637200950B15 /* TopicsContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BC5A62450637200950B15 /* TopicsContainerCell.swift */; };
 		043DC7CD245078CE00CBC58F /* TopicsContainerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */; };
+		043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC842245091E700CBC58F /* NamedSwitchControl.swift */; };
+		043DC8452450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */; };
+		043DC8462450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */; };
+		043DC848245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
+		043DC849245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
 		044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */; };
 		0450332B24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */; };
 		0450332D24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */; };
@@ -241,6 +246,9 @@
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVM.swift; sourceTree = "<group>"; };
+		043DC842245091E700CBC58F /* NamedSwitchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedSwitchControl.swift; sourceTree = "<group>"; };
+		043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		043DC847245093DA00CBC58F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicProccedToPlotBuildingItem.swift; sourceTree = "<group>"; };
 		0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicProccedToPlotBuildingCell.swift; sourceTree = "<group>"; };
@@ -445,6 +453,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		043DC841245091DD00CBC58F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				043DC842245091E700CBC58F /* NamedSwitchControl.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		044B6592244B36B10037D904 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +475,7 @@
 			children = (
 				0450332E24503D4100C6F763 /* SF-Pro-Display-Medium.otf */,
 				046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */,
+				043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */,
 				044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */,
 			);
 			path = Fonts;
@@ -600,6 +617,7 @@
 		04CE0E2C244B11FA006B19B0 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				043DC841245091DD00CBC58F /* Views */,
 				04CE0E86244B1936006B19B0 /* R.generated.swift */,
 				04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */,
 				04F3D182241AE0E100C4FBEB /* AppDelegate.swift */,
@@ -746,6 +764,7 @@
 				04CE0E2D244B1213006B19B0 /* GraphBuilding */,
 				04CE0E2C244B11FA006B19B0 /* Other */,
 				04187072241AE3BC00897335 /* Recognition */,
+				043DC847245093DA00CBC58F /* TestViewController.swift */,
 			);
 			path = GraphBuilderDiplomaWork;
 			sourceTree = "<group>";
@@ -858,6 +877,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043DC8462450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +889,7 @@
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
 				046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */,
+				043DC8452450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */,
 				044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */,
 				0418708A241AE3C000897335 /* EquationCell.xib in Resources */,
 			);
@@ -1051,6 +1072,7 @@
 				042BC55624505AC100950B15 /* UINavigationController extension.swift in Sources */,
 				042BC54A245058B100950B15 /* Array extension.swift in Sources */,
 				042BC55524505AB800950B15 /* TopicVM.swift in Sources */,
+				043DC849245093DA00CBC58F /* TestViewController.swift in Sources */,
 				042BC55324505AB100950B15 /* WelcomeVM.swift in Sources */,
 				042BC55224505AAC00950B15 /* Topic.swift in Sources */,
 				042BC55D24505B1600950B15 /* SafeAreaInsets.swift in Sources */,
@@ -1080,6 +1102,7 @@
 			files = (
 				04CE0E6E244B1839006B19B0 /* CALayer extension.swift in Sources */,
 				04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */,
+				043DC848245093DA00CBC58F /* TestViewController.swift in Sources */,
 				04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */,
 				04CE0E53244B179F006B19B0 /* Typealiases.swift in Sources */,
 				04CE0E51244B179F006B19B0 /* InitialScreenSetter.swift in Sources */,
@@ -1137,6 +1160,7 @@
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
 				04CE0E6C244B1839006B19B0 /* UIEdgeInsets extension.swift in Sources */,
 				04CE0E28244B11E8006B19B0 /* UIImage extension.swift in Sources */,
+				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
 				04187092241AE3F800897335 /* Function.swift in Sources */,
 				04CE0E67244B1839006B19B0 /* UIView extension.swift in Sources */,
 				04CE0E7F244B1893006B19B0 /* Set extension.swift in Sources */,

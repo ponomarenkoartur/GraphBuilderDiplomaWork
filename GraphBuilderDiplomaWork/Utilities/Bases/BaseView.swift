@@ -32,6 +32,7 @@ class BaseView: UIView {
     
     private func commonInit() {
         setupUI()
+        setupBinding()
     }
     
     
@@ -53,4 +54,6 @@ class BaseView: UIView {
     func addSubviews() {}
     
     func setupConstraints() {}
+    
+    func setupBinding() {}
 }

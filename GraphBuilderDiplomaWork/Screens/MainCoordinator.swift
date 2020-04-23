@@ -23,7 +23,11 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        pushWelcomeScreen()
+        
+        let vc = TestViewController()
+        push(vc)
+        
+//        pushWelcomeScreen()
     }
     
     override func start(with option: DeepLinkOption?) {
