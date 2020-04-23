@@ -23,12 +23,14 @@ class BaseTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        setupBinding()
     }
     
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
+        setupBinding()
     }
     
     
@@ -52,4 +54,6 @@ class BaseTableViewCell: UITableViewCell {
     func addSubviews() {}
     
     func setupConstraints() {}
+    
+    func setupBinding() {}
 }

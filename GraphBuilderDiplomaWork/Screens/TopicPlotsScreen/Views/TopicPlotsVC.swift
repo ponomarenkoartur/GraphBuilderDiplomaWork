@@ -35,29 +35,21 @@ class TopicPlotsVC: BaseVC, TopicPlotsVCProtocol {
     
     // MARK: - Properties
     
-    private var plotsList: [String] = []
+    private var plotsList: [Plot] = []
     
     private let viewAppearanceSubject =
         BehaviorSubject<ViewAppearance>(value: .details)
     private var viewAppearance: ViewAppearance {
-        get {
-            try! viewAppearanceSubject.value()
-        }
-        set {
-            viewAppearanceSubject.onNext(newValue)
-        }
+        get { try! viewAppearanceSubject.value() }
+        set { viewAppearanceSubject.onNext(newValue) }
     }
     
     
     private let collectionAppearanceSubject =
         BehaviorSubject<CollectionAppearance>(value: .short)
     private var collectionAppearance: CollectionAppearance {
-        get {
-            try! collectionAppearanceSubject.value()
-        }
-        set {
-            collectionAppearanceSubject.onNext(newValue)
-        }
+        get { try! collectionAppearanceSubject.value() }
+        set { collectionAppearanceSubject.onNext(newValue) }
     }
     
     
@@ -176,7 +168,7 @@ class TopicPlotsVC: BaseVC, TopicPlotsVCProtocol {
     
     // MARK: - API Methods
     
-    func setPlotList(_ list: [String]) {
+    func setPlotList(_ list: [Plot]) {
         plotsList = list
         collectionView.reloadData()
     }
@@ -214,12 +206,12 @@ extension TopicPlotsVC: UICollectionViewDataSource {
     }
     
     private func prepare(_ cell: TopicPlotInfoCell, at index: Int) {
-        guard let item = plotsList[safe: index],
+        guard let plot = plotsList[safe: index],
             let position = SerialPosition
                 .get(forIndex: index, in: plotsList) else { return }
                                                 
         TopicPlotInfoCellConfigurator(cell: cell)
-            .configure(with: (position, item))
+            .configure(with: (position, plot))
         
         cell.didTapPreviousPlotButton = didTapPreviousPlotButton
         cell.didTapNextPlotButton = didTapNextPlotButton

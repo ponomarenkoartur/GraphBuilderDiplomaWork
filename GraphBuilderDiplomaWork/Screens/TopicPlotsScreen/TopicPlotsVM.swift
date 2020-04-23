@@ -10,7 +10,7 @@ import RxSwift
 
 
 protocol TopicPlotsVMProtocol: ViewModelProtocol {
-    var plotsList: Observable<[String]> { get }
+    var plotsList: Observable<[Plot]> { get }
     var selectedPlotIndex: Observable<Int?> { get }
     var topicTitle: Observable<String?> { get }
     var plotTitle: Observable<String?> { get }
@@ -29,9 +29,9 @@ class TopicPlotsVM: BaseVM<NSNull>, TopicPlotsVMProtocol {
     
     // MARK: - Properties
     
-    private let plotsListSubject = BehaviorSubject<[String]>(value: [])
-    var plotsList: Observable<[String]> { plotsListSubject.asObservable() }
-    private var plotsListValue: [String] {
+    private let plotsListSubject = BehaviorSubject<[Plot]>(value: [])
+    var plotsList: Observable<[Plot]> { plotsListSubject.asObservable() }
+    private var plotsListValue: [Plot] {
         (try? plotsListSubject.value()) ?? []
     }
     
@@ -68,7 +68,7 @@ class TopicPlotsVM: BaseVM<NSNull>, TopicPlotsVMProtocol {
         try setSelectedPlotIndex(index - 1)
     }
     
-    func setPlotList(_ list: [String]) {
+    func setPlotList(_ list: [Plot]) {
         plotsListSubject.onNext(list)
         if !list.isEmpty {
             try? setSelectedPlotIndex(0)            

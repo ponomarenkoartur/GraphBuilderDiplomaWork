@@ -77,7 +77,19 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopicPlots() {
         let vm = TopicPlotsVM()
-        vm.setPlotList(["a", "a", "a",])
+        vm.setPlotList([
+            Plot(title: "Hello", equation: "y=x^2+sqrt(z)",
+                 parameters: [.init(name: "a", value: -2),
+                              .init(name: "b", value: -4),
+                              .init(name: "c", value: 0),
+                              .init(name: "d", value: 10),]),
+            Plot(title: "Hello", equation: "y=x^5",
+                 parameters: [.init(name: "w", value: 2),
+                              .init(name: "r", value: 5)]),
+            Plot(title: "Hello", equation: "y=sin(x^z)",
+                 parameters: [.init(name: "a", value: -2),
+                              .init(name: "b", value: -4)]),
+        ])
         let vc = TopicPlotsVC()
         let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
