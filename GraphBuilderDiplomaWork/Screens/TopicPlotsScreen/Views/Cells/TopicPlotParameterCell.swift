@@ -57,7 +57,11 @@ class TopicPlotParameterCell: BaseTableViewCell {
         return label
     }()
     
-    private lazy var slider = UISlider()
+    private lazy var slider: UISlider = {
+        let slider = UISlider()
+        slider.tintColor = Color.turquoise()
+        return slider
+    }()
     
     
     // MARK: - Setup Methods

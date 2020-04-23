@@ -66,15 +66,20 @@ class TopicPlotInfoCell: BaseCollectionCell {
     
     private lazy var parametersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = UITableView.automaticDimension
+
         tableView.dataSource = self
+        tableView.register(TopicPlotParameterCell.self)
+        tableView.register(ProceedToSandboxCell.self)
+
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        tableView.register(TopicPlotParameterCell.self)
         tableView.showsVerticalScrollIndicator = false
+                
         tableView.tableHeaderView = TopicPlotParameterHeaderView(
             frame: CGRect(height: 30))
         tableView.tableFooterView = UIView(frame: CGRect(height: 100))
+        
         return tableView
     }()
     
@@ -135,12 +140,20 @@ class TopicPlotInfoCell: BaseCollectionCell {
 extension TopicPlotInfoCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        parametersList.count
+        // The last cell is 'To Sandbox' cell
+        parametersList.count + 1
     }
     
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let isParameterCell = indexPath.row < parametersList.count
+        guard isParameterCell else {
+            let cell = tableView
+                .dequeue(ProceedToSandboxCell.self, for: indexPath) ??
+                         ProceedToSandboxCell()
+            return cell
+        }
         let cell = tableView
             .dequeue(TopicPlotParameterCell.self, for: indexPath) ??
             TopicPlotParameterCell()

@@ -208,6 +208,7 @@
 		04D1F8E02451D672004155FC /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DF2451D672004155FC /* Plot.swift */; };
 		04D1F8E22451D694004155FC /* PlotEquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* PlotEquationParameter.swift */; };
 		04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */; };
+		04D1F8E62451DFED004155FC /* ProceedToSandboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */; };
 		04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF62450331600034A89 /* TopicIllustrationCell.swift */; };
 		04D43FF9245035ED00034A89 /* TopicContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF8245035ED00034A89 /* TopicContentItem.swift */; };
 		04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FFA2450384F00034A89 /* TopicIllustration.swift */; };
@@ -356,6 +357,7 @@
 		04D1F8DF2451D672004155FC /* Plot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		04D1F8E12451D694004155FC /* PlotEquationParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotEquationParameter.swift; sourceTree = "<group>"; };
 		04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotParameterHeaderView.swift; sourceTree = "<group>"; };
+		04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedToSandboxCell.swift; sourceTree = "<group>"; };
 		04D43FF62450331600034A89 /* TopicIllustrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustrationCell.swift; sourceTree = "<group>"; };
 		04D43FF8245035ED00034A89 /* TopicContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentItem.swift; sourceTree = "<group>"; };
 		04D43FFA2450384F00034A89 /* TopicIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustration.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				0456F22E2451D08C009E469C /* TopicPlotParameterCell.swift */,
 				04D1F8DC2451D139004155FC /* TopicPlotParameterCellConfigurator.swift */,
 				04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */,
+				04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1241,6 +1244,7 @@
 				04CE0E6F244B1839006B19B0 /* UITableView extension.swift in Sources */,
 				04CE0E79244B186B006B19B0 /* Completable extension.swift in Sources */,
 				04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */,
+				04D1F8E62451DFED004155FC /* ProceedToSandboxCell.swift in Sources */,
 				040FE8272451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift in Sources */,
 				04CE0E3F244B1468006B19B0 /* BaseView.swift in Sources */,
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
