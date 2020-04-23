@@ -24,6 +24,9 @@ class MainCoordinator: BaseCoordinator {
     override func start() {
         super.start()
         pushWelcomeScreen()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.pushTopicPlots()
+        }
     }
     
     override func start(with option: DeepLinkOption?) {
@@ -72,8 +75,9 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(vm.viewController!)
     }
     
-    private func pushTopicPlot() {
+    private func pushTopicPlots() {
         let vm = TopicPlotsVM()
+        vm.setPlotList(["a", "a", "a",])
         let vc = TopicPlotsVC()
         let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()

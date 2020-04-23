@@ -25,6 +25,7 @@ class BaseVC: UIViewController, NavigationBarPresenter {
     var bag = DisposeBag()
     var shouldPresentNavigationBar = true
     var shouldPreferLargeTitle = true
+    private(set) var didAppear = false
     
     
     // MARK: - Initialization
@@ -42,9 +43,19 @@ class BaseVC: UIViewController, NavigationBarPresenter {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBinding()
         setupUI()
+        setupBinding()
         observeKeyboard()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppear = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        didAppear = false
     }
     
     override func viewDidLayoutSubviews() {

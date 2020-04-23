@@ -23,7 +23,6 @@ class TopicsContainerVC: BaseVC {
     var topicsList: Observable<[Topic]>
     var selectedTopicIndex: Observable<Int>?
     private var lastTopicsListValue: [Topic] = []
-    private var didAppear = false
     
     
     // MARK: Callbacks
@@ -76,18 +75,6 @@ class TopicsContainerVC: BaseVC {
         fatalError("init(topicsList:) must be used")
     }
     
-    
-    // MARK: - View Lifecycle
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        didAppear = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        didAppear = false
-    }
     
     // MARK: - Setup Methods
     

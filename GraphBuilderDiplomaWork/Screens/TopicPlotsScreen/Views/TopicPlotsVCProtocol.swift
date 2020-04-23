@@ -9,6 +9,7 @@
 import UIKit
 
 protocol TopicPlotsVCProtocol: UIViewController {
+    var didChangeSelectedPlotIndex: (_ index: Int) -> () { get set }
     func setPlotList(_ list: [String])
     func setSelectedPlotIndex(_ index: Int)
 }
