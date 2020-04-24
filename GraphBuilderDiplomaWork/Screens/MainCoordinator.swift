@@ -23,10 +23,11 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
+        
+        self.pushSandbox()
+        return;
+        
         pushWelcomeScreen()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.pushTopicPlots()
-        }
     }
     
     override func start(with option: DeepLinkOption?) {
@@ -60,7 +61,8 @@ class MainCoordinator: BaseCoordinator {
     }
     
     private func pushSandbox() {
-        print("pushing sandbox")
+        let vc = SandboxVC()
+        navVC.push(vc)
     }
 
     private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {

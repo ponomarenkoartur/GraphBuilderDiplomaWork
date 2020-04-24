@@ -151,6 +151,10 @@
 		04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE62244DFF12000C9F6E /* TopicSubheader.swift */; };
 		04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */; };
 		04A0FE67244E152C000C9F6E /* TopicParagraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */; };
+		04A7D1652453015E00503CAE /* SandboxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1642453015E00503CAE /* SandboxVC.swift */; };
+		04A7D16A2453085000503CAE /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1672453085000503CAE /* Axis.swift */; };
+		04A7D16B2453085000503CAE /* Math functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1682453085000503CAE /* Math functions.swift */; };
+		04A7D16C2453085000503CAE /* XYZControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1692453085000503CAE /* XYZControl.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -301,6 +305,10 @@
 		04A0FE62244DFF12000C9F6E /* TopicSubheader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicSubheader.swift; sourceTree = "<group>"; };
 		04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicParagraph.swift; sourceTree = "<group>"; };
 		04A0FE66244E152C000C9F6E /* TopicParagraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicParagraphCell.swift; sourceTree = "<group>"; };
+		04A7D1642453015E00503CAE /* SandboxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxVC.swift; sourceTree = "<group>"; };
+		04A7D1672453085000503CAE /* Axis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
+		04A7D1682453085000503CAE /* Math functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math functions.swift"; sourceTree = "<group>"; };
+		04A7D1692453085000503CAE /* XYZControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYZControl.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -423,14 +431,14 @@
 			path = Recognizers;
 			sourceTree = "<group>";
 		};
-		04187078241AE3C000897335 /* Recognition screen */ = {
+		04187078241AE3C000897335 /* RecognitionScreen */ = {
 			isa = PBXGroup;
 			children = (
 				04187079241AE3C000897335 /* Controller */,
 				0418707B241AE3C000897335 /* Model */,
 				0418707F241AE3C000897335 /* View */,
 			);
-			path = "Recognition screen";
+			path = RecognitionScreen;
 			sourceTree = "<group>";
 		};
 		04187079241AE3C000897335 /* Controller */ = {
@@ -470,13 +478,13 @@
 			path = EquationCell;
 			sourceTree = "<group>";
 		};
-		042BC5A224505E6B00950B15 /* TopicsContainer Screen */ = {
+		042BC5A224505E6B00950B15 /* TopicsContainerScreen */ = {
 			isa = PBXGroup;
 			children = (
 				042BC5A52450635D00950B15 /* Views */,
 				043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */,
 			);
-			path = "TopicsContainer Screen";
+			path = TopicsContainerScreen;
 			sourceTree = "<group>";
 		};
 		042BC5A52450635D00950B15 /* Views */ = {
@@ -547,14 +555,14 @@
 			path = TopicPlotsScreen;
 			sourceTree = "<group>";
 		};
-		046E98C8244B509E00611091 /* Topics List Screen */ = {
+		046E98C8244B509E00611091 /* TopicsListScreen */ = {
 			isa = PBXGroup;
 			children = (
 				04AE7B52244DAB8600AF4AB5 /* Model */,
 				046E98CF244B561E00611091 /* Views */,
 				046E98CD244B549100611091 /* TopicsListVM.swift */,
 			);
-			path = "Topics List Screen";
+			path = TopicsListScreen;
 			sourceTree = "<group>";
 		};
 		046E98CF244B561E00611091 /* Views */ = {
@@ -570,6 +578,7 @@
 		0473F3F9244B1FCC0065BB63 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				04A7D1662453085000503CAE /* XYZ_control */,
 				04187061241AE3B400897335 /* AlertBuilder.swift */,
 				04CE0E84244B18CA006B19B0 /* Storyboardable.swift */,
 				04CE0E4A244B179F006B19B0 /* Navigation */,
@@ -618,6 +627,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		04A7D1632453013E00503CAE /* SandboxScreen */ = {
+			isa = PBXGroup;
+			children = (
+				04A7D1642453015E00503CAE /* SandboxVC.swift */,
+			);
+			path = SandboxScreen;
+			sourceTree = "<group>";
+		};
+		04A7D1662453085000503CAE /* XYZ_control */ = {
+			isa = PBXGroup;
+			children = (
+				04A7D1672453085000503CAE /* Axis.swift */,
+				04A7D1682453085000503CAE /* Math functions.swift */,
+				04A7D1692453085000503CAE /* XYZControl.swift */,
+			);
+			name = XYZ_control;
+			path = Views/XYZ_control;
+			sourceTree = "<group>";
+		};
 		04AE7B52244DAB8600AF4AB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,14 +655,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		04AE7B57244DBD5500AF4AB5 /* Topic screen */ = {
+		04AE7B57244DBD5500AF4AB5 /* TopicScreen */ = {
 			isa = PBXGroup;
 			children = (
 				04A0FE61244DFF08000C9F6E /* Model */,
 				04AE7B5C244DF43400AF4AB5 /* Views */,
 				04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */,
 			);
-			path = "Topic screen";
+			path = TopicScreen;
 			sourceTree = "<group>";
 		};
 		04AE7B5C244DF43400AF4AB5 /* Views */ = {
@@ -706,23 +734,24 @@
 			isa = PBXGroup;
 			children = (
 				04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */,
-				04187078241AE3C000897335 /* Recognition screen */,
-				04CE0E33244B13D8006B19B0 /* Main screen */,
-				046E98C8244B509E00611091 /* Topics List Screen */,
-				04AE7B57244DBD5500AF4AB5 /* Topic screen */,
-				042BC5A224505E6B00950B15 /* TopicsContainer Screen */,
+				04187078241AE3C000897335 /* RecognitionScreen */,
+				04CE0E33244B13D8006B19B0 /* MainScreen */,
+				046E98C8244B509E00611091 /* TopicsListScreen */,
+				04AE7B57244DBD5500AF4AB5 /* TopicScreen */,
+				042BC5A224505E6B00950B15 /* TopicsContainerScreen */,
 				0462065824518E8D00012C91 /* TopicPlotsScreen */,
+				04A7D1632453013E00503CAE /* SandboxScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		04CE0E33244B13D8006B19B0 /* Main screen */ = {
+		04CE0E33244B13D8006B19B0 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
 				0473F3FE244B340D0065BB63 /* Views */,
 				0473F3FC244B326E0065BB63 /* WelcomeVM.swift */,
 			);
-			path = "Main screen";
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		04CE0E36244B142C006B19B0 /* Bases */ = {
@@ -1240,6 +1269,7 @@
 				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,
 				040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */,
 				0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */,
+				04A7D16B2453085000503CAE /* Math functions.swift in Sources */,
 				042BC5A72450637200950B15 /* TopicsContainerCell.swift in Sources */,
 				04CE0E35244B13F0006B19B0 /* WelcomeVC.swift in Sources */,
 				04CE0E73244B1839006B19B0 /* UICollectionView extension.swift in Sources */,
@@ -1258,7 +1288,9 @@
 				04A0FE60244DF78A000C9F6E /* TopicItemCellConfigurator.swift in Sources */,
 				04CE0E71244B1839006B19B0 /* UIStoryboard extension.swift in Sources */,
 				04CE0E87244B1937006B19B0 /* R.generated.swift in Sources */,
+				04A7D16A2453085000503CAE /* Axis.swift in Sources */,
 				042BC5A424505E8400950B15 /* TopicsContainerVC.swift in Sources */,
+				04A7D1652453015E00503CAE /* SandboxVC.swift in Sources */,
 				048C4921245192B800C430B3 /* TopicPlotsDataBinder.swift in Sources */,
 				04CE0E6F244B1839006B19B0 /* UITableView extension.swift in Sources */,
 				04CE0E79244B186B006B19B0 /* Completable extension.swift in Sources */,
@@ -1284,6 +1316,7 @@
 				04CE0E68244B1839006B19B0 /* UIViewController extension.swift in Sources */,
 				04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */,
 				04CE0E6A244B1839006B19B0 /* UILabel extension.swift in Sources */,
+				04A7D16C2453085000503CAE /* XYZControl.swift in Sources */,
 				0450332B24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift in Sources */,
 				04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */,
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
