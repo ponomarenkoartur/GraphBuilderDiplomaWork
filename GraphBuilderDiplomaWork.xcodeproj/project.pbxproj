@@ -155,6 +155,7 @@
 		04A7D16A2453085000503CAE /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1672453085000503CAE /* Axis.swift */; };
 		04A7D16B2453085000503CAE /* Math functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1682453085000503CAE /* Math functions.swift */; };
 		04A7D16C2453085000503CAE /* XYZControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1692453085000503CAE /* XYZControl.swift */; };
+		04A7D16F2453189000503CAE /* SandboxEquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D16E2453189000503CAE /* SandboxEquationCell.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -309,6 +310,7 @@
 		04A7D1672453085000503CAE /* Axis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
 		04A7D1682453085000503CAE /* Math functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math functions.swift"; sourceTree = "<group>"; };
 		04A7D1692453085000503CAE /* XYZControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYZControl.swift; sourceTree = "<group>"; };
+		04A7D16E2453189000503CAE /* SandboxEquationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxEquationCell.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -630,7 +632,7 @@
 		04A7D1632453013E00503CAE /* SandboxScreen */ = {
 			isa = PBXGroup;
 			children = (
-				04A7D1642453015E00503CAE /* SandboxVC.swift */,
+				04A7D16D2453187600503CAE /* Views */,
 			);
 			path = SandboxScreen;
 			sourceTree = "<group>";
@@ -644,6 +646,15 @@
 			);
 			name = XYZ_control;
 			path = Views/XYZ_control;
+			sourceTree = "<group>";
+		};
+		04A7D16D2453187600503CAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04A7D1642453015E00503CAE /* SandboxVC.swift */,
+				04A7D16E2453189000503CAE /* SandboxEquationCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		04AE7B52244DAB8600AF4AB5 /* Model */ = {
@@ -1271,6 +1282,7 @@
 				0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */,
 				04A7D16B2453085000503CAE /* Math functions.swift in Sources */,
 				042BC5A72450637200950B15 /* TopicsContainerCell.swift in Sources */,
+				04A7D16F2453189000503CAE /* SandboxEquationCell.swift in Sources */,
 				04CE0E35244B13F0006B19B0 /* WelcomeVC.swift in Sources */,
 				04CE0E73244B1839006B19B0 /* UICollectionView extension.swift in Sources */,
 				04CE0E2B244B11E8006B19B0 /* SCNVector3 extension.swift in Sources */,

@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import RxSwift
+import ARKit
 
 
 class SandboxVC: BaseVC {
     
     
     // MARK: - Properties
+    
+    private let equationsSubject = BehaviorSubject<[Plot]>(value: [])
+    private let isEquationTableHiddenSubject =
+        BehaviorSubject<Bool>(value: true)
+    private var isEquationTableHidden: Bool {
+        try! isEquationTableHiddenSubject.value()
+    }
+    private var tableViewVissibleOffset: CGFloat {
+        -view.frame.height / 2
+    }
+    
     
     // MARK: - Callbacks
     
@@ -69,23 +82,6 @@ class SandboxVC: BaseVC {
         return button
     }()
     
-    private lazy var modeSwitch: NamedSwitchControl = {
-        let modeSwitch = NamedSwitchControl()
-        modeSwitch.leftText = "VR"
-        modeSwitch.rightText = "AR"
-        modeSwitch.layer.shadowOpacity = 1
-        modeSwitch.layer.shadowColor = Color.defaultShadow()?.cgColor
-        modeSwitch.layer.shadowRadius = 2
-        modeSwitch.layer.shadowOffset = .zero
-        modeSwitch.rx.position
-            .subscribe(onNext: { position in
-                self.didTapChangeMode(position == .left ? .vr : .ar)
-            })
-            .disposed(by: bag)
-        
-        return modeSwitch
-    }()
-    
     private lazy var bottomButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .equalSpacing
@@ -125,14 +121,27 @@ class SandboxVC: BaseVC {
         button.setImage(Image.doubleArrowUp(), for: .normal)
         button.rx.tap
             .subscribe(onNext: { _ in
-                UIView.animate(
-                    withDuration: 0.3, delay: 0, options: [.curveEaseInOut],
-                    animations: {
-                    button.transform = button.transform.rotated(by: .pi)
-                })
+                self.isEquationTableHiddenSubject
+                    .onNext(!self.isEquationTableHidden)
             })
             .disposed(by: bag)
         return button
+    }()
+    
+    private lazy var equationsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SandboxEquationCell.self)
+        tableView.backgroundColor = Color.grayBackground()
+        equationsSubject
+            .bind(to: tableView.rx.items) {
+                (tableView: UITableView, index: Int, item: Plot) in
+                let cell = tableView
+                    .dequeue(SandboxEquationCell.self, for: index) ??
+                    SandboxEquationCell()
+                return cell
+            }
+            .disposed(by: bag)
+        return tableView
     }()
     
     
@@ -143,16 +152,23 @@ class SandboxVC: BaseVC {
         shouldPresentNavigationBar = false
     }
     
+    override func setupUIAfterLayoutSubviews() {
+        super.setupUIAfterLayoutSubviews()
+        equationsTableView.round([.topLeft, .topRight], radius: 10)
+    }
+    
     override func addSubviews() {
         super.addSubviews()
         view.addSubviews([
-            arView, buttonBack, topRightButtonStackView, bottomButtonStackView
+            arView,
+            buttonBack, topRightButtonStackView,
+            bottomButtonStackView,
+            equationsTableView
         ])
         topRightButtonStackView.addArrangedSubviews([
             takePhotoButton,
             settingsButton,
             homeButton,
-            modeSwitch
         ])
         bottomButtonStackView.addArrangedSubviews([
             manipilationModeSwitchButton, xyzControl, openHidePlotEditorButton
@@ -171,11 +187,48 @@ class SandboxVC: BaseVC {
             $0.trailing.equalTo(-10)
         }
         bottomButtonStackView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            $0.bottom.equalTo(equationsTableView.snp.top)
+                .offset(-WindowSafeArea.insets.bottom - 10)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().offset(-34)
         }
+        equationsTableView.snp.makeConstraints {
+            $0.height.equalTo(view.snp.height).multipliedBy(0.66)
+            $0.width.centerX.equalToSuperview()
+            $0.top.equalTo(view.snp.bottom)
+        }
     }
     
+    override func setupBinding() {
+        super.setupBinding()
+        isEquationTableHiddenSubject
+            .subscribe(onNext: { isHidden in
+                UIView.animate(
+                    withDuration: self.didAppear ? 0.3 : 0, delay: 0,
+                    options: [.curveEaseOut], animations: {
+                        self.bottomButtonStackView.snp.updateConstraints {
+                            $0.bottom.equalTo(self.equationsTableView.snp.top)
+                                .offset(isHidden ? (-WindowSafeArea.insets.bottom - 10) : 0)
+                        }
+                        self.equationsTableView.snp.updateConstraints {
+                            $0.top.equalTo(self.view.snp.bottom)
+                                .offset(isHidden ? 0 : self.tableViewVissibleOffset)
+                        }
+                        self.view.layoutSubviews()
+                        self.setOpenHidePlotButtonDirection(
+                            isHidden ? .up : .down)
+                })
+            })
+            .disposed(by: bag)
+    }
+    
+    
+    // MARK: - Private Methods
+    
+    private enum ButtonDirection { case up, down }
+    private func setOpenHidePlotButtonDirection(_ direction: ButtonDirection) {
+        openHidePlotEditorButton.transform =
+            CGAffineTransform(rotationAngle: direction == .up ? 0 : .pi)
+    }
     
 }
