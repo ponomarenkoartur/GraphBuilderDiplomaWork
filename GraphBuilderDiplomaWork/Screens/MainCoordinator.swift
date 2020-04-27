@@ -24,7 +24,7 @@ class MainCoordinator: BaseCoordinator {
     override func start() {
         super.start()
         
-        self.pushTestScreen()
+        self.pushSandbox()
         return;
         
         pushWelcomeScreen()
@@ -66,23 +66,23 @@ class MainCoordinator: BaseCoordinator {
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
-        vm.setEquationList([
-            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
-            Equation(latex: "x^5+z", function: NSNull()),
-            Equation(latex: "sin(x^z)", function: NSNull()),
-            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
-            Equation(latex: "x^5+z", function: NSNull()),
-            Equation(latex: "sin(x^z)", function: NSNull()),
-            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
-            Equation(latex: "x^5+z", function: NSNull()),
-            Equation(latex: "sin(x^z)", function: NSNull()),
-            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
-            Equation(latex: "x^5+z", function: NSNull()),
-            Equation(latex: "sin(x^z)", function: NSNull()),
-            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
-            Equation(latex: "x^5+z", function: NSNull()),
-            Equation(latex: "sin(x^z)", function: NSNull()),
-        ])
+        vm.equationsList = [
+            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
+            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
+        ]
         
         navVC.push(vc)
     }

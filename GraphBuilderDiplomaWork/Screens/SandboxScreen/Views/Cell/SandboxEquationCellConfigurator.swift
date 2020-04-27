@@ -10,13 +10,14 @@ import UIKit
 
 
 class SandboxEquationCellConfigurator:
-    BaseTableCellConfigurator<(Int, Equation), SandboxEquationCell> {
+    BaseTableCellConfigurator<(Int, SandboxEquation), SandboxEquationCell> {
     
-    override func configure(with data: (index: Int, equation: Equation)) {
+    override func configure(with data: (index: Int, sandboxEquation: SandboxEquation)) {
         let cell = item
         cell.setOrderNumber(data.index + 1)
-        cell.setPlotImageColor(UIColor.random())
-        cell.setEquation(data.equation)
+        cell.setPlotImageColor(data.sandboxEquation.color)
+        cell.setEquation(data.sandboxEquation.equation)
+        cell.setPlotImageTransparancy(data.sandboxEquation.isHidden ? 0.1 : 1)
     }
     
 }

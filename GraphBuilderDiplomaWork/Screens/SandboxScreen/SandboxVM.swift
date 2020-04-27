@@ -10,8 +10,8 @@ import RxSwift
 
 
 protocol SandboxVMProtocol: ViewModelProtocol {
-    var equationsList: Observable<[Equation]> { get }
-    func setEquationList(_ list: [Equation])
+    var equationsListObservable: Observable<[SandboxEquation]> { get }
+    var equationsList: [SandboxEquation] { get set }
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -19,17 +19,13 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     
     // MARK: - Properties
     
-    private let equationsListSubject = BehaviorSubject<[Equation]>(value: [])
-    var equationsList: Observable<[Equation]> {
+    private let equationsListSubject = BehaviorSubject<[SandboxEquation]>(value: [])
+    var equationsListObservable: Observable<[SandboxEquation]> {
         equationsListSubject.asObservable()
     }
-    
-    
-    // MARK: - API Methods
-    
-    func setEquationList(_ list: [Equation]) {
-        equationsListSubject.onNext(list)
+    var equationsList: [SandboxEquation] {
+        get { try! equationsListSubject.value() }
+        set { equationsListSubject.onNext(newValue) }
     }
-    
     
 }

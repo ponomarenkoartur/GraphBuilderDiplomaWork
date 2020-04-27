@@ -25,6 +25,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     // MARK: Callbacks
     
     var didTapDeleteButton: () -> () = {}
+    var didTapPlotImageButton: () -> () = {}
     
     // MARK: Views
     
@@ -48,6 +49,11 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         let imageView = UIImageView()
         imageView.snp.makeConstraints { $0.size.equalTo(25) }
         imageView.image = Image.plotIcon()
+        imageView.rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { _ in self.didTapPlotImageButton() })
+        .disposed(by: bag)
         return imageView
     }()
     

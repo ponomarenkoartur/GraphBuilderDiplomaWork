@@ -162,6 +162,7 @@
 		04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */; };
 		04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */; };
 		04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3B12456D91D00E8E85B /* BaseButton.swift */; };
+		04A7F3B5245709ED00E8E85B /* SandboxEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3B4245709ED00E8E85B /* SandboxEquation.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -323,6 +324,7 @@
 		04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboard.swift; sourceTree = "<group>"; };
 		04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboardButton.swift; sourceTree = "<group>"; };
 		04A7F3B12456D91D00E8E85B /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		04A7F3B4245709ED00E8E85B /* SandboxEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxEquation.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 		04A7D1632453013E00503CAE /* SandboxScreen */ = {
 			isa = PBXGroup;
 			children = (
+				04A7F3B3245709E100E8E85B /* Model */,
 				04A7D16D2453187600503CAE /* Views */,
 				048D6D0B245465BD0001FC7D /* SandboxVM.swift */,
 				048D6D0D245465C40001FC7D /* SandboxDataBinder.swift */,
@@ -688,6 +691,14 @@
 				04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */,
 			);
 			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		04A7F3B3245709E100E8E85B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04A7F3B4245709ED00E8E85B /* SandboxEquation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04AE7B52244DAB8600AF4AB5 /* Model */ = {
@@ -1391,6 +1402,7 @@
 				04CE0E85244B18CA006B19B0 /* Storyboardable.swift in Sources */,
 				048A96FE245054FC00161936 /* SerialPosition.swift in Sources */,
 				04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */,
+				04A7F3B5245709ED00E8E85B /* SandboxEquation.swift in Sources */,
 				04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */,
 				04D1F8E02451D672004155FC /* Plot.swift in Sources */,
 				04CE0E46244B1468006B19B0 /* ViewModelProtocol.swift in Sources */,

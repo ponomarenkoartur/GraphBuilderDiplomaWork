@@ -15,10 +15,18 @@ class SandboxDataBinder<ViewModel>:
     
     
     override func bind() {
-        viewModel.equationsList
+        viewModel.equationsListObservable
             .subscribe(onNext: { list in
                 self.views.forEach { $0.setEquationsList(list) }
             })
             .disposed(by: bag)
+        
+        views.forEach { (view) in
+            view.didTapShowPlot = { show, index in
+                var list = self.viewModel.equationsList
+                list[index].isHidden = !show
+                self.viewModel.equationsList = list
+            }
+        }
     }
 }

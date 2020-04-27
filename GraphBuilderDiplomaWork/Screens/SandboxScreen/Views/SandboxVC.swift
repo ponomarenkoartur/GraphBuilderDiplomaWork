@@ -12,7 +12,12 @@ import ARKit
 
 
 protocol SandboxVCProtocol: UIViewController {
-    func setEquationsList(_ list: [Equation])
+    var didTapHomeButton: () -> () { get set }
+    var didTapSettingsButton: () -> () { get set }
+    var didTapCameraButton: () -> () { get set }
+    var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
+    var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
+    func setEquationsList(_ list: [SandboxEquation])
 }
 
 
@@ -21,7 +26,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: - Properties
     
-    private let equationsSubject = BehaviorSubject<[Equation]>(value: [])
+    private let equationsSubject = BehaviorSubject<[SandboxEquation]>(value: [])
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
     private var isEquationTableHidden: Bool {
@@ -39,6 +44,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didTapSettingsButton: () -> () = { }
     var didTapCameraButton: () -> () = { }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () = { _ in }
+    var didTapShowPlot: (_ show: Bool, _ index: Int) -> () = { _, _ in }
     
     // MARK: Views
     
@@ -232,12 +238,15 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
         equationsSubject
             .bind(to: equationsTableView.rx.items) {
-                (tableView: UITableView, index: Int, item: Equation) in
+                (tableView: UITableView, index: Int, item: SandboxEquation) in
                 let cell = tableView
                     .dequeue(SandboxEquationCell.self, for: index) ??
                     SandboxEquationCell()
                 SandboxEquationCellConfigurator(cell: cell)
                     .configure(with: (index, item))
+                cell.didTapPlotImageButton = {
+                    self.didTapShowPlot(item.isHidden, index)
+                }
                 return cell
             }
             .disposed(by: bag)
@@ -254,7 +263,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: - API Methods
     
-    func setEquationsList(_ list: [Equation]) {
+    func setEquationsList(_ list: [SandboxEquation]) {
         equationsSubject.onNext(list)
     }
     
