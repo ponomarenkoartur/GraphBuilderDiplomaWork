@@ -159,6 +159,9 @@
 		04A7D16B2453085000503CAE /* Math functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1682453085000503CAE /* Math functions.swift */; };
 		04A7D16C2453085000503CAE /* XYZControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1692453085000503CAE /* XYZControl.swift */; };
 		04A7D16F2453189000503CAE /* SandboxEquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D16E2453189000503CAE /* SandboxEquationCell.swift */; };
+		04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */; };
+		04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */; };
+		04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3B12456D91D00E8E85B /* BaseButton.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -317,6 +320,9 @@
 		04A7D1682453085000503CAE /* Math functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math functions.swift"; sourceTree = "<group>"; };
 		04A7D1692453085000503CAE /* XYZControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYZControl.swift; sourceTree = "<group>"; };
 		04A7D16E2453189000503CAE /* SandboxEquationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxEquationCell.swift; sourceTree = "<group>"; };
+		04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboard.swift; sourceTree = "<group>"; };
+		04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboardButton.swift; sourceTree = "<group>"; };
+		04A7F3B12456D91D00E8E85B /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -659,11 +665,29 @@
 		04A7D16D2453187600503CAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04A7F3AC2456CCCF00E8E85B /* Keyboard */,
+				04A7F3AB2456CCC800E8E85B /* Cell */,
 				04A7D1642453015E00503CAE /* SandboxVC.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04A7F3AB2456CCC800E8E85B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
 				04A7D16E2453189000503CAE /* SandboxEquationCell.swift */,
 				04A7859324549464005D717A /* SandboxEquationCellConfigurator.swift */,
 			);
-			path = Views;
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		04A7F3AC2456CCCF00E8E85B /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */,
+				04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		04AE7B52244DAB8600AF4AB5 /* Model */ = {
@@ -790,6 +814,7 @@
 				040FE8222451A3C100F42C24 /* Configurator.swift */,
 				040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */,
 				040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */,
+				04A7F3B12456D91D00E8E85B /* BaseButton.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -1265,6 +1290,7 @@
 				04CE0E2A244B11E8006B19B0 /* Number extension.swift in Sources */,
 				0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */,
 				04CE0E41244B1468006B19B0 /* BaseVC.swift in Sources */,
+				04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */,
 				0462065D24518FA500012C91 /* TopicPlotsVC.swift in Sources */,
 				04CE0E43244B1468006B19B0 /* BaseTableViewCell.swift in Sources */,
 				04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */,
@@ -1275,6 +1301,7 @@
 				046E98CE244B549100611091 /* TopicsListVM.swift in Sources */,
 				04A0FE67244E152C000C9F6E /* TopicParagraphCell.swift in Sources */,
 				04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */,
+				04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */,
 				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
 				040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */,
@@ -1344,6 +1371,7 @@
 				0450332B24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift in Sources */,
 				04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */,
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
+				04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */,
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
 				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04D1F8EB2451EFFE004155FC /* PlotPresentationMode.swift in Sources */,

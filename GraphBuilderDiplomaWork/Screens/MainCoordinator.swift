@@ -24,7 +24,7 @@ class MainCoordinator: BaseCoordinator {
     override func start() {
         super.start()
         
-        self.pushSandbox()
+        self.pushTestScreen()
         return;
         
         pushWelcomeScreen()
@@ -119,6 +119,10 @@ class MainCoordinator: BaseCoordinator {
         dataBinder.bind()
         
         navVC.push(vc)
+    }
+    
+    private func pushTestScreen() {
+        navVC.push(TestViewController())
     }
     
 }

@@ -40,4 +40,14 @@ extension Array {
         }
     }
     
+    func firstHalf() -> ArraySlice<Element> {
+        guard !self.isEmpty else { return [] }
+        return self[0..<(count / 2)]
+    }
+    
+    func secondHalf() -> ArraySlice<Element> {
+        guard !self.isEmpty else { return [] }
+        return self[(count / 2)...]
+    }
+    
 }

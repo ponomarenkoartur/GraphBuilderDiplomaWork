@@ -12,21 +12,26 @@ import UIKit
 class TestViewController: BaseVC {
     
     
-    private lazy var switchControl = NamedSwitchControl()
+    private lazy var keyboard = SandboxKeyboard()
     
+    
+    // MARK: - Setup Methods
+    
+    override func setupUI() {
+        super.setupUI()
+        shouldPresentNavigationBar = false
+    }
     
     override func addSubviews() {
         super.addSubviews()
-        view.addSubview(switchControl)
-        switchControl.leftText = "ABC"
-        switchControl.rightText = "DEF"
-        switchControl.setPosition(.left)
+        view.addSubview(keyboard)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-        switchControl.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        keyboard.snp.makeConstraints {
+            $0.center.width.equalToSuperview()
+            $0.height.equalTo(236)
         }
     }
 }
