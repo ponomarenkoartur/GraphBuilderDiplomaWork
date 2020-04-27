@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import RxKeyboard
 
 
 class TestViewController: BaseVC {
     
     
     private lazy var keyboard = SandboxKeyboard()
+    
+    private lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.inputView = keyboard
+        return textField
+    }()
     
     
     // MARK: - Setup Methods
@@ -24,14 +34,20 @@ class TestViewController: BaseVC {
     
     override func addSubviews() {
         super.addSubviews()
-        view.addSubview(keyboard)
+        view.addSubviews([textField])
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-        keyboard.snp.makeConstraints {
-            $0.center.width.equalToSuperview()
-            $0.height.equalTo(236)
+        textField.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(0.66)
         }
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        RxKeyboard.instance.visibleHeight.drive(onNext: { print($0) })
+            .disposed(by: bag)
     }
 }

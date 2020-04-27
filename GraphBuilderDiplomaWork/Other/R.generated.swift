@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 7 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
     /// Color `background`.
     static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
@@ -120,6 +120,12 @@ struct R: Rswift.Validatable {
     static let grayText = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray-text")
     /// Color `inverse-text`.
     static let inverseText = Rswift.ColorResource(bundle: R.hostingBundle, name: "inverse-text")
+    /// Color `keyboardBackground`.
+    static let keyboardBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "keyboardBackground")
+    /// Color `keyboardButtonBackground`.
+    static let keyboardButtonBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "keyboardButtonBackground")
+    /// Color `keyboardButtonShadow`.
+    static let keyboardButtonShadow = Rswift.ColorResource(bundle: R.hostingBundle, name: "keyboardButtonShadow")
     /// Color `turquoise`.
     static let turquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "turquoise")
 
@@ -174,6 +180,33 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func inverseText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.inverseText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "keyboardBackground", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func keyboardBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.keyboardBackground, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "keyboardButtonBackground", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func keyboardButtonBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.keyboardButtonBackground, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "keyboardButtonShadow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func keyboardButtonShadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.keyboardButtonShadow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -268,7 +301,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 24 images.
+  /// This `R.image` struct is generated, and contains static references to 26 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -288,12 +321,16 @@ struct R: Rswift.Validatable {
     static let cube3DDotted = Rswift.ImageResource(bundle: R.hostingBundle, name: "cube3DDotted")
     /// Image `cube3D`.
     static let cube3D = Rswift.ImageResource(bundle: R.hostingBundle, name: "cube3D")
+    /// Image `deleteButton`.
+    static let deleteButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "deleteButton")
     /// Image `deletePlotButton`.
     static let deletePlotButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "deletePlotButton")
     /// Image `doubleArrowDown`.
     static let doubleArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "doubleArrowDown")
     /// Image `doubleArrowUp`.
     static let doubleArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "doubleArrowUp")
+    /// Image `enterButton`.
+    static let enterButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "enterButton")
     /// Image `home`.
     static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "home")
     /// Image `left-arrow-welcome-menu`.
@@ -383,6 +420,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "deleteButton", bundle: ..., traitCollection: ...)`
+    static func deleteButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.deleteButton, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "deletePlotButton", bundle: ..., traitCollection: ...)`
     static func deletePlotButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.deletePlotButton, compatibleWith: traitCollection)
@@ -400,6 +444,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "doubleArrowUp", bundle: ..., traitCollection: ...)`
     static func doubleArrowUp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.doubleArrowUp, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "enterButton", bundle: ..., traitCollection: ...)`
+    static func enterButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.enterButton, compatibleWith: traitCollection)
     }
     #endif
 

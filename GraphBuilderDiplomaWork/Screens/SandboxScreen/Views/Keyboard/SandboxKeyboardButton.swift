@@ -44,11 +44,15 @@ class SandboxKeyboardButton: BaseButton {
     
     override func setupUI() {
         super.setupUI()
-        backgroundColor = Color.background()
+        backgroundColor = Color.keyboardButtonBackground()
         setTitleColor(Color.defaultText())
+        tintColor = Color.defaultText()
         titleLabel?.font = UIFont(font: .timesNewRomanPSItalicMT, size: 30)
-        layer.borderColor = UIColor(fromHexString: "A8A8A8")?.cgColor
-        layer.borderWidth = 0.5
+        layer.cornerRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.shadowColor = Color.keyboardButtonShadow()?.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 0
     }
     
     override func addSubviews() {
@@ -72,4 +76,13 @@ class SandboxKeyboardButton: BaseButton {
     }
     
     
+    // MARK: - API Methods
+    
+    func setFont(_ font: UIFont) {
+        titleLabel?.font = font
+    }
+    
+    func setLatexFont(_ font: MTFont) {
+        latexTextLabel.font = font
+    }
 }

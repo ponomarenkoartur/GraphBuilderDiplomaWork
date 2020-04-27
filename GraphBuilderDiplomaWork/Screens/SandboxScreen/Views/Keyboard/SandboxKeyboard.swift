@@ -17,7 +17,10 @@ class SandboxKeyboard: BaseView {
     
     private struct ButtonData {
         var text: String? = nil
+        var image: UIImage? = nil
+        var font = UIFont(font: .timesNewRomanPSItalicMT, size: 30)!
         var latexText: String? = nil
+        var latexFont: MTFont = MTFontManager().xitsFont(withSize: 25)
         var action: () -> ()
     }
     
@@ -50,7 +53,7 @@ class SandboxKeyboard: BaseView {
     
     weak var target: UIKeyInput?
     
-    private lazy var buttons: [[[ButtonData]]] = [
+    private lazy var buttonsData: [[[ButtonData]]] = [
         [
             Variable.allCases.map { variable in
                 ButtonData(text: variable.rawValue, action: {
@@ -60,17 +63,21 @@ class SandboxKeyboard: BaseView {
             [
                 ButtonData(latexText: "a^2", action: secondPowerTapped),
                 ButtonData(latexText: "a^b", action: powerTapped),
-                ButtonData(latexText: "\\sqrt{x}", action: squareTapped),
+                ButtonData(latexText: "\\sqrt{}",
+                           latexFont: MTFontManager().xitsFont(withSize: 18),
+                           action: squareTapped),
             ],
             TrigonometricOperator.allCases.firstHalf().map { `operator` in
-                ButtonData(text: `operator`.rawValue, action: {
-                    self.trigonometricOperatorTapped(`operator`)
-                })
+                ButtonData(
+                    text: `operator`.rawValue,
+                    font: UIFont(font: .timesNewRomanPSItalicMT, size: 25)!,
+                    action: { self.trigonometricOperatorTapped(`operator`) })
             },
             TrigonometricOperator.allCases.secondHalf().map{ `operator` in
-                ButtonData(text: `operator`.rawValue, action: {
-                    self.trigonometricOperatorTapped(`operator`)
-                })
+                ButtonData(
+                    text: `operator`.rawValue,
+                    font: UIFont(font: .timesNewRomanPSItalicMT, size: 25)!,
+                    action: { self.trigonometricOperatorTapped(`operator`) })
             }
         ],
         [
@@ -110,10 +117,14 @@ class SandboxKeyboard: BaseView {
                         action: { self.moveCursosTapped(.left) })],
             [ButtonData(text: CursorDirection.right.rawValue,
                         action: { self.moveCursosTapped(.right) })],
-            [ButtonData(text: "⌫", action: deleteButtonTapped)],
-            [ButtonData(text: "↲", action: enterButtonTapped)],
+            [ButtonData(image: Image.deleteButton(),
+                        action: deleteButtonTapped)],
+            [ButtonData(image: Image.enterButton(), action: enterButtonTapped)],
         ],
     ]
+    
+    private var buttons: [SandboxKeyboardButton] = []
+    
     
     // MARK: - Actions
     
@@ -215,7 +226,7 @@ class SandboxKeyboard: BaseView {
     
     override func setupUI() {
         super.setupUI()
-        backgroundColor = #colorLiteral(red: 0.8705882353, green: 0.8705882353, blue: 0.8705882353, alpha: 1)
+        backgroundColor = Color.keyboardBackground()
     }
     
     override func addSubviews() {
@@ -234,8 +245,12 @@ class SandboxKeyboard: BaseView {
                 .enumerated()
                 .forEach { (rowIndex, rowStackView) in
                     rowStackView.addArrangedSubviews(
-                        buttons[safe: columnIndex]?[safe: rowIndex]?
-                            .map { getButton(from: $0) } ?? []
+                        buttonsData[safe: columnIndex]?[safe: rowIndex]?
+                            .map {
+                                let button = getButton(from: $0)
+                                self.buttons.append(button)
+                                return button
+                            } ?? []
                     )
             }
         }
@@ -243,20 +258,27 @@ class SandboxKeyboard: BaseView {
     
     override func setupConstraints() {
         super.setupConstraints()
+        self.snp.makeConstraints {
+            $0.height.equalTo(UIScreen.main.bounds.height * 0.33)
+        }
+        
         superContainerStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.size.equalToSuperview().offset(-14)
+            $0.top.leading.equalToSuperview().offset(5)
+            $0.trailing.equalToSuperview().offset(-5)
+            $0.bottom.equalToSuperview()
+                .offset(-(WindowSafeArea.insets.bottom + 15))
         }
         
         columnStackViews.enumerated().forEach { (columnIndex, columnStackView) in
             columnStackView.snp.makeConstraints {
                 switch columnIndex {
                 case 0:
-                    $0.width.equalTo(self.snp.width).multipliedBy(0.26)
+                    $0.width.equalTo(self.snp.width).multipliedBy(0.28)
                 case 1:
-                    $0.width.equalTo(self.snp.width).multipliedBy(0.36)
+                    $0.width.equalTo(self.snp.width).multipliedBy(0.38)
                 case 2:
-                    $0.width.equalTo(self.snp.width).multipliedBy(0.16)
+                    $0.width.equalTo(self.snp.width).multipliedBy(0.18)
                 default:
                     break
                 }
@@ -269,11 +291,15 @@ class SandboxKeyboard: BaseView {
     
     private func getButton(from buttonData: ButtonData) -> SandboxKeyboardButton {
         let button = SandboxKeyboardButton()
-        button.latexText = buttonData.latexText
+
         button.text = buttonData.text
-        button.rx.tap.subscribe(onNext: {
-            buttonData.action()
-        }).disposed(by: bag)
+        button.latexText = buttonData.latexText
+        button.setFont(buttonData.font)
+        button.setLatexFont(buttonData.latexFont)
+        button.setImage(buttonData.image)
+        
+        button.rx.tap.subscribe(onNext: { buttonData.action() })
+            .disposed(by: bag)
         return button
     }
 }
