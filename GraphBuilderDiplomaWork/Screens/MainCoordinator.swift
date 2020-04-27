@@ -61,7 +61,29 @@ class MainCoordinator: BaseCoordinator {
     }
     
     private func pushSandbox() {
+        let vm = SandboxVM()
         let vc = SandboxVC()
+        let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
+        vm.setEquationList([
+            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
+            Equation(latex: "x^5+z", function: NSNull()),
+            Equation(latex: "sin(x^z)", function: NSNull()),
+            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
+            Equation(latex: "x^5+z", function: NSNull()),
+            Equation(latex: "sin(x^z)", function: NSNull()),
+            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
+            Equation(latex: "x^5+z", function: NSNull()),
+            Equation(latex: "sin(x^z)", function: NSNull()),
+            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
+            Equation(latex: "x^5+z", function: NSNull()),
+            Equation(latex: "sin(x^z)", function: NSNull()),
+            Equation(latex: "x^2+sqrt(z)", function: NSNull()),
+            Equation(latex: "x^5+z", function: NSNull()),
+            Equation(latex: "sin(x^z)", function: NSNull()),
+        ])
+        
         navVC.push(vc)
     }
 

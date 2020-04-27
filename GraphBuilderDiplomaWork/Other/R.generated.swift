@@ -268,7 +268,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 24 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -288,6 +288,8 @@ struct R: Rswift.Validatable {
     static let cube3DDotted = Rswift.ImageResource(bundle: R.hostingBundle, name: "cube3DDotted")
     /// Image `cube3D`.
     static let cube3D = Rswift.ImageResource(bundle: R.hostingBundle, name: "cube3D")
+    /// Image `deletePlotButton`.
+    static let deletePlotButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "deletePlotButton")
     /// Image `doubleArrowDown`.
     static let doubleArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "doubleArrowDown")
     /// Image `doubleArrowUp`.
@@ -298,6 +300,8 @@ struct R: Rswift.Validatable {
     static let leftArrowWelcomeMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-arrow-welcome-menu")
     /// Image `nextPlot`.
     static let nextPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "nextPlot")
+    /// Image `plotIcon`.
+    static let plotIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "plotIcon")
     /// Image `prevPlot`.
     static let prevPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "prevPlot")
     /// Image `sandbox`.
@@ -379,6 +383,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "deletePlotButton", bundle: ..., traitCollection: ...)`
+    static func deletePlotButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.deletePlotButton, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "doubleArrowDown", bundle: ..., traitCollection: ...)`
     static func doubleArrowDown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.doubleArrowDown, compatibleWith: traitCollection)
@@ -410,6 +421,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "nextPlot", bundle: ..., traitCollection: ...)`
     static func nextPlot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.nextPlot, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "plotIcon", bundle: ..., traitCollection: ...)`
+    static func plotIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.plotIcon, compatibleWith: traitCollection)
     }
     #endif
 

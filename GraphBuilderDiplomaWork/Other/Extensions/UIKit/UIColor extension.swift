@@ -28,4 +28,11 @@ extension UIColor {
     convenience init(_ componets: CGFloat, alpha: CGFloat = 1) {
         self.init(r: componets, g: componets, b: componets)
     }
+    
+    static func random(withRandomAlpha isRandomAlpha: Bool = false) -> UIColor {
+        UIColor(r: CGFloat.random(in: 0...255),
+                g: CGFloat.random(in: 0...255),
+                b: CGFloat.random(in: 0...255),
+                alpha: isRandomAlpha ? CGFloat.random(in: 0...1) : 1)
+    }
 }

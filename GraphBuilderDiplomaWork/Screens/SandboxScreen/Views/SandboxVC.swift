@@ -11,16 +11,22 @@ import RxSwift
 import ARKit
 
 
-class SandboxVC: BaseVC {
+protocol SandboxVCProtocol: UIViewController {
+    func setEquationsList(_ list: [Equation])
+}
+
+
+class SandboxVC: BaseVC, SandboxVCProtocol {
     
     
     // MARK: - Properties
     
-    private let equationsSubject = BehaviorSubject<[Plot]>(value: [])
+    private let equationsSubject = BehaviorSubject<[Equation]>(value: [])
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
     private var isEquationTableHidden: Bool {
-        try! isEquationTableHiddenSubject.value()
+        get { try! isEquationTableHiddenSubject.value() }
+        set { isEquationTableHiddenSubject.onNext(newValue) }
     }
     private var tableViewVissibleOffset: CGFloat {
         -view.frame.height / 2
@@ -121,8 +127,7 @@ class SandboxVC: BaseVC {
         button.setImage(Image.doubleArrowUp(), for: .normal)
         button.rx.tap
             .subscribe(onNext: { _ in
-                self.isEquationTableHiddenSubject
-                    .onNext(!self.isEquationTableHidden)
+                self.isEquationTableHidden = !self.isEquationTableHidden
             })
             .disposed(by: bag)
         return button
@@ -132,14 +137,17 @@ class SandboxVC: BaseVC {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
         tableView.backgroundColor = Color.grayBackground()
-        equationsSubject
-            .bind(to: tableView.rx.items) {
-                (tableView: UITableView, index: Int, item: Plot) in
-                let cell = tableView
-                    .dequeue(SandboxEquationCell.self, for: index) ??
-                    SandboxEquationCell()
-                return cell
-            }
+        tableView.rowHeight = 49
+        tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
+        tableView.allowsSelection = false
+        tableView.rx
+            .swipeGesture(.down)
+            .when(.recognized)
+            .subscribe(onNext: { _ in
+                if tableView.contentOffset.y <= 0 {
+                    self.isEquationTableHidden = true
+                }
+            })
             .disposed(by: bag)
         return tableView
     }()
@@ -150,6 +158,7 @@ class SandboxVC: BaseVC {
     override func setupUI() {
         super.setupUI()
         shouldPresentNavigationBar = false
+        setupGestureRecognizers()
     }
     
     override func setupUIAfterLayoutSubviews() {
@@ -204,7 +213,7 @@ class SandboxVC: BaseVC {
         isEquationTableHiddenSubject
             .subscribe(onNext: { isHidden in
                 UIView.animate(
-                    withDuration: self.didAppear ? 0.3 : 0, delay: 0,
+                    withDuration: self.didAppear ? 0.2 : 0, delay: 0,
                     options: [.curveEaseOut], animations: {
                         self.bottomButtonStackView.snp.updateConstraints {
                             $0.bottom.equalTo(self.equationsTableView.snp.top)
@@ -220,15 +229,40 @@ class SandboxVC: BaseVC {
                 })
             })
             .disposed(by: bag)
+        
+        equationsSubject
+            .bind(to: equationsTableView.rx.items) {
+                (tableView: UITableView, index: Int, item: Equation) in
+                let cell = tableView
+                    .dequeue(SandboxEquationCell.self, for: index) ??
+                    SandboxEquationCell()
+                SandboxEquationCellConfigurator(cell: cell)
+                    .configure(with: (index, item))
+                return cell
+            }
+            .disposed(by: bag)
+    }
+    
+    private func setupGestureRecognizers() {
+        view.rx
+            .swipeGesture([.up])
+            .when(.recognized)
+            .subscribe(onNext: { _ in self.isEquationTableHidden = false })
+            .disposed(by: bag)
     }
     
     
-    // MARK: - Private Methods
+    // MARK: - API Methods
+    
+    func setEquationsList(_ list: [Equation]) {
+        equationsSubject.onNext(list)
+    }
+    
+    // MARK: - Other Methods
     
     private enum ButtonDirection { case up, down }
     private func setOpenHidePlotButtonDirection(_ direction: ButtonDirection) {
         openHidePlotEditorButton.transform =
             CGAffineTransform(rotationAngle: direction == .up ? 0 : .pi)
     }
-    
 }
