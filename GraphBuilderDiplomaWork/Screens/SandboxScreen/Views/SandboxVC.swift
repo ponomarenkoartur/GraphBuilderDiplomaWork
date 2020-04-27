@@ -251,7 +251,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.width.equalToSuperview().offset(-34)
         }
         equationsTableView.snp.makeConstraints {
-            $0.height.equalTo(-tableViewVissibleOffset)
+            $0.height.equalTo(
+                -tableViewVissibleOffset + WindowSafeArea.insets.bottom)
             $0.width.centerX.equalToSuperview()
             $0.top.equalTo(view.snp.bottom)
         }
