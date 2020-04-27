@@ -23,10 +23,6 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        
-        self.pushSandbox()
-        return;
-        
         pushWelcomeScreen()
     }
     
@@ -62,6 +58,7 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushSandbox() {
         let vm = SandboxVM()
+        vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         let vc = SandboxVC()
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
@@ -83,7 +80,6 @@ class MainCoordinator: BaseCoordinator {
             SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
             SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
         ]
-        
         navVC.push(vc)
     }
 
@@ -117,7 +113,6 @@ class MainCoordinator: BaseCoordinator {
         let vc = TopicPlotsVC()
         let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
-        
         navVC.push(vc)
     }
     

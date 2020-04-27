@@ -37,6 +37,9 @@ class SandboxDataBinder<ViewModel>:
                 list.remove(at: index)
                 self.viewModel.equationsList = list
             }
+            view.didTapBack = {
+                self.viewModel.finishCompletion()
+            }
         }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04015C6B245717B80094DFE6 /* PlotColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */; };
 		04015C6D245719430094DFE6 /* CGSize extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6C245719430094DFE6 /* CGSize extension.swift */; };
+		04015C6F24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */; };
 		040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */; };
 		040FE8232451A3C100F42C24 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8222451A3C100F42C24 /* Configurator.swift */; };
 		040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
@@ -262,6 +263,7 @@
 /* Begin PBXFileReference section */
 		04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotColorPickerCell.swift; sourceTree = "<group>"; };
 		04015C6C245719430094DFE6 /* CGSize extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize extension.swift"; sourceTree = "<group>"; };
+		04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVMWithVoidFinishReason.swift; sourceTree = "<group>"; };
 		040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotInfoCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8222451A3C100F42C24 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
@@ -843,6 +845,7 @@
 				040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */,
 				040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */,
 				04A7F3B12456D91D00E8E85B /* BaseButton.swift */,
+				04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				04CE0E30244B1227006B19B0 /* BezierArtist.swift in Sources */,
 				04CE0E6B244B1839006B19B0 /* UIButton extension.swift in Sources */,
 				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,
+				04015C6F24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift in Sources */,
 				040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */,
 				0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */,
 				04A7D16B2453085000503CAE /* Math functions.swift in Sources */,

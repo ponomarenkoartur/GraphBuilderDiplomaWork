@@ -13,3 +13,11 @@ protocol ViewModelProtocol: class {
     
     var finishCompletion: (_ reason: FinishCompletionReason) -> () { get set }
 }
+
+
+extension ViewModelProtocol where FinishCompletionReason == NSNull {
+    var finishCompletion: () -> () {
+        get { { self.finishCompletion(NSNull()) } }
+        set { finishCompletion = { _ in newValue() } }
+    }
+}

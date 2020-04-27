@@ -19,6 +19,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
     var didTapDeleteEquation: (_ index: Int) -> () { get set }
+    var didTapBack: () -> () { get set }
     func setEquationsList(_ list: [SandboxEquation])
 }
 
@@ -59,6 +60,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () = { _, _ in }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () = { _, _ in }
     var didTapDeleteEquation: (_ index: Int) -> () = { _ in }
+    var didTapBack: () -> () = {}
     
     // MARK: Views
     
@@ -71,6 +73,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var buttonBack: UIButton = {
         let button = UIButton()
         button.setImage(Image.backButton())
+        button.rx.tap.subscribe(onNext: { _ in self.didTapBack() })
+            .disposed(by: bag)
         return button
     }()
     

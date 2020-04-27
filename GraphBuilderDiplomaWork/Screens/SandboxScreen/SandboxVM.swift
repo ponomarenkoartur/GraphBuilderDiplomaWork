@@ -9,7 +9,7 @@
 import RxSwift
 
 
-protocol SandboxVMProtocol: ViewModelProtocol {
+protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NSNull {
     var equationsListObservable: Observable<[SandboxEquation]> { get }
     var equationsList: [SandboxEquation] { get set }
 }
