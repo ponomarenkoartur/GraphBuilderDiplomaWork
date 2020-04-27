@@ -17,6 +17,8 @@ protocol SandboxVCProtocol: UIViewController {
     var didTapCameraButton: () -> () { get set }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
+    var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
+    var didTapDeleteEquation: (_ index: Int) -> () { get set }
     func setEquationsList(_ list: [SandboxEquation])
 }
 
@@ -37,6 +39,16 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         -view.frame.height / 2
     }
     
+    private let isColorPickerHiddenSubject =
+        BehaviorSubject<Bool>(value: true)
+    private var isColorPickerHidden: Bool {
+        get { try! isColorPickerHiddenSubject.value() }
+        set { isColorPickerHiddenSubject.onNext(newValue) }
+    }
+    
+    /// Index of row that caused appearing of `plotColorPicker`
+    private var colorPickerRowTargetIndex: Int?
+    
     
     // MARK: - Callbacks
     
@@ -45,6 +57,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didTapCameraButton: () -> () = { }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () = { _ in }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () = { _, _ in }
+    var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () = { _, _ in }
+    var didTapDeleteEquation: (_ index: Int) -> () = { _ in }
     
     // MARK: Views
     
@@ -139,13 +153,30 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return button
     }()
     
+    private lazy var tableViewHeader: UIView = {
+        let view = UIView(frame: CGRect(width: self.view.frame.width,
+                                        height: 16))
+        view.backgroundColor = Color.grayBackground()
+        view.round([.topLeft, .topRight], radius: 10)
+        return view
+    }()
+    
+    private lazy var tableViewFooter: UIView = {
+        let view = UIView(frame: CGRect(width: self.view.frame.width,
+                                        height: 100))
+        view.backgroundColor = Color.grayBackground()
+        return view
+    }()
+    
     private lazy var equationsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
-        tableView.backgroundColor = Color.grayBackground()
+        tableView.backgroundColor = .clear
         tableView.rowHeight = 49
-        tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
+        tableView.tableHeaderView = tableViewHeader
+        tableView.tableFooterView = tableViewFooter
         tableView.allowsSelection = false
+        tableView.bounces = false
         tableView.rx
             .swipeGesture(.down)
             .when(.recognized)
@@ -158,6 +189,18 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return tableView
     }()
     
+    private lazy var plotColorPicker: PlotColorPickerView = {
+        let plotColorPicker = PlotColorPickerView()
+        plotColorPicker.didSelectColor = { color in
+            self.isColorPickerHidden = true
+            if let index = self.colorPickerRowTargetIndex {
+                self.didSelectColorForPlot(color, index)
+            }
+            print("Color: \(color) selected")
+        }
+        return plotColorPicker
+    }()
+    
     
     // MARK: - Setup Methods
     
@@ -167,18 +210,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         setupGestureRecognizers()
     }
     
-    override func setupUIAfterLayoutSubviews() {
-        super.setupUIAfterLayoutSubviews()
-        equationsTableView.round([.topLeft, .topRight], radius: 10)
-    }
-    
     override func addSubviews() {
         super.addSubviews()
         view.addSubviews([
             arView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
-            equationsTableView
+            equationsTableView,
+            plotColorPicker
         ])
         topRightButtonStackView.addArrangedSubviews([
             takePhotoButton,
@@ -208,9 +247,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.width.equalToSuperview().offset(-34)
         }
         equationsTableView.snp.makeConstraints {
-            $0.height.equalTo(view.snp.height).multipliedBy(0.66)
+            $0.height.equalTo(-tableViewVissibleOffset)
             $0.width.centerX.equalToSuperview()
             $0.top.equalTo(view.snp.bottom)
+        }
+        plotColorPicker.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(63)
+            $0.top.equalToSuperview()
         }
     }
     
@@ -242,13 +285,17 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 let cell = tableView
                     .dequeue(SandboxEquationCell.self, for: index) ??
                     SandboxEquationCell()
-                SandboxEquationCellConfigurator(cell: cell)
-                    .configure(with: (index, item))
-                cell.didTapPlotImageButton = {
-                    self.didTapShowPlot(item.isHidden, index)
-                }
+                self.prepare(cell, for: index, with: item)
                 return cell
             }
+            .disposed(by: bag)
+        
+        isColorPickerHiddenSubject
+            .subscribe(onNext: { isHidden in
+                UIView.animate(withDuration: 0.2) {
+                    self.plotColorPicker.alpha = isHidden ? 0 : 1
+                }
+            })
             .disposed(by: bag)
     }
     
@@ -258,6 +305,22 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             .when(.recognized)
             .subscribe(onNext: { _ in self.isEquationTableHidden = false })
             .disposed(by: bag)
+        view.rx
+            .panGesture()
+            .when(.recognized)
+            .subscribe(onNext: { _ in self.isColorPickerHidden = true })
+            .disposed(by: bag)
+        equationsTableView
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { _ in self.isColorPickerHidden = true })
+            .disposed(by: bag)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.isColorPickerHidden = true
     }
     
     
@@ -273,5 +336,51 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func setOpenHidePlotButtonDirection(_ direction: ButtonDirection) {
         openHidePlotEditorButton.transform =
             CGAffineTransform(rotationAngle: direction == .up ? 0 : .pi)
+    }
+    
+    private func prepare(_ cell: SandboxEquationCell, for index: Int,
+                         with item: SandboxEquation) {
+        SandboxEquationCellConfigurator(cell: cell)
+            .configure(with: (index, item))
+        cell.didTapPlotImageButton = {
+            self.didTapShowPlot(item.isHidden, index)
+            self.isColorPickerHidden = true
+        }
+        cell.didLongPressPlotImageButton = {
+            self.colorPickerRowTargetIndex = index
+            self.isColorPickerHidden = false
+            self.movePlotColorPickerToCell(at: index)
+        }
+        cell.didTapDeleteButton = {
+            self.didTapDeleteEquation(index)
+        }
+    }
+    
+    private func movePlotColorPickerToCell(at index: Int) {
+        let rect = self.equationsTableView.rectForRow(at: IndexPath(row: index))
+        let rectOfCellInSuperview = equationsTableView.convert(rect, to: view)
+        let absoluteYCellMiddle = rectOfCellInSuperview.midY
+        
+        var colorPickerYOffset =
+            absoluteYCellMiddle - plotColorPicker.frame.height / 2
+        let maxPickerOffset =
+            view.frame.height - plotColorPicker.frame.height - 5
+        
+        let shouldScroll = colorPickerYOffset > maxPickerOffset
+        
+        if shouldScroll {
+            colorPickerYOffset = maxPickerOffset
+        }
+        self.plotColorPicker.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(colorPickerYOffset)
+        }
+        if shouldScroll {
+            let scrollOffset = tableViewHeader.frame.height
+                + equationsTableView.rowHeight * CGFloat(index)
+                - equationsTableView.frame.height
+                + equationsTableView.rowHeight * 1.5
+            equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
+                                                animated: true)
+        }
     }
 }

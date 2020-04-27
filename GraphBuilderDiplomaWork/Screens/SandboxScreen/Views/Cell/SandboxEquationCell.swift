@@ -26,6 +26,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     var didTapDeleteButton: () -> () = {}
     var didTapPlotImageButton: () -> () = {}
+    var didLongPressPlotImageButton: () -> () = {}
     
     // MARK: Views
     
@@ -49,11 +50,20 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         let imageView = UIImageView()
         imageView.snp.makeConstraints { $0.size.equalTo(25) }
         imageView.image = Image.plotIcon()
+        var longPressGR: UILongPressGestureRecognizer?
         imageView.rx
-            .tapGesture()
+            .longPressGesture(configuration: { gr, _ in longPressGR = gr })
+            .when(.recognized)
+            .subscribe(onNext: { _ in self.didLongPressPlotImageButton() })
+            .disposed(by: bag)
+        imageView.rx
+            .tapGesture(configuration: { (gr, delegate) in
+                gr.require(toFail: longPressGR!)
+            })
             .when(.recognized)
             .subscribe(onNext: { _ in self.didTapPlotImageButton() })
-        .disposed(by: bag)
+            .disposed(by: bag)
+    
         return imageView
     }()
     
@@ -78,7 +88,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     override func setupUI() {
         super.setupUI()
-        backgroundColor = .clear
+        backgroundColor = Color.grayBackground()
     }
     
     override func addSubviews() {

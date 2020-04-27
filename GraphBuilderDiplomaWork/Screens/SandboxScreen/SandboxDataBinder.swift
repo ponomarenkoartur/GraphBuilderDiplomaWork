@@ -27,6 +27,16 @@ class SandboxDataBinder<ViewModel>:
                 list[index].isHidden = !show
                 self.viewModel.equationsList = list
             }
+            view.didSelectColorForPlot = { color, index in
+                var list = self.viewModel.equationsList
+                list[index].color = color
+                self.viewModel.equationsList = list
+            }
+            view.didTapDeleteEquation = { index in
+                var list = self.viewModel.equationsList
+                list.remove(at: index)
+                self.viewModel.equationsList = list
+            }
         }
     }
 }

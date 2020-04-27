@@ -12,6 +12,6 @@ import UIKit
 struct SandboxEquation {
     
     let equation: Equation
-    var color: UIColor = UIColor.random()
-    var isHidden: Bool = false
+    var color = PlotColorPickerView.randomColor()
+    var isHidden = false
 }
