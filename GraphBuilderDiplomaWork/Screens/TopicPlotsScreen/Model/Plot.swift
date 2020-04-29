@@ -10,7 +10,6 @@ import Foundation
 
 
 struct Plot {
-    
     var title: String
     var equation: String
     var parameters: [PlotEquationParameter]

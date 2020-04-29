@@ -14,6 +14,7 @@
 		040FE8232451A3C100F42C24 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8222451A3C100F42C24 /* Configurator.swift */; };
 		040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
 		040FE8272451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */; };
+		0412E6982459793A00AAB427 /* PlotViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E6972459793A00AAB427 /* PlotViewProtocol.swift */; };
 		0418705A241AE2B000897335 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04187062241AE3B400897335 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187061241AE3B400897335 /* AlertBuilder.swift */; };
 		04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187073241AE3BC00897335 /* EquationRecognizer.swift */; };
@@ -268,6 +269,7 @@
 		040FE8222451A3C100F42C24 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCellConfigurator.swift; sourceTree = "<group>"; };
+		0412E6972459793A00AAB427 /* PlotViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotViewProtocol.swift; sourceTree = "<group>"; };
 		04187056241AE29900897335 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04187061241AE3B400897335 /* AlertBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		04187073241AE3BC00897335 /* EquationRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationRecognizer.swift; sourceTree = "<group>"; };
@@ -428,6 +430,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0412E6962459792700AAB427 /* PlotView */ = {
+			isa = PBXGroup;
+			children = (
+				0412E6972459793A00AAB427 /* PlotViewProtocol.swift */,
+			);
+			path = PlotView;
+			sourceTree = "<group>";
+		};
 		04187055241AE28200897335 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +825,7 @@
 				042BC5A224505E6B00950B15 /* TopicsContainerScreen */,
 				0462065824518E8D00012C91 /* TopicPlotsScreen */,
 				04A7D1632453013E00503CAE /* SandboxScreen */,
+				0412E6962459792700AAB427 /* PlotView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1312,6 +1323,7 @@
 				04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */,
 				04CE0E53244B179F006B19B0 /* Typealiases.swift in Sources */,
 				04CE0E51244B179F006B19B0 /* InitialScreenSetter.swift in Sources */,
+				0412E6982459793A00AAB427 /* PlotViewProtocol.swift in Sources */,
 				04187089241AE3C000897335 /* GraphARSCNView.swift in Sources */,
 				04187085241AE3C000897335 /* RecognitionViewController.swift in Sources */,
 				0418708C241AE3C000897335 /* RecognitionContentView.swift in Sources */,
