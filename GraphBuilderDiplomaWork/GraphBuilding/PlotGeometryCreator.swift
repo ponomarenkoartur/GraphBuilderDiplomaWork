@@ -1,5 +1,5 @@
 //
-//  GraphBuilder.swift
+//  PlotGeometryCreator.swift
 //  EquationRecognition
 //
 //  Created by artur_ios on 06.12.2019.
@@ -18,7 +18,7 @@ extension SCNVector3 {
 }
 
 
-class GraphBuilder {
+class PlotGeometryCreator {
     
     enum GrapghBuildingError: LocalizedError {
         case invalidPointType, invalidPointsCount, invalidPointsGrid
@@ -26,7 +26,7 @@ class GraphBuilder {
         var localizedDescription: String {
             switch self {
             case .invalidPointType:
-                return "Graph has points of invalid type"
+                return "There are points of invalid type"
             case .invalidPointsCount:
                 return "Count of points must be a square of a number"
             case .invalidPointsGrid:
@@ -49,34 +49,26 @@ class GraphBuilder {
     }
     
     
-    func build(_ graph: Graph) throws -> SCNNode? {
+    func build(_ points: [Point]) throws -> SCNGeometry? {
         var geometry: SCNGeometry?
-        if graph.points is [Vector2] {
-            geometry = try build2DGeometry(graph)
-        } else if graph.points is [Vector3] {
-            geometry = try build3DGeometry(graph)
-        } else {
+        switch points {
+        case let points where points is [Vector2]:
+            geometry = try build2DGeometry(points as! [Vector2])
+        case let points where points is [Vector3]:
+            geometry = try build3DGeometry(points as! [Vector3])
+        default:
             return nil
         }
-        
-        geometry?.firstMaterial?.lightingModel = .physicallyBased
-        geometry?.firstMaterial?.isDoubleSided = true
-        
-        let node = SCNNode()
-        node.addChildNode(SCNNode(geometry: geometry))
-        
-        return node
+        return geometry
     }
     
-    private func build2DGeometry(_ graph: Graph) throws -> SCNGeometry? {
-        guard let vectors = graph.points as? [Vector2], vectors.count > 0 else {
-            return nil
-        }
+    private func build2DGeometry(_ vectors: [Vector2]) throws -> SCNGeometry? {
+        guard vectors.count > 0 else { return nil }
         
         let vectorAdapter = VectorAdapter()
         let points = vectors.map { vectorAdapter.convert($0) }
         let shiftedPoints = [CGPoint](points
-            .map { return CGPoint(x: $0.x, y: $0.y + 0.01) }
+            .map { CGPoint(x: $0.x, y: $0.y + 0.01) }
             .reversed())
         
         let artist = BezierArtist()
@@ -88,11 +80,7 @@ class GraphBuilder {
         return shape
     }
     
-    private func build3DGeometry(_ graph: Graph) throws -> SCNGeometry? {
-        guard let points = graph.points as? [Vector3] else {
-            return nil
-        }
-        
+    private func build3DGeometry(_ points: [Vector3]) throws -> SCNGeometry? {
         guard sqrt(Double(points.count)).isInteger else {
             throw GrapghBuildingError.invalidPointsCount
         }

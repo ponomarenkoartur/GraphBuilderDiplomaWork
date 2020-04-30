@@ -118,12 +118,10 @@ class GraphARSCNView: ARSCNView {
     // MARK: - API Methods
     
     func build(_ graph: Graph) throws {
-        guard let node = try GraphBuilder().build(graph) else {
-            return
-        }
-        
-        
+        guard let geometry = try PlotGeometryCreator().build(graph.points)
+            else { return }
         graphNode?.removeFromParentNode()
+        let node = SCNNode(geometry: geometry)
         graphContainerNode.addChildNode(node)
         graphNode = node
     }

@@ -10,8 +10,12 @@ import RxSwift
 
 
 protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NSNull {
-    var equationsListObservable: Observable<[SandboxEquation]> { get }
-    var equationsList: [SandboxEquation] { get set }
+    var didRemovePlot: (_ plot: Plot, _ index: Int) -> () { get set }
+    var didAddPlot: (_ plot: Plot, _ index: Int) -> () { get set }
+    var didSetPlotList: (_ list: [Plot]) -> () { get set }
+    var plotsList: [Plot] { get }
+    func addPlot(_ plot: Plot)
+    func removePlot(at index: Int)
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -19,13 +23,31 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     
     // MARK: - Properties
     
-    private let equationsListSubject = BehaviorSubject<[SandboxEquation]>(value: [])
-    var equationsListObservable: Observable<[SandboxEquation]> {
-        equationsListSubject.asObservable()
-    }
-    var equationsList: [SandboxEquation] {
-        get { try! equationsListSubject.value() }
-        set { equationsListSubject.onNext(newValue) }
+    private(set) var plotsList: [Plot] = []
+    
+    
+    // MARK: Callbacks
+    
+    var didAddPlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
+    var didRemovePlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
+    var didSetPlotList: (_ list: [Plot]) -> () = { _ in }
+    
+    
+    // MARK: - API Methods
+    
+    func addPlot(_ plot: Plot) {
+        plotsList.append(plot)
+        didAddPlot(plot, plotsList.lastIndex)
     }
     
+    func removePlot(at index: Int) {
+        let plot = plotsList[index]
+        plotsList.remove(at: index)
+        didRemovePlot(plot, index)
+    }
+    
+    func setPlotList(_ list: [Plot]) {
+        self.plotsList = list
+        didSetPlotList(list)
+    }
 }

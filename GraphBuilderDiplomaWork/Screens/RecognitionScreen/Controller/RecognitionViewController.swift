@@ -120,18 +120,13 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
     func recognizedEquationContentView(
         _ view: RecognitionContentView, didSelectEquationAt index: Int) {
         let equation = equations[index]
-        guard let graph = transformator.getGraph(from: equation) else {
-            let alert = AlertBuilder(title: "Graph can't be built")
-                .addOkButton()
-                .build()
-            present(alert, animated: true)
-            return
-        }
+        let points = transformator.getPoints(from: equation)
         do {
+            let graph = Graph(points: points)
             try self.arView.build(graph)
         } catch let error {
             let alert = AlertBuilder(
-                title: (error as? GraphBuilder.GrapghBuildingError)?
+                title: (error as? PlotGeometryCreator.GrapghBuildingError)?
                     .localizedDescription ?? error.localizedDescription)
                 .addOkButton()
                 .build()
@@ -141,12 +136,13 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
     
     func recognizedEquationContentView(_ view: RecognitionContentView, sliderValueChanges value: Float) {
         let equation = Equation(latex: "", function: { (x: Float, y: Float) -> Float in sin(sin(sin(x)))*sin(sin(sin(y*value))) })
-        let graph = transformator.getGraph(from: equation)!
+        let points = transformator.getPoints(from: equation)
         do {
+            let graph = Graph(points: points)
             try self.arView.build(graph)
         } catch let error {
             let alert = AlertBuilder(
-                title: (error as? GraphBuilder.GrapghBuildingError)?
+                title: (error as? PlotGeometryCreator.GrapghBuildingError)?
                     .localizedDescription ?? error.localizedDescription)
                 .addOkButton()
                 .build()

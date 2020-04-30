@@ -13,29 +13,39 @@ import SceneKit
 class EquationTransformator {
     
     
-    func getGraph(from equation: Equation) -> Graph? {
+    // MARK: - Properties
+    
+    var minX: Float = -1
+    var maxX: Float = 1
+    var minZ: Float = -1
+    var maxZ: Float = 1
+    var step: Float = 0.1
+    
+    
+    // MARK: - API Methods
+    
+    func getPoints(from equation: Equation) -> [Point] {
         if let function = equation.function as? Function2D {
-            return Graph(points: getPoints(function))
+            return getPoints(function)
         } else if let function = equation.function as? Function3D {
-            return Graph(points: getPoints(function))
+            return getPoints(function)
         } else {
-            return nil
+            return []
         }
     }
     
     
+    // MARK: - Private Methods
+    
     private func getPoints(_ f: (_ x: Float) -> Float) -> [Point] {
-        stride(from: -1, to: 1, by: 0.1).map {
-            let x = Float($0)
-            return Vector2(x: x, y: f(x))
-        }
+        stride(from: minX, to: maxX, by: step).map { Vector2(x: $0, y: f($0)) }
     }
     
     private func getPoints(_ f: (_ x: Float, _ z: Float) -> Float) -> [Point] {
         var points: [Point] = []
         
-        for x in stride(from: -10, to: 10, by: 0.25) {
-            for z in stride(from: -10, to: 10, by: 0.25) {
+        for x in stride(from: minX, to: maxX, by: step) {
+            for z in stride(from: minZ, to: maxZ, by: step) {
                 let x = Float(x)
                 let z = Float(z)
                 let vector = Vector3(x: x, y: f(x, z), z: z)

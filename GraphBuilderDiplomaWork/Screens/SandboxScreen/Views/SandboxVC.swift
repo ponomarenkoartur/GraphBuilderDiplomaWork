@@ -20,7 +20,9 @@ protocol SandboxVCProtocol: UIViewController {
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
     var didTapDeleteEquation: (_ index: Int) -> () { get set }
     var didTapBack: () -> () { get set }
-    func setEquationsList(_ list: [SandboxEquation])
+    func addPlot(_ plot: Plot)
+    func removePlot(at index: Int)
+    func setPlotList(_ list: [Plot])
 }
 
 
@@ -29,7 +31,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: - Properties
     
-    private let equationsSubject = BehaviorSubject<[SandboxEquation]>(value: [])
+    private var plotsList: [Plot] = [] {
+        didSet {
+            tableViewPlotsListSubject.onNext(plotsList)
+        }
+    }
+    private let tableViewPlotsListSubject = BehaviorSubject<[Plot]>(value: [])
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
     private var isEquationTableHidden: Bool {
@@ -46,9 +53,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         get { try! isColorPickerHiddenSubject.value() }
         set { isColorPickerHiddenSubject.onNext(newValue) }
     }
+    private let plotScene = PlotScene()
+    
     
     /// Index of row that caused appearing of `plotColorPicker`
     private var colorPickerRowTargetIndex: Int?
+    
+    private var tableViewDisposable: Disposable?
     
     
     // MARK: - Callbacks
@@ -64,11 +75,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: Views
     
-    private lazy var arView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        return view
-    }()
+    private lazy var scnPlotView = PlotView(scene: plotScene)
     
     private lazy var buttonBack: UIButton = {
         let button = UIButton()
@@ -190,6 +197,15 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 }
             })
             .disposed(by: bag)
+        tableViewPlotsListSubject
+            .bind(to: tableView.rx.items) { tableView, index, item in
+                let cell = tableView
+                    .dequeue(SandboxEquationCell.self, for: index) ??
+                    SandboxEquationCell()
+                self.prepare(cell, for: index, with: item)
+                return cell
+            }
+            .disposed(by: bag)
         return tableView
     }()
     
@@ -217,7 +233,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     override func addSubviews() {
         super.addSubviews()
         view.addSubviews([
-            arView,
+            scnPlotView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
             equationsTableView,
@@ -235,7 +251,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     override func setupConstraints() {
         super.setupConstraints()
-        arView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        scnPlotView.snp.makeConstraints { $0.edges.equalToSuperview() }
         buttonBack.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.leading.equalTo(10)
@@ -284,17 +300,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         
-        equationsSubject
-            .bind(to: equationsTableView.rx.items) {
-                (tableView: UITableView, index: Int, item: SandboxEquation) in
-                let cell = tableView
-                    .dequeue(SandboxEquationCell.self, for: index) ??
-                    SandboxEquationCell()
-                self.prepare(cell, for: index, with: item)
-                return cell
-            }
-            .disposed(by: bag)
-        
         isColorPickerHiddenSubject
             .subscribe(onNext: { isHidden in
                 UIView.animate(withDuration: 0.2) {
@@ -305,11 +310,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     private func setupGestureRecognizers() {
-        view.rx
-            .swipeGesture([.up])
-            .when(.recognized)
-            .subscribe(onNext: { _ in self.isEquationTableHidden = false })
-            .disposed(by: bag)
         view.rx
             .panGesture()
             .when(.recognized)
@@ -331,9 +331,22 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: - API Methods
     
-    func setEquationsList(_ list: [SandboxEquation]) {
-        equationsSubject.onNext(list)
+    func addPlot(_ plot: Plot) {
+        plotsList.append(plot)
+        plotScene.add(plot)
     }
+    
+    func removePlot(at index: Int) {
+        plotsList.remove(at: index)
+        plotScene.deletePlot(at: index)
+    }
+    
+    func setPlotList(_ list: [Plot]) {
+        plotsList = list
+        plotScene.deleteAll()
+        plotsList.forEach { plotScene.add($0) }
+    }
+    
     
     // MARK: - Other Methods
     
@@ -344,7 +357,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     private func prepare(_ cell: SandboxEquationCell, for index: Int,
-                         with item: SandboxEquation) {
+                         with item: Plot) {
         SandboxEquationCellConfigurator(cell: cell)
             .configure(with: (index, item))
         cell.didTapPlotImageButton = {

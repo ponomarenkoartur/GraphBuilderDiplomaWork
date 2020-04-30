@@ -10,5 +10,5 @@ import Foundation
 
 struct Equation {
     var latex: String
-    var function: Any
+    var function: Any? = nil
 }

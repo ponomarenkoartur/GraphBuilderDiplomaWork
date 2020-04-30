@@ -1,5 +1,5 @@
 //
-//  PlotViewProtocol.swift
+//  PlotPresenter.swift
 //  GraphBuilderDiplomaWork
 //
 //  Created by Artur on 29.04.2020.
@@ -10,11 +10,11 @@ import UIKit
 import SceneKit
 
 
-protocol PlotViewProtocol: UIView {
+protocol PlotPresenter {
     var plots: [Plot] { get }
     /// Adds a plot to the grid.
     /// - Parameter plot: plot to build
-    func build(_ plot: Plot)
+    func add(_ plot: Plot)
     /// Replaces the plot at certain index with provided in parameter
     /// - Parameters:
     ///   - plot: new plot
@@ -23,6 +23,7 @@ protocol PlotViewProtocol: UIView {
     /// Removes the plot at certain index
     /// - Parameter index: index of the plot to be deleted
     func deletePlot(at index: Int)
+    func deleteAll()
     /// Changes the scale of the grid. The grid is still having the same physical size, but changes its scale
     /// - Parameters:
     ///   - x: x-axis scale

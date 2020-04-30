@@ -15,27 +15,25 @@ class SandboxDataBinder<ViewModel>:
     
     
     override func bind() {
-        viewModel.equationsListObservable
-            .subscribe(onNext: { list in
-                self.views.forEach { $0.setEquationsList(list) }
-            })
-            .disposed(by: bag)
+        viewModel.didAddPlot = { plot, _ in
+            self.views.forEach { $0.addPlot(plot) }
+        }
+        viewModel.didRemovePlot = { _, index in
+            self.views.forEach { $0.removePlot(at: index) }
+        }
+        viewModel.didSetPlotList = { list in
+            self.views.forEach { $0.setPlotList(list) }
+        }
         
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in
-                var list = self.viewModel.equationsList
-                list[index].isHidden = !show
-                self.viewModel.equationsList = list
+                self.viewModel.plotsList[index].isHidden = !show
             }
             view.didSelectColorForPlot = { color, index in
-                var list = self.viewModel.equationsList
-                list[index].color = color
-                self.viewModel.equationsList = list
+                self.viewModel.plotsList[index].color = color
             }
             view.didTapDeleteEquation = { index in
-                var list = self.viewModel.equationsList
-                list.remove(at: index)
-                self.viewModel.equationsList = list
+                self.viewModel.removePlot(at: index)
             }
             view.didTapBack = {
                 self.viewModel.finishCompletion()

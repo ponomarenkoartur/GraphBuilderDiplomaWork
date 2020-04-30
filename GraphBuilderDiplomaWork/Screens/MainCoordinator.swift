@@ -23,6 +23,10 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
+        
+        pushSandbox()
+        return;
+        
         pushWelcomeScreen()
     }
     
@@ -63,23 +67,23 @@ class MainCoordinator: BaseCoordinator {
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
-        vm.equationsList = [
-            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^2+sqrt(z)", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "x^5+z", function: NSNull())),
-            SandboxEquation(equation: Equation(latex: "sin(x^z)", function: NSNull())),
-        ]
+        vm.setPlotList([
+            Plot(title: "", equation: Equation(latex: "x^2+z^2", function: { (x: Float, z: Float) -> Float in x * x + z * z } )),
+            Plot(title: "", equation: Equation(latex: "x^5+z", function: { (x: Float, z: Float) -> Float in powf(x, 5) + z } )),
+            Plot(title: "", equation: Equation(latex: "sin(x^z)", function: { (x: Float, z: Float) -> Float in sin(powf(x, z)) })),
+            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)")),
+            Plot(title: "", equation: Equation(latex: "x^5+z")),
+            Plot(title: "", equation: Equation(latex: "sin(x^z)")),
+            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)")),
+            Plot(title: "", equation: Equation(latex: "x^5+z")),
+            Plot(title: "", equation: Equation(latex: "sin(x^z)")),
+            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)")),
+            Plot(title: "", equation: Equation(latex: "x^5+z")),
+            Plot(title: "", equation: Equation(latex: "sin(x^z)")),
+            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)")),
+            Plot(title: "", equation: Equation(latex: "x^5+z")),
+            Plot(title: "", equation: Equation(latex: "sin(x^z)")),
+        ])
         navVC.push(vc)
     }
 
@@ -98,15 +102,15 @@ class MainCoordinator: BaseCoordinator {
     private func pushTopicPlots() {
         let vm = TopicPlotsVM()
         vm.setPlotList([
-            Plot(title: "Hello", equation: "y=x^2+sqrt(z)",
+            Plot(title: "Hello", equation: Equation(latex: "y=x^2+sqrt(z)", function: NSNull()),
                  parameters: [.init(name: "a", value: -2),
                               .init(name: "b", value: -4),
                               .init(name: "c", value: 0),
                               .init(name: "d", value: 10),]),
-            Plot(title: "Hello", equation: "y=x^5",
+            Plot(title: "Hello", equation: Equation(latex: "y=x^5", function: NSNull()),
                  parameters: [.init(name: "w", value: 2),
                               .init(name: "r", value: 5)]),
-            Plot(title: "Hello", equation: "y=sin(x^z)",
+            Plot(title: "Hello", equation: Equation(latex: "y=sin(x^z)", function: NSNull()),
                  parameters: [.init(name: "a", value: -2),
                               .init(name: "b", value: -4)]),
         ])
