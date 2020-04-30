@@ -83,16 +83,5 @@ class EquationTransformator {
         
         return points
     }
-    
-    private func eval(_ equation: String) -> Double? {
-        NSExpression(format: equation)
-            .expressionValue(with: nil, context: nil) as? Double
-    }
 }
 
-
-public extension NSNumber {
-    func myFunc() -> NSNumber {
-        Darwin.sin(self.doubleValue) as NSNumber
-    }
-}

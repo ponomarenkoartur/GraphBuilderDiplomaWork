@@ -122,8 +122,7 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
         let equation = equations[index]
         let points = transformator.getPoints(from: equation)
         do {
-            let graph = Graph(points: points)
-            try self.arView.build(graph)
+            try self.arView.build(points)
         } catch let error {
             let alert = AlertBuilder(
                 title: (error as? PlotGeometryCreator.GrapghBuildingError)?
@@ -138,8 +137,7 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
         let equation = Equation(latex: "", function: { (x: Float, y: Float) -> Float in sin(sin(sin(x)))*sin(sin(sin(y*value))) })
         let points = transformator.getPoints(from: equation)
         do {
-            let graph = Graph(points: points)
-            try self.arView.build(graph)
+            try self.arView.build(points)
         } catch let error {
             let alert = AlertBuilder(
                 title: (error as? PlotGeometryCreator.GrapghBuildingError)?

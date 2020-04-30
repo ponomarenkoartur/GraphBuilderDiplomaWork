@@ -1,13 +1,12 @@
 //
-//  Graph.swift
-//  EquationRecognition
+//  Point.swift
+//  GraphBuilderDiplomaWork
 //
-//  Created by artur_ios on 06.12.2019.
-//  Copyright © 2019 Artur. All rights reserved.
+//  Created by Artur on 01.05.2020.
+//  Copyright © 2020 Artur. All rights reserved.
 //
 
-import ARKit
-
+import SceneKit
 
 protocol Point {
     var x: Float { get }
@@ -30,14 +29,5 @@ struct Vector2: Point {
     
     var vector3: Vector3 {
         return Vector3(x, y, z)
-    }
-}
-
-
-class Graph {
-    private(set) var points: [Point]
-    
-    init(points: [Point]) {
-        self.points = points
     }
 }
