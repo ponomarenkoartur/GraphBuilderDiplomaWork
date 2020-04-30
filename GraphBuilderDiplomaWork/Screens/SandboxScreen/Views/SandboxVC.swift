@@ -164,14 +164,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return button
     }()
     
-    private lazy var tableViewHeader: UIView = {
-        let view = UIView(frame: CGRect(width: self.view.frame.width,
-                                        height: 16))
-        view.backgroundColor = Color.grayBackground()
-        view.round([.topLeft, .topRight], radius: 10)
-        return view
-    }()
-    
     private lazy var tableViewFooter: UIView = {
         let view = UIView(frame: CGRect(width: self.view.frame.width,
                                         height: 100))
@@ -182,12 +174,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var equationsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = Color.grayBackground()
         tableView.rowHeight = 49
-        tableView.tableHeaderView = tableViewHeader
+        tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
         tableView.tableFooterView = tableViewFooter
         tableView.allowsSelection = false
         tableView.bounces = false
+        tableView.layer.cornerRadius = 5
         tableView.rx
             .swipeGesture(.down)
             .when(.recognized)
@@ -268,7 +261,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
         equationsTableView.snp.makeConstraints {
             $0.height.equalTo(
-                -tableViewVissibleOffset + WindowSafeArea.insets.bottom)
+                -tableViewVissibleOffset + WindowSafeArea.insets.bottom
+                + equationsTableView.layer.cornerRadius)
             $0.width.centerX.equalToSuperview()
             $0.top.equalTo(view.snp.bottom)
         }
@@ -381,24 +375,33 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
         var colorPickerYOffset =
             absoluteYCellMiddle - plotColorPicker.frame.height / 2
+        
+        let minPickerOffset =
+            equationsTableView.frame.minY - plotColorPicker.frame.height / 2
+            + equationsTableView.rowHeight / 2
         let maxPickerOffset =
-            view.frame.height - plotColorPicker.frame.height - 5
+            view.frame.height - plotColorPicker.frame.height
+                - WindowSafeArea.insets.bottom - 5
         
-        let shouldScroll = colorPickerYOffset > maxPickerOffset
-        
-        if shouldScroll {
+        if colorPickerYOffset > maxPickerOffset {
             colorPickerYOffset = maxPickerOffset
+            let scrollOffset = equationsTableView.tableHeaderView!.frame.height
+                + equationsTableView.rowHeight * (CGFloat(index) + 1.5)
+                - equationsTableView.frame.height
+                + equationsTableView.layer.cornerRadius
+                + WindowSafeArea.insets.bottom * 2
+            equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
+                                                animated: true)
+        } else if colorPickerYOffset < minPickerOffset {
+            colorPickerYOffset = minPickerOffset
+            let scrollOffset =
+                equationsTableView.tableHeaderView!.frame.height +
+                equationsTableView.rowHeight * (CGFloat(index))
+            equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
+                                                animated: true)
         }
         self.plotColorPicker.snp.updateConstraints {
             $0.top.equalToSuperview().offset(colorPickerYOffset)
-        }
-        if shouldScroll {
-            let scrollOffset = tableViewHeader.frame.height
-                + equationsTableView.rowHeight * CGFloat(index)
-                - equationsTableView.frame.height
-                + equationsTableView.rowHeight * 1.5
-            equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
-                                                animated: true)
         }
     }
 }
