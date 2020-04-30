@@ -25,13 +25,24 @@ class EquationTransformator {
     // MARK: - API Methods
     
     func getPoints(from equation: Equation) -> [Point] {
-        if let function = equation.function as? Function2D {
+        switch equation.function {
+        case let function as Function2D:
             return getPoints(function)
-        } else if let function = equation.function as? Function3D {
+        case let function as Function3D:
             return getPoints(function)
-        } else {
+        case let function as String:
+            return getPoints(function)
+        default:
             return []
         }
+        
+//        if let function = equation.function as? Function2D {
+//            return getPoints(function)
+//        } else if let function = equation.function as? Function3D {
+//            return getPoints(function)
+//        } else {
+//            return []
+//        }
     }
     
     
@@ -54,5 +65,34 @@ class EquationTransformator {
         }
         
         return points
+    }
+    
+    private func getPoints(_ equationString: String) -> [Point] {
+        var points: [Point] = []
+        
+        for x in stride(from: minX, to: maxX, by: step) {
+            for z in stride(from: minZ, to: maxZ, by: step) {
+                let substitutedEquationString = equationString
+                    .replacingOccurrences(of: "x", with: "(\(x))")
+                    .replacingOccurrences(of: "z", with: "(\(z))")
+                    .replacingOccurrences(of: "^", with: "**")
+                guard let y = eval(substitutedEquationString) else { continue }
+                points.append(Vector3(x: x, y: Float(y), z: z))
+            }
+        }
+        
+        return points
+    }
+    
+    private func eval(_ equation: String) -> Double? {
+        NSExpression(format: equation)
+            .expressionValue(with: nil, context: nil) as? Double
+    }
+}
+
+
+public extension NSNumber {
+    func myFunc() -> NSNumber {
+        Darwin.sin(self.doubleValue) as NSNumber
     }
 }

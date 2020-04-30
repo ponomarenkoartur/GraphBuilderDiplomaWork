@@ -268,6 +268,8 @@
 		04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotColorPickerCell.swift; sourceTree = "<group>"; };
 		04015C6C245719430094DFE6 /* CGSize extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize extension.swift"; sourceTree = "<group>"; };
 		04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVMWithVoidFinishReason.swift; sourceTree = "<group>"; };
+		040A2BC4245B72A800BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphBuilderDiplomaWork-Bridging-Header.h"; sourceTree = "<group>"; };
+		040A2BC5245B72A800BDA83D /* NSNumber+NSNumber_extenstion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extenstion.h"; sourceTree = "<group>"; };
 		040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotInfoCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8222451A3C100F42C24 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
@@ -918,6 +920,8 @@
 				04CE0E1E244B11E8006B19B0 /* Error extension.swift */,
 				04CE0E23244B11E8006B19B0 /* Number extension.swift */,
 				046E98C6244B4DE400611091 /* Collection extension.swift */,
+				040A2BC5245B72A800BDA83D /* NSNumber+NSNumber_extenstion.h */,
+				040A2BC4245B72A800BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1068,6 +1072,7 @@
 					};
 					04F3D17E241AE0E100C4FBEB = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -1635,6 +1640,7 @@
 			baseConfigurationReference = BFE14F962EB8FED381DCB9C0 /* Pods-GraphBuilderDiplomaWork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BD5CJ8U5EG;
 				INFOPLIST_FILE = GraphBuilderDiplomaWork/Info.plist;
@@ -1645,6 +1651,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Other/Extensions/Foundation/GraphBuilderDiplomaWork-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1655,6 +1663,7 @@
 			baseConfigurationReference = 237CF2C5EA8B45138E1FDEC4 /* Pods-GraphBuilderDiplomaWork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BD5CJ8U5EG;
 				INFOPLIST_FILE = GraphBuilderDiplomaWork/Info.plist;
@@ -1665,6 +1674,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Other/Extensions/Foundation/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
