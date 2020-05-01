@@ -30,6 +30,10 @@ class Plot {
         get { try! isHiddenSubject.value() }
         set { isHiddenSubject.onNext(newValue) }
     }
+    var error: Error? {
+        get { try? errorSubject.value() }
+        set { errorSubject.onNext(newValue) }
+    }
     
     // MARK: Rx
     
@@ -37,6 +41,7 @@ class Plot {
     fileprivate let equationSubject: BehaviorSubject<Equation>
     fileprivate let colorSubject: BehaviorSubject<UIColor>
     fileprivate let isHiddenSubject: BehaviorSubject<Bool>
+    fileprivate let errorSubject = BehaviorSubject<Error?>(value: nil)
     
     
     // MARK: - Initialization
@@ -74,4 +79,5 @@ extension Reactive where Base: Plot {
     var equation: Observable<Equation> { base.equationSubject.asObservable() }
     var color: Observable<UIColor> { base.colorSubject.asObservable() }
     var isHidden: Observable<Bool> { base.isHiddenSubject.asObservable() }
+    var error: Observable<Error?> { base.errorSubject.asObservable() }
 }

@@ -14,3 +14,8 @@ extension Error {
         (self as? LocalizedError)?.errorDescription ?? localizedDescription
     }
 }
+
+
+extension Error where Self: RawRepresentable, RawValue == String {
+    var localizedDescription: String { rawValue }
+}

@@ -24,25 +24,17 @@ class EquationTransformator {
     
     // MARK: - API Methods
     
-    func getPoints(from equation: Equation) -> [Point] {
+    func getPoints(from equation: Equation) throws -> [Point] {
         switch equation.function {
         case let function as Function2D:
             return getPoints(function)
         case let function as Function3D:
             return getPoints(function)
         case let function as String:
-            return getPoints(function)
+            return try getPoints(function)
         default:
             return []
         }
-        
-//        if let function = equation.function as? Function2D {
-//            return getPoints(function)
-//        } else if let function = equation.function as? Function3D {
-//            return getPoints(function)
-//        } else {
-//            return []
-//        }
     }
     
     
@@ -67,8 +59,22 @@ class EquationTransformator {
         return points
     }
     
-    private func getPoints(_ equationString: String) -> [Point] {
+    private func getPoints(_ equationString: String) throws -> [Point] {
         var points: [Point] = []
+        
+        let equationString = equationString
+            .replacingOccurrences(of: "sin\\(([^()])\\)",
+                                  with: "function($1, 'sin')",
+                                  options: [.regularExpression])
+            .replacingOccurrences(of: "cos\\(([^()])\\)",
+                                  with: "function($1, 'cos')",
+                                  options: [.regularExpression])
+            .replacingOccurrences(of: "tan\\(([^()])\\)",
+                                  with: "function($1, 'tan')",
+                                  options: [.regularExpression])
+            .replacingOccurrences(of: "cot\\(([^()])\\)",
+                                  with: "function($1, 'cot')",
+                                  options: [.regularExpression])
         
         for x in stride(from: minX, to: maxX, by: step) {
             for z in stride(from: minZ, to: maxZ, by: step) {
@@ -76,12 +82,21 @@ class EquationTransformator {
                     .replacingOccurrences(of: "x", with: "(\(x))")
                     .replacingOccurrences(of: "z", with: "(\(z))")
                     .replacingOccurrences(of: "^", with: "**")
-                guard let y = eval(substitutedEquationString) else { continue }
+                guard let y = try eval(substitutedEquationString) else {
+                    continue
+                }
                 points.append(Vector3(x: x, y: Float(y), z: z))
             }
         }
         
         return points
+    }
+    
+    
+    // MARK: - API Methods
+    
+    func convertEquationStringToValidExpression() {
+        
     }
 }
 

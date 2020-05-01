@@ -297,6 +297,7 @@
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
+		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
 		043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVM.swift; sourceTree = "<group>"; };
 		043DC842245091E700CBC58F /* NamedSwitchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedSwitchControl.swift; sourceTree = "<group>"; };
 		043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -498,13 +499,10 @@
 		0418707B241AE3C000897335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				042CB6AB245B863500E33AB9 /* Eval */,
 				0418707C241AE3C000897335 /* EquationTransformator.swift */,
 				0418707E241AE3C000897335 /* VectorAdapeter.swift */,
 				040A2BEA245B81D800BDA83D /* Point.swift */,
-				040A2BED245B824800BDA83D /* Eval.h */,
-				040A2BEE245B824800BDA83D /* Eval.m */,
-				040A2BEC245B824700BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */,
-				040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -544,6 +542,18 @@
 				042BC5A62450637200950B15 /* TopicsContainerCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		042CB6AB245B863500E33AB9 /* Eval */ = {
+			isa = PBXGroup;
+			children = (
+				040A2BED245B824800BDA83D /* Eval.h */,
+				040A2BEE245B824800BDA83D /* Eval.m */,
+				040A2BEC245B824700BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */,
+				040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */,
+				042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */,
+			);
+			path = Eval;
 			sourceTree = "<group>";
 		};
 		043DC841245091DD00CBC58F /* Views */ = {
@@ -1657,7 +1667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/GraphBuilderDiplomaWork-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1680,7 +1690,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/GraphBuilderDiplomaWork-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

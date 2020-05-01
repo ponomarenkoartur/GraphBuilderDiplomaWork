@@ -39,14 +39,18 @@ class PlotScene: SCNScene, PlotPresenter {
         
         plot.rx.equation
             .subscribe(onNext: { equation in
-                let points = self.equationTransformator
-                    .getPoints(from: plot.equation)
-                guard let geometry = try? PlotGeometryCreator().build(points)
-                    else { return }
-                geometry.firstMaterial?.lightingModel = .blinn
-                geometry.firstMaterial?.isDoubleSided = true
-                node.geometry?.firstMaterial?.diffuse.contents = plot.color
-                node.geometry = geometry
+                do {
+                    let points = try self.equationTransformator
+                        .getPoints(from: plot.equation)
+                    guard let geometry = try? PlotGeometryCreator().build(points)
+                        else { return }
+                    geometry.firstMaterial?.lightingModel = .blinn
+                    geometry.firstMaterial?.isDoubleSided = true
+                    node.geometry?.firstMaterial?.diffuse.contents = plot.color
+                    node.geometry = geometry
+                } catch let error {
+                    plot.error = error
+                }
             })
             .disposed(by: bag)
         

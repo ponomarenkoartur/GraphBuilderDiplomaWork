@@ -69,9 +69,12 @@ class MainCoordinator: BaseCoordinator {
         
         
         vm.setPlotList([
-            Plot(title: "", equation: Equation(latex: "x^2+z^2"     ,   function: "(x^2)+(z^2)"             )),
-            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"                   )),
-            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: "function(x^z, 'factorial')"    )),
+            Plot(title: "", equation: Equation(latex: "x^2+z^2"         ,   function: "(x^2)+(z^2)"  )),
+//            Plot(title: "", equation: Equation(latex: "x^5+z"           ,   function: "x^5+z"        )),
+//            Plot(title: "", equation: Equation(latex: "sin(x)+sin(z)"   ,   function: "sin(x)+sin(z)")),
+//            Plot(title: "", equation: Equation(latex: "cos(x)+cos(z)"   ,   function: "cos(x)+cos(z)")),
+//            Plot(title: "", equation: Equation(latex: "tan(x)+tan(z)"   ,   function: "tan(x)+tan(z)")),
+            
 //            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: { (x: Float, z: Float) in tgamma(pow(x,z) + 1) }    )),
 //            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)" ,   function: "x^2+sqrt(z)" )),
 //            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"       )),
