@@ -172,6 +172,8 @@
 		04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */; };
 		04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */; };
 		04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3B12456D91D00E8E85B /* BaseButton.swift */; };
+		04AD87B8245C4DB70065404F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD87B7245C4DB70065404F /* CustomTextField.swift */; };
+		04AD87BA245C59B00065404F /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD87B9245C59B00065404F /* NumberTextField.swift */; };
 		04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B53244DAB8C00AF4AB5 /* Topic.swift */; };
 		04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */; };
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
@@ -347,6 +349,8 @@
 		04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboard.swift; sourceTree = "<group>"; };
 		04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxKeyboardButton.swift; sourceTree = "<group>"; };
 		04A7F3B12456D91D00E8E85B /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		04AD87B7245C4DB70065404F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		04AD87B9245C59B00065404F /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		04AE7B53244DAB8C00AF4AB5 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		04AE7B55244DABD300AF4AB5 /* TopicCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellConfigurator.swift; sourceTree = "<group>"; };
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
@@ -655,6 +659,8 @@
 				04CE0E36244B142C006B19B0 /* Bases */,
 				0473F3FA244B20700065BB63 /* Shortcuts.swift */,
 				046E98CB244B532500611091 /* NavigationBarPresenter.swift */,
+				04AD87B7245C4DB70065404F /* CustomTextField.swift */,
+				04AD87B9245C59B00065404F /* NumberTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1422,6 +1428,7 @@
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
 				04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */,
 				04CE0E6C244B1839006B19B0 /* UIEdgeInsets extension.swift in Sources */,
+				04AD87BA245C59B00065404F /* NumberTextField.swift in Sources */,
 				04CE0E28244B11E8006B19B0 /* UIImage extension.swift in Sources */,
 				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
 				04187092241AE3F800897335 /* Function.swift in Sources */,
@@ -1455,6 +1462,7 @@
 				04CE0E44244B1468006B19B0 /* BaseCoordinator.swift in Sources */,
 				0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */,
 				04D1F8E22451D694004155FC /* PlotEquationParameter.swift in Sources */,
+				04AD87B8245C4DB70065404F /* CustomTextField.swift in Sources */,
 				04CE0E7C244B186B006B19B0 /* SingleEvent extension.swift in Sources */,
 				0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */,
 				048C4923245192C400C430B3 /* BaseViewModelViewDataBinder.swift in Sources */,

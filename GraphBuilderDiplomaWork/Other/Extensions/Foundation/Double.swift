@@ -10,6 +10,6 @@ import Foundation
 
 extension Double {
     var isInteger: Bool {
-        return floor(self) == self
+        floor(self) == self
     }
 }

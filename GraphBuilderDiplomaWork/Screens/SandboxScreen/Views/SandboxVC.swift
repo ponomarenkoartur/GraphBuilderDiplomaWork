@@ -55,8 +55,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     /// Index of row that caused appearing of `plotColorPicker`
     private var colorPickerRowTargetIndex: Int?
     
-    private var tableViewDisposable: Disposable?
-    
     
     // MARK: - Callbacks
     
@@ -160,24 +158,18 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return button
     }()
     
-    private lazy var tableViewFooter: UIView = {
-        let view = UIView(frame: CGRect(width: self.view.frame.width,
-                                        height: 100))
-        view.backgroundColor = Color.grayBackground()
-        return view
-    }()
-    
     private lazy var equationsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
+        tableView.register(TopicPlotParameterCell.self)
         tableView.backgroundColor = Color.grayBackground()
-        tableView.rowHeight = 49
-        tableView.estimatedRowHeight = 49
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
-        tableView.tableFooterView = tableViewFooter
+        tableView.tableFooterView = UIView(frame: CGRect(height: 100))
         tableView.allowsSelection = false
         tableView.layer.cornerRadius = 5
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rx
             .swipeGesture(.down)
             .when(.recognized)
@@ -330,7 +322,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     func removePlot(at index: Int) {
         plotsList.remove(at: index)
-        equationsTableView.deleteRows(at: IndexPath(row: index))
+        equationsTableView.deleteSection(index)
         plotScene.deletePlot(at: index)
     }
     
@@ -363,9 +355,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             self.isColorPickerHidden = false
             self.movePlotColorPickerToCell(at: index)
         }
-        cell.didTapDeleteButton = {
-            self.didTapDeleteEquation(index)
-        }
+    }
+    
+    private func prepare(_ cell: TopicPlotParameterCell,
+                         with parameter: PlotEquationParameter) {
+        
     }
     
     private func movePlotColorPickerToCell(at index: Int) {
@@ -410,18 +404,56 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
 // MARK: - UITableViewDataSource
 
 extension SandboxVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        plotsList.count
+    }
+    
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        plotsList.count
+        let plot = plotsList[section]
+        let parametersCount = plot.parameters.count
+        return parametersCount == 0 ? 1 : parametersCount + 1
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView
-            .dequeue(SandboxEquationCell.self, for: indexPath) ??
-            SandboxEquationCell()
-        let plot = plotsList[indexPath.row]
-        self.prepare(cell, for: indexPath.row, with: plot)
-        return cell
+        let plot = plotsList[indexPath.section]
+
+        switch indexPath.row {
+        case 0:
+            let cell = tableView
+                .dequeue(SandboxEquationCell.self, for: indexPath) ??
+                SandboxEquationCell()
+            self.prepare(cell, for: indexPath.section, with: plot)
+            return cell
+        default:
+            let parameter = plot.parameters[indexPath.row - 1]
+            let cell = tableView
+                .dequeue(TopicPlotParameterCell.self, for: indexPath) ??
+                TopicPlotParameterCell()
+            self.prepare(cell, with: parameter)
+            return cell
+        }
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+
+extension SandboxVC: UITableViewDelegate {
+    func tableView(
+        _ tableView: UITableView,
+        editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard indexPath.row == 0 else { return [] }
+        
+        let deleteAction =
+            UITableViewRowAction(style: .destructive, title: "Delete") {
+                (_, indexPath) in
+                self.didTapDeleteEquation(indexPath.section)
+        }
+
+        deleteAction.backgroundColor = Color.turquoise()
+        return [deleteAction]
     }
 }

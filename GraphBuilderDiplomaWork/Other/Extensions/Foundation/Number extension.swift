@@ -45,3 +45,7 @@ extension Float {
         return self.radiansToDegrees.toPositiveAngleInDegrees.degreesToRadians
     }
 }
+
+extension NSNumber {
+    var isInteger: Bool { NSNumber(value: intValue) == self }
+}

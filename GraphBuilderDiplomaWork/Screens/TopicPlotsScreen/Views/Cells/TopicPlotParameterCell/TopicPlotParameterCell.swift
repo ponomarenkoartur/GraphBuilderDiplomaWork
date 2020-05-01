@@ -15,7 +15,6 @@ class TopicPlotParameterCell: BaseTableViewCell {
     
     // MARK: - Properties
     
-    
     private let parameterNameSubject = BehaviorSubject<String>(value: "a")
     var parameterName: String {
         get { try! parameterNameSubject.value() }
@@ -50,6 +49,14 @@ class TopicPlotParameterCell: BaseTableViewCell {
         return stackView
     }()
     
+    private lazy var parameterNameValueStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     private lazy var parameterLabel: UILabel = {
         let label = UILabel()
         label.textColor = Color.defaultText()
@@ -57,9 +64,28 @@ class TopicPlotParameterCell: BaseTableViewCell {
         return label
     }()
     
+    private lazy var parameterValueTextField: NumberTextField = {
+        let textField = NumberTextField()
+        textField.font = Font.sfProDisplayRegular(size: 15)
+        textField.borderStyle = .roundedRect
+        textField.snp.makeConstraints {
+            $0.width.equalTo(30)
+            $0.height.equalTo(25)
+        }
+        textField.isPasteEnabled = false
+        return textField
+    }()
+    
     private lazy var slider: UISlider = {
         let slider = UISlider()
         slider.tintColor = Color.turquoise()
+        slider.rx.value
+            .subscribe(onNext: { value in
+                let value = value.rounded()
+                self.parameterValue = value
+                self.parameterValueTextField.numberValue = Double(value)
+            })
+            .disposed(by: bag)
         return slider
     }()
     
@@ -76,9 +102,10 @@ class TopicPlotParameterCell: BaseTableViewCell {
     override func addSubviews() {
         super.addSubviews()
         addSubview(stackView)
-        stackView.addArrangedSubviews([
-            parameterLabel, slider
-        ])
+        stackView.addArrangedSubviews(parameterNameValueStackView, slider)
+        parameterNameValueStackView.addArrangedSubviews(
+            parameterLabel, parameterValueTextField, UIView()
+        )
     }
     
     override func setupConstraints() {
@@ -98,9 +125,22 @@ class TopicPlotParameterCell: BaseTableViewCell {
             })
             .disposed(by: bag)
         
-        Observable.combineLatest(parameterNameSubject, parameterValueSubject)
-            .subscribe(onNext: { name, value in
-                self.parameterLabel.text = "\(name) = \(value)"
+        parameterNameSubject
+            .subscribe(onNext: { self.parameterLabel.text = "\($0): " })
+            .disposed(by: bag)
+        
+        parameterValueTextField.rx.numberValue
+            .subscribe(onNext: { value in
+                let textWidth = self.parameterValueTextField.text!
+                    .attributedString
+                    .withFont(self.parameterValueTextField.font!)
+                    .size()
+                    .width
+                let textFieldWidth = max(40, textWidth + 20)
+                self.parameterValueTextField.snp.updateConstraints {
+                    $0.width.equalTo(textFieldWidth)
+                }
+                self.parameterValue = Float(value)
             })
             .disposed(by: bag)
     }

@@ -24,9 +24,9 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     // MARK: Callbacks
     
-    var didTapDeleteButton: () -> () = {}
     var didTapPlotImageButton: () -> () = {}
     var didLongPressPlotImageButton: () -> () = {}
+    var didDoubleTap: () -> () = {}
     
     // MARK: Views
     
@@ -74,15 +74,6 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return label
     }()
     
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Image.deletePlotButton())
-        button.rx.tap
-            .subscribe(onNext: { _ in self.didTapDeleteButton() })
-            .disposed(by: bag)
-        return button
-    }()
-    
     
     // MARK: - Setup Methods
     
@@ -100,8 +91,6 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             plotImageView,
             UIView.createSpacer(w: 17),
             equationLabel,
-            UIView.createSpacer(w: 17),
-            deleteButton
         ])
     }
     
@@ -111,6 +100,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview().offset(-30)
         }
+        contentView.snp.makeConstraints { $0.height.equalTo(49) }
     }
     
     
