@@ -62,26 +62,14 @@ class EquationTransformator {
     private func getPoints(_ equationString: String) throws -> [Point] {
         var points: [Point] = []
         
-        let equationString = equationString
-            .replacingOccurrences(of: "sin\\(([^()])\\)",
-                                  with: "function($1, 'sin')",
-                                  options: [.regularExpression])
-            .replacingOccurrences(of: "cos\\(([^()])\\)",
-                                  with: "function($1, 'cos')",
-                                  options: [.regularExpression])
-            .replacingOccurrences(of: "tan\\(([^()])\\)",
-                                  with: "function($1, 'tan')",
-                                  options: [.regularExpression])
-            .replacingOccurrences(of: "cot\\(([^()])\\)",
-                                  with: "function($1, 'cot')",
-                                  options: [.regularExpression])
+        let equationString =
+            convertEquationStringToValidExpression(equationString)
         
         for x in stride(from: minX, to: maxX, by: step) {
             for z in stride(from: minZ, to: maxZ, by: step) {
                 let substitutedEquationString = equationString
                     .replacingOccurrences(of: "x", with: "(\(x))")
                     .replacingOccurrences(of: "z", with: "(\(z))")
-                    .replacingOccurrences(of: "^", with: "**")
                 guard let y = try eval(substitutedEquationString) else {
                     continue
                 }
@@ -95,8 +83,51 @@ class EquationTransformator {
     
     // MARK: - API Methods
     
-    func convertEquationStringToValidExpression() {
+    func convertEquationStringToValidExpression(
+        _ equationString: String) -> String {
+        var equation = equationString
+            .replacingOccurrences(of: "^", with: "**")
         
+        let functions = ["sin", "cos", "tan", "cot"]
+
+        for function in functions {
+            let stringToFind = "\(function)("
+            while equation.contains(stringToFind) {
+                let functionArgumentStartIndex =
+                    equation.range(of: stringToFind)!.upperBound
+                
+                var argumentCharacters: [Character] = []
+                var bracketCount = 0
+                let stringFromArgumentStartToStringEnd =
+                    equation[functionArgumentStartIndex..<equation.endIndex]
+                
+                for char in stringFromArgumentStartToStringEnd {
+                    if char == ")", bracketCount == 0 {
+                        break
+                    }
+                    argumentCharacters.append(char)
+                    if char == "(" {
+                        bracketCount += 1
+                    }
+                    if char == ")" {
+                        bracketCount -= 1
+                    }
+                }
+                
+                let argumentString = String(argumentCharacters)
+                
+                let uuid = UUID().uuidString
+                equation = equation
+                    .replacingOccurrences(of: argumentString, with: uuid)
+                    .replacingOccurrences(
+                        of: "\(function)\\(([^()]+)\\)",
+                        with: "function($1, '\(function)')",
+                        options: [.regularExpression])
+                    .replacingOccurrences(of: uuid, with: argumentString)
+            }
+        }
+
+        return equation
     }
 }
 
