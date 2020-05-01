@@ -16,13 +16,19 @@ class SandboxDataBinder<ViewModel>:
     
     override func bind() {
         viewModel.didAddPlot = { plot, _ in
-            self.views.forEach { $0.addPlot(plot) }
+            DispatchQueue.main.async {
+                self.views.forEach { $0.addPlot(plot) }
+            }
         }
         viewModel.didRemovePlot = { _, index in
-            self.views.forEach { $0.removePlot(at: index) }
+            DispatchQueue.main.async {
+                self.views.forEach { $0.removePlot(at: index) }
+            }
         }
         viewModel.didSetPlotList = { list in
-            self.views.forEach { $0.setPlotList(list) }
+            DispatchQueue.main.async {
+                self.views.forEach { $0.setPlotList(list) }
+            }
         }
         
         views.forEach { (view) in

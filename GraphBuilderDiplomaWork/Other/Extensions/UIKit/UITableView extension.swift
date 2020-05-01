@@ -31,4 +31,9 @@ extension UITableView {
         scrollToRow(at: IndexPath(row: item, section: section), at: position,
                      animated: animated)
     }
+    
+    func deleteRows(at indexPath: IndexPath,
+                    with animation: RowAnimation = .automatic) {
+        deleteRows(at: [indexPath], with: animation)
+    }
 }

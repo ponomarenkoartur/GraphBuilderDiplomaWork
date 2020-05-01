@@ -31,12 +31,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: - Properties
     
-    private var plotsList: [Plot] = [] {
-        didSet {
-            tableViewPlotsListSubject.onNext(plotsList)
-        }
-    }
-    private let tableViewPlotsListSubject = BehaviorSubject<[Plot]>(value: [])
+    private var plotsList: [Plot] = []
+
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
     private var isEquationTableHidden: Bool {
@@ -176,11 +172,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         tableView.register(SandboxEquationCell.self)
         tableView.backgroundColor = Color.grayBackground()
         tableView.rowHeight = 49
+        tableView.estimatedRowHeight = 49
         tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
         tableView.tableFooterView = tableViewFooter
         tableView.allowsSelection = false
-        tableView.bounces = false
         tableView.layer.cornerRadius = 5
+        tableView.dataSource = self
         tableView.rx
             .swipeGesture(.down)
             .when(.recognized)
@@ -189,15 +186,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                     self.isEquationTableHidden = true
                 }
             })
-            .disposed(by: bag)
-        tableViewPlotsListSubject
-            .bind(to: tableView.rx.items) { tableView, index, item in
-                let cell = tableView
-                    .dequeue(SandboxEquationCell.self, for: index) ??
-                    SandboxEquationCell()
-                self.prepare(cell, for: index, with: item)
-                return cell
-            }
             .disposed(by: bag)
         return tableView
     }()
@@ -213,6 +201,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
         return plotColorPicker
     }()
+    
+    // MARK: Constaints
+    
+    private var tableViewTopToSuperviewBottomConstraint: NSLayoutConstraint?
+    private var bottomStackViewBottomToTableViewTopConstaint: NSLayoutConstraint?
     
     
     // MARK: - Setup Methods
@@ -254,18 +247,25 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.trailing.equalTo(-10)
         }
         bottomButtonStackView.snp.makeConstraints {
-            $0.bottom.equalTo(equationsTableView.snp.top)
-                .offset(-WindowSafeArea.insets.bottom - 10)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().offset(-34)
         }
+        bottomStackViewBottomToTableViewTopConstaint = bottomButtonStackView
+            .bottomAnchor.constraint(
+                equalTo: equationsTableView.topAnchor,
+                constant: -WindowSafeArea.insets.bottom - 10)
+        bottomStackViewBottomToTableViewTopConstaint?.isActive = true
+        
         equationsTableView.snp.makeConstraints {
             $0.height.equalTo(
                 -tableViewVissibleOffset + WindowSafeArea.insets.bottom
                 + equationsTableView.layer.cornerRadius)
             $0.width.centerX.equalToSuperview()
-            $0.top.equalTo(view.snp.bottom)
         }
+        tableViewTopToSuperviewBottomConstraint = equationsTableView.topAnchor
+            .constraint(equalTo: view.bottomAnchor, constant: 0)
+        tableViewTopToSuperviewBottomConstraint?.isActive = true
+        
         plotColorPicker.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(63)
             $0.top.equalToSuperview()
@@ -279,14 +279,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 UIView.animate(
                     withDuration: self.didAppear ? 0.2 : 0, delay: 0,
                     options: [.curveEaseOut], animations: {
-                        self.bottomButtonStackView.snp.updateConstraints {
-                            $0.bottom.equalTo(self.equationsTableView.snp.top)
-                                .offset(isHidden ? (-WindowSafeArea.insets.bottom - 10) : 0)
-                        }
-                        self.equationsTableView.snp.updateConstraints {
-                            $0.top.equalTo(self.view.snp.bottom)
-                                .offset(isHidden ? 0 : self.tableViewVissibleOffset)
-                        }
+                        self.bottomStackViewBottomToTableViewTopConstaint?
+                            .constant = isHidden ?
+                                (-WindowSafeArea.insets.bottom - 10) : 0
+                        self.tableViewTopToSuperviewBottomConstraint?.constant =
+                            isHidden ? 0 : self.tableViewVissibleOffset
                         self.view.layoutSubviews()
                         self.setOpenHidePlotButtonDirection(
                             isHidden ? .up : .down)
@@ -327,11 +324,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     func addPlot(_ plot: Plot) {
         plotsList.append(plot)
+        equationsTableView.reloadData()
         plotScene.add(plot)
     }
     
     func removePlot(at index: Int) {
         plotsList.remove(at: index)
+        equationsTableView.deleteRows(at: IndexPath(row: index))
         plotScene.deletePlot(at: index)
     }
     
@@ -339,6 +338,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         plotsList = list
         plotScene.deleteAll()
         plotsList.forEach { plotScene.add($0) }
+        equationsTableView.reloadData()
     }
     
     
@@ -403,5 +403,25 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         self.plotColorPicker.snp.updateConstraints {
             $0.top.equalToSuperview().offset(colorPickerYOffset)
         }
+    }
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension SandboxVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        plotsList.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView
+            .dequeue(SandboxEquationCell.self, for: indexPath) ??
+            SandboxEquationCell()
+        let plot = plotsList[indexPath.row]
+        self.prepare(cell, for: indexPath.row, with: plot)
+        return cell
     }
 }

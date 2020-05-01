@@ -95,9 +95,13 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         super.addSubviews()
         addSubview(horizontalStackView)
         horizontalStackView.addArrangedSubviews([
-            numberLabel, UIView.createSpacer(w: 3), plotImageView,
-            UIView.createSpacer(w: 17), equationLabel,
-            UIView.createSpacer(w: 17), deleteButton
+            numberLabel,
+            UIView.createSpacer(w: 3),
+            plotImageView,
+            UIView.createSpacer(w: 17),
+            equationLabel,
+            UIView.createSpacer(w: 17),
+            deleteButton
         ])
     }
     
