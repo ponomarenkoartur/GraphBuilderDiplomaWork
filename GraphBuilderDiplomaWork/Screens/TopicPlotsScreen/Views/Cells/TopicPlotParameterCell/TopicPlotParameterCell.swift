@@ -64,16 +64,22 @@ class TopicPlotParameterCell: BaseTableViewCell {
         return label
     }()
     
-    private lazy var parameterValueTextField: NumberTextField = {
-        let textField = NumberTextField()
-        textField.font = Font.sfProDisplayRegular(size: 15)
-        textField.borderStyle = .roundedRect
-        textField.snp.makeConstraints {
-            $0.width.equalTo(30)
-            $0.height.equalTo(25)
-        }
-        textField.isPasteEnabled = false
-        return textField
+    private lazy var parameterValueTextField: NumberTextField =
+        createNumberTextField()
+    private lazy var minParameterValueTextField: NumberTextField =
+        createNumberTextField()
+    private lazy var maxParameterValueTextField: NumberTextField =
+        createNumberTextField()
+    
+    
+    
+    private lazy var middleStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.axis = .horizontal
+        return stackView
     }()
     
     private lazy var slider: UISlider = {
@@ -102,9 +108,15 @@ class TopicPlotParameterCell: BaseTableViewCell {
     override func addSubviews() {
         super.addSubviews()
         addSubview(stackView)
-        stackView.addArrangedSubviews(parameterNameValueStackView, slider)
+        stackView.addArrangedSubviews(
+            parameterNameValueStackView,
+            middleStackView
+        )
         parameterNameValueStackView.addArrangedSubviews(
             parameterLabel, parameterValueTextField, UIView()
+        )
+        middleStackView.addArrangedSubviews(
+            minParameterValueTextField, slider, maxParameterValueTextField
         )
     }
     
@@ -145,5 +157,18 @@ class TopicPlotParameterCell: BaseTableViewCell {
             .disposed(by: bag)
     }
     
+    
+    // MARK: - Private Methods
+    
+    private func createNumberTextField() -> NumberTextField {
+        let textField = NumberTextField()
+        textField.font = Font.sfProDisplayRegular(size: 15)
+        textField.borderStyle = .roundedRect
+        textField.snp.makeConstraints {
+            $0.width.equalTo(30)
+            $0.height.equalTo(25)
+        }
+        return textField
+    }
     
 }
