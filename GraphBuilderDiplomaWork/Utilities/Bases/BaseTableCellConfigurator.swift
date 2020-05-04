@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+
 
 class BaseTableCellConfigurator<Data, Cell>: Configurator
     where Cell: UITableViewCell {
@@ -20,6 +22,8 @@ class BaseTableCellConfigurator<Data, Cell>: Configurator
     // MARK: - Properties
     
     var item: Cell
+    var cell: Cell { item }
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization

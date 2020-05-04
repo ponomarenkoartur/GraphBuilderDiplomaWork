@@ -21,7 +21,10 @@ class Plot {
         get { try! equationSubject.value() }
         set { equationSubject.onNext(newValue) }
     }
-    var parameters: [PlotEquationParameter]
+    var parameters: [PlotEquationParameter] {
+        get { try! parametersSubject.value() }
+        set { parametersSubject.onNext(newValue) }
+    }
     var color: UIColor {
         get { try! colorSubject.value() }
         set { colorSubject.onNext(newValue) }
@@ -42,6 +45,8 @@ class Plot {
     fileprivate let colorSubject: BehaviorSubject<UIColor>
     fileprivate let isHiddenSubject: BehaviorSubject<Bool>
     fileprivate let errorSubject = BehaviorSubject<Error?>(value: nil)
+    fileprivate var parametersSubject:
+        BehaviorSubject<[PlotEquationParameter]>
     
     
     // MARK: - Initialization
@@ -54,7 +59,8 @@ class Plot {
         equationSubject = BehaviorSubject(value: equation)
         colorSubject = BehaviorSubject(value: color)
         isHiddenSubject = BehaviorSubject(value: isHidden)
-        self.parameters = parameters
+        parametersSubject =
+            BehaviorSubject<[PlotEquationParameter]>(value: parameters)
     }
 }
 
@@ -80,4 +86,7 @@ extension Reactive where Base: Plot {
     var color: Observable<UIColor> { base.colorSubject.asObservable() }
     var isHidden: Observable<Bool> { base.isHiddenSubject.asObservable() }
     var error: Observable<Error?> { base.errorSubject.asObservable() }
+    var parameters: Observable<[PlotEquationParameter]> {
+        base.parametersSubject.asObservable()
+    }
 }

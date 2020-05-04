@@ -11,6 +11,9 @@ import iosMath
 
 
 protocol SandboxEquationCellProtocol {
+    var didTapPlotImageButton: () -> () { get set }
+    var didLongPressPlotImageButton: () -> () { get set }
+    var didDoubleTap: () -> () { get set }
     func setOrderNumber(_ number: Int)
     func setPlotImageColor(_ color: UIColor)
     func setPlotImageTransparancy(_ alpha: CGFloat)
@@ -79,6 +82,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     override func setupUI() {
         super.setupUI()
+        setupGestures()
         backgroundColor = Color.grayBackground()
     }
     
@@ -101,6 +105,12 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             $0.width.equalToSuperview().offset(-30)
         }
         contentView.snp.makeConstraints { $0.height.equalTo(49) }
+    }
+    
+    private func setupGestures() {
+        rx.tapGesture { (gr, _) in gr.numberOfTapsRequired = 2 }
+            .subscribe(onNext: { _ in self.didDoubleTap() })
+            .disposed(by: bag)
     }
     
     

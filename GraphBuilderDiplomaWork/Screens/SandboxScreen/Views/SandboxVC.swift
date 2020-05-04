@@ -161,7 +161,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var equationsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
-        tableView.register(TopicPlotParameterCell.self)
+        tableView.register(PlotParameterCell.self)
         tableView.backgroundColor = Color.grayBackground()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
@@ -316,12 +316,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     func addPlot(_ plot: Plot) {
         plotsList.append(plot)
+        
         equationsTableView.reloadData()
         plotScene.add(plot)
     }
     
     func removePlot(at index: Int) {
         plotsList.remove(at: index)
+        
         equationsTableView.deleteSection(index)
         plotScene.deletePlot(at: index)
     }
@@ -329,6 +331,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     func setPlotList(_ list: [Plot]) {
         plotsList = list
         plotScene.deleteAll()
+        
         plotsList.forEach { plotScene.add($0) }
         equationsTableView.reloadData()
     }
@@ -357,9 +360,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
     }
     
-    private func prepare(_ cell: TopicPlotParameterCell,
+    private func prepare(_ cell: PlotParameterCell,
                          with parameter: PlotEquationParameter) {
-        
+        PlotParameterCellConfigurator(cell: cell).configure(with: parameter)
     }
     
     private func movePlotColorPickerToCell(at index: Int) {
@@ -430,9 +433,9 @@ extension SandboxVC: UITableViewDataSource {
         default:
             let parameter = plot.parameters[indexPath.row - 1]
             let cell = tableView
-                .dequeue(TopicPlotParameterCell.self, for: indexPath) ??
-                TopicPlotParameterCell()
-            self.prepare(cell, with: parameter)
+                .dequeue(PlotParameterCell.self, for: indexPath) ??
+                PlotParameterCell()
+            prepare(cell, with: parameter)
             return cell
         }
     }

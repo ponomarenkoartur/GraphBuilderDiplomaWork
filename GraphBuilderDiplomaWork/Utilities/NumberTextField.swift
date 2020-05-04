@@ -21,6 +21,8 @@ class NumberTextField: CustomTextField {
     // MARK: - Properties
     
     fileprivate let numberValueSubject = BehaviorSubject<Double>(value: 0)
+    fileprivate let numberValueUserInputSubject =
+        BehaviorSubject<Double?>(value: nil)
     var numberValue: Double {
         get { try! numberValueSubject.value() }
         set { numberValueSubject.onNext(newValue) }
@@ -65,6 +67,13 @@ class NumberTextField: CustomTextField {
             self.text = String(value)
         }
     }
+    
+    private func setNumberValue(_ value: Double, isUserInput: Bool) {
+        numberValue = value
+        if isUserInput {
+            numberValueUserInputSubject.onNext(value)
+        }
+    }
 }
 
 
@@ -79,6 +88,13 @@ extension NumberTextField: UITextFieldDelegate {
         var newText = oldText.replacingCharacters(in: range, with: string)
         hasDecimalSeparator = newText.contains(decimalSeparator)
         
+        if (oldText.contains("-") && string.contains("-")) ||
+            newText.contains(where: { !"0987654321.-".contains($0) }) ||
+            (oldText != "0" && string == "-") ||
+            (oldText.contains(".") && string.contains(".")) {
+            return false
+        }
+        
         if oldText == "0", string != "." {
             newText = string
         }
@@ -87,20 +103,25 @@ extension NumberTextField: UITextFieldDelegate {
             newText = "0"
         }
         
-        if newText.contains(where: { !"0987654321.".contains($0) }) {
-            return false
+        if oldText == "-", string == "." {
+            newText = "-0."
         }
 
         if let value = Double(newText), !String(value).contains("e") {
-            numberValue = value
+            setNumberValue(value, isUserInput: true)
+        } else {
+            self.text = newText
         }
         
         return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("did end")
+        if Double(textField.text!) == nil {
+            setNumberValue(0, isUserInput: true)
+        }
     }
+    
 }
 
 
@@ -109,5 +130,8 @@ extension NumberTextField: UITextFieldDelegate {
 extension Reactive where Base == NumberTextField {
     var numberValue: Observable<Double> {
         base.numberValueSubject.asObservable()
+    }
+    var numberValueUserInput: Observable<Double?> {
+        base.numberValueUserInputSubject.asObservable()
     }
 }

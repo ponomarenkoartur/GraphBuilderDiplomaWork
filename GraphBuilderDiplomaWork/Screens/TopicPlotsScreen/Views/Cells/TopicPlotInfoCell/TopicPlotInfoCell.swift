@@ -68,7 +68,7 @@ class TopicPlotInfoCell: BaseCollectionCell {
         let tableView = UITableView()
 
         tableView.dataSource = self
-        tableView.register(TopicPlotParameterCell.self)
+        tableView.register(PlotParameterCell.self)
         tableView.register(ProceedToSandboxCell.self)
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -154,10 +154,10 @@ extension TopicPlotInfoCell: UITableViewDataSource {
             return cell
         }
         let cell = tableView
-            .dequeue(TopicPlotParameterCell.self, for: indexPath) ??
-            TopicPlotParameterCell()
+            .dequeue(PlotParameterCell.self, for: indexPath) ??
+            PlotParameterCell()
         let parameter = parametersList[indexPath.row]
-        TopicPlotParameterCellConfigurator(cell: cell)
+        PlotParameterCellConfigurator(cell: cell)
             .configure(with: parameter)
         return cell
     }

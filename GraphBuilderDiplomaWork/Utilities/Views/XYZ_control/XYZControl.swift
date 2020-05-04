@@ -48,15 +48,9 @@ class XYZControl: BaseView {
     var axisesSelection: (x: Bool, y: Bool, z: Bool) {
         get { (x, y, z) }
         set {
-            if x != newValue.x {
-                x = newValue.x
-            }
-            if y != newValue.y {
-                y = newValue.y
-            }
-            if z != newValue.z {
-                z = newValue.z
-            }
+            assignIfNotEqual(&x, newValue.x)
+            assignIfNotEqual(&y, newValue.y)
+            assignIfNotEqual(&z, newValue.z)
         }
     }
     
