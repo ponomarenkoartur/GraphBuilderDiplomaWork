@@ -56,6 +56,10 @@ extension String {
         chars[index] = newChar
         self = String(chars)
     }
+    
+    func countOccurrence(of character: Character) -> Int {
+        reduce(0) { $1 == character ? $0 + 1 : $0 }
+    }
 }
 
 

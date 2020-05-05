@@ -25,6 +25,15 @@ class SandboxEquationCellConfigurator:
             .subscribe(onNext: { cell.setPlotImageTransparancy($0 ? 0.1 : 1) })
             .disposed(by: cell.bag)
         
+        cell.equationTextField.rx.text
+            .subscribe(onNext: {
+                guard let text = $0 else { return }
+                if data.plot.equation.latex != text {
+                    data.plot.equation.latex = text
+                    data.plot.equation.function = text
+                }
+            })
+            .disposed(by: cell.bag)
     }
     
 }

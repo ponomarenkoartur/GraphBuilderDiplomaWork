@@ -77,6 +77,13 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return label
     }()
     
+    private(set) lazy var equationTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter equation here..."
+        textField.borderStyle = .none
+        return textField
+    }()
+    
     
     // MARK: - Setup Methods
     
@@ -94,7 +101,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             UIView.createSpacer(w: 3),
             plotImageView,
             UIView.createSpacer(w: 17),
-            equationLabel,
+            equationTextField,
         ])
     }
     
@@ -130,5 +137,6 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     func setEquation(_ equation: Equation) {
         equationLabel.latex = equation.latex
+        equationTextField.text = equation.latex
     }
 }

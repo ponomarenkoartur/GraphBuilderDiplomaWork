@@ -33,8 +33,10 @@ class PlotScene: SCNScene, PlotPresenter {
         
         plot.rx.title.subscribe(onNext: { node.name = $0 }).disposed(by: bag)
         
-        plot.rx.isHidden
-            .subscribe(onNext: { node.isHidden = $0 })
+        Observable.combineLatest(plot.rx.error, plot.rx.isHidden)
+            .subscribe(onNext: { error, isHidden in
+                node.isHidden = error != nil || isHidden
+            })
             .disposed(by: bag)
         
         plot.rx.equation
@@ -46,8 +48,9 @@ class PlotScene: SCNScene, PlotPresenter {
                         else { return }
                     geometry.firstMaterial?.lightingModel = .blinn
                     geometry.firstMaterial?.isDoubleSided = true
-                    node.geometry?.firstMaterial?.diffuse.contents = plot.color
+                    geometry.firstMaterial?.diffuse.contents = plot.color
                     node.geometry = geometry
+                    plot.error = nil
                 } catch let error {
                     plot.error = error
                 }

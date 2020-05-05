@@ -23,7 +23,6 @@ class BaseTableCellConfigurator<Data, Cell>: Configurator
     
     var item: Cell
     var cell: Cell { item }
-    let bag = DisposeBag()
     
     
     // MARK: - Initialization
