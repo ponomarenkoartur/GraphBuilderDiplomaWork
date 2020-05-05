@@ -359,7 +359,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         cell.didLongPressPlotImageButton = {
             self.colorPickerRowTargetIndex = index
             self.isColorPickerHidden = false
-            self.movePlotColorPickerToCell(at: index)
+            self.moveColorPickerToCell(at: index)
         }
     }
     
@@ -368,8 +368,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         PlotParameterCellConfigurator(cell: cell).configure(with: parameter)
     }
     
-    private func movePlotColorPickerToCell(at index: Int) {
-        let rect = self.equationsTableView.rectForRow(at: IndexPath(row: index))
+    private func moveColorPickerToCell(at index: Int) {
+        let rect = self.equationsTableView
+            .rectForRow(at: IndexPath(section: index))
         let rectOfCellInSuperview = equationsTableView.convert(rect, to: view)
         let absoluteYCellMiddle = rectOfCellInSuperview.midY
         
@@ -404,9 +405,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.top.equalToSuperview().offset(colorPickerYOffset)
         }
     }
-    
-    
-    // MARK: - Private Methods
     
     private func isLastSection(_ section: Int) -> Bool {
         section == numberOfSections(in: equationsTableView) - 1
