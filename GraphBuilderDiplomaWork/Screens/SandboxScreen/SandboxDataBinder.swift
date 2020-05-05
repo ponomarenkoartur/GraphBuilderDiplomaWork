@@ -44,6 +44,11 @@ class SandboxDataBinder<ViewModel>:
             view.didTapBack = {
                 self.viewModel.finishCompletion()
             }
+            view.didTapAddPlot = {
+                let fabric = PlotFabric()
+                let plot = fabric.createEmpty()
+                self.viewModel.addPlot(plot)
+            }
         }
     }
 }

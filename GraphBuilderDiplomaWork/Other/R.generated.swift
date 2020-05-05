@@ -301,7 +301,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 27 images.
+  /// This `R.image` struct is generated, and contains static references to 28 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -341,6 +341,8 @@ struct R: Rswift.Validatable {
     static let plotColorPallete = Rswift.ImageResource(bundle: R.hostingBundle, name: "plotColorPallete")
     /// Image `plotIcon`.
     static let plotIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "plotIcon")
+    /// Image `plusButton`.
+    static let plusButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "plusButton")
     /// Image `prevPlot`.
     static let prevPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "prevPlot")
     /// Image `sandbox`.
@@ -488,6 +490,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "plotIcon", bundle: ..., traitCollection: ...)`
     static func plotIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.plotIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "plusButton", bundle: ..., traitCollection: ...)`
+    static func plusButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.plusButton, compatibleWith: traitCollection)
     }
     #endif
 

@@ -15,6 +15,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didTapHomeButton: () -> () { get set }
     var didTapSettingsButton: () -> () { get set }
     var didTapCameraButton: () -> () { get set }
+    var didTapAddPlot: () -> () { get set }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
@@ -66,6 +67,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () = { _, _ in }
     var didTapDeleteEquation: (_ index: Int) -> () = { _ in }
     var didTapBack: () -> () = {}
+    var didTapAddPlot: () -> () = {}
     
     // MARK: Views
     
@@ -161,6 +163,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var equationsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SandboxEquationCell.self)
+        tableView.register(SandboxAddPlotCell.self)
         tableView.register(PlotParameterCell.self)
         tableView.backgroundColor = Color.grayBackground()
         tableView.rowHeight = UITableView.automaticDimension
@@ -401,6 +404,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.top.equalToSuperview().offset(colorPickerYOffset)
         }
     }
+    
+    
+    // MARK: - Private Methods
+    
+    private func isLastSection(_ section: Int) -> Bool {
+        section == numberOfSections(in: equationsTableView) - 1
+    }
 }
 
 
@@ -408,19 +418,31 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
 
 extension SandboxVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        plotsList.count
+        plotsList.count + 1
     }
     
     
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        let plot = plotsList[section]
-        let parametersCount = plot.parameters.count
-        return parametersCount == 0 ? 1 : parametersCount + 1
+        if isLastSection(section) {
+            return 1
+        } else {
+            let plot = plotsList[section]
+            let parametersCount = plot.parameters.count
+            return parametersCount == 0 ? 1 : parametersCount + 1
+        }
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !isLastSection(indexPath.section) else {
+            let cell = tableView
+                .dequeue(SandboxAddPlotCell.self, for: indexPath) ??
+                SandboxAddPlotCell()
+            cell.didTap = didTapAddPlot
+            return cell
+        }
+        
         let plot = plotsList[indexPath.section]
 
         switch indexPath.row {

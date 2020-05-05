@@ -34,6 +34,8 @@
 		0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708D241AE3D900897335 /* FakeRecognizer.swift */; };
 		04187090241AE3E500897335 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708F241AE3E500897335 /* Equation.swift */; };
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
+		042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042088222461671300078B80 /* SandboxAddPlotCell.swift */; };
+		0420882524616CDA00078B80 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -298,6 +300,8 @@
 		0418708D241AE3D900897335 /* FakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecognizer.swift; sourceTree = "<group>"; };
 		0418708F241AE3E500897335 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		042088222461671300078B80 /* SandboxAddPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxAddPlotCell.swift; sourceTree = "<group>"; };
+		0420882424616CDA00078B80 /* PlotFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotFabric.swift; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -742,6 +746,7 @@
 			children = (
 				04A7D16E2453189000503CAE /* SandboxEquationCell.swift */,
 				04A7859324549464005D717A /* SandboxEquationCellConfigurator.swift */,
+				042088222461671300078B80 /* SandboxAddPlotCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -955,6 +960,7 @@
 				04D1F8DF2451D672004155FC /* Plot.swift */,
 				04D1F8E12451D694004155FC /* PlotEquationParameter.swift */,
 				04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */,
+				0420882424616CDA00078B80 /* PlotFabric.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1417,6 +1423,7 @@
 				04CE0E71244B1839006B19B0 /* UIStoryboard extension.swift in Sources */,
 				04CE0E87244B1937006B19B0 /* R.generated.swift in Sources */,
 				04A7D16A2453085000503CAE /* Axis.swift in Sources */,
+				0420882524616CDA00078B80 /* PlotFabric.swift in Sources */,
 				042BC5A424505E8400950B15 /* TopicsContainerVC.swift in Sources */,
 				04A7D1652453015E00503CAE /* SandboxVC.swift in Sources */,
 				048C4921245192B800C430B3 /* TopicPlotsDataBinder.swift in Sources */,
@@ -1432,6 +1439,7 @@
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
 				04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */,
 				04CE0E6C244B1839006B19B0 /* UIEdgeInsets extension.swift in Sources */,
+				042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */,
 				04AD87BA245C59B00065404F /* NumberTextField.swift in Sources */,
 				04CE0E28244B11E8006B19B0 /* UIImage extension.swift in Sources */,
 				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
