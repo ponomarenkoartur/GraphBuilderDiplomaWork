@@ -36,6 +36,11 @@
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
 		042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042088222461671300078B80 /* SandboxAddPlotCell.swift */; };
 		0420882524616CDA00078B80 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
+		0420882724617DD200078B80 /* BaseSCNScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882624617DD200078B80 /* BaseSCNScene.swift */; };
+		0420882A24617E3600078B80 /* SCNScene extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882924617E3600078B80 /* SCNScene extension.swift */; };
+		0420882C24617F3D00078B80 /* PlotGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882B24617F3D00078B80 /* PlotGrid.swift */; };
+		0420882E24617F6E00078B80 /* BaseSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882D24617F6E00078B80 /* BaseSCNNode.swift */; };
+		04208830246188C700078B80 /* Grid.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0420882F246188C600078B80 /* Grid.scn */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -302,6 +307,11 @@
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		042088222461671300078B80 /* SandboxAddPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxAddPlotCell.swift; sourceTree = "<group>"; };
 		0420882424616CDA00078B80 /* PlotFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotFabric.swift; sourceTree = "<group>"; };
+		0420882624617DD200078B80 /* BaseSCNScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNScene.swift; sourceTree = "<group>"; };
+		0420882924617E3600078B80 /* SCNScene extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNScene extension.swift"; sourceTree = "<group>"; };
+		0420882B24617F3D00078B80 /* PlotGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGrid.swift; sourceTree = "<group>"; };
+		0420882D24617F6E00078B80 /* BaseSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNNode.swift; sourceTree = "<group>"; };
+		0420882F246188C600078B80 /* Grid.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Grid.scn; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -458,6 +468,8 @@
 				0412E6972459793A00AAB427 /* PlotPresenter.swift */,
 				0412E69924597F3300AAB427 /* PlotView.swift */,
 				04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */,
+				0420882B24617F3D00078B80 /* PlotGrid.swift */,
+				0420882F246188C600078B80 /* Grid.scn */,
 			);
 			path = PlotView;
 			sourceTree = "<group>";
@@ -534,6 +546,16 @@
 				04187083241AE3C000897335 /* EquationCell.swift */,
 			);
 			path = EquationCell;
+			sourceTree = "<group>";
+		};
+		0420882824617E2500078B80 /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				04CE0E24244B11E8006B19B0 /* SCNVector3 extension.swift */,
+				04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */,
+				0420882924617E3600078B80 /* SCNScene extension.swift */,
+			);
+			path = SceneKit;
 			sourceTree = "<group>";
 		};
 		042BC5A224505E6B00950B15 /* TopicsContainerScreen */ = {
@@ -813,13 +835,12 @@
 		04CE0E1D244B11DE006B19B0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0420882824617E2500078B80 /* SceneKit */,
 				04C1169324504D1200C0CF49 /* CoreGraphics */,
 				04CE0E7D244B1873006B19B0 /* Foundation */,
 				04CE0E74244B186A006B19B0 /* Rx */,
 				04CE0E57244B1839006B19B0 /* UIKit */,
 				04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */,
-				04CE0E24244B11E8006B19B0 /* SCNVector3 extension.swift */,
-				04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -874,22 +895,24 @@
 		04CE0E36244B142C006B19B0 /* Bases */ = {
 			isa = PBXGroup;
 			children = (
+				04A7F3B12456D91D00E8E85B /* BaseButton.swift */,
+				040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */,
 				04CE0E38244B1467006B19B0 /* BaseCollectionViewCell.swift */,
 				04CE0E3C244B1467006B19B0 /* BaseCoordinator.swift */,
+				0420882624617DD200078B80 /* BaseSCNScene.swift */,
+				0412E69B2459810B00AAB427 /* BaseSCNView.swift */,
+				040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */,
 				04CE0E3B244B1467006B19B0 /* BaseTableViewCell.swift */,
 				04CE0E39244B1467006B19B0 /* BaseVC.swift */,
 				04CE0E37244B1467006B19B0 /* BaseView.swift */,
-				04CE0E3A244B1467006B19B0 /* BaseVM.swift */,
-				04CE0E3E244B1468006B19B0 /* ViewModelProtocol.swift */,
-				0462065E2451901000012C91 /* BaseVMWithVC.swift */,
 				048C4922245192C400C430B3 /* BaseViewModelViewDataBinder.swift */,
-				048C4924245192D500C430B3 /* ViewModelViewDataBinderProtocol.swift */,
-				040FE8222451A3C100F42C24 /* Configurator.swift */,
-				040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */,
-				040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */,
-				04A7F3B12456D91D00E8E85B /* BaseButton.swift */,
+				04CE0E3A244B1467006B19B0 /* BaseVM.swift */,
+				0462065E2451901000012C91 /* BaseVMWithVC.swift */,
 				04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */,
-				0412E69B2459810B00AAB427 /* BaseSCNView.swift */,
+				040FE8222451A3C100F42C24 /* Configurator.swift */,
+				04CE0E3E244B1468006B19B0 /* ViewModelProtocol.swift */,
+				048C4924245192D500C430B3 /* ViewModelViewDataBinderProtocol.swift */,
+				0420882D24617F6E00078B80 /* BaseSCNNode.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -1138,6 +1161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04208830246188C700078B80 /* Grid.scn in Resources */,
 				0450332F24503D4700C6F763 /* SF-Pro-Display-Medium.otf in Resources */,
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
@@ -1369,6 +1393,7 @@
 				0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */,
 				04CE0E41244B1468006B19B0 /* BaseVC.swift in Sources */,
 				04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */,
+				0420882C24617F3D00078B80 /* PlotGrid.swift in Sources */,
 				0462065D24518FA500012C91 /* TopicPlotsVC.swift in Sources */,
 				04CE0E43244B1468006B19B0 /* BaseTableViewCell.swift in Sources */,
 				04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */,
@@ -1395,6 +1420,7 @@
 				04CE0E30244B1227006B19B0 /* BezierArtist.swift in Sources */,
 				04CE0E6B244B1839006B19B0 /* UIButton extension.swift in Sources */,
 				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,
+				0420882724617DD200078B80 /* BaseSCNScene.swift in Sources */,
 				04015C6F24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift in Sources */,
 				040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */,
 				0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */,
@@ -1440,6 +1466,7 @@
 				04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */,
 				04CE0E6C244B1839006B19B0 /* UIEdgeInsets extension.swift in Sources */,
 				042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */,
+				0420882E24617F6E00078B80 /* BaseSCNNode.swift in Sources */,
 				04AD87BA245C59B00065404F /* NumberTextField.swift in Sources */,
 				04CE0E28244B11E8006B19B0 /* UIImage extension.swift in Sources */,
 				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
@@ -1466,6 +1493,7 @@
 				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04D1F8EB2451EFFE004155FC /* PlotPresentationMode.swift in Sources */,
 				04CE0E29244B11E8006B19B0 /* Double.swift in Sources */,
+				0420882A24617E3600078B80 /* SCNScene extension.swift in Sources */,
 				04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */,
 				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
 				04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */,

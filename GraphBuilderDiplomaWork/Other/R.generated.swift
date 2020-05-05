@@ -222,8 +222,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 4 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
+    /// Resource file `Grid.scn`.
+    static let gridScn = Rswift.FileResource(bundle: R.hostingBundle, name: "Grid", pathExtension: "scn")
     /// Resource file `SF-Pro-Display-Bold.otf`.
     static let sfProDisplayBoldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Bold", pathExtension: "otf")
     /// Resource file `SF-Pro-Display-Medium.otf`.
@@ -232,6 +234,12 @@ struct R: Rswift.Validatable {
     static let sfProDisplayRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Regular", pathExtension: "otf")
     /// Resource file `SF-Pro-Display-Semibold.otf`.
     static let sfProDisplaySemiboldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Semibold", pathExtension: "otf")
+
+    /// `bundle.url(forResource: "Grid", withExtension: "scn")`
+    static func gridScn(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.gridScn
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "SF-Pro-Display-Bold", withExtension: "otf")`
     static func sfProDisplayBoldOtf(_: Void = ()) -> Foundation.URL? {

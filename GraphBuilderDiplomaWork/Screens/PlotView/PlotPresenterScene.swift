@@ -10,7 +10,7 @@ import SceneKit
 import RxSwift
 
 
-class PlotScene: SCNScene, PlotPresenter {
+class PlotScene: BaseSCNScene, PlotPresenter {
     
     
     // MARK: - Properties
@@ -19,6 +19,19 @@ class PlotScene: SCNScene, PlotPresenter {
     private var plotsNodes: [Plot: SCNNode] = [:]
     private var equationTransformator = EquationTransformator()
     private var bag = DisposeBag()
+    
+    
+    // MARK: - Setup Methods
+    
+    override func setupNodes() {
+        super.setupNodes()
+        setupGrid()
+    }
+    
+    private func setupGrid() {
+        let node = PlotGrid()
+        addNodes(node)
+    }
     
     
     // MARK: - API Methods
