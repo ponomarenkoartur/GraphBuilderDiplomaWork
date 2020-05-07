@@ -490,7 +490,7 @@ extension SandboxVC: UITableViewDelegate {
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
             guard isEquationSection(indexPath.section) else {
-                return nil
+                return UISwipeActionsConfiguration(actions: [])
             }
             let deleteAction = UIContextualAction(
                 style: .destructive, title: "Delete") { (_, _, _) in

@@ -32,8 +32,6 @@ struct Equation {
                 value.count - variableName.count
 
             let range = rangeParameter.range
-            print(equation)
-            print(range)
             equation = equation.replacingCharacters(in: range, with: value)
                 as NSString
             
