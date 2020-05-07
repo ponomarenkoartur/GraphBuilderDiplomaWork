@@ -25,16 +25,7 @@ class EquationTransformator {
     // MARK: - API Methods
     
     func getPoints(from equation: Equation) throws -> [Point] {
-        switch equation.function {
-        case let function as Function2D:
-            return getPoints(function)
-        case let function as Function3D:
-            return getPoints(function)
-        case let function as String:
-            return try getPoints(function)
-        default:
-            return []
-        }
+        try getPoints(equation.function)
     }
     
     

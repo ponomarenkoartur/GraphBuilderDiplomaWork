@@ -55,7 +55,7 @@ struct Equation {
             sortedRangesParameters.append(contentsOf:
                 ranges.map { range in (range, parameter) }
             )
-        }
+        }        
         return sortedRangesParameters.sorted {
             (rangeParameter0: (range: NSRange, PlotEquationParameter),
             rangeParameter1: (range: NSRange, PlotEquationParameter)) -> Bool in
