@@ -14,6 +14,7 @@ protocol SandboxEquationCellProtocol {
     var didTapPlotImageButton: () -> () { get set }
     var didLongPressPlotImageButton: () -> () { get set }
     var didDoubleTap: () -> () { get set }
+    var didChangeEquationText: (_ text: String) -> () { get set }
     func setOrderNumber(_ number: Int)
     func setPlotImageColor(_ color: UIColor)
     func setPlotImageTransparancy(_ alpha: CGFloat)
@@ -30,6 +31,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     var didTapPlotImageButton: () -> () = {}
     var didLongPressPlotImageButton: () -> () = {}
     var didDoubleTap: () -> () = {}
+    var didChangeEquationText: (_ text: String) -> () = { _ in }
     
     // MARK: Views
     
@@ -77,10 +79,17 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return label
     }()
     
-    private(set) lazy var equationTextField: UITextField = {
+    private lazy var equationTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter equation here..."
         textField.borderStyle = .none
+        textField.rx.text
+            .subscribe(onNext: {
+                if let text = $0 {
+                    self.didChangeEquationText(text)
+                }
+            })
+            .disposed(by: bag)
         return textField
     }()
     

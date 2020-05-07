@@ -49,6 +49,12 @@ class SandboxDataBinder<ViewModel>:
                 let plot = fabric.createEmpty()
                 self.viewModel.addPlot(plot)
             }
+            view.didChangeEquationText = { plot, index, text in
+                if plot.equation.latex != text {
+                    plot.equation.latex = text
+                    plot.equation.function = text
+                }
+            }
         }
     }
 }

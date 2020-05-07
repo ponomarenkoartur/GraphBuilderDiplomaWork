@@ -19,6 +19,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
+    var didChangeEquationText: (_ plot: Plot, _ index: Int, _ text: String) -> () { get set }
     var didTapDeleteEquation: (_ index: Int) -> () { get set }
     var didTapBack: () -> () { get set }
     func addPlot(_ plot: Plot)
@@ -68,6 +69,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didTapDeleteEquation: (_ index: Int) -> () = { _ in }
     var didTapBack: () -> () = {}
     var didTapAddPlot: () -> () = {}
+    var didChangeEquationText:
+        (_ plot: Plot, _ index: Int, _ text: String) -> () = { _, _, _ in }
     
     // MARK: Views
     
@@ -360,6 +363,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             self.colorPickerRowTargetIndex = index
             self.isColorPickerHidden = false
             self.moveColorPickerToCell(at: index)
+        }
+        cell.didChangeEquationText = { text in
+            self.didChangeEquationText(item, index, text)
         }
     }
     
