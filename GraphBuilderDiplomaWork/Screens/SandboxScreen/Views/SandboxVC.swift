@@ -330,7 +330,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     func removePlot(at index: Int) {
         plotsList.remove(at: index)
         
-        equationsTableView.deleteSection(index)
+        self.equationsTableView.performBatchUpdates({
+            self.equationsTableView.deleteSection(index)
+            self.equationsTableView.reloadData()
+        })
+        
         plotScene.deletePlot(at: index)
     }
     
@@ -472,16 +476,13 @@ extension SandboxVC: UITableViewDataSource {
 extension SandboxVC: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
-        editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard indexPath.row == 0 else { return [] }
-        
-        let deleteAction =
-            UITableViewRowAction(style: .destructive, title: "Delete") {
-                (_, indexPath) in
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+        -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(
+                style: .destructive, title: "Delete") { (_, _, _) in
                 self.didTapDeleteEquation(indexPath.section)
-        }
-
-        deleteAction.backgroundColor = Color.turquoise()
-        return [deleteAction]
+            }
+            deleteAction.backgroundColor = Color.turquoise()
+            return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
