@@ -16,6 +16,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var plotsList: [Plot] { get }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
+    func updatePlotEquation(at index: Int, newEquation: String)
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -49,5 +50,13 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     func setPlotList(_ list: [Plot]) {
         self.plotsList = list
         didSetPlotList(list)
+    }
+    
+    func updatePlotEquation(at index: Int, newEquation: String) {
+        let plot = plotsList[index]
+        if plot.equation.latex != newEquation {
+            plot.equation.latex = newEquation
+            plot.equation.function = newEquation
+        }
     }
 }

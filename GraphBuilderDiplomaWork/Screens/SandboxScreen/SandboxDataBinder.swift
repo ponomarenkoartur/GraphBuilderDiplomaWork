@@ -50,10 +50,7 @@ class SandboxDataBinder<ViewModel>:
                 self.viewModel.addPlot(plot)
             }
             view.didChangeEquationText = { plot, index, text in
-                if plot.equation.latex != text {
-                    plot.equation.latex = text
-                    plot.equation.function = text
-                }
+                self.viewModel.updatePlotEquation(at: index, newEquation: text)
             }
         }
     }
