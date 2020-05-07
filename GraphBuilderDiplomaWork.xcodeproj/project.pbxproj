@@ -18,6 +18,67 @@
 		040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
 		040FE8272451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */; };
 		0411CC5F24644B89001A3183 /* NSRegularExpression extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */; };
+		0411CC61246461C2001A3183 /* EquationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC60246461C2001A3183 /* EquationTests.swift */; };
+		0411CC622464625E001A3183 /* BaseVMWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462065E2451901000012C91 /* BaseVMWithVC.swift */; };
+		0411CC6324646296001A3183 /* Eval.h in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BED245B824800BDA83D /* Eval.h */; };
+		0411CC6424646296001A3183 /* Eval.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEE245B824800BDA83D /* Eval.m */; };
+		0411CC6524646296001A3183 /* GraphBuilderDiplomaWork-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEC245B824700BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */; };
+		0411CC6624646296001A3183 /* ExpressionEvalutaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */; };
+		0411CC6724646296001A3183 /* NSNumber+NSNumber_extension.h in Sources */ = {isa = PBXBuildFile; fileRef = 042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */; };
+		0411CC6824646296001A3183 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEA245B81D800BDA83D /* Point.swift */; };
+		0411CC6924646296001A3183 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1672453085000503CAE /* Axis.swift */; };
+		0411CC6A24646296001A3183 /* Math functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1682453085000503CAE /* Math functions.swift */; };
+		0411CC6B24646296001A3183 /* XYZControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1692453085000503CAE /* XYZControl.swift */; };
+		0411CC6C24646296001A3183 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3B12456D91D00E8E85B /* BaseButton.swift */; };
+		0411CC6D24646296001A3183 /* BaseCollectionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */; };
+		0411CC6E24646296001A3183 /* BaseSCNScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882624617DD200078B80 /* BaseSCNScene.swift */; };
+		0411CC6F24646296001A3183 /* BaseSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69B2459810B00AAB427 /* BaseSCNView.swift */; };
+		0411CC7024646296001A3183 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
+		0411CC7124646296001A3183 /* BaseViewModelViewDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C4922245192C400C430B3 /* BaseViewModelViewDataBinder.swift */; };
+		0411CC7224646296001A3183 /* BaseVMWithVoidFinishReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */; };
+		0411CC7324646296001A3183 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8222451A3C100F42C24 /* Configurator.swift */; };
+		0411CC7424646296001A3183 /* ViewModelViewDataBinderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C4924245192D500C430B3 /* ViewModelViewDataBinderProtocol.swift */; };
+		0411CC7524646296001A3183 /* BaseSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882D24617F6E00078B80 /* BaseSCNNode.swift */; };
+		0411CC7624646296001A3183 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD87B7245C4DB70065404F /* CustomTextField.swift */; };
+		0411CC7724646296001A3183 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD87B9245C59B00065404F /* NumberTextField.swift */; };
+		0411CC7824646296001A3183 /* HandyFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCDE9124600CCB00422848 /* HandyFunctions.swift */; };
+		0411CC7924646296001A3183 /* TopicsContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BC5A324505E8400950B15 /* TopicsContainerVC.swift */; };
+		0411CC7A24646296001A3183 /* TopicsContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BC5A62450637200950B15 /* TopicsContainerCell.swift */; };
+		0411CC7B24646296001A3183 /* TopicsContainerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */; };
+		0411CC7C24646296001A3183 /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DF2451D672004155FC /* Plot.swift */; };
+		0411CC7D24646296001A3183 /* PlotEquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* PlotEquationParameter.swift */; };
+		0411CC7E24646297001A3183 /* PlotPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */; };
+		0411CC7F24646297001A3183 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
+		0411CC8024646297001A3183 /* PlotParameterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456F22E2451D08C009E469C /* PlotParameterCell.swift */; };
+		0411CC8124646297001A3183 /* PlotParameterCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DC2451D139004155FC /* PlotParameterCellConfigurator.swift */; };
+		0411CC8224646297001A3183 /* TopicPlotParameterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */; };
+		0411CC8324646297001A3183 /* TopicPlotInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456B1062451A2FE007AB1D9 /* TopicPlotInfoCell.swift */; };
+		0411CC8424646297001A3183 /* TopicPlotInfoCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */; };
+		0411CC8524646297001A3183 /* ProceedToSandboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */; };
+		0411CC8624646297001A3183 /* TopicPlotsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462065C24518FA500012C91 /* TopicPlotsVC.swift */; };
+		0411CC8724646297001A3183 /* TopicPlotsVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456B103245194FB007AB1D9 /* TopicPlotsVCProtocol.swift */; };
+		0411CC8824646297001A3183 /* TopicPlotsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462065A24518EA600012C91 /* TopicPlotsVM.swift */; };
+		0411CC8924646297001A3183 /* TopicPlotsDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C4920245192B800C430B3 /* TopicPlotsDataBinder.swift */; };
+		0411CC8A24646297001A3183 /* PlotColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461F4292457100F0099159B /* PlotColorPickerView.swift */; };
+		0411CC8B24646297001A3183 /* PlotColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */; };
+		0411CC8C24646297001A3183 /* SandboxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AD2456CCDF00E8E85B /* SandboxKeyboard.swift */; };
+		0411CC8D24646297001A3183 /* SandboxKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7F3AF2456D90800E8E85B /* SandboxKeyboardButton.swift */; };
+		0411CC8E24646297001A3183 /* SandboxEquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D16E2453189000503CAE /* SandboxEquationCell.swift */; };
+		0411CC8F24646297001A3183 /* SandboxEquationCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7859324549464005D717A /* SandboxEquationCellConfigurator.swift */; };
+		0411CC9024646297001A3183 /* SandboxAddPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042088222461671300078B80 /* SandboxAddPlotCell.swift */; };
+		0411CC9124646297001A3183 /* SandboxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7D1642453015E00503CAE /* SandboxVC.swift */; };
+		0411CC9224646297001A3183 /* SandboxVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D6D0B245465BD0001FC7D /* SandboxVM.swift */; };
+		0411CC9324646297001A3183 /* SandboxDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D6D0D245465C40001FC7D /* SandboxDataBinder.swift */; };
+		0411CC9424646297001A3183 /* PlotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E6972459793A00AAB427 /* PlotPresenter.swift */; };
+		0411CC9524646297001A3183 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69924597F3300AAB427 /* PlotView.swift */; };
+		0411CC9624646297001A3183 /* PlotPresenterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */; };
+		0411CC9724646297001A3183 /* PlotGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882B24617F3D00078B80 /* PlotGrid.swift */; };
+		0411CC9824646297001A3183 /* Grid.scn in Sources */ = {isa = PBXBuildFile; fileRef = 0420882F246188C600078B80 /* Grid.scn */; };
+		0411CC9924646297001A3183 /* NamedSwitchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC842245091E700CBC58F /* NamedSwitchControl.swift */; };
+		0411CC9A24646297001A3183 /* SCNNode extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */; };
+		0411CC9B24646297001A3183 /* SCNScene extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882924617E3600078B80 /* SCNScene extension.swift */; };
+		0411CC9C24646297001A3183 /* CGSize extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6C245719430094DFE6 /* CGSize extension.swift */; };
+		0411CC9D24646297001A3183 /* NSRegularExpression extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */; };
 		0412E6982459793A00AAB427 /* PlotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E6972459793A00AAB427 /* PlotPresenter.swift */; };
 		0412E69A24597F3300AAB427 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69924597F3300AAB427 /* PlotView.swift */; };
 		0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69B2459810B00AAB427 /* BaseSCNView.swift */; };
@@ -290,6 +351,7 @@
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCellConfigurator.swift; sourceTree = "<group>"; };
 		0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression extension.swift"; sourceTree = "<group>"; };
+		0411CC60246461C2001A3183 /* EquationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationTests.swift; sourceTree = "<group>"; };
 		0412E6972459793A00AAB427 /* PlotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresenter.swift; sourceTree = "<group>"; };
 		0412E69924597F3300AAB427 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		0412E69B2459810B00AAB427 /* BaseSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNView.swift; sourceTree = "<group>"; };
@@ -717,6 +779,7 @@
 			children = (
 				048A97072450563400161936 /* Info.plist */,
 				048A970D2450564200161936 /* SerialPositionTests.swift */,
+				0411CC60246461C2001A3183 /* EquationTests.swift */,
 			);
 			path = GraphBuilderDiplomaWorkTests;
 			sourceTree = "<group>";
@@ -1282,6 +1345,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0411CC6324646296001A3183 /* Eval.h in Sources */,
+				0411CC6424646296001A3183 /* Eval.m in Sources */,
+				0411CC6524646296001A3183 /* GraphBuilderDiplomaWork-Bridging-Header.h in Sources */,
+				0411CC6624646296001A3183 /* ExpressionEvalutaion.swift in Sources */,
+				0411CC6724646296001A3183 /* NSNumber+NSNumber_extension.h in Sources */,
+				0411CC6824646296001A3183 /* Point.swift in Sources */,
+				0411CC6924646296001A3183 /* Axis.swift in Sources */,
+				0411CC6A24646296001A3183 /* Math functions.swift in Sources */,
+				0411CC6B24646296001A3183 /* XYZControl.swift in Sources */,
+				0411CC6C24646296001A3183 /* BaseButton.swift in Sources */,
+				0411CC6D24646296001A3183 /* BaseCollectionCellConfigurator.swift in Sources */,
+				0411CC6E24646296001A3183 /* BaseSCNScene.swift in Sources */,
+				0411CC6F24646296001A3183 /* BaseSCNView.swift in Sources */,
+				0411CC7024646296001A3183 /* BaseTableCellConfigurator.swift in Sources */,
+				0411CC7124646296001A3183 /* BaseViewModelViewDataBinder.swift in Sources */,
+				0411CC7224646296001A3183 /* BaseVMWithVoidFinishReason.swift in Sources */,
+				0411CC7324646296001A3183 /* Configurator.swift in Sources */,
+				0411CC7424646296001A3183 /* ViewModelViewDataBinderProtocol.swift in Sources */,
+				0411CC7524646296001A3183 /* BaseSCNNode.swift in Sources */,
+				0411CC7624646296001A3183 /* CustomTextField.swift in Sources */,
+				0411CC7724646296001A3183 /* NumberTextField.swift in Sources */,
+				0411CC7824646296001A3183 /* HandyFunctions.swift in Sources */,
+				0411CC7924646296001A3183 /* TopicsContainerVC.swift in Sources */,
+				0411CC7A24646296001A3183 /* TopicsContainerCell.swift in Sources */,
+				0411CC7B24646296001A3183 /* TopicsContainerVM.swift in Sources */,
+				0411CC7C24646296001A3183 /* Plot.swift in Sources */,
+				0411CC7D24646296001A3183 /* PlotEquationParameter.swift in Sources */,
+				0411CC7E24646297001A3183 /* PlotPresentationMode.swift in Sources */,
+				0411CC7F24646297001A3183 /* PlotFabric.swift in Sources */,
+				0411CC8024646297001A3183 /* PlotParameterCell.swift in Sources */,
+				0411CC8124646297001A3183 /* PlotParameterCellConfigurator.swift in Sources */,
+				0411CC8224646297001A3183 /* TopicPlotParameterHeaderView.swift in Sources */,
+				0411CC8324646297001A3183 /* TopicPlotInfoCell.swift in Sources */,
+				0411CC8424646297001A3183 /* TopicPlotInfoCellConfigurator.swift in Sources */,
+				0411CC8524646297001A3183 /* ProceedToSandboxCell.swift in Sources */,
+				0411CC8624646297001A3183 /* TopicPlotsVC.swift in Sources */,
+				0411CC8724646297001A3183 /* TopicPlotsVCProtocol.swift in Sources */,
+				0411CC8824646297001A3183 /* TopicPlotsVM.swift in Sources */,
+				0411CC8924646297001A3183 /* TopicPlotsDataBinder.swift in Sources */,
+				0411CC8A24646297001A3183 /* PlotColorPickerView.swift in Sources */,
+				0411CC8B24646297001A3183 /* PlotColorPickerCell.swift in Sources */,
+				0411CC8C24646297001A3183 /* SandboxKeyboard.swift in Sources */,
+				0411CC8D24646297001A3183 /* SandboxKeyboardButton.swift in Sources */,
+				0411CC8E24646297001A3183 /* SandboxEquationCell.swift in Sources */,
+				0411CC8F24646297001A3183 /* SandboxEquationCellConfigurator.swift in Sources */,
+				0411CC9024646297001A3183 /* SandboxAddPlotCell.swift in Sources */,
+				0411CC9124646297001A3183 /* SandboxVC.swift in Sources */,
+				0411CC9224646297001A3183 /* SandboxVM.swift in Sources */,
+				0411CC9324646297001A3183 /* SandboxDataBinder.swift in Sources */,
+				0411CC9424646297001A3183 /* PlotPresenter.swift in Sources */,
+				0411CC9524646297001A3183 /* PlotView.swift in Sources */,
+				0411CC9624646297001A3183 /* PlotPresenterScene.swift in Sources */,
+				0411CC9724646297001A3183 /* PlotGrid.swift in Sources */,
+				0411CC9824646297001A3183 /* Grid.scn in Sources */,
+				0411CC9924646297001A3183 /* NamedSwitchControl.swift in Sources */,
+				0411CC9A24646297001A3183 /* SCNNode extension.swift in Sources */,
+				0411CC9B24646297001A3183 /* SCNScene extension.swift in Sources */,
+				0411CC9C24646297001A3183 /* CGSize extension.swift in Sources */,
+				0411CC9D24646297001A3183 /* NSRegularExpression extension.swift in Sources */,
 				042BC56524505B5E00950B15 /* RecognitionViewController.swift in Sources */,
 				042BC56624505B5E00950B15 /* EquationTransformator.swift in Sources */,
 				042BC56824505B5E00950B15 /* VectorAdapeter.swift in Sources */,
@@ -1296,6 +1418,7 @@
 				042BC57124505B5E00950B15 /* TopicCellConfigurator.swift in Sources */,
 				042BC57224505B5E00950B15 /* TopicSubheader.swift in Sources */,
 				042BC57324505B5E00950B15 /* TopicParagraph.swift in Sources */,
+				0411CC622464625E001A3183 /* BaseVMWithVC.swift in Sources */,
 				042BC57424505B5E00950B15 /* TopicIllustration.swift in Sources */,
 				042BC57524505B5E00950B15 /* TopicProccedToPlotBuildingItem.swift in Sources */,
 				042BC57624505B5E00950B15 /* TopicSubheaderCell.swift in Sources */,
@@ -1347,6 +1470,7 @@
 				042BC56124505B5200950B15 /* BaseTableViewCell.swift in Sources */,
 				042BC56324505B5200950B15 /* BaseView.swift in Sources */,
 				042BC56424505B5200950B15 /* Shortcuts.swift in Sources */,
+				0411CC61246461C2001A3183 /* EquationTests.swift in Sources */,
 				042BC55624505AC100950B15 /* UINavigationController extension.swift in Sources */,
 				042BC54A245058B100950B15 /* Array extension.swift in Sources */,
 				042BC55524505AB800950B15 /* TopicVM.swift in Sources */,
@@ -1561,6 +1685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWorkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphBuilderDiplomaWork.app/GraphBuilderDiplomaWork";
@@ -1583,6 +1708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWorkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphBuilderDiplomaWork.app/GraphBuilderDiplomaWork";

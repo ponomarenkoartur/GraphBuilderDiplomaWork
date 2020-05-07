@@ -31,7 +31,7 @@ struct Equation {
     
     // MARK: - Initialization
     
-    init(latex: String, function: Any? = nil) {
+    private init(latex: String, function: Any? = nil) {
         self.latex = latex
         self.function = function
         parseParameters()
