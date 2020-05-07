@@ -10,10 +10,10 @@ import RxSwift
 
 
 class PlotParameterCellConfigurator:
-    BaseTableCellConfigurator<PlotEquationParameter, PlotParameterCell> {
+    BaseTableCellConfigurator<EquationParameter, PlotParameterCell> {
     
     
-    override func configure(with data: PlotEquationParameter) {
+    override func configure(with data: EquationParameter) {
         data.rx.name
             .subscribe(onNext: { self.cell.setName($0) })
             .disposed(by: cell.bag)

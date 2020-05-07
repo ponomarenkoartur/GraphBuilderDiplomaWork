@@ -15,7 +15,7 @@ class TopicPlotInfoCell: BaseCollectionCell {
     
     // MARK: - Properties
     
-    private var parametersList: [PlotEquationParameter] = []
+    private var parametersList: [EquationParameter] = []
     
     // MARK: Callbacks
     
@@ -127,7 +127,7 @@ class TopicPlotInfoCell: BaseCollectionCell {
         equationLabel.latex = equation
     }
     
-    func setParametersList(_ list: [PlotEquationParameter]) {
+    func setParametersList(_ list: [EquationParameter]) {
         parametersList = list
         parametersTableView.reloadData()
     }

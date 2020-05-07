@@ -32,6 +32,8 @@ struct Equation {
                 value.count - variableName.count
 
             let range = rangeParameter.range
+            print(equation)
+            print(range)
             equation = equation.replacingCharacters(in: range, with: value)
                 as NSString
             
@@ -46,19 +48,23 @@ struct Equation {
         }
         return equation as String
     }
-    private(set) var parameters: [PlotEquationParameter] = []
-    private var parametersRanges: [PlotEquationParameter: [NSRange]] = [:]
+    private(set) var parametersRanges: [(parameter: EquationParameter, ranges: [NSRange])] = []
+    var parameters: [EquationParameter] {
+        parametersRanges
+            .map { $0.parameter }
+            .removingDuplicates()
+    }
     private var sortedRangesParameters:
-        [(range: NSRange, parameter: PlotEquationParameter)] {
-        var sortedRangesParameters: [(NSRange, PlotEquationParameter)] = []
+        [(range: NSRange, parameter: EquationParameter)] {
+        var sortedRangesParameters: [(NSRange, EquationParameter)] = []
         parametersRanges.forEach { (parameter, ranges) in
             sortedRangesParameters.append(contentsOf:
                 ranges.map { range in (range, parameter) }
             )
         }        
         return sortedRangesParameters.sorted {
-            (rangeParameter0: (range: NSRange, PlotEquationParameter),
-            rangeParameter1: (range: NSRange, PlotEquationParameter)) -> Bool in
+            (rangeParameter0: (range: NSRange, EquationParameter),
+            rangeParameter1: (range: NSRange, EquationParameter)) -> Bool in
             rangeParameter0.range.location < rangeParameter1.range.location
         }
     }
@@ -87,22 +93,29 @@ struct Equation {
     private mutating func parseParameters() {
         let results = parametersRegex.matches(in: latex)
         
-        parameters.removeAllExceptIntersect(with: results) {
-            $0.name == $1.group
+        parametersRanges.removeAllExceptIntersect(with: results) {
+            $0.parameter.name == $1.group
         }
-        parametersRanges.removeAllExceptIntersectOfKeys(with: results) {
-            $0.name == $1.group
+        for i in (0..<parametersRanges.count) {
+            parametersRanges[i].ranges = []
         }
         
         results
-            .removingAllIntersection(with: parameters) { $0.group == $1.name }
+            .removingAllIntersection(with: parametersRanges) {
+                $0.group == $1.parameter.name &&
+                [$0.range] == $1.ranges
+            }
             .forEach { match in
-                let parameter = PlotEquationParameter(
+                let parameter = EquationParameter(
                     name: match.group, value: Self.defaultParameterValue)
-                parametersRanges[parameter] =
-                    parametersRanges[parameter]?.appending(match.range) ??
-                    [match.range]
-                parameters.appendIfDoesntContain(parameter)
+                
+                if let index = parametersRanges.firstIndex(where: {
+                    $0.parameter == parameter
+                }) {
+                    parametersRanges[index].ranges.append(match.range)
+                } else {
+                    parametersRanges.append((parameter, [match.range]))
+                }
             }
     }
 }

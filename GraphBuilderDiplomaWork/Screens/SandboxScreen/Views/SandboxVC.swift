@@ -370,7 +370,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     private func prepare(_ cell: PlotParameterCell,
-                         with parameter: PlotEquationParameter) {
+                         with parameter: EquationParameter) {
         PlotParameterCellConfigurator(cell: cell).configure(with: parameter)
     }
     

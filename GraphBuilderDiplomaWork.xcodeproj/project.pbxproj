@@ -46,7 +46,7 @@
 		0411CC7A24646296001A3183 /* TopicsContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BC5A62450637200950B15 /* TopicsContainerCell.swift */; };
 		0411CC7B24646296001A3183 /* TopicsContainerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */; };
 		0411CC7C24646296001A3183 /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DF2451D672004155FC /* Plot.swift */; };
-		0411CC7D24646296001A3183 /* PlotEquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* PlotEquationParameter.swift */; };
+		0411CC7D24646296001A3183 /* EquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* EquationParameter.swift */; };
 		0411CC7E24646297001A3183 /* PlotPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */; };
 		0411CC7F24646297001A3183 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
 		0411CC8024646297001A3183 /* PlotParameterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456F22E2451D08C009E469C /* PlotParameterCell.swift */; };
@@ -300,7 +300,7 @@
 		04CE0E87244B1937006B19B0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E86244B1936006B19B0 /* R.generated.swift */; };
 		04D1F8DD2451D139004155FC /* PlotParameterCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DC2451D139004155FC /* PlotParameterCellConfigurator.swift */; };
 		04D1F8E02451D672004155FC /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8DF2451D672004155FC /* Plot.swift */; };
-		04D1F8E22451D694004155FC /* PlotEquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* PlotEquationParameter.swift */; };
+		04D1F8E22451D694004155FC /* EquationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E12451D694004155FC /* EquationParameter.swift */; };
 		04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */; };
 		04D1F8E62451DFED004155FC /* ProceedToSandboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */; };
 		04D1F8EB2451EFFE004155FC /* PlotPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */; };
@@ -488,7 +488,7 @@
 		04CE0E86244B1936006B19B0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		04D1F8DC2451D139004155FC /* PlotParameterCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotParameterCellConfigurator.swift; sourceTree = "<group>"; };
 		04D1F8DF2451D672004155FC /* Plot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
-		04D1F8E12451D694004155FC /* PlotEquationParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotEquationParameter.swift; sourceTree = "<group>"; };
+		04D1F8E12451D694004155FC /* EquationParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationParameter.swift; sourceTree = "<group>"; };
 		04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotParameterHeaderView.swift; sourceTree = "<group>"; };
 		04D1F8E52451DFED004155FC /* ProceedToSandboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedToSandboxCell.swift; sourceTree = "<group>"; };
 		04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresentationMode.swift; sourceTree = "<group>"; };
@@ -1051,7 +1051,7 @@
 			isa = PBXGroup;
 			children = (
 				04D1F8DF2451D672004155FC /* Plot.swift */,
-				04D1F8E12451D694004155FC /* PlotEquationParameter.swift */,
+				04D1F8E12451D694004155FC /* EquationParameter.swift */,
 				04D1F8EA2451EFFD004155FC /* PlotPresentationMode.swift */,
 				0420882424616CDA00078B80 /* PlotFabric.swift */,
 			);
@@ -1375,7 +1375,7 @@
 				0411CC7A24646296001A3183 /* TopicsContainerCell.swift in Sources */,
 				0411CC7B24646296001A3183 /* TopicsContainerVM.swift in Sources */,
 				0411CC7C24646296001A3183 /* Plot.swift in Sources */,
-				0411CC7D24646296001A3183 /* PlotEquationParameter.swift in Sources */,
+				0411CC7D24646296001A3183 /* EquationParameter.swift in Sources */,
 				0411CC7E24646297001A3183 /* PlotPresentationMode.swift in Sources */,
 				0411CC7F24646297001A3183 /* PlotFabric.swift in Sources */,
 				0411CC8024646297001A3183 /* PlotParameterCell.swift in Sources */,
@@ -1635,7 +1635,7 @@
 				043DC7CD245078CE00CBC58F /* TopicsContainerVM.swift in Sources */,
 				04CE0E44244B1468006B19B0 /* BaseCoordinator.swift in Sources */,
 				0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */,
-				04D1F8E22451D694004155FC /* PlotEquationParameter.swift in Sources */,
+				04D1F8E22451D694004155FC /* EquationParameter.swift in Sources */,
 				04AD87B8245C4DB70065404F /* CustomTextField.swift in Sources */,
 				04CE0E7C244B186B006B19B0 /* SingleEvent extension.swift in Sources */,
 				0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */,

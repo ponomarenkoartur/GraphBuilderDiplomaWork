@@ -1,5 +1,5 @@
 //
-//  PlotEquationParameter.swift
+//  EquationParameter.swift
 //  GraphBuilderDiplomaWork
 //
 //  Created by Artur on 23.04.2020.
@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class PlotEquationParameter {
+class EquationParameter {
     
     
     // MARK: - Properties
@@ -78,9 +78,9 @@ class PlotEquationParameter {
 
 // MARK: - Rx
 
-extension PlotEquationParameter: ReactiveCompatible {}
+extension EquationParameter: ReactiveCompatible {}
 
-extension Reactive where Base: PlotEquationParameter  {
+extension Reactive where Base: EquationParameter  {
     var name: Observable<String> { base.nameSubject }
     var value: Observable<Double> { base.valueSubject }
     var minValue: Observable<Double> { base.minValueSubject }
@@ -90,9 +90,9 @@ extension Reactive where Base: PlotEquationParameter  {
 
 // MARK: - Equatable
 
-extension PlotEquationParameter: Equatable {
-    static func == (lhs: PlotEquationParameter,
-                    rhs: PlotEquationParameter) -> Bool {
+extension EquationParameter: Equatable {
+    static func == (lhs: EquationParameter,
+                    rhs: EquationParameter) -> Bool {
         lhs.name == rhs.name &&
         lhs.value == rhs.value &&
         lhs.minValue == rhs.minValue &&
@@ -102,7 +102,7 @@ extension PlotEquationParameter: Equatable {
 
 // MARK: Hashable
 
-extension PlotEquationParameter: Hashable {
+extension EquationParameter: Hashable {
     func hash(into hasher: inout Hasher) {
         "\(name)\(value)\(minValue)\(maxValue)".hash(into: &hasher)
     }
