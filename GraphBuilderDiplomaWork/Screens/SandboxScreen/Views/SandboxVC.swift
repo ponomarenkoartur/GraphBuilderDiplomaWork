@@ -431,7 +431,7 @@ extension SandboxVC: UITableViewDataSource {
             return 1
         } else {
             let plot = plotsList[section]
-            let parametersCount = plot.parameters.count
+            let parametersCount = plot.equation.parameters.count
             return parametersCount == 0 ? 1 : parametersCount + 1
         }
     }
@@ -456,7 +456,7 @@ extension SandboxVC: UITableViewDataSource {
             self.prepare(cell, for: indexPath.section, with: plot)
             return cell
         default:
-            let parameter = plot.parameters[indexPath.row - 1]
+            let parameter = plot.equation.parameters[indexPath.row - 1]
             let cell = tableView
                 .dequeue(PlotParameterCell.self, for: indexPath) ??
                 PlotParameterCell()

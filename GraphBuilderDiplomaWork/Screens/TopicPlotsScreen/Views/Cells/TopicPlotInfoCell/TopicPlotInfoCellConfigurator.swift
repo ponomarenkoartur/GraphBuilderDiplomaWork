@@ -19,7 +19,7 @@ class TopicPlotInfoCellConfigurator:
         let cell = item
         cell.previousPlotButton.isHidden = [.first, .alone].contains(data.position)
         cell.nextPlotButton.isHidden = [.last, .alone].contains(data.position)
-        cell.setParametersList(data.plot.parameters)
+        cell.setParametersList(data.plot.equation.parameters)
         cell.setEquationText(data.plot.equation.latex)
     }
     

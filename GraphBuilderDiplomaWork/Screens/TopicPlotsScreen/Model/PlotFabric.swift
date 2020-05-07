@@ -15,6 +15,6 @@ class PlotFabric {
     // MARK: - API Methods
     
     func createEmpty() -> Plot {
-        Plot(title: "", equation: Equation(latex: "", function: ""))
+        Plot(title: "", equation: Equation(equation: ""))
     }   
 }

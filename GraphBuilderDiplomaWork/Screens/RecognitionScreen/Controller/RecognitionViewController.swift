@@ -134,7 +134,7 @@ extension RecognitionViewController: RecognitionContentViewDelegate {
     }
     
     func recognizedEquationContentView(_ view: RecognitionContentView, sliderValueChanges value: Float) {
-        let equation = Equation(latex: "", function: { (x: Float, y: Float) -> Float in sin(sin(sin(x)))*sin(sin(sin(y*value))) })
+        let equation = Equation(equation: "sin(sin(sin(x)))*sin(sin(sin(y*\(value)))")
         let points = (try? transformator.getPoints(from: equation)) ?? []
         do {
             try self.arView.build(points)

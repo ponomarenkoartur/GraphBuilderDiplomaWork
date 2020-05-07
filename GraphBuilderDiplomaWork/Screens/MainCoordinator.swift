@@ -70,25 +70,25 @@ class MainCoordinator: BaseCoordinator {
         
         vm.setPlotList([
 //            Plot(title: "", equation: Equation(latex: "x^2+z^2"         ,   function: "(x^2)+(z^2)"  )),
-            Plot(title: "", equation: Equation(latex: "sin(x)+cos(z)"   ,   function: "sin(x)+cos(z)"), parameters: [PlotEquationParameter(name: "a", value: 3)]),
-            Plot(title: "", equation: Equation(latex: "sin(x*cos(z))"   ,   function: "sin(x*cos(z))")),
-//            Plot(title: "", equation: Equation(latex: "sin(x)+sin(z)"   ,   function: "sin(x)+sin(z)")),
-//            Plot(title: "", equation: Equation(latex: "cos(x)+cos(z)"   ,   function: "cos(x)+cos(z)")),
-//            Plot(title: "", equation: Equation(latex: "tan(x)+tan(z)"   ,   function: "tan(x)+tan(z)")),
-            
+            Plot(title: "", equation: Equation(equation: "sin(x)+cos(z)+a")),
+            Plot(title: "", equation: Equation(equation: "sin(x*cos(z))")),
+//            Plot(title: "", equation: Equation(equation: "sin(x)+sin(z)")),
+//            Plot(title: "", equation: Equation(equation: "cos(x)+cos(z)")),
+//            Plot(title: "", equation: Equation(equation: "tan(x)+tan(z)")),
+//
 //            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: { (x: Float, z: Float) in tgamma(pow(x,z) + 1) }    )),
-//            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)" ,   function: "x^2+sqrt(z)" )),
-//            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"       )),
-//            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: "sin(x^z)"    )),
-//            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)" ,   function: "x^2+sqrt(z)" )),
-//            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"       )),
-//            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: "sin(x^z)"    )),
-//            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)" ,   function: "x^2+sqrt(z)" )),
-//            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"       )),
-//            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: "sin(x^z)"    )),
-//            Plot(title: "", equation: Equation(latex: "x^2+sqrt(z)" ,   function: "x^2+sqrt(z)" )),
-//            Plot(title: "", equation: Equation(latex: "x^5+z"       ,   function: "x^5+z"       )),
-//            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: "sin(x^z)"    )),
+//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
+//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
+//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
+//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
+//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
+//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
+//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
+//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
+//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
+//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
+//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
+//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
         ])
         navVC.push(vc)
     }
@@ -107,19 +107,19 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopicPlots() {
         let vm = TopicPlotsVM()
-        vm.setPlotList([
-            Plot(title: "Hello", equation: Equation(latex: "y=x^2+sqrt(z)", function: NSNull()),
-                 parameters: [.init(name: "a", value: -2),
-                              .init(name: "b", value: -4),
-                              .init(name: "c", value: 0),
-                              .init(name: "d", value: 10),]),
-            Plot(title: "Hello", equation: Equation(latex: "y=x^5", function: NSNull()),
-                 parameters: [.init(name: "w", value: 2),
-                              .init(name: "r", value: 5)]),
-            Plot(title: "Hello", equation: Equation(latex: "y=sin(x^z)", function: NSNull()),
-                 parameters: [.init(name: "a", value: -2),
-                              .init(name: "b", value: -4)]),
-        ])
+//        vm.setPlotList([
+//            Plot(title: "Hello", equation: Equation(latex: "y=x^2+sqrt(z)", function: NSNull()),
+//                 parameters: [.init(name: "a", value: -2),
+//                              .init(name: "b", value: -4),
+//                              .init(name: "c", value: 0),
+//                              .init(name: "d", value: 10),]),
+//            Plot(title: "Hello", equation: Equation(latex: "y=x^5", function: NSNull()),
+//                 parameters: [.init(name: "w", value: 2),
+//                              .init(name: "r", value: 5)]),
+//            Plot(title: "Hello", equation: Equation(latex: "y=sin(x^z)", function: NSNull()),
+//                 parameters: [.init(name: "a", value: -2),
+//                              .init(name: "b", value: -4)]),
+//        ])
         let vc = TopicPlotsVC()
         let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()

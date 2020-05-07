@@ -86,3 +86,24 @@ extension Reactive where Base: PlotEquationParameter  {
     var minValue: Observable<Double> { base.minValueSubject }
     var maxValue: Observable<Double> { base.maxValueSubject }
 }
+
+
+// MARK: - Equatable
+
+extension PlotEquationParameter: Equatable {
+    static func == (lhs: PlotEquationParameter,
+                    rhs: PlotEquationParameter) -> Bool {
+        lhs.name == rhs.name &&
+        lhs.value == rhs.value &&
+        lhs.minValue == rhs.minValue &&
+        lhs.maxValue == rhs.maxValue
+    }
+}
+
+// MARK: Hashable
+
+extension PlotEquationParameter: Hashable {
+    func hash(into hasher: inout Hasher) {
+        "\(name)\(value)\(minValue)\(maxValue)".hash(into: &hasher)
+    }
+}

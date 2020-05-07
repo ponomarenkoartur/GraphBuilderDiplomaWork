@@ -17,6 +17,7 @@
 		040FE8232451A3C100F42C24 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8222451A3C100F42C24 /* Configurator.swift */; };
 		040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
 		040FE8272451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */; };
+		0411CC5F24644B89001A3183 /* NSRegularExpression extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */; };
 		0412E6982459793A00AAB427 /* PlotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E6972459793A00AAB427 /* PlotPresenter.swift */; };
 		0412E69A24597F3300AAB427 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69924597F3300AAB427 /* PlotView.swift */; };
 		0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69B2459810B00AAB427 /* BaseSCNView.swift */; };
@@ -288,6 +289,7 @@
 		040FE8222451A3C100F42C24 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCellConfigurator.swift; sourceTree = "<group>"; };
+		0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression extension.swift"; sourceTree = "<group>"; };
 		0412E6972459793A00AAB427 /* PlotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresenter.swift; sourceTree = "<group>"; };
 		0412E69924597F3300AAB427 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		0412E69B2459810B00AAB427 /* BaseSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNView.swift; sourceTree = "<group>"; };
@@ -973,6 +975,7 @@
 				04CE0E1E244B11E8006B19B0 /* Error extension.swift */,
 				04CE0E23244B11E8006B19B0 /* Number extension.swift */,
 				046E98C6244B4DE400611091 /* Collection extension.swift */,
+				0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1427,6 +1430,7 @@
 				04A7D16B2453085000503CAE /* Math functions.swift in Sources */,
 				042BC5A72450637200950B15 /* TopicsContainerCell.swift in Sources */,
 				04A7D16F2453189000503CAE /* SandboxEquationCell.swift in Sources */,
+				0411CC5F24644B89001A3183 /* NSRegularExpression extension.swift in Sources */,
 				04015C6D245719430094DFE6 /* CGSize extension.swift in Sources */,
 				04CE0E35244B13F0006B19B0 /* WelcomeVC.swift in Sources */,
 				04015C6B245717B80094DFE6 /* PlotColorPickerCell.swift in Sources */,

@@ -23,8 +23,12 @@ extension String {
     }
     
     var containsOnlyDigits: Bool {
-        return CharacterSet.decimalDigits
+        CharacterSet.decimalDigits
             .isSuperset(of: CharacterSet(charactersIn: self))
+    }
+    
+    var range: NSRange {
+        NSRange(location: 0, length: count)
     }
     
     enum PaddingSide {
