@@ -55,6 +55,6 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     func updatePlotEquation(at index: Int, newEquation: String) {
         let plot = plotsList[index]
         guard plot.equation.latex != newEquation else { return }
-        plot.equation = Equation(equation: newEquation)
+        plot.equation.setEquation(newEquation)
     }
 }
