@@ -30,6 +30,11 @@ class SandboxDataBinder<ViewModel>:
                 self.views.forEach { $0.setPlotList(list) }
             }
         }
+        viewModel.didUpdateParameterList = { plot, index in
+            DispatchQueue.main.async {
+                self.views.forEach { $0.updateParametersOfPlot(at: index) }
+            }
+        }
         
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in

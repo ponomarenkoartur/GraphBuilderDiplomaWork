@@ -41,4 +41,9 @@ extension UITableView {
                        animationStyle: RowAnimation = .automatic) {
         deleteSections([index], animationStyle: animationStyle)
     }
+    
+    func reloadSection(_ index: Int,
+                       animationStyle: RowAnimation = .automatic) {
+        reloadSections([index], animationStyle: animationStyle)
+    }
 }

@@ -25,6 +25,7 @@ protocol SandboxVCProtocol: UIViewController {
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
     func setPlotList(_ list: [Plot])
+    func updateParametersOfPlot(at index: Int)
 }
 
 
@@ -346,6 +347,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         equationsTableView.reloadData()
     }
     
+    func updateParametersOfPlot(at index: Int) {
+        let section = index + 1
+        equationsTableView.reloadSection(section)
+    }
+    
     
     // MARK: - Other Methods
     
@@ -419,6 +425,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func isLastSection(_ section: Int) -> Bool {
         section == numberOfSections(in: equationsTableView) - 1
     }
+    
+    
+    private func isEquationSection(_ section: Int) -> Bool {
+        section.isMultiple(of: 2) && !isLastSection(section)
+    }
 }
 
 
@@ -426,7 +437,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
 
 extension SandboxVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        plotsList.count + 1
+        plotsList.count * 2 + 1
     }
     
     func tableView(_ tableView: UITableView,
@@ -434,9 +445,9 @@ extension SandboxVC: UITableViewDataSource {
         if isLastSection(section) {
             return 1
         } else {
-            let plot = plotsList[section]
-            let parametersCount = plot.equation.parameters.count
-            return parametersCount == 0 ? 1 : parametersCount + 1
+            let plotIndex = section / 2
+            let plot = plotsList[plotIndex]
+            return isEquationSection(section) ? 1 : plot.equation.parameters.count
         }
     }
     
@@ -450,17 +461,17 @@ extension SandboxVC: UITableViewDataSource {
             return cell
         }
         
-        let plot = plotsList[indexPath.section]
+        let plotIndex = indexPath.section / 2
+        let plot = plotsList[plotIndex]
 
-        switch indexPath.row {
-        case 0:
+        if isEquationSection(indexPath.section) {
             let cell = tableView
                 .dequeue(SandboxEquationCell.self, for: indexPath) ??
                 SandboxEquationCell()
-            self.prepare(cell, for: indexPath.section, with: plot)
+            self.prepare(cell, for: plotIndex, with: plot)
             return cell
-        default:
-            let parameter = plot.equation.parameters[indexPath.row - 1]
+        } else {
+            let parameter = plot.equation.parameters[indexPath.row]
             let cell = tableView
                 .dequeue(PlotParameterCell.self, for: indexPath) ??
                 PlotParameterCell()
@@ -478,6 +489,9 @@ extension SandboxVC: UITableViewDelegate {
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
+            guard isEquationSection(indexPath.section) else {
+                return nil
+            }
             let deleteAction = UIContextualAction(
                 style: .destructive, title: "Delete") { (_, _, _) in
                 self.didTapDeleteEquation(indexPath.section)

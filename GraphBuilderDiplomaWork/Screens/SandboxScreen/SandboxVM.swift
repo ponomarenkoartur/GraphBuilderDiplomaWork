@@ -13,6 +13,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didRemovePlot: (_ plot: Plot, _ index: Int) -> () { get set }
     var didAddPlot: (_ plot: Plot, _ index: Int) -> () { get set }
     var didSetPlotList: (_ list: [Plot]) -> () { get set }
+    var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () { get set }
     var plotsList: [Plot] { get }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
@@ -32,6 +33,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didAddPlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didRemovePlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didSetPlotList: (_ list: [Plot]) -> () = { _ in }
+    var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     
     
     // MARK: - API Methods
@@ -55,6 +57,11 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     func updatePlotEquation(at index: Int, newEquation: String) {
         let plot = plotsList[index]
         guard plot.equation.latex != newEquation else { return }
+        let oldParameters = plot.equation.parameters
         plot.equation.setEquation(newEquation)
+        let newParameters = plot.equation.parameters
+        if oldParameters != newParameters {
+            didUpdateParameterList(plot, index)
+        }
     }
 }
