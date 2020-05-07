@@ -31,6 +31,8 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     private func setupGrid() {
         let node = PlotGrid()
         addNodes(node)
+        
+        node.setOriginOffset(SCNVector3(0.5, -0.5, 0.75))
     }
     
     
@@ -63,6 +65,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                     geometry.firstMaterial?.isDoubleSided = true
                     geometry.firstMaterial?.diffuse.contents = plot.color
                     node.geometry = geometry
+                    node.opacity = 0.7
                     plot.error = nil
                 } catch let error {
                     plot.error = error
