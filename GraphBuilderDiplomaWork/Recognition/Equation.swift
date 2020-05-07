@@ -23,36 +23,45 @@ struct Equation {
     private(set) var latex: String
     var function: String {
         var equation = latex as NSString
-        var parametersRanges = self.parametersRanges
-        for i in (0..<parametersRanges.count) {
-            let parameterRange = parametersRanges[i]
-            let variableName = parameterRange.parameter.name
-            let value = "\(parameterRange.parameter.value)"
+        var sortedRangesParameters = self.sortedRangesParameters
+        for i in (0..<sortedRangesParameters.count) {
+            let rangeParameter = sortedRangesParameters[i]
+            let variableName = rangeParameter.parameter.name
+            let value = "\(rangeParameter.parameter.value)"
             let subtitutedValueLengthDifference =
                 value.count - variableName.count
 
-            let range = parameterRange.range
+            let range = rangeParameter.range
             equation = equation.replacingCharacters(in: range, with: value)
                 as NSString
             
-            parametersRanges
+            sortedRangesParameters
                 .map { $0.range }
                 .enumerated()
                 .forEach { j, range in
                     guard j > i else { return }
-                    parametersRanges[j].range.location =
+                    sortedRangesParameters[j].range.location =
                         range.location + subtitutedValueLengthDifference
                 }
         }
         return equation as String
     }
-    var parameters: [PlotEquationParameter] {
-        parametersRanges
-            .map { $0.parameter }
-            .removingDuplicates { $0.name == $1.name }
+    private(set) var parameters: [PlotEquationParameter] = []
+    private var parametersRanges: [PlotEquationParameter: [NSRange]] = [:]
+    private var sortedRangesParameters:
+        [(range: NSRange, parameter: PlotEquationParameter)] {
+        var sortedRangesParameters: [(NSRange, PlotEquationParameter)] = []
+        parametersRanges.forEach { (parameter, ranges) in
+            sortedRangesParameters.append(contentsOf:
+                ranges.map { range in (range, parameter) }
+            )
+        }
+        return sortedRangesParameters.sorted {
+            (rangeParameter0: (range: NSRange, PlotEquationParameter),
+            rangeParameter1: (range: NSRange, PlotEquationParameter)) -> Bool in
+            rangeParameter0.range.location < rangeParameter1.range.location
+        }
     }
-    private var parametersRanges:
-        [(parameter: PlotEquationParameter, range: NSRange)] = []
     private let parametersRegex = try! NSRegularExpression(
         pattern: Self.parametersRegexString)
     
@@ -78,15 +87,22 @@ struct Equation {
     private mutating func parseParameters() {
         let results = parametersRegex.matches(in: latex)
         
-        parametersRanges.removeAllExceptIntersect(with: results) {
-            $0.parameter.name == $1.group
+        parameters.removeAllExceptIntersect(with: results) {
+            $0.name == $1.group
         }
+        parametersRanges.removeAllExceptIntersectOfKeys(with: results) {
+            $0.name == $1.group
+        }
+        
         results
             .removingAllIntersection(with: parameters) { $0.group == $1.name }
-            .forEach {
+            .forEach { match in
                 let parameter = PlotEquationParameter(
-                    name: $0.group, value: Self.defaultParameterValue)
-                parametersRanges.append((parameter, $0.range))
+                    name: match.group, value: Self.defaultParameterValue)
+                parametersRanges[parameter] =
+                    parametersRanges[parameter]?.appending(match.range) ??
+                    [match.range]
+                parameters.appendIfDoesntContain(parameter)
             }
     }
 }

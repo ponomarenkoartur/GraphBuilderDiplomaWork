@@ -79,6 +79,8 @@
 		0411CC9B24646297001A3183 /* SCNScene extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882924617E3600078B80 /* SCNScene extension.swift */; };
 		0411CC9C24646297001A3183 /* CGSize extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6C245719430094DFE6 /* CGSize extension.swift */; };
 		0411CC9D24646297001A3183 /* NSRegularExpression extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */; };
+		0411CC9F246485A9001A3183 /* Dictionary extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC9E246485A9001A3183 /* Dictionary extension.swift */; };
+		0411CCA0246487F3001A3183 /* Dictionary extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411CC9E246485A9001A3183 /* Dictionary extension.swift */; };
 		0412E6982459793A00AAB427 /* PlotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E6972459793A00AAB427 /* PlotPresenter.swift */; };
 		0412E69A24597F3300AAB427 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69924597F3300AAB427 /* PlotView.swift */; };
 		0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412E69B2459810B00AAB427 /* BaseSCNView.swift */; };
@@ -352,6 +354,7 @@
 		040FE8262451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCellConfigurator.swift; sourceTree = "<group>"; };
 		0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression extension.swift"; sourceTree = "<group>"; };
 		0411CC60246461C2001A3183 /* EquationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationTests.swift; sourceTree = "<group>"; };
+		0411CC9E246485A9001A3183 /* Dictionary extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary extension.swift"; sourceTree = "<group>"; };
 		0412E6972459793A00AAB427 /* PlotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresenter.swift; sourceTree = "<group>"; };
 		0412E69924597F3300AAB427 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		0412E69B2459810B00AAB427 /* BaseSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNView.swift; sourceTree = "<group>"; };
@@ -1039,6 +1042,7 @@
 				04CE0E23244B11E8006B19B0 /* Number extension.swift */,
 				046E98C6244B4DE400611091 /* Collection extension.swift */,
 				0411CC5E24644B89001A3183 /* NSRegularExpression extension.swift */,
+				0411CC9E246485A9001A3183 /* Dictionary extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1402,6 +1406,7 @@
 				0411CC9924646297001A3183 /* NamedSwitchControl.swift in Sources */,
 				0411CC9A24646297001A3183 /* SCNNode extension.swift in Sources */,
 				0411CC9B24646297001A3183 /* SCNScene extension.swift in Sources */,
+				0411CCA0246487F3001A3183 /* Dictionary extension.swift in Sources */,
 				0411CC9C24646297001A3183 /* CGSize extension.swift in Sources */,
 				0411CC9D24646297001A3183 /* NSRegularExpression extension.swift in Sources */,
 				042BC56524505B5E00950B15 /* RecognitionViewController.swift in Sources */,
@@ -1565,6 +1570,7 @@
 				040A2BF1245B828A00BDA83D /* ExpressionEvalutaion.swift in Sources */,
 				046E98D1244B563000611091 /* TopicCell.swift in Sources */,
 				04CE0E40244B1468006B19B0 /* BaseCollectionViewCell.swift in Sources */,
+				0411CC9F246485A9001A3183 /* Dictionary extension.swift in Sources */,
 				04D43FF9245035ED00034A89 /* TopicContentItem.swift in Sources */,
 				04CE0E42244B1468006B19B0 /* BaseVM.swift in Sources */,
 				048D6D0C245465BD0001FC7D /* SandboxVM.swift in Sources */,

@@ -99,4 +99,10 @@ extension Array where Element: Equatable {
             !other.contains(where: { item == $0 })
         }
     }
+    
+    mutating func appendIfDoesntContain(_ element: Element) {
+        if !self.contains(element) {
+            append(element)
+        }
+    }
 }
