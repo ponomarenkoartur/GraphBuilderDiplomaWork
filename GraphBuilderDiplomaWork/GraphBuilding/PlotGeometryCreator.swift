@@ -87,13 +87,7 @@ class PlotGeometryCreator {
         
         let gridSideSize = Int(sqrt(Double(points.count)))
         
-//        let uniqueX = Set(points.map { $0.x })
-//        let uniqueZ = Set(points.map { $0.z })
-//
-//        guard gridSideSize == uniqueX.count,
-//            gridSideSize == uniqueZ.count else {
-//                throw GrapghBuildingError.invalidPointsGrid
-//        }
+        // TODO: Add a validation that every point is in a grid
 
 
         var indices: [Int] = []
