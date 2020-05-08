@@ -98,6 +98,7 @@ struct Equation {
             parametersRanges[i].ranges = []
         }
         
+        
         results
             .removingAllIntersection(with: parametersRanges) {
                 $0.group == $1.parameter.name &&
@@ -108,7 +109,7 @@ struct Equation {
                     name: match.group, value: Self.defaultParameterValue)
                 
                 if let index = parametersRanges.firstIndex(where: {
-                    $0.parameter == parameter
+                    $0.parameter.name == parameter.name
                 }) {
                     parametersRanges[index].ranges.append(match.range)
                 } else {

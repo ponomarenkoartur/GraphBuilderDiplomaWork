@@ -16,6 +16,7 @@ class BaseTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     let bag = DisposeBag()
+    private(set) var externalBindingBag = DisposeBag()
     
     
     // MARK: - Initialization
@@ -56,4 +57,8 @@ class BaseTableViewCell: UITableViewCell {
     func setupConstraints() {}
     
     func setupBinding() {}
+    
+    func resetExternalBinding() {
+        externalBindingBag = DisposeBag()
+    }
 }

@@ -364,7 +364,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func prepare(_ cell: SandboxEquationCell, for index: Int,
                          with item: Plot) {
         SandboxEquationCellConfigurator(cell: cell)
-            .configure(with: (index, item))
+            .configure(with: (index + 1, item))
         cell.didTapPlotImageButton = {
             self.didTapShowPlot(item.isHidden, index)
             self.isColorPickerHidden = true
@@ -377,6 +377,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         cell.didChangeEquationText = { text in
             self.didChangeEquationText(item, index, text)
         }
+        
     }
     
     private func prepare(_ cell: PlotParameterCell,

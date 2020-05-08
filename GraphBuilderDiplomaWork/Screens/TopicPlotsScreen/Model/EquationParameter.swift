@@ -28,6 +28,7 @@ class EquationParameter {
             if newValue < minValue {
                 minValue = newValue
             }
+            print("\(name): \(newValue)")
         }
     }
     var minValue: Double {
