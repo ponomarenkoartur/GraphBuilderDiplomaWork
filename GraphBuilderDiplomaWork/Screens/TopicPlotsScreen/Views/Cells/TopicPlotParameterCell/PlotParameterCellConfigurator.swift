@@ -30,27 +30,7 @@ BaseTableCellConfigurator<EquationParameter, PlotParameterCell> {
         cell.parameterValueTextField.rx.numberValueUserInput
             .subscribe(onNext: { assignIfValueIsNotNil(&data.value, $0) })
             .disposed(by: cell.bag)
-        cell.slider.rx.value
-            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: {
-                let value = Double($0)
-                let delta = data.maxValue - data.minValue
-                var step: Double
-                let multiplier = 10.0
-                if delta > 1 {
-                    step = 0.01
-                    while step * 100 < delta {
-                        step *= multiplier
-                    }
-                } else {
-                    step = 0.1
-                    while step * 100 > delta {
-                        step /= multiplier
-                    }
-                }
-                data.value = value.rounded(toPlaces: Int(-log10(step)))
-            })
-            .disposed(by: cell.bag)
+        cell.didChangeSliderValue = { data.value = $0 }
         cell.minParameterValueTextField.rx.numberValueUserInput
             .subscribe(onNext: { assignIfValueIsNotNil(&data.minValue, $0) })
             .disposed(by: cell.bag)

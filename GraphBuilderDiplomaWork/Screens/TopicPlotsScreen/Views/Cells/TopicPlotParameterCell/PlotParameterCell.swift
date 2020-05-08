@@ -13,6 +13,13 @@ import RxSwift
 class PlotParameterCell: BaseTableViewCell {
     
     
+    // MARK: - Properties
+    
+    // MARK: Callbacks
+    
+    var didChangeSliderValue: (_ value: Double) -> () = { _ in }
+    
+    
     // MARK: Views
     
     private lazy var stackView: UIStackView = {
@@ -60,9 +67,31 @@ class PlotParameterCell: BaseTableViewCell {
         return stackView
     }()
     
-    private(set) lazy var slider: UISlider = {
+    private lazy var slider: UISlider = {
         let slider = UISlider()
         slider.tintColor = Color.turquoise()
+        slider.rx.value
+            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
+            .subscribe(onNext: {
+                var value = Double($0)
+                let delta = Double(slider.maximumValue - slider.minimumValue)
+                var step: Double
+                let multiplier = 10.0
+                if delta > 1 {
+                    step = 0.01
+                    while step * 100 < delta {
+                        step *= multiplier
+                    }
+                } else {
+                    step = 0.1
+                    while step * 100 > delta {
+                        step /= multiplier
+                    }
+                }
+                value = value.rounded(toPlaces: Int(-log10(step)))
+                self.didChangeSliderValue(value)
+            })
+            .disposed(by: bag)
         return slider
     }()
     
