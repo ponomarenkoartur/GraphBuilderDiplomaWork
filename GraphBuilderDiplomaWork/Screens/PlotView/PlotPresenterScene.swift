@@ -54,22 +54,12 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             })
             .disposed(by: bag)
         
+        var parametersDiposable: Disposable?
         plot.rx.equation
             .subscribe(onNext: { equation in
-                do {
-                    let points = try self.equationTransformator
-                        .getPoints(from: plot.equation)
-                    guard let geometry = try? PlotGeometryCreator().build(points)
-                        else { return }
-                    geometry.firstMaterial?.lightingModel = .blinn
-                    geometry.firstMaterial?.isDoubleSided = true
-                    geometry.firstMaterial?.diffuse.contents = plot.color
-                    node.geometry = geometry
-                    node.opacity = 0.7
-                    plot.error = nil
-                } catch let error {
-                    plot.error = error
-                }
+                self.updateGeometry(with: plot, of: node)
+                parametersDiposable?.dispose()
+                parametersDiposable = self.observeParameters(plot, node: node)
             })
             .disposed(by: bag)
         
@@ -106,4 +96,29 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     func screenshot() -> UIImage { UIImage() }
 
     
+    // MARK: - Private Methods
+    
+    private func observeParameters(_ plot: Plot, node: SCNNode) -> Disposable {
+        Observable.combineLatest(plot.equation.parameters.map { $0.rx.value })
+            .subscribe(onNext: { _ in
+                self.updateGeometry(with: plot, of: node)
+            })
+    }
+    
+    private func updateGeometry(with plot: Plot, of node: SCNNode) {
+        do {
+            let points = try self.equationTransformator
+                .getPoints(from: plot.equation)
+            guard let geometry = try? PlotGeometryCreator().build(points)
+                else { return }
+            geometry.firstMaterial?.lightingModel = .blinn
+            geometry.firstMaterial?.isDoubleSided = true
+            geometry.firstMaterial?.diffuse.contents = plot.color
+            node.geometry = geometry
+            node.opacity = 0.7
+            plot.error = nil
+        } catch let error {
+            plot.error = error
+        }
+    }
 }

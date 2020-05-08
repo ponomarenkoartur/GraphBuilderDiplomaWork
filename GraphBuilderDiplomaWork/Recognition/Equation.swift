@@ -46,7 +46,7 @@ struct Equation {
         }
         return equation as String
     }
-    private(set) var parametersRanges: [(parameter: EquationParameter, ranges: [NSRange])] = []
+    private var parametersRanges: [(parameter: EquationParameter, ranges: [NSRange])] = []
     var parameters: [EquationParameter] {
         parametersRanges
             .map { $0.parameter }
