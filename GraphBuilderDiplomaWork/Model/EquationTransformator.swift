@@ -13,10 +13,13 @@ import SceneKit
 class EquationTransformator {
     
     
+    
     // MARK: - Properties
     
     var minX: Float = -1
     var maxX: Float = 1
+    var minY: Float = -1
+    var maxY: Float = 1
     var minZ: Float = -1
     var maxZ: Float = 1
     var step: Float = 0.1
@@ -24,7 +27,7 @@ class EquationTransformator {
     
     // MARK: - API Methods
     
-    func getPoints(from equation: Equation) throws -> [Point] {
+    func getPoints(from equation: Equation) throws -> [Point?] {
         try getPoints(equation.function)
     }
     
@@ -52,8 +55,8 @@ class EquationTransformator {
         return points
     }
     
-    private func getPoints(_ equationString: String) throws -> [Point] {
-        var points: [Point] = []
+    private func getPoints(_ equationString: String) throws -> [Point?] {
+        var points: [Point?] = []
         
         let equationString =
             try convertEquationStringToValidExpression(equationString)
@@ -64,9 +67,14 @@ class EquationTransformator {
                     .replacingOccurrences(of: "x", with: "(\(x))")
                     .replacingOccurrences(of: "z", with: "(\(z))")
                 guard let y = try eval(substitutedEquationString) else {
+                    points.append(nil)
                     continue
                 }
-                points.append(Vector3(x: x, y: Float(y), z: z))
+                if y < Double(minY) || y > Double(maxY) {
+                    points.append(nil)
+                } else {
+                    points.append(Vector3(x: x, y: Float(y), z: z))   
+                }
             }
         }
         

@@ -49,13 +49,13 @@ class PlotGeometryCreator {
     }
     
     
-    func build(_ points: [Point]) throws -> SCNGeometry? {
+    func build(_ points: [Point?]) throws -> SCNGeometry? {
         var geometry: SCNGeometry?
         switch points {
         case let points where points is [Vector2]:
             geometry = try build2DGeometry(points as! [Vector2])
-        case let points where points is [Vector3]:
-            geometry = try build3DGeometry(points as! [Vector3])
+        case let points where points is [Vector3?]:
+            geometry = try build3DGeometry(points as! [Vector3?])
         default:
             return nil
         }
@@ -80,20 +80,20 @@ class PlotGeometryCreator {
         return shape
     }
     
-    private func build3DGeometry(_ points: [Vector3]) throws -> SCNGeometry? {
+    private func build3DGeometry(_ points: [Vector3?]) throws -> SCNGeometry? {
         guard sqrt(Double(points.count)).isInteger else {
             throw GrapghBuildingError.invalidPointsCount
         }
         
         let gridSideSize = Int(sqrt(Double(points.count)))
         
-        let uniqueX = Set(points.map { $0.x })
-        let uniqueZ = Set(points.map { $0.z })
-        
-        guard gridSideSize == uniqueX.count,
-            gridSideSize == uniqueZ.count else {
-                throw GrapghBuildingError.invalidPointsGrid
-        }
+//        let uniqueX = Set(points.map { $0.x })
+//        let uniqueZ = Set(points.map { $0.z })
+//
+//        guard gridSideSize == uniqueX.count,
+//            gridSideSize == uniqueZ.count else {
+//                throw GrapghBuildingError.invalidPointsGrid
+//        }
 
 
         var indices: [Int] = []
@@ -102,17 +102,19 @@ class PlotGeometryCreator {
 
         for i in 0..<pointsCount {
             guard i + gridSideSize < pointsCount else { continue }
-            if (i + 1) % gridSideSize != 0 {
-                indices.append(contentsOf:
-                    downTrianglePoints(origin: i, gridSideSize: gridSideSize))
+            if (i + 1) % gridSideSize != 0,
+                let trianglePoints = trianglePoints(origin: i, gridSideSize: gridSideSize, direction: .down, points: points) {
+                indices.append(contentsOf: trianglePoints)
             }
-            if i % gridSideSize != 0 {
-                indices.append(contentsOf:
-                    upTrianglePoints(origin: i, gridSideSize: gridSideSize))
+            if i % gridSideSize != 0,
+                let trianglePoints = trianglePoints(origin: i, gridSideSize: gridSideSize, direction: .up, points: points) {
+                indices.append(contentsOf: trianglePoints)
             }
         }
 
-        let source = SCNGeometrySource(vertices: points)
+        let source = SCNGeometrySource(vertices: points.map {
+            $0 ?? SCNVector3(1, 1, 1)
+        })
         let element = SCNGeometryElement(indices: indices.map { UInt16($0) },
                                          primitiveType: .triangles)
         return SCNGeometry(sources: [source], elements: [element])
@@ -121,29 +123,58 @@ class PlotGeometryCreator {
     
     /*
      
-       0•–––•2
-        |  /
-        | /
-        |/
-       1•
+             down triangles
+     
+          0•–––•1      0•–––•1
+           |  /          \  |
+           | /            \ |
+           |/              \|
+          2•                •2
+     
+              up triangles
+        
+               •1       0•
+              /|         |\
+             / |         | \
+            /  |         |  \
+          0•–––•2       1•–––•2
      
      */
-    private func downTrianglePoints(origin: Int, gridSideSize: Int) -> [Int] {
-        [origin, origin + gridSideSize, origin + 1]
-    }
     
-    
-    /*
-    
-           •0
-          /|
-         / |
-        /  |
-      1•–––•2
-    
-    */
-    private func upTrianglePoints(origin: Int, gridSideSize: Int) -> [Int] {
-        [origin, origin + gridSideSize - 1, origin + gridSideSize]
+    private enum TriangleDirection { case down, up }
+    private func trianglePoints(origin: Int, gridSideSize: Int, direction: TriangleDirection, points: [Vector3?]) -> [Int]? {
+        let indexesGroups: [[Int]]
+        switch direction {
+        case .down:
+            indexesGroups = [
+                [origin, origin + gridSideSize, origin + 1],
+                [origin, origin + gridSideSize, origin + gridSideSize + 1]
+            ]
+        case .up:
+            indexesGroups = [
+                [origin, origin + gridSideSize - 1, origin + gridSideSize],
+                [origin, origin - 1, origin + gridSideSize]
+            ]
+        }
+        
+        for indexesGroup in indexesGroups {
+            var isGroupAppropriate = false
+            
+            inner:
+            for pointIndex in indexesGroup {
+                if points.hasIndex(pointIndex), let _ = points[pointIndex] {
+                    isGroupAppropriate = true
+                } else {
+                    isGroupAppropriate = false
+                    break inner
+                }
+            }
+            if isGroupAppropriate {
+                return indexesGroup
+            }
+        }
+
+        return nil
     }
     
 }

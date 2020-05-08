@@ -22,18 +22,6 @@ extension Array {
         return selfCopy
     }
     
-    func hasIndex(_ index: Int) -> Bool {
-        return index >= 0 && index < count
-    }
-    
-    var lastIndex: Int {
-        return self.count - 1
-    }
-    
-    func safeSubscript(_ index: Int) -> Element? {
-        hasIndex(index) ? self[index] : nil
-    }
-    
     mutating func appendIfNotNil(_ element: Element?) {
         if let element = element {
             append(element)

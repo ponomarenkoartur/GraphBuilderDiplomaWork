@@ -332,7 +332,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         plotsList.remove(at: index)
         
         self.equationsTableView.performBatchUpdates({
-            self.equationsTableView.deleteSection(index)
+            let sectionsToDelete = [
+                getPlotCellSection(from: index),
+                getParametersCellsSection(from: index)
+            ]
+            self.equationsTableView.deleteSections(sectionsToDelete)
             self.equationsTableView.reloadData()
         })
         
@@ -431,6 +435,22 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func isEquationSection(_ section: Int) -> Bool {
         section.isMultiple(of: 2) && !isLastSection(section)
     }
+    
+    private func getPlotIndex(from section: Int) -> Int {
+        section / 2
+    }
+    
+    private func getPlotIndex(from indexPath: IndexPath) -> Int {
+        getPlotIndex(from: indexPath.section)
+    }
+    
+    private func getPlotCellSection(from plotIndex: Int) -> Int {
+        plotIndex * 2
+    }
+    
+    private func getParametersCellsSection(from plotIndex: Int) -> Int {
+        plotIndex * 2 + 1
+    }
 }
 
 
@@ -446,7 +466,7 @@ extension SandboxVC: UITableViewDataSource {
         if isLastSection(section) {
             return 1
         } else {
-            let plotIndex = section / 2
+            let plotIndex = getPlotIndex(from: section)
             let plot = plotsList[plotIndex]
             return isEquationSection(section) ? 1 : plot.equation.parameters.count
         }
@@ -462,7 +482,7 @@ extension SandboxVC: UITableViewDataSource {
             return cell
         }
         
-        let plotIndex = indexPath.section / 2
+        let plotIndex = getPlotIndex(from: indexPath)
         let plot = plotsList[plotIndex]
 
         if isEquationSection(indexPath.section) {
@@ -495,7 +515,8 @@ extension SandboxVC: UITableViewDelegate {
             }
             let deleteAction = UIContextualAction(
                 style: .destructive, title: "Delete") { (_, _, _) in
-                self.didTapDeleteEquation(indexPath.section)
+                    let plotIndex = self.getPlotIndex(from: indexPath)
+                    self.didTapDeleteEquation(plotIndex)
             }
             deleteAction.backgroundColor = Color.turquoise()
             return UISwipeActionsConfiguration(actions: [deleteAction])

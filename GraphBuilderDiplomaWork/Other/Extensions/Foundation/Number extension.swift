@@ -49,3 +49,4 @@ extension Float {
 extension NSNumber {
     var isInteger: Bool { NSNumber(value: intValue) == self }
 }
+

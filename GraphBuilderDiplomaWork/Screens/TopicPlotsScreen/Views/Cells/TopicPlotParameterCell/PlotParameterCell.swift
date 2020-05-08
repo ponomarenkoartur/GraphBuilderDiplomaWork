@@ -63,12 +63,6 @@ class PlotParameterCell: BaseTableViewCell {
     private(set) lazy var slider: UISlider = {
         let slider = UISlider()
         slider.tintColor = Color.turquoise()
-        slider.rx.value
-            .subscribe(onNext: { value in
-                let value = value.rounded()
-                
-            })
-            .disposed(by: bag)
         return slider
     }()
     

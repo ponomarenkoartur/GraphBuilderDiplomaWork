@@ -117,7 +117,7 @@ class GraphARSCNView: ARSCNView {
     
     // MARK: - API Methods
     
-    func build(_ points: [Point]) throws {
+    func build(_ points: [Point?]) throws {
         guard let geometry = try PlotGeometryCreator().build(points)
             else { return }
         graphNode?.removeFromParentNode()

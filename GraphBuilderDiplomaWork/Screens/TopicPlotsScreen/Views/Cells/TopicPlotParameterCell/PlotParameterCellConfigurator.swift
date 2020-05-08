@@ -31,7 +31,11 @@ class PlotParameterCellConfigurator:
             .subscribe(onNext: { assignIfValueIsNotNil(&data.value, $0) })
             .disposed(by: cell.bag)
         cell.slider.rx.value
-            .subscribe(onNext: { data.value = Double($0).rounded() })
+            .subscribe(onNext: {
+                let value = Double($0)
+                let step = 10.0
+                data.value = (value * step).rounded() / step
+            })
             .disposed(by: cell.bag)
         cell.minParameterValueTextField.rx.numberValueUserInput
             .subscribe(onNext: { assignIfValueIsNotNil(&data.minValue, $0) })

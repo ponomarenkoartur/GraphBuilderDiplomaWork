@@ -14,4 +14,30 @@ extension Collection {
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
+    
+    func hasIndex(_ index: Int) -> Bool {
+        index >= 0 && index < count
+    }
+    
+    func hasIndexes(_ indexes: Int...) -> Bool {
+        for index in indexes {
+            if !hasIndex(index) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func hasIndexes(_ indexes: [Int]) -> Bool {
+        for index in indexes {
+            if !hasIndex(index) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    var lastIndex: Int {
+        return self.count - 1
+    }
 }

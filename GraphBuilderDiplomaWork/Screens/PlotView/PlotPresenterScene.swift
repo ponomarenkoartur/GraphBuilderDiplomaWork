@@ -31,8 +31,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     private func setupGrid() {
         let node = PlotGrid()
         addNodes(node)
-        
-        node.setOriginOffset(SCNVector3(0.5, -0.5, 0.75))
     }
     
     
