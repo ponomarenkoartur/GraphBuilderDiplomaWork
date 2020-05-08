@@ -36,18 +36,18 @@ class PlotParameterCellConfigurator:
                 let value = Double($0)
                 let delta = data.maxValue - data.minValue
                 var step = 1.0
-                let multiplier = delta > 1 ? 10.0 : 0.1
-                while (delta > 1 ? step * 100 < delta : step * 10 > delta) {
-                    step *= multiplier
-                }
-                if step > 1 {
-                    let step = Int(step)
-                    let value = Int(value)
-                    data.value = Double((value + step / 2) / step * step)
+                let multiplier = 10.0
+                if delta > 1 {
+                    while step * 100 < delta {
+                        step *= multiplier
+                    }
                 } else {
-                    data.value = value.rounded(toPlaces: Int(1 / step))
+                    while step * 10 > delta {
+                        step /= multiplier
+                    }
                 }
                 
+                data.value = value.rounded(toPlaces: Int(-log10(step / 10)))
             })
             .disposed(by: cell.bag)
         cell.minParameterValueTextField.rx.numberValueUserInput
