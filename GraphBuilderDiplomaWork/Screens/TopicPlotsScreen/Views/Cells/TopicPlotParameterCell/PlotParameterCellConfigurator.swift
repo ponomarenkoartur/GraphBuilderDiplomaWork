@@ -10,7 +10,7 @@ import RxSwift
 
 
 class PlotParameterCellConfigurator:
-    BaseTableCellConfigurator<EquationParameter, PlotParameterCell> {
+BaseTableCellConfigurator<EquationParameter, PlotParameterCell> {
     
     
     override func configure(with data: EquationParameter) {
@@ -35,19 +35,20 @@ class PlotParameterCellConfigurator:
             .subscribe(onNext: {
                 let value = Double($0)
                 let delta = data.maxValue - data.minValue
-                var step = 1.0
+                var step: Double
                 let multiplier = 10.0
                 if delta > 1 {
+                    step = 0.01
                     while step * 100 < delta {
                         step *= multiplier
                     }
                 } else {
-                    while step * 10 > delta {
+                    step = 0.1
+                    while step * 100 > delta {
                         step /= multiplier
                     }
                 }
-                
-                data.value = value.rounded(toPlaces: Int(-log10(step / 10)))
+                data.value = value.rounded(toPlaces: Int(-log10(step)))
             })
             .disposed(by: cell.bag)
         cell.minParameterValueTextField.rx.numberValueUserInput
