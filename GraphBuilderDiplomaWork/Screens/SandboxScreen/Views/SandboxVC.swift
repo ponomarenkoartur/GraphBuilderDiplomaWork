@@ -62,6 +62,34 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     /// IndexPath of cell that caused appearing of keyboard
     private var triggeredKeyboardCellIndexPath: IndexPath?
     
+    private var tableViewOffsetCausedKeyboard: Observable<CGFloat> {
+        RxKeyboard.instance
+            .visibleHeight
+            .asObservable()
+            .map { keyboardHeight in
+                if keyboardHeight == 0 {
+                    self.triggeredKeyboardCellIndexPath = nil
+                    return 0
+                } else if let indexPath = self.triggeredKeyboardCellIndexPath,
+                    let cell = self.equationsTableView.cellForRow(at: indexPath) {
+                    
+                    let cellHeight = cell.frame.height
+                    let vissibleTableHeight =
+                        self.view.frame.height - self.equationsTableView.frame.minY
+                    
+                    let spaceForCell = vissibleTableHeight - keyboardHeight
+                    if spaceForCell < cellHeight {
+                        return (cellHeight - spaceForCell)
+                    } else {
+                        return 0
+                    }
+                } else {
+                    return 0
+                }
+        }
+        
+    }
+    
     
     // MARK: - Callbacks
     
@@ -282,8 +310,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     override func setupBinding() {
         super.setupBinding()
-        isEquationTableHiddenSubject
-            .subscribe(onNext: { isHidden in
+        Observable.combineLatest(
+            isEquationTableHiddenSubject, tableViewOffsetCausedKeyboard)
+            .subscribe(onNext: { isHidden, tableViewOffsetCausedKeyboard in
                 UIView.animate(
                     withDuration: self.didAppear ? 0.2 : 0, delay: 0,
                     options: [.curveEaseOut], animations: {
@@ -291,7 +320,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                             .constant = isHidden ?
                                 (-WindowSafeArea.insets.bottom - 10) : 0
                         self.tableViewTopToSuperviewBottomConstraint?.constant =
-                            isHidden ? 0 : self.tableViewVissibleOffset
+                            isHidden ? 0 : self.tableViewVissibleOffset - tableViewOffsetCausedKeyboard
                         self.view.layoutSubviews()
                         self.setOpenHidePlotButtonDirection(
                             isHidden ? .up : .down)
@@ -312,10 +341,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         
-        RxKeyboard.instance
-            .visibleHeight
-            .drive(onNext: { self.shiftTableViewIfNeeded(keyboardHeight: $0) })
-            .disposed(by: bag)
+        
     }
     
     private func setupGestureRecognizers() {
@@ -482,36 +508,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private func getParametersCellsSection(from plotIndex: Int) -> Int {
         plotIndex * 2 + 1
-    }
-
-    
-    private func shiftTableViewIfNeeded(keyboardHeight: CGFloat) {
-        guard !isEquationTableHidden else {
-            return
-        }
-        
-        var tableViewOffset = tableViewVissibleOffset
-        if keyboardHeight == 0 {
-            triggeredKeyboardCellIndexPath = nil
-        } else if let indexPath = triggeredKeyboardCellIndexPath,
-            let cell = equationsTableView.cellForRow(at: indexPath) {
-            
-            let cellHeight = cell.frame.height
-            let vissibleTableHeight =
-                view.frame.height - equationsTableView.frame.minY
-            
-            let spaceForCell = vissibleTableHeight - keyboardHeight
-            if spaceForCell < cellHeight {
-                tableViewOffset =
-                    tableViewVissibleOffset - (cellHeight - spaceForCell)
-            }
-        }
-        
-        UIView.animate(withDuration: 0.3) {
-            self.tableViewTopToSuperviewBottomConstraint?.constant =
-                tableViewOffset
-            self.view.layoutSubviews()
-        }
     }
 }
 
