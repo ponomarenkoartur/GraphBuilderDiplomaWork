@@ -59,6 +59,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     /// Index of row that caused appearing of `plotColorPicker`
     private var colorPickerRowTargetIndex: Int?
     
+    /// IndexPath of cell that caused appearing of keyboard
+    private var triggeredKeyboardCellIndexPath: IndexPath?
+    
     
     // MARK: - Callbacks
     
@@ -308,6 +311,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 }
             })
             .disposed(by: bag)
+        
+        RxKeyboard.instance
+            .visibleHeight
+            .drive(onNext: { self.shiftTableViewIfNeeded(keyboardHeight: $0) })
+            .disposed(by: bag)
     }
     
     private func setupGestureRecognizers() {
@@ -377,25 +385,28 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             CGAffineTransform(rotationAngle: direction == .up ? 0 : .pi)
     }
     
-    private func prepare(_ cell: SandboxEquationCell, for index: Int,
+    private func prepare(_ cell: SandboxEquationCell, at indexPath: IndexPath,
                          with item: Plot) {
+        let plotIndex = getPlotIndex(from: indexPath)
+        
         SandboxEquationCellConfigurator(cell: cell)
-            .configure(with: (index + 1, item))
+            .configure(with: (plotIndex + 1, item))
         cell.didTapPlotImageButton = {
-            self.didTapShowPlot(item.isHidden, index)
+            self.didTapShowPlot(item.isHidden, plotIndex)
             self.isColorPickerHidden = true
         }
         cell.didLongPressPlotImageButton = {
-            self.colorPickerRowTargetIndex = index
+            self.colorPickerRowTargetIndex = plotIndex
             self.isColorPickerHidden = false
-            self.moveColorPickerToCell(at: index)
+            self.moveColorPickerToCell(at: plotIndex)
         }
         cell.didChangeEquationText = { text in
-            self.didChangeEquationText(item, index, text)
+            self.didChangeEquationText(item, plotIndex, text)
         }
         cell.didBeginEquationTextEditing = {
-            let section = self.getPlotCellSection(from: index)
+            let section = self.getPlotCellSection(from: plotIndex)
             self.equationsTableView.scroll(section: section)
+            self.triggeredKeyboardCellIndexPath = indexPath
         }
         
     }
@@ -407,6 +418,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         cell.didBeginEditingText = {
             self.equationsTableView
                 .scrollToRow(at: indexPath, at: .top, animated: true)
+            self.triggeredKeyboardCellIndexPath = indexPath
         }
     }
     
@@ -452,7 +464,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         section == numberOfSections(in: equationsTableView) - 1
     }
     
-    
     private func isEquationSection(_ section: Int) -> Bool {
         section.isMultiple(of: 2) && !isLastSection(section)
     }
@@ -471,6 +482,65 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private func getParametersCellsSection(from plotIndex: Int) -> Int {
         plotIndex * 2 + 1
+    }
+    
+//    private func shiftTableViewIfNeeded(keyboardHeight: CGFloat) {
+//        guard keyboardHeight != 0 else {
+//            triggeredKeyboardCellIndexPath = nil
+//            if !isEquationTableHidden {
+//                UIView.animate(withDuration: 0.3) {
+//                    self.tableViewTopToSuperviewBottomConstraint?.constant =
+//                        self.tableViewVissibleOffset
+//                    self.view.layoutSubviews()
+//                }
+//            }
+//            return
+//        }
+//
+//        guard let indexPath = self.triggeredKeyboardCellIndexPath,
+//            let cell = self.equationsTableView.cellForRow(at: indexPath)
+//            else { return }
+//        let cellHeight = cell.frame.height
+//        let vissibleTableHeight =
+//            self.view.frame.height - self.equationsTableView.frame.minY
+//
+//        let spaceForCell = vissibleTableHeight - keyboardHeight
+//        if spaceForCell < cellHeight {
+//            UIView.animate(withDuration: 0.3) {
+//                self.tableViewTopToSuperviewBottomConstraint?.constant =
+//                    self.tableViewVissibleOffset - (cellHeight - spaceForCell)
+//                self.view.layoutSubviews()
+//            }
+//        }
+//    }
+    
+    private func shiftTableViewIfNeeded(keyboardHeight: CGFloat) {
+        guard !isEquationTableHidden else {
+            return
+        }
+        
+        var tableViewOffset = tableViewVissibleOffset
+        if keyboardHeight == 0 {
+            triggeredKeyboardCellIndexPath = nil
+        } else if let indexPath = triggeredKeyboardCellIndexPath,
+            let cell = equationsTableView.cellForRow(at: indexPath) {
+            
+            let cellHeight = cell.frame.height
+            let vissibleTableHeight =
+                view.frame.height - equationsTableView.frame.minY
+            
+            let spaceForCell = vissibleTableHeight - keyboardHeight
+            if spaceForCell < cellHeight {
+                tableViewOffset =
+                    tableViewVissibleOffset - (cellHeight - spaceForCell)
+            }
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.tableViewTopToSuperviewBottomConstraint?.constant =
+                tableViewOffset
+            self.view.layoutSubviews()
+        }
     }
 }
 
@@ -510,7 +580,7 @@ extension SandboxVC: UITableViewDataSource {
             let cell = tableView
                 .dequeue(SandboxEquationCell.self, for: indexPath) ??
                 SandboxEquationCell()
-            self.prepare(cell, for: plotIndex, with: plot)
+            self.prepare(cell, at: indexPath, with: plot)
             return cell
         } else {
             let parameter = plot.equation.parameters[indexPath.row]

@@ -50,17 +50,23 @@ class PlotParameterCell: BaseTableViewCell {
     private(set) lazy var parameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
         textField.font = Font.sfProDisplayRegular(size: 15)
-        textField.delegate = self
+        textField.rx.tapGesture()
+            .subscribe(onNext: { _ in self.didBeginEditingText() })
+            .disposed(by: bag)
         return textField
     }()
     private(set) lazy var minParameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
-        textField.delegate = self
+        textField.rx.tapGesture()
+            .subscribe(onNext: { _ in self.didBeginEditingText() })
+            .disposed(by: bag)
         return textField
     }()
     private(set) lazy var maxParameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
-        textField.delegate = self
+        textField.rx.tapGesture()
+            .subscribe(onNext: { _ in self.didBeginEditingText() })
+            .disposed(by: bag)
         return textField
     }()
     
@@ -182,13 +188,4 @@ class PlotParameterCell: BaseTableViewCell {
         return textField
     }
     
-}
-
-
-// MARK: - UITextFieldDelegate
-
-extension PlotParameterCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        didBeginEditingText()
-    }
 }
