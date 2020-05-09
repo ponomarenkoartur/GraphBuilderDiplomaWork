@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import ARKit
+import RxKeyboard
 
 
 protocol SandboxVCProtocol: UIViewController {
@@ -295,6 +296,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 if isHidden {
                     self.equationsTableView
                         .setContentOffset(.zero, animated: true)
+                    self.equationsTableView.endEditing(true)
                 }
             })
             .disposed(by: bag)
@@ -324,7 +326,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.isColorPickerHidden = true
+        isColorPickerHidden = true
+        equationsTableView.endEditing(true)
     }
     
     
@@ -398,8 +401,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     private func prepare(_ cell: PlotParameterCell,
-                         with parameter: EquationParameter) {
+                         with parameter: EquationParameter,
+                         at indexPath: IndexPath) {
         PlotParameterCellConfigurator(cell: cell).configure(with: parameter)
+        cell.didBeginEditingText = {
+            self.equationsTableView
+                .scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     private func moveColorPickerToCell(at index: Int) {
@@ -509,7 +517,7 @@ extension SandboxVC: UITableViewDataSource {
             let cell = tableView
                 .dequeue(PlotParameterCell.self, for: indexPath) ??
                 PlotParameterCell()
-            prepare(cell, with: parameter)
+            prepare(cell, with: parameter, at: indexPath)
             return cell
         }
     }

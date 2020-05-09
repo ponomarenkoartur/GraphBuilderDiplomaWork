@@ -18,6 +18,7 @@ class PlotParameterCell: BaseTableViewCell {
     // MARK: Callbacks
     
     var didChangeSliderValue: (_ value: Double) -> () = { _ in }
+    var didBeginEditingText: () -> () = {}
     
     
     // MARK: Views
@@ -49,12 +50,19 @@ class PlotParameterCell: BaseTableViewCell {
     private(set) lazy var parameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
         textField.font = Font.sfProDisplayRegular(size: 15)
+        textField.delegate = self
         return textField
     }()
-    private(set) lazy var minParameterValueTextField: NumberTextField =
-        Self.createNumberTextField()
-    private(set) lazy var maxParameterValueTextField: NumberTextField =
-        Self.createNumberTextField()
+    private(set) lazy var minParameterValueTextField: NumberTextField = {
+        let textField = Self.createNumberTextField()
+        textField.delegate = self
+        return textField
+    }()
+    private(set) lazy var maxParameterValueTextField: NumberTextField = {
+        let textField = Self.createNumberTextField()
+        textField.delegate = self
+        return textField
+    }()
     
     
     
@@ -174,4 +182,13 @@ class PlotParameterCell: BaseTableViewCell {
         return textField
     }
     
+}
+
+
+// MARK: - UITextFieldDelegate
+
+extension PlotParameterCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        didBeginEditingText()
+    }
 }
