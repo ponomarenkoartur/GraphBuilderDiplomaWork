@@ -172,7 +172,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         tableView.backgroundColor = Color.grayBackground()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableHeaderView = UIView(frame: CGRect(height: 16))
-        tableView.tableFooterView = UIView(frame: CGRect(height: 100))
         tableView.allowsSelection = false
         tableView.layer.cornerRadius = 5
         tableView.dataSource = self
@@ -213,6 +212,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         super.setupUI()
         shouldPresentNavigationBar = false
         setupGestureRecognizers()
+    }
+    
+    override func setupUIAfterLayoutSubviews() {
+        super.setupUIAfterLayoutSubviews()
+        equationsTableView.tableFooterView =
+            UIView(frame: CGRect(height: equationsTableView.frame.height))
     }
     
     override func addSubviews() {
@@ -287,6 +292,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                         self.setOpenHidePlotButtonDirection(
                             isHidden ? .up : .down)
                 })
+                if isHidden {
+                    self.equationsTableView
+                        .setContentOffset(.zero, animated: true)
+                }
             })
             .disposed(by: bag)
         
@@ -380,6 +389,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
         cell.didChangeEquationText = { text in
             self.didChangeEquationText(item, index, text)
+        }
+        cell.didBeginEquationTextEditing = {
+            let section = self.getPlotCellSection(from: index)
+            self.equationsTableView.scroll(section: section)
         }
         
     }

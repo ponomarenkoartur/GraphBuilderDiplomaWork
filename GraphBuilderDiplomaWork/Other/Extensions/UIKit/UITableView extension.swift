@@ -26,7 +26,7 @@ extension UITableView {
         dequeue(cellClass, for: IndexPath(row: row, section: 0))
     }
     
-    func scroll(to item: Int, section: Int = 0,
+    func scroll(to item: Int = 0, section: Int = 0,
                 at position: ScrollPosition = .top, animated: Bool = true) {
         scrollToRow(at: IndexPath(row: item, section: section), at: position,
                      animated: animated)

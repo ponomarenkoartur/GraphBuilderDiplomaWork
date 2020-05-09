@@ -32,6 +32,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     var didLongPressPlotImageButton: () -> () = {}
     var didDoubleTap: () -> () = {}
     var didChangeEquationText: (_ text: String) -> () = { _ in }
+    var didBeginEquationTextEditing: () -> () = {}
     
     // MARK: Views
     
@@ -83,6 +84,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         let textField = UITextField()
         textField.placeholder = "Enter equation here..."
         textField.borderStyle = .none
+        textField.delegate = self
         textField.rx.text
             .subscribe(onNext: {
                 if let text = $0 {
@@ -147,5 +149,14 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     func setEquation(_ equation: Equation) {
         equationLabel.latex = equation.latex
         equationTextField.text = equation.latex
+    }
+}
+
+
+// MARK: - UITextFieldDelegate
+
+extension SandboxEquationCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        didBeginEquationTextEditing()
     }
 }
