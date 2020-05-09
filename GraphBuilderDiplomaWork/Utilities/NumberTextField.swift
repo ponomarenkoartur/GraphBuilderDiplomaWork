@@ -21,6 +21,7 @@ class NumberTextField: CustomTextField {
     // MARK: - Properties
     
     fileprivate let numberValueSubject = BehaviorSubject<Double>(value: 0)
+    fileprivate let didBeginEditingSubject = PublishSubject<Bool>()
     fileprivate let numberValueUserInputSubject =
         BehaviorSubject<Double?>(value: nil)
     var numberValue: Double {
@@ -116,6 +117,10 @@ extension NumberTextField: UITextFieldDelegate {
         return false
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        didBeginEditingSubject.onNext(true)
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if Double(textField.text!) == nil {
             setNumberValue(0, isUserInput: true)
@@ -133,5 +138,8 @@ extension Reactive where Base == NumberTextField {
     }
     var numberValueUserInput: Observable<Double?> {
         base.numberValueUserInputSubject.asObservable()
+    }
+    var didBeginEditing: Observable<Bool> {
+        base.didBeginEditingSubject
     }
 }

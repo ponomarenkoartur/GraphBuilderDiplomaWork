@@ -18,7 +18,7 @@ class PlotParameterCell: BaseTableViewCell {
     // MARK: Callbacks
     
     var didChangeSliderValue: (_ value: Double) -> () = { _ in }
-    var didBeginEditingText: () -> () = {}
+    var didBeginEditingText: (_ textField: UITextField) -> () = { _ in }
     
     
     // MARK: Views
@@ -50,22 +50,22 @@ class PlotParameterCell: BaseTableViewCell {
     private(set) lazy var parameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
         textField.font = Font.sfProDisplayRegular(size: 15)
-        textField.rx.tapGesture()
-            .subscribe(onNext: { _ in self.didBeginEditingText() })
+        textField.rx.didBeginEditing
+            .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
             .disposed(by: bag)
         return textField
     }()
     private(set) lazy var minParameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
-        textField.rx.tapGesture()
-            .subscribe(onNext: { _ in self.didBeginEditingText() })
+        textField.rx.didBeginEditing
+            .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
             .disposed(by: bag)
         return textField
     }()
     private(set) lazy var maxParameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
-        textField.rx.tapGesture()
-            .subscribe(onNext: { _ in self.didBeginEditingText() })
+        textField.rx.didBeginEditing
+            .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
             .disposed(by: bag)
         return textField
     }()

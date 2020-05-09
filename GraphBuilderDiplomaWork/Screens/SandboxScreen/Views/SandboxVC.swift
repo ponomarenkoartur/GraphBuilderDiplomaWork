@@ -415,7 +415,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                          with parameter: EquationParameter,
                          at indexPath: IndexPath) {
         PlotParameterCellConfigurator(cell: cell).configure(with: parameter)
-        cell.didBeginEditingText = {
+        cell.didBeginEditingText = { _ in
             self.equationsTableView
                 .scrollToRow(at: indexPath, at: .top, animated: true)
             self.triggeredKeyboardCellIndexPath = indexPath
@@ -483,36 +483,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func getParametersCellsSection(from plotIndex: Int) -> Int {
         plotIndex * 2 + 1
     }
-    
-//    private func shiftTableViewIfNeeded(keyboardHeight: CGFloat) {
-//        guard keyboardHeight != 0 else {
-//            triggeredKeyboardCellIndexPath = nil
-//            if !isEquationTableHidden {
-//                UIView.animate(withDuration: 0.3) {
-//                    self.tableViewTopToSuperviewBottomConstraint?.constant =
-//                        self.tableViewVissibleOffset
-//                    self.view.layoutSubviews()
-//                }
-//            }
-//            return
-//        }
-//
-//        guard let indexPath = self.triggeredKeyboardCellIndexPath,
-//            let cell = self.equationsTableView.cellForRow(at: indexPath)
-//            else { return }
-//        let cellHeight = cell.frame.height
-//        let vissibleTableHeight =
-//            self.view.frame.height - self.equationsTableView.frame.minY
-//
-//        let spaceForCell = vissibleTableHeight - keyboardHeight
-//        if spaceForCell < cellHeight {
-//            UIView.animate(withDuration: 0.3) {
-//                self.tableViewTopToSuperviewBottomConstraint?.constant =
-//                    self.tableViewVissibleOffset - (cellHeight - spaceForCell)
-//                self.view.layoutSubviews()
-//            }
-//        }
-//    }
+
     
     private func shiftTableViewIfNeeded(keyboardHeight: CGFloat) {
         guard !isEquationTableHidden else {
