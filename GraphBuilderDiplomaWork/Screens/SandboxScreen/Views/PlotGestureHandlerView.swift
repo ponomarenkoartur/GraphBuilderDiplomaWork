@@ -16,6 +16,7 @@ class PlotGestureHandlerView: BaseView {
     // MARK: - Properties
     
     var scene: PlotScene!
+    var axises: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
     
     /// Scale of scene before pinch gesture began
@@ -90,8 +91,10 @@ class PlotGestureHandlerView: BaseView {
         case .began:
             sceneInitialScale = scene.nodeScale
         case .changed:
-            let targetScale = sceneInitialScale.x * Float(gr.scale)
-            scene.scaleNode(targetScale)
+            let targetScale = sceneInitialScale * Float(gr.scale)
+            scene.scaleNode(x: axises.x ? targetScale.x : nil,
+                            y: axises.y ? targetScale.y : nil,
+                            z: axises.z ? targetScale.z : nil)
         case .ended:
 //            let velocity = Double(max(1, min(100, abs(gr.velocity))))
 //

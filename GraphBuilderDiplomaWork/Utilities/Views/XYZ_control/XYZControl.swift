@@ -25,13 +25,9 @@ class XYZControl: BaseView {
     
     // MARK: - Properties
     
-    private var xSubject = BehaviorSubject(value: false)
-    private var ySubject = BehaviorSubject(value: false)
-    private var zSubject = BehaviorSubject(value: false)
-    
-    var xObservable: Observable<Bool> { xSubject.asObservable() }
-    var yObservable: Observable<Bool> { ySubject.asObservable() }
-    var zObservable: Observable<Bool> { zSubject.asObservable() }
+    fileprivate var xSubject = BehaviorSubject(value: false)
+    fileprivate var ySubject = BehaviorSubject(value: false)
+    fileprivate var zSubject = BehaviorSubject(value: false)
     
     var x: Bool {
         get { (try? xSubject.value()) ?? false }
@@ -210,5 +206,16 @@ class XYZControl: BaseView {
         let zName = z ? "z" : "_"
         let imageName = xName + yName + zName
         return UIImage(named: imageName)
+    }
+}
+
+
+extension Reactive where Base == XYZControl {
+    var x: Observable<Bool> { base.xSubject.asObservable() }
+    var y: Observable<Bool> { base.ySubject.asObservable() }
+    var z: Observable<Bool> { base.zSubject.asObservable() }
+    
+    var axises: Observable<(x: Bool, y: Bool, z: Bool)> {
+        Observable.combineLatest(x, y, z).map { (x: $0, y: $1, z: $2) }
     }
 }

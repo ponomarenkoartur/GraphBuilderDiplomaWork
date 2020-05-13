@@ -185,6 +185,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         let control = XYZControl()
         control.axisesSelection = (true, true, true)
         control.snp.makeConstraints { $0.size.equalTo(84) }
+        control.rx.axises
+            .subscribe(onNext: {
+                self.gestureHandlerView.axises = $0
+            })
+            .disposed(by: bag)
         return control
     }()
     
@@ -235,6 +240,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return plotColorPicker
     }()
     
+    private(set) lazy var gestureHandlerView: PlotGestureHandlerView = {
+        let view = PlotGestureHandlerView()
+        view.scene = plotScene
+        return view
+    }()
+    
     // MARK: Constaints
     
     private var tableViewTopToSuperviewBottomConstraint: NSLayoutConstraint?
@@ -259,6 +270,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         super.addSubviews()
         view.addSubviews([
             scnPlotView,
+            gestureHandlerView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
             equationsTableView,
@@ -277,6 +289,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     override func setupConstraints() {
         super.setupConstraints()
         scnPlotView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        gestureHandlerView.snp.makeConstraints { $0.edges.equalToSuperview() }
         buttonBack.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.leading.equalTo(10)
