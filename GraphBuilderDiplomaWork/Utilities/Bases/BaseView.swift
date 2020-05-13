@@ -33,6 +33,7 @@ class BaseView: UIView {
     private func commonInit() {
         setupUI()
         setupBinding()
+        setupGesturesRecognizers()
     }
     
     
@@ -56,4 +57,6 @@ class BaseView: UIView {
     func setupConstraints() {}
     
     func setupBinding() {}
+    
+    func setupGesturesRecognizers() {}
 }

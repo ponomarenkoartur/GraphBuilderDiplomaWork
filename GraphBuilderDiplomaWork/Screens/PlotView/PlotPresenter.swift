@@ -12,6 +12,7 @@ import SceneKit
 
 protocol PlotPresenter {
     var plots: [Plot] { get }
+    var nodeScale: SCNVector3 { get }
     /// Adds a plot to the grid.
     /// - Parameter plot: plot to build
     func add(_ plot: Plot)
@@ -38,12 +39,48 @@ protocol PlotPresenter {
     ///   - x: x-axis scale
     ///   - y: y-axis scale
     ///   - z: z-axis scale
-    func scaleNode(x: Float?, y: Float?, z: Float?)
+    func scaleNode(x: Float?, y: Float?, z: Float?,
+                   animationDuration: TimeInterval)
     /// Changes physical size of the grid and the plot, but the grid scale is still be the same.
     /// - Parameter scale: scale for every axis
-    func scaleNode(_ scale: SCNVector3)
+    func scaleNode(_ scale: SCNVector3, animationDuration: TimeInterval)
+    /// Changes physical size of the grid and the plot, but the grid scale is still be the same.
+    /// - Parameter scale: scale for every axis
+    func scaleNode(_ scale: Float, animationDuration: TimeInterval)
     /// Reset the scale of the grid to its initial state. Doesn't change physical size of a node.
-    func resetGridScale()
+    func resetGridScale(animationDuration: TimeInterval)
     /// Returns a picture of plots on the grid.
     func screenshot() -> UIImage
+}
+
+
+extension PlotPresenter {
+    func scaleNode(_ scale: SCNVector3, animationDuration: TimeInterval = 0) {
+        scaleNode(x: scale.x, y: scale.y, z: scale.z,
+                  animationDuration: animationDuration)
+    }
+    
+    func scaleNode(_ scale: Float, animationDuration: TimeInterval = 0) {
+        scaleNode(x: scale, y: scale, z: scale,
+                  animationDuration: animationDuration)
+    }
+    
+    func scaleGrid(_ scale: SCNVector3) {
+        scaleGrid(x: scale.x, y: scale.y, z: scale.z)
+    }
+    
+    func resetGridScale(animationDuration: TimeInterval) {
+        scaleNode(1, animationDuration: animationDuration)
+    }
+    
+    func deleteAll() {
+        plots.enumerated().reversed().forEach { index, _ in
+            deletePlot(at: index)
+        }
+    }
+    
+    func rebuild(_ plot: Plot, at index: Int) {
+        deletePlot(at: index)
+        add(plot)
+    }
 }

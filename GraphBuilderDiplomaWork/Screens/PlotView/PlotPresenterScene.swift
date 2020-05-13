@@ -16,30 +16,48 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     // MARK: - Properties
     
     var plots: [Plot] = []
+    var nodeScale: SCNVector3 { plotWrapperNode.scale }
+    
     private var plotsNodes: [Plot: SCNNode] = [:]
     private var equationTransformator = EquationTransformator()
     private var bag = DisposeBag()
+    
+    private let plotWrapperNode: SCNNode = {
+        let node = SCNNode()
+        node.name = "plotWrapperNode"
+        return node
+    }()
+    private let gridNode: PlotGrid = {
+        let node = PlotGrid()
+        node.name = "gridNode"
+        return node
+    }()
+    private lazy var cameraNode: SCNNode = {
+        let node = SCNNode()
+        node.name = "Camera"
+        node.position.z = 2
+        node.camera = camera
+        return node
+    }()
+    private let camera = SCNCamera()
+    
     
     
     // MARK: - Setup Methods
     
     override func setupNodes() {
         super.setupNodes()
-        setupGrid()
+        rootNode.addNodes(plotWrapperNode, cameraNode)
+        plotWrapperNode.addNodes(gridNode)
     }
-    
-    private func setupGrid() {
-        let node = PlotGrid()
-        addNodes(node)
-    }
-    
     
     // MARK: - API Methods
     
     func add(_ plot: Plot) {
         let node = SCNNode()
+        node.name = plot.equation.latex
         
-        rootNode.addChildNode(node)
+        plotWrapperNode.addChildNode(node)
         
         plots.append(plot)
         plotsNodes[plot] = node
@@ -66,8 +84,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         }).disposed(by: bag)
     }
     
-    func rebuild(_ plot: Plot, at index: Int) {}
-    
     func deletePlot(at index: Int) {
         let plot = plots[index]
         plots.remove(at: index)
@@ -75,21 +91,24 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         plotsNodes[plot] = nil
     }
     
-    func deleteAll() {
-        plots.enumerated().reversed().forEach { index, _ in
-            deletePlot(at: index)
+    func scaleGrid(x: Float?, y: Float?, z: Float?) {}
+    
+    
+    func scaleNode(x: Float?, y: Float?, z: Float?,
+                   animationDuration: TimeInterval = 0) {
+        let targetScale = SCNVector3(x ?? plotWrapperNode.scale.x,
+                                     y ?? plotWrapperNode.scale.y,
+                                     z ?? plotWrapperNode.scale.z)
+        
+        if animationDuration == 0 {
+            plotWrapperNode.scale = targetScale
+        } else {
+            let action = SCNAction.scale(to: targetScale,
+                                         duration: animationDuration)
+            plotWrapperNode.runAction(action)
         }
     }
     
-    func scaleGrid(x: Float?, y: Float?, z: Float?) {}
-    
-    func scaleGrid(_ scale: SCNVector3) {}
-    
-    func scaleNode(x: Float?, y: Float?, z: Float?) {}
-    
-    func scaleNode(_ scale: SCNVector3) {}
-    
-    func resetGridScale() {}
     
     func screenshot() -> UIImage { UIImage() }
 

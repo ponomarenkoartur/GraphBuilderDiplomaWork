@@ -53,7 +53,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         get { try! isColorPickerHiddenSubject.value() }
         set { isColorPickerHiddenSubject.onNext(newValue) }
     }
-    private let plotScene = PlotScene()
+    private let plotScene: PlotScene = {
+        let scene = PlotScene()
+        return scene
+    }()
     
     
     /// Index of row that caused appearing of `plotColorPicker`

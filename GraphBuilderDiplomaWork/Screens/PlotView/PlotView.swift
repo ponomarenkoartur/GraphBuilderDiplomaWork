@@ -15,14 +15,37 @@ class PlotView: BaseSCNView {
     // MARK: - Properties
     
     var plotScene: PlotScene { scene as! PlotScene }
+    override var scene: SCNScene? {
+        didSet {
+            gestureHandlerView.scene = plotScene
+        }
+    }
+    
+    // MARK: Views
+    
+    private lazy var gestureHandlerView: PlotGestureHandlerView = {
+        let view = PlotGestureHandlerView()
+        view.scene = plotScene
+        return view
+    }()
     
     
     // MARK: - Setup Methods
     
+    
+    override func addSubviews() {
+        super.addSubviews()
+        addSubview(gestureHandlerView)
+    }
+    
+    override func setupConstraints() {
+        super.setupConstraints()
+        gestureHandlerView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
     override func setupScene() {
         super.setupScene()
         backgroundColor = Color.grayBackground()
-        allowsCameraControl = true
     }
     
     override func setupLight() {
@@ -44,5 +67,6 @@ class PlotView: BaseSCNView {
         
         rootNode.addNodes(topLightNode, bottomLightNode)
     }
+    
     
 }

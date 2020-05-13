@@ -39,8 +39,10 @@ class BaseSCNView: SCNView {
     }
     
     private func commonInit() {
+        setupUI()
         setupScene()
         setupLight()
+        setupGestures()
     }
     
     
@@ -49,5 +51,19 @@ class BaseSCNView: SCNView {
     func setupScene() {}
     
     func setupLight() {}
+    
+    func setupGestures() {}
+    
+    
+    /// Call 'addSubview' methods before caliing super.setupUI()
+    /// in overrided methods
+    func setupUI() {
+        addSubviews()
+        setupConstraints()
+    }
+    
+    func addSubviews() {}
+    
+    func setupConstraints() {}
 }
 
