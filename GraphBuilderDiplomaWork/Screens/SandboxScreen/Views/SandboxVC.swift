@@ -167,15 +167,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         button.tintColor = Color.inverseText()
         button.setImage(Image.cube3D(), for: .normal)
         button.setImage(Image.cube3DDotted(), for: .selected)
-        button.isSelected = false
         button.rx.tap
             .subscribe(onNext: { _ in
-                button.isSelected = !button.isSelected
-                let transition = CATransition()
-                transition.type = .fade
-                transition.duration = 0.3
-                transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
-                button.layer.add(transition, forKey: nil)
+                self.gestureHandlerView.switchMode()
             })
             .disposed(by: bag)
         return button
@@ -187,7 +181,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         control.snp.makeConstraints { $0.size.equalTo(84) }
         control.rx.axises
             .subscribe(onNext: {
-                self.gestureHandlerView.axises = $0
+                self.gestureHandlerView.shouldHandleAxis = $0
             })
             .disposed(by: bag)
         return control
@@ -357,7 +351,17 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         
-        
+        gestureHandlerView.rx.mode
+            .subscribe(onNext: {
+                self.manipilationModeSwitchButton.isSelected = $0 == .bounds
+                let transition = CATransition()
+                transition.type = .fade
+                transition.duration = 0.3
+                transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
+                self.manipilationModeSwitchButton.layer
+                    .add(transition, forKey: nil)
+            })
+            .disposed(by: bag)
     }
     
     private func setupGestureRecognizers() {

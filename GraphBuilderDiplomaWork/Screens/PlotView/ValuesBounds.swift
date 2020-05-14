@@ -28,4 +28,15 @@ extension ValuesBounds {
     static func *=(_ bound: inout ValuesBounds, _ multiplier: Double) {
         bound = bound * multiplier
     }
+    
+    
+    static func /(_ bound: ValuesBounds, _ divider: Double) -> ValuesBounds {
+        ValuesBounds(uncheckedBounds: (
+            lower: bound.mid - abs(bound.mid - bound.lowerBound) / Double(divider),
+            upper: bound.mid + abs(bound.mid - bound.upperBound) / Double(divider)))
+    }
+    
+    static func /=(_ bound: inout ValuesBounds, _ divider: Double) {
+        bound = bound / divider
+    }
 }

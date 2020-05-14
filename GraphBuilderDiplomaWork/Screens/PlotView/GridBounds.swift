@@ -29,4 +29,15 @@ struct GridBounds {
     static func *=(_ bound: inout GridBounds, _ multiplier: Double) {
         bound = bound * multiplier
     }
+    
+    
+    static func /(_ bound: GridBounds, _ divider: Double) -> GridBounds {
+        GridBounds(x: bound.x / divider,
+                   y: bound.y / divider,
+                   z: bound.z / divider)
+    }
+    
+    static func /=(_ bound: inout GridBounds, _ divider: Double) {
+        bound = bound / divider
+    }
 }

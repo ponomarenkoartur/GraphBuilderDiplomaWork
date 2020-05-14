@@ -17,7 +17,13 @@ class PlotGestureHandlerView: BaseView {
     // MARK: - Properties
     
     var scene: PlotScene!
-    var axises: (x: Bool, y: Bool, z: Bool) = (true, true, true)
+    var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
+    
+    fileprivate var modeSubject = BehaviorSubject(value: ManipulationMode.bounds)
+    var mode: ManipulationMode {
+        get { try! modeSubject.value() }
+        set { modeSubject.onNext(newValue) }
+    }
     
     
     /// Scale of scene before pinch gesture began
@@ -101,13 +107,19 @@ class PlotGestureHandlerView: BaseView {
             sceneInitialScale = scene.nodeScale
             initialGridBound = scene.gridBounds
         case .changed:
-//            let targetScale = sceneInitialScale * Float(gr.scale)
-//            scene.scaleNode(x: axises.x ? targetScale.x : nil,
-//                            y: axises.y ? targetScale.y : nil,
-//                            z: axises.z ? targetScale.z : nil)
+            switch mode {
+            case .scale:
+                let targetScale = sceneInitialScale * Float(gr.scale)
+                scene.scaleNode(x: shouldHandleAxis.x ? targetScale.x : nil,
+                                y: shouldHandleAxis.y ? targetScale.y : nil,
+                                z: shouldHandleAxis.z ? targetScale.z : nil)
+            case .bounds:
+                let targetBounds = initialGridBound / Double(gr.scale)
+                scene.setBounds(x: shouldHandleAxis.x ? targetBounds.x : nil,
+                                y: shouldHandleAxis.y ? targetBounds.y : nil,
+                                z: shouldHandleAxis.z ? targetBounds.z : nil)
+            }
             
-            let targetGridBounds = initialGridBound * Double(gr.scale)
-            scene.setBounds(targetGridBounds)
         case .ended:
 //            let velocity = Double(max(1, min(100, abs(gr.velocity))))
 //
@@ -133,4 +145,24 @@ class PlotGestureHandlerView: BaseView {
     }
     
     
+    // MARK: - API Methods
+    
+    func switchMode() {
+        switch mode {
+        case .bounds:
+            mode = .scale
+        case .scale:
+            mode = .bounds
+        }
+    }
+    
+}
+
+
+// MARK: - Rx
+
+extension Reactive where Base == PlotGestureHandlerView {
+    var mode: Observable<ManipulationMode> {
+        base.modeSubject.asObservable()
+    }
 }
