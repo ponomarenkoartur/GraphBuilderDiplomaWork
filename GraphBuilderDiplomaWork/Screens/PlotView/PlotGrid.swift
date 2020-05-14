@@ -18,7 +18,8 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
     
     // MARK: - Properties
     
-    private var axises: (x: SCNNode, y: SCNNode, z: SCNNode)!
+    private var axises: (x: AxisNode, y: AxisNode, z: AxisNode)!
+    private var axisesScale = SCNVector3(1, 1, 1)
     
     
     // MARK: - Setup Methods
@@ -29,10 +30,24 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         let node = scene.rootNode
         addChildNode(node)
         
-        let xAxis = node.childNode(withName: "x-axis", recursively: true)!
-        let yAxis = node.childNode(withName: "y-axis", recursively: true)!
-        let zAxis = node.childNode(withName: "z-axis", recursively: true)!
-        axises = (xAxis, yAxis, zAxis)
+        let axisNodeFabric = AxisNodeFabric()
+        if let xNode = node.childNode(withName: "x-axis", recursively: true),
+            let yNode = node.childNode(withName: "y-axis", recursively: true),
+            let zNode = node.childNode(withName: "z-axis", recursively: true),
+            let xAxisNode = axisNodeFabric.create(from: xNode),
+            let yAxisNode = axisNodeFabric.create(from: yNode),
+            let zAxisNode = axisNodeFabric.create(from: zNode) {
+            axises = (xAxisNode, yAxisNode, zAxisNode)
+            
+            addNodes(xAxisNode, yAxisNode, zAxisNode)
+        } else {
+            fatalError("Can't initialize axises")
+        }
+        
+//        let xAxisNode = node.childNode(withName: "x-axis", recursively: true)!
+//        let yAxisNode = node.childNode(withName: "y-axis", recursively: true)!
+//        let zAxisNode = node.childNode(withName: "z-axis", recursively: true)!
+//        axises = (xAxisNode, yAxisNode, zAxisNode)
     }
     
     
@@ -47,5 +62,11 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         
         axises.y.position.x = vector.x
         axises.z.position.x = vector.x
+    }
+    
+    func scale(_ scale: SCNVector3, animationDuration: TimeInterval = 0) {
+        axises.x.setScale(scale.x, animationDuration: animationDuration)
+        axises.y.setScale(scale.y, animationDuration: animationDuration)
+        axises.z.setScale(scale.z, animationDuration: animationDuration)
     }
 }

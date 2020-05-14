@@ -105,6 +105,7 @@
 		0420882C24617F3D00078B80 /* PlotGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882B24617F3D00078B80 /* PlotGrid.swift */; };
 		0420882E24617F6E00078B80 /* BaseSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882D24617F6E00078B80 /* BaseSCNNode.swift */; };
 		04208830246188C700078B80 /* Grid.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0420882F246188C600078B80 /* Grid.scn */; };
+		0420B70E246D53EB0042408F /* AxisNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420B70D246D53EB0042408F /* AxisNode.swift */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -381,6 +382,7 @@
 		0420882B24617F3D00078B80 /* PlotGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGrid.swift; sourceTree = "<group>"; };
 		0420882D24617F6E00078B80 /* BaseSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNNode.swift; sourceTree = "<group>"; };
 		0420882F246188C600078B80 /* Grid.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Grid.scn; sourceTree = "<group>"; };
+		0420B70D246D53EB0042408F /* AxisNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisNode.swift; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 		0412E6962459792700AAB427 /* PlotView */ = {
 			isa = PBXGroup;
 			children = (
+				0420B70F246D54560042408F /* AxisNode */,
 				0412E6972459793A00AAB427 /* PlotPresenter.swift */,
 				0412E69924597F3300AAB427 /* PlotView.swift */,
 				04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */,
@@ -628,6 +631,14 @@
 				04806AC6246C382C0005B559 /* SCNAction extension.swift */,
 			);
 			path = SceneKit;
+			sourceTree = "<group>";
+		};
+		0420B70F246D54560042408F /* AxisNode */ = {
+			isa = PBXGroup;
+			children = (
+				0420B70D246D53EB0042408F /* AxisNode.swift */,
+			);
+			path = AxisNode;
 			sourceTree = "<group>";
 		};
 		042BC5A224505E6B00950B15 /* TopicsContainerScreen */ = {
@@ -1589,6 +1600,7 @@
 				04AE7B5B244DBD8100AF4AB5 /* TopicVC.swift in Sources */,
 				04A0FE60244DF78A000C9F6E /* TopicItemCellConfigurator.swift in Sources */,
 				04CE0E71244B1839006B19B0 /* UIStoryboard extension.swift in Sources */,
+				0420B70E246D53EB0042408F /* AxisNode.swift in Sources */,
 				04CE0E87244B1937006B19B0 /* R.generated.swift in Sources */,
 				04A7D16A2453085000503CAE /* Axis.swift in Sources */,
 				0420882524616CDA00078B80 /* PlotFabric.swift in Sources */,

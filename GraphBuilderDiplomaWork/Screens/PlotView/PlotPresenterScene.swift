@@ -36,10 +36,11 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         let node = SCNNode()
         node.name = "Camera"
         node.position.z = 2
+        let camera = SCNCamera()
         node.camera = camera
+        camera.zNear = 0
         return node
     }()
-    private let camera = SCNCamera()
     
     
     
@@ -47,8 +48,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     override func setupNodes() {
         super.setupNodes()
-        rootNode.addNodes(plotWrapperNode, cameraNode)
-        plotWrapperNode.addNodes(gridNode)
+        rootNode.addNodes(gridNode, plotWrapperNode, cameraNode)
     }
     
     // MARK: - API Methods
@@ -107,6 +107,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                                          duration: animationDuration)
             plotWrapperNode.runAction(action)
         }
+        gridNode.scale(targetScale, animationDuration: animationDuration)
     }
     
     
