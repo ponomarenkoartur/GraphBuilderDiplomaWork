@@ -70,3 +70,20 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         axises.z.setScale(scale.z, animationDuration: animationDuration)
     }
 }
+
+
+// MARK: - GridBoundable
+
+extension PlotGrid: GridBoundable {
+    func setBounds(x: ValuesBounds?, y: ValuesBounds?, z: ValuesBounds?) {
+        if let x = x {
+            axises.x.setBounds(x)
+        }
+        if let y = y {
+            axises.y.setBounds(y)
+        }
+        if let z = z {
+            axises.z.setBounds(z)
+        }
+    }
+}

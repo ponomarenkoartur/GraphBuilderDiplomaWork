@@ -7,9 +7,15 @@
 //
 
 import SceneKit
+import RxSwift
 
 
 class BaseSCNScene: SCNScene {
+    
+    
+    // MARK: - Properties
+    
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization
@@ -26,7 +32,10 @@ class BaseSCNScene: SCNScene {
     
     private func commonInit() {
         setupNodes()
+        setupBinding()
     }
     
     func setupNodes() {}
+    
+    func setupBinding() {}
 }

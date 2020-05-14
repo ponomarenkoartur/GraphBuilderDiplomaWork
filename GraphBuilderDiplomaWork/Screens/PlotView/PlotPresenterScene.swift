@@ -18,9 +18,16 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     var plots: [Plot] = []
     var nodeScale: SCNVector3 { plotWrapperNode.scale }
     
+    private var gridBoundsSubject = BehaviorSubject(
+        value: GridBounds(x: -1...1, y: -1...1, z: -1...1))
+    var gridBounds: GridBounds {
+        get { try! gridBoundsSubject.value() }
+        set { gridBoundsSubject.onNext(newValue) }
+    }
+    
     private var plotsNodes: [Plot: SCNNode] = [:]
     private var equationTransformator = EquationTransformator()
-    private var bag = DisposeBag()
+    
     
     private let plotWrapperNode: SCNNode = {
         let node = SCNNode()
@@ -49,6 +56,19 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     override func setupNodes() {
         super.setupNodes()
         rootNode.addNodes(gridNode, plotWrapperNode, cameraNode)
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        gridBoundsSubject
+            .subscribe(onNext: { gridBounds in
+                self.gridNode.setBounds(gridBounds)
+                self.equationTransformator.setBounds(gridBounds)
+                self.plotsNodes.forEach { plot, node in
+                    self.updateGeometry(with: plot, of: node)
+                }
+            })
+            .disposed(by: bag)
     }
     
     // MARK: - API Methods
@@ -91,8 +111,12 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         plotsNodes[plot] = nil
     }
     
-    func scaleGrid(x: Float?, y: Float?, z: Float?) {}
-    
+    func setBounds(x: ValuesBounds? = nil, y: ValuesBounds? = nil,
+                   z: ValuesBounds? = nil) {
+        self.gridBounds = GridBounds(x: x ?? gridBounds.x,
+                                     y: y ?? gridBounds.y,
+                                     z: z ?? gridBounds.z)
+    }
     
     func scaleNode(x: Float?, y: Float?, z: Float?,
                    animationDuration: TimeInterval = 0) {

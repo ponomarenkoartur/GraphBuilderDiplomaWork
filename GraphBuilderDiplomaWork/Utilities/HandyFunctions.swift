@@ -59,20 +59,28 @@ struct Scale<BoundType>: Boundable {
 //  tV = (iV - minI) * ----------– + minT
 //                     maxI - minI
 //
-func convert<T0: NSNumber, T1: NSNumber, R0: Boundable, R1: Boundable>
-    (_ value: Double,
-     from initial: R0,
-     to target: R1) -> Double where R0.BoundType == T0, R1.BoundType == T1 {
+func convert<R0: Boundable, R1: Boundable>
+    (_ value: Double, from initial: R0, to target: R1) -> Double
+    where R0.BoundType == Double, R1.BoundType == Double {
         
-    let initialMin = initial.lower.doubleValue
-    let initialMax = initial.upper.doubleValue
-    let targetMin = target.lower.doubleValue
-    let targetMax = target.upper.doubleValue
+    let initialMin = initial.lower
+    let initialMax = initial.upper
+    let targetMin = target.lower
+    let targetMax = target.upper
     
     var result = value - initialMin
     result *= (targetMax - targetMin) / (initialMax - initialMin)
     result += targetMin
     return result
+}
+
+func convert<R0: Boundable, R1: Boundable>
+    (_ value: Double, from initial: R0, to target: R1) -> Double
+    where R0.BoundType == Int, R1.BoundType == Int {    
+    convert(
+        value,
+        from: Scale(lower: Double(initial.lower), upper: Double(initial.upper)),
+        to: Scale(lower: Double(target.lower), upper: Double(target.upper)))
 }
 
 

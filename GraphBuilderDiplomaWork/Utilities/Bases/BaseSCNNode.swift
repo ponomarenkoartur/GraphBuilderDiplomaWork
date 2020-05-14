@@ -7,9 +7,15 @@
 //
 
 import SceneKit
+import RxSwift
 
 
 class BaseSCNNode: SCNNode {
+    
+    
+    // MARK: - Properties
+    
+    let bag = DisposeBag()
     
     
     // MARK: - Initialization
@@ -26,9 +32,12 @@ class BaseSCNNode: SCNNode {
     
     private func commonInit() {
         setupChildNodes()
+        setupBinding()
     }
     
     // MARK: - Setup Methods
     
     func setupChildNodes() {}
+    
+    func setupBinding() {}
 }

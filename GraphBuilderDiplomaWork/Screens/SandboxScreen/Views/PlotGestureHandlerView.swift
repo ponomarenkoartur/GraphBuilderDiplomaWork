@@ -8,6 +8,7 @@
 
 import UIKit
 import SceneKit
+import RxSwift
 
 
 class PlotGestureHandlerView: BaseView {
@@ -21,6 +22,8 @@ class PlotGestureHandlerView: BaseView {
     
     /// Scale of scene before pinch gesture began
     private lazy var sceneInitialScale: SCNVector3 = scene.nodeScale
+    /// Grid bound before pinch gesture began
+    private lazy var initialGridBound: GridBounds = scene.gridBounds
     
     
     // MARK: - Initialization
@@ -51,7 +54,13 @@ class PlotGestureHandlerView: BaseView {
             .disposed(by: bag)
         
         rx.pinchGesture()
-            .when(.began, .changed, .ended)
+            .when(.began, .ended)
+            .subscribe(onNext: { self.handlePinch($0) })
+            .disposed(by: bag)
+        
+        rx.pinchGesture()
+            .when(.changed)
+            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { self.handlePinch($0) })
             .disposed(by: bag)
         
@@ -90,11 +99,15 @@ class PlotGestureHandlerView: BaseView {
         switch gr.state {
         case .began:
             sceneInitialScale = scene.nodeScale
+            initialGridBound = scene.gridBounds
         case .changed:
-            let targetScale = sceneInitialScale * Float(gr.scale)
-            scene.scaleNode(x: axises.x ? targetScale.x : nil,
-                            y: axises.y ? targetScale.y : nil,
-                            z: axises.z ? targetScale.z : nil)
+//            let targetScale = sceneInitialScale * Float(gr.scale)
+//            scene.scaleNode(x: axises.x ? targetScale.x : nil,
+//                            y: axises.y ? targetScale.y : nil,
+//                            z: axises.z ? targetScale.z : nil)
+            
+            let targetGridBounds = initialGridBound * Double(gr.scale)
+            scene.setBounds(targetGridBounds)
         case .ended:
 //            let velocity = Double(max(1, min(100, abs(gr.velocity))))
 //

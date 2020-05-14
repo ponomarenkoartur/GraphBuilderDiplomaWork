@@ -10,6 +10,15 @@ import Foundation
 
 
 extension Array {
+    subscript (safe range: PartialRangeFrom<Self.Index>) -> SubSequence? {
+        guard let _ = self[safe: range.lowerBound] else {
+            return nil
+        }
+        
+        return self[range]
+    }
+    
+    
     func appending(contentsOf otherSequence: Array) -> Array {
         var selfCopy = self
         selfCopy.append(contentsOf: otherSequence)

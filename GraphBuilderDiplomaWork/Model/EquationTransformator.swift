@@ -16,13 +16,21 @@ class EquationTransformator {
     
     // MARK: - Properties
     
-    var minX: Float = -1
-    var maxX: Float = 1
-    var minY: Float = -1
-    var maxY: Float = 1
-    var minZ: Float = -1
-    var maxZ: Float = 1
-    var step: Float = 0.1
+    var xBounds: ValuesBounds = -1...1
+    var yBounds: ValuesBounds = -1...1
+    var zBounds: ValuesBounds = -1...1
+    var minX: Double { xBounds.lower }
+    var maxX: Double { xBounds.upper }
+    var minY: Double { yBounds.lower }
+    var maxY: Double { yBounds.upper }
+    var minZ: Double { zBounds.lower }
+    var maxZ: Double { zBounds.upper }
+    private var xStep: Double {
+        abs((maxX - minX) / 20)
+    }
+    private var zStep: Double {
+        abs((maxZ - minZ) / 20)
+    }
     
     
     // MARK: - API Methods
@@ -35,16 +43,16 @@ class EquationTransformator {
     // MARK: - Private Methods
     
     private func getPoints(_ f: (_ x: Float) -> Float) -> [Point] {
-        stride(from: minX, through: maxX, by: step).map {
-            Vector2(x: $0, y: f($0))
+        stride(from: minX, through: maxX, by: xStep).map {
+            Vector2(x: Float($0), y: f(Float($0)))
         }
     }
     
     private func getPoints(_ f: (_ x: Float, _ z: Float) -> Float) -> [Point] {
         var points: [Point] = []
         
-        for x in stride(from: minX, through: maxX, by: step) {
-            for z in stride(from: minZ, through: maxZ, by: step) {
+        for x in stride(from: minX, through: maxX, by: xStep) {
+            for z in stride(from: minZ, through: maxZ, by: zStep) {
                 let x = Float(x)
                 let z = Float(z)
                 let vector = Vector3(x: x, y: f(x, z), z: z)
@@ -61,8 +69,8 @@ class EquationTransformator {
         let equationString =
             try convertEquationStringToValidExpression(equationString)
         
-        for x in stride(from: minX, through: maxX, by: step) {
-            for z in stride(from: minZ, through: maxZ, by: step) {
+        for x in stride(from: minX, through: maxX, by: xStep) {
+            for z in stride(from: minZ, through: maxZ, by: zStep) {
                 let substitutedEquationString = equationString
                     .replacingOccurrences(of: "x", with: "(\(x))")
                     .replacingOccurrences(of: "z", with: "(\(z))")
@@ -73,7 +81,7 @@ class EquationTransformator {
                 if y < Double(minY) || y > Double(maxY) {
                     points.append(nil)
                 } else {
-                    points.append(Vector3(x: x, y: Float(y), z: z))   
+                    points.append(Vector3(x: Float(x), y: Float(y), z: Float(z)))   
                 }
             }
         }
@@ -142,6 +150,24 @@ class EquationTransformator {
         }
 
         return equation
+    }
+}
+
+
+// MARK: - GridBoundable
+
+extension EquationTransformator: GridBoundable {
+    func setBounds(x: ValuesBounds? = nil, y: ValuesBounds? = nil,
+                   z: ValuesBounds? = nil) {
+        if let x = x {
+            xBounds = x
+        }
+        if let y = y {
+            yBounds = y
+        }
+        if let z = z {
+            zBounds = z
+        }
     }
 }
 

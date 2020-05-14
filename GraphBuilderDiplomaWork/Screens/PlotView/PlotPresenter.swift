@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 
-protocol PlotPresenter {
+protocol PlotPresenter: GridBoundable {
     var plots: [Plot] { get }
     var nodeScale: SCNVector3 { get }
     /// Adds a plot to the grid.
@@ -25,15 +25,6 @@ protocol PlotPresenter {
     /// - Parameter index: index of the plot to be deleted
     func deletePlot(at index: Int)
     func deleteAll()
-    /// Changes the scale of the grid. The grid is still having the same physical size, but changes its scale
-    /// - Parameters:
-    ///   - x: x-axis scale
-    ///   - y: y-axis scale
-    ///   - z: z-axis scale
-    func scaleGrid(x: Float?, y: Float?, z: Float?)
-    /// Changes the scale of the grid. The grid is still having the same physical size, but changes its scale
-    /// - Parameter scale: scale for every axis
-    func scaleGrid(_ scale: SCNVector3)
     /// Changes physical size of the grid and the plot, but the grid scale is still be the same.
     /// - Parameters:
     ///   - x: x-axis scale
@@ -63,10 +54,6 @@ extension PlotPresenter {
     func scaleNode(_ scale: Float, animationDuration: TimeInterval = 0) {
         scaleNode(x: scale, y: scale, z: scale,
                   animationDuration: animationDuration)
-    }
-    
-    func scaleGrid(_ scale: SCNVector3) {
-        scaleGrid(x: scale.x, y: scale.y, z: scale.z)
     }
     
     func resetGridScale(animationDuration: TimeInterval) {

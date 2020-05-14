@@ -98,6 +98,10 @@
 		0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708D241AE3D900897335 /* FakeRecognizer.swift */; };
 		04187090241AE3E500897335 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0418708F241AE3E500897335 /* Equation.swift */; };
 		04187092241AE3F800897335 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04187091241AE3F800897335 /* Function.swift */; };
+		041CAC6A246D88A6003CEC34 /* AxisNodeFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC69246D88A6003CEC34 /* AxisNodeFabric.swift */; };
+		041CAC6C246DAB67003CEC34 /* GridBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6B246DAB67003CEC34 /* GridBounds.swift */; };
+		041CAC6E246DB009003CEC34 /* GridBoundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6D246DB009003CEC34 /* GridBoundable.swift */; };
+		041CAC70246DB451003CEC34 /* ValuesBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6F246DB451003CEC34 /* ValuesBounds.swift */; };
 		042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042088222461671300078B80 /* SandboxAddPlotCell.swift */; };
 		0420882524616CDA00078B80 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
 		0420882724617DD200078B80 /* BaseSCNScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882624617DD200078B80 /* BaseSCNScene.swift */; };
@@ -375,6 +379,10 @@
 		0418708D241AE3D900897335 /* FakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecognizer.swift; sourceTree = "<group>"; };
 		0418708F241AE3E500897335 /* Equation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 		04187091241AE3F800897335 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		041CAC69246D88A6003CEC34 /* AxisNodeFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisNodeFabric.swift; sourceTree = "<group>"; };
+		041CAC6B246DAB67003CEC34 /* GridBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBounds.swift; sourceTree = "<group>"; };
+		041CAC6D246DB009003CEC34 /* GridBoundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBoundable.swift; sourceTree = "<group>"; };
+		041CAC6F246DB451003CEC34 /* ValuesBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesBounds.swift; sourceTree = "<group>"; };
 		042088222461671300078B80 /* SandboxAddPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxAddPlotCell.swift; sourceTree = "<group>"; };
 		0420882424616CDA00078B80 /* PlotFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotFabric.swift; sourceTree = "<group>"; };
 		0420882624617DD200078B80 /* BaseSCNScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNScene.swift; sourceTree = "<group>"; };
@@ -544,6 +552,9 @@
 				04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */,
 				0420882B24617F3D00078B80 /* PlotGrid.swift */,
 				0420882F246188C600078B80 /* Grid.scn */,
+				041CAC6B246DAB67003CEC34 /* GridBounds.swift */,
+				041CAC6D246DB009003CEC34 /* GridBoundable.swift */,
+				041CAC6F246DB451003CEC34 /* ValuesBounds.swift */,
 			);
 			path = PlotView;
 			sourceTree = "<group>";
@@ -637,6 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				0420B70D246D53EB0042408F /* AxisNode.swift */,
+				041CAC69246D88A6003CEC34 /* AxisNodeFabric.swift */,
 			);
 			path = AxisNode;
 			sourceTree = "<group>";
@@ -1529,6 +1541,7 @@
 				04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */,
 				043DC848245093DA00CBC58F /* TestViewController.swift in Sources */,
 				04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */,
+				041CAC6E246DB009003CEC34 /* GridBoundable.swift in Sources */,
 				04CE0E53244B179F006B19B0 /* Typealiases.swift in Sources */,
 				04CE0E51244B179F006B19B0 /* InitialScreenSetter.swift in Sources */,
 				0412E6982459793A00AAB427 /* PlotPresenter.swift in Sources */,
@@ -1555,6 +1568,7 @@
 				04A0FE67244E152C000C9F6E /* TopicParagraphCell.swift in Sources */,
 				04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */,
 				04806AC5246C140D0005B559 /* PlotGestureHandlerView.swift in Sources */,
+				041CAC6A246D88A6003CEC34 /* AxisNodeFabric.swift in Sources */,
 				04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */,
 				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
@@ -1612,6 +1626,7 @@
 				04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */,
 				04D1F8E62451DFED004155FC /* ProceedToSandboxCell.swift in Sources */,
 				040FE8272451A4FA00F42C24 /* BaseCollectionCellConfigurator.swift in Sources */,
+				041CAC70246DB451003CEC34 /* ValuesBounds.swift in Sources */,
 				040A2BEF245B824800BDA83D /* Eval.m in Sources */,
 				0461F42A2457100F0099159B /* PlotColorPickerView.swift in Sources */,
 				04FCDE9224600CCB00422848 /* HandyFunctions.swift in Sources */,
@@ -1643,6 +1658,7 @@
 				04AE7B56244DABD300AF4AB5 /* TopicCellConfigurator.swift in Sources */,
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
 				04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */,
+				041CAC6C246DAB67003CEC34 /* GridBounds.swift in Sources */,
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
 				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04D1F8EB2451EFFE004155FC /* PlotPresentationMode.swift in Sources */,
