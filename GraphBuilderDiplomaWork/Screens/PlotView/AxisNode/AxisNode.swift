@@ -32,6 +32,12 @@ class AxisNode: BaseSCNNode {
         }
     }
     
+    fileprivate var axisScaleSubject = BehaviorSubject<Float>(value: 1)
+    var axisScale: Float {
+        get { try! axisScaleSubject.value() }
+        set { axisScaleSubject.onNext(newValue) }
+    }
+    
     
     // MARK: Nodes
     
@@ -65,8 +71,8 @@ class AxisNode: BaseSCNNode {
     
     override func setupBinding() {
         super.setupBinding()
-        valuesBoundsSubject
-            .subscribe(onNext: { valuesBounds in
+        Observable.combineLatest(valuesBoundsSubject, axisScaleSubject)
+            .subscribe(onNext: { valuesBounds, axisScale in
                 let markersValues = Self.getMarkersPositions(for: valuesBounds)
                 let realPositions = markersValues.map {
                     convert($0, from: valuesBounds, to: -1...1)
@@ -74,11 +80,15 @@ class AxisNode: BaseSCNNode {
                 for (i, position) in realPositions.enumerated() {
                     let marker = self.scaleMarkers[safe: i]
                     marker?.isHidden = false
-                    marker?.position.x = Float(position)
+                    marker?.position.x = Float(position) * self.cylinder.scale.y
                 }
                 self.scaleMarkers[safe: realPositions.count...]?.forEach {
                     $0.isHidden = true
                 }
+                
+                self.cylinder.scale.y = axisScale
+                self.coneArrow.position.x =
+                    Float(self.cylinderGeometry.height) * axisScale / 2
             })
             .disposed(by: bag)
     }
@@ -87,9 +97,7 @@ class AxisNode: BaseSCNNode {
     // MARK: - API Methods
     
     func setScale(_ scale: Float, animationDuration: TimeInterval = 0) {
-        cylinder.scale.y = scale
-        coneArrow.position.x =
-            Float(cylinderGeometry.height) * cylinder.scale.y / 2
+        axisScale = scale
     }
     
     func setBounds(_ bounds: ValuesBounds, animationDuration: TimeInterval = 0) {
@@ -155,5 +163,8 @@ extension Reactive where Base == AxisNode {
     }
     var valuesDelta: Observable<Double> {
         valuesBounds.map { AxisNode.getValuesDelta(from: $0) }
+    }
+    var axisScale: Observable<Float> {
+        base.axisScaleSubject.asObservable()
     }
 }

@@ -25,6 +25,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         set { gridBoundsSubject.onNext(newValue) }
     }
     
+    
     private var plotsNodes: [Plot: SCNNode] = [:]
     private var equationTransformator = EquationTransformator()
     
@@ -158,6 +159,10 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             geometry.firstMaterial?.diffuse.contents = plot.color
             node.geometry = geometry
             node.opacity = 0.7
+            
+            let gridBoundsScale = SCNVector3(
+                gridBounds.x.upper, gridBounds.y.upper, gridBounds.z.upper)
+            node.scale = 1 / gridBoundsScale
             plot.error = nil
         } catch let error {
             plot.error = error
