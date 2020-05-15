@@ -22,7 +22,6 @@ class PlotView: BaseSCNView {
     override func setupScene() {
         super.setupScene()
         backgroundColor = Color.grayBackground()
-        allowsCameraControl = true
     }
     
     override func setupLight() {

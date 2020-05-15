@@ -107,7 +107,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: Views
     
-    private lazy var scnPlotView = PlotView(scene: plotScene)
+    private lazy var scnPlotView: PlotView = {
+        let view = PlotView(scene: plotScene)
+        #warning("View is hidden")
+        view.isHidden = true
+        return view
+    }()
+    private lazy var arscnPlotView = ARPlotView(scene: plotScene)
     
     private lazy var buttonBack: UIButton = {
         let button = UIButton()
@@ -238,6 +244,15 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private var bottomStackViewBottomToTableViewTopConstaint: NSLayoutConstraint?
     
     
+    
+    // MARK: - View Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startARSession()
+    }
+    
+    
     // MARK: - Setup Methods
     
     override func setupUI() {
@@ -256,6 +271,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         super.addSubviews()
         view.addSubviews([
             scnPlotView,
+            arscnPlotView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
             equationsTableView,
@@ -274,6 +290,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     override func setupConstraints() {
         super.setupConstraints()
         scnPlotView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        arscnPlotView.snp.makeConstraints { $0.edges.equalToSuperview() }
         buttonBack.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.leading.equalTo(10)
@@ -508,6 +525,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private func getParametersCellsSection(from plotIndex: Int) -> Int {
         plotIndex * 2 + 1
+    }
+    
+    private func startARSession() {
+        arscnPlotView.session.run(ARWorldTrackingConfiguration())
     }
 }
 
