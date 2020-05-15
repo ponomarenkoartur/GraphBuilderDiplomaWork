@@ -11,9 +11,9 @@ import Foundation
 
 struct GridBounds {
     
-    let x: ValuesBounds
-    let y: ValuesBounds
-    let z: ValuesBounds
+    var x: ValuesBounds
+    var y: ValuesBounds
+    var z: ValuesBounds
     
     
     static func *(_ multiplier: Double, _ bound: GridBounds) -> GridBounds {
@@ -39,5 +39,18 @@ struct GridBounds {
     
     static func /=(_ bound: inout GridBounds, _ divider: Double) {
         bound = bound / divider
+    }
+}
+
+
+// MARK: - CustomStringConvertible
+
+extension GridBounds: CustomStringConvertible {
+    var description: String {
+        """
+        x: (\(x.lowerBound.rounded(toPlaces: 2)), \(x.upperBound.rounded(toPlaces: 2))
+        y: (\(y.lowerBound.rounded(toPlaces: 2)), \(y.upperBound.rounded(toPlaces: 2))
+        z: (\(z.lowerBound.rounded(toPlaces: 2)), \(z.upperBound.rounded(toPlaces: 2))
+        """
     }
 }

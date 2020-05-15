@@ -67,6 +67,10 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                 self.equationTransformator.setBounds(gridBounds)
                 self.plotsNodes.forEach { plot, node in
                     self.updateGeometry(with: plot, of: node)
+                    
+                    node.position.x = -Float(gridBounds.x.mid)
+                    node.position.y = -Float(gridBounds.y.mid)
+                    node.position.z = -Float(gridBounds.z.mid)
                 }
             })
             .disposed(by: bag)

@@ -9,8 +9,8 @@
 import SceneKit
 
 
-protocol PlotGridProtocol {
-    func setOriginOffset(_ vector: SCNVector3)
+protocol PlotGridProtocol: GridBoundable {
+    func scale(_ scale: SCNVector3, animationDuration: TimeInterval)
 }
 
 class PlotGrid: BaseSCNNode, PlotGridProtocol {
@@ -53,17 +53,6 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
     
     // MARK: - API Methods
     
-    func setOriginOffset(_ vector: SCNVector3) {
-        axises.x.position.z = vector.z
-        axises.y.position.z = vector.z
-        
-        axises.x.position.y = vector.y
-        axises.z.position.y = vector.y
-        
-        axises.y.position.x = vector.x
-        axises.z.position.x = vector.x
-    }
-    
     func scale(_ scale: SCNVector3, animationDuration: TimeInterval = 0) {
         axises.x.setScale(scale.x, animationDuration: animationDuration)
         axises.y.setScale(scale.y, animationDuration: animationDuration)
@@ -78,12 +67,21 @@ extension PlotGrid: GridBoundable {
     func setBounds(x: ValuesBounds?, y: ValuesBounds?, z: ValuesBounds?) {
         if let x = x {
             axises.x.setBounds(x)
+    
+            axises.y.position.x = -Float(x.mid)
+            axises.z.position.x = -Float(x.mid)
         }
         if let y = y {
             axises.y.setBounds(y)
+    
+            axises.x.position.y = -Float(y.mid)
+            axises.z.position.y = -Float(y.mid)
         }
         if let z = z {
             axises.z.setBounds(z)
+    
+            axises.x.position.z = -Float(z.mid)
+            axises.y.position.z = -Float(z.mid)
         }
     }
 }
