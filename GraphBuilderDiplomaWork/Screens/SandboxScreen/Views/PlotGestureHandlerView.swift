@@ -16,7 +16,7 @@ class PlotGestureHandlerView: BaseView {
     
     // MARK: - Properties
     
-    var scene: PlotScene!
+    private(set) var scenes: [PlotScene] = []
     var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
     fileprivate var modeSubject = BehaviorSubject(value: ManipulationMode.bounds)
@@ -27,9 +27,9 @@ class PlotGestureHandlerView: BaseView {
     
     
     /// Scale of scene before pinch gesture began
-    private lazy var initialScale: SCNVector3 = scene.nodeScale
+    private var initialScales: [SCNVector3] = []
     /// Grid bound before pinch gesture began
-    private lazy var initialGridBound: GridBounds = scene.gridBounds
+    private var initialGridBoundsList: [GridBounds] = []
     
     
     // MARK: - Initialization
@@ -100,7 +100,7 @@ class PlotGestureHandlerView: BaseView {
         
         switch gr.state {
         case .began:
-            initialGridBound = scene.gridBounds
+            initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
             switch mode {
             case .scale:
@@ -115,7 +115,7 @@ class PlotGestureHandlerView: BaseView {
                 let xOffset = Double(gr.translation(in: self).x) / k
                 let yOffset = Double(gr.translation(in: self).y) / k
                 
-                var targetBounds = initialGridBound
+                var targetBoundsList = initialGridBoundsList
                 
                 //
                 //  Condition (x, y, z) |    x    |    y    |    z    |
@@ -129,18 +129,19 @@ class PlotGestureHandlerView: BaseView {
                 //           001        |    -    |    -    | yOffset |
                 //           000        |    -    |    -    |    -    |
                 //
-                if shouldHandleAxis.x {
-                    targetBounds.x += -xOffset
+                for (i, _) in targetBoundsList.enumerated() {
+                    if shouldHandleAxis.x {
+                        targetBoundsList[i].x += -xOffset
+                    }
+                    if shouldHandleAxis.y {
+                        targetBoundsList[i].y += yOffset
+                    }
+                    if shouldHandleAxis.z &&
+                        (!shouldHandleAxis.x || !shouldHandleAxis.y) {
+                        targetBoundsList[i].z += shouldHandleAxis.y ? xOffset : yOffset
+                    }
                 }
-                if shouldHandleAxis.y {
-                    targetBounds.y += yOffset
-                }
-                if shouldHandleAxis.z &&
-                    (!shouldHandleAxis.x || !shouldHandleAxis.y) {
-                    targetBounds.z += shouldHandleAxis.y ? xOffset : yOffset
-                }
-                scene.setBounds(targetBounds)
-                print(targetBounds)
+                setBoundsList(targetBoundsList)
                 print()
             }
         case .ended:
@@ -161,20 +162,16 @@ class PlotGestureHandlerView: BaseView {
         
         switch gr.state {
         case .began:
-            initialScale = scene.nodeScale
-            initialGridBound = scene.gridBounds
+            initialScales = scenes.map { $0.nodeScale }
+            initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
             switch mode {
             case .scale:
-                let targetScale = initialScale * Float(gr.scale)
-                scene.scaleNode(x: shouldHandleAxis.x ? targetScale.x : nil,
-                                y: shouldHandleAxis.y ? targetScale.y : nil,
-                                z: shouldHandleAxis.z ? targetScale.z : nil)
+                setScales(initialScales.map { $0 * Float(gr.scale) })
             case .bounds:
-                let targetBounds = initialGridBound / Double(gr.scale)
-                scene.setBounds(x: shouldHandleAxis.x ? targetBounds.x : nil,
-                                y: shouldHandleAxis.y ? targetBounds.y : nil,
-                                z: shouldHandleAxis.z ? targetBounds.z : nil)
+                setBoundsList(
+                    initialGridBoundsList.map { $0 / Double(gr.scale) }
+                )
             }
             
         case .ended:
@@ -210,6 +207,30 @@ class PlotGestureHandlerView: BaseView {
             mode = .scale
         case .scale:
             mode = .bounds
+        }
+    }
+    
+    func addScenes(_ scenesToAdd: [PlotScene]) {
+        scenes.append(contentsOf: scenesToAdd)
+    }
+    
+    func setBoundsList(_ targetBoundsList: [GridBounds]) {
+        scenes.combined(targetBoundsList).forEach {
+            scene, targetBounds in
+            scene.setBounds(
+                x: shouldHandleAxis.x ? targetBounds.x : nil,
+                y: shouldHandleAxis.y ? targetBounds.y : nil,
+                z: shouldHandleAxis.z ? targetBounds.z : nil)
+        }
+    }
+    
+    func setScales(_ targetScales: [SCNVector3]) {
+        scenes.combined(targetScales).forEach {
+            scene, targetScale in
+            scene.scaleNode(
+                x: shouldHandleAxis.x ? targetScale.x : nil,
+                y: shouldHandleAxis.y ? targetScale.y : nil,
+                z: shouldHandleAxis.z ? targetScale.z : nil)
         }
     }
     

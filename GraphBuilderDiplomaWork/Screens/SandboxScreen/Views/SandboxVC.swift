@@ -247,7 +247,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private(set) lazy var gestureHandlerView: PlotGestureHandlerView = {
         let view = PlotGestureHandlerView()
-        view.scene = plotScene
+        view.addScenes(plotScenes)
         return view
     }()
     

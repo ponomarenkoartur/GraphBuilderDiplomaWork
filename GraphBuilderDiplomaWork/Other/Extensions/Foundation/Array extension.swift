@@ -74,6 +74,21 @@ extension Array {
             !other.contains(where: { equalPredicate(item, $0) })
         }
     }
+    
+    func combined<OtherElement>(_ array: Array<OtherElement>)
+        -> [(Element, OtherElement)] {
+            Array<Any>.combine(self, array)
+    }
+    
+    static func combine<E0, E1>(_ array0: Array<E0>, _ array1: Array<E1>)
+        -> [(E0, E1)] {
+            var resultArray: [(E0, E1)] = []
+            let count = Swift.min(array0.count, array1.count)
+            for i in 0..<count {
+                resultArray.append((array0[i], array1[i]))
+            }
+            return resultArray
+    }
 }
 
 extension Array where Element: Hashable {
