@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3D-1.png",
+      "filename" : "cube3DBlack-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DBlack.png",
+      "filename" : "cube3D-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -39,7 +39,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3D@2x-1.png",
+      "filename" : "cube3DBlack@2x-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -50,7 +50,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DBlack@2x.png",
+      "filename" : "cube3D@2x-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -66,7 +66,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3D@3x-1.png",
+      "filename" : "cube3DBlack@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -77,7 +77,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DBlack@3x.png",
+      "filename" : "cube3D@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

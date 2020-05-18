@@ -14,10 +14,12 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didAddPlot: (_ plot: Plot, _ index: Int) -> () { get set }
     var didSetPlotList: (_ list: [Plot]) -> () { get set }
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () { get set }
+    var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () { get set }
     var plotsList: [Plot] { get }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
     func updatePlotEquation(at index: Int, newEquation: String)
+    func setMode(_ mode: PlotPresentationMode)
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -26,6 +28,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     // MARK: - Properties
     
     private(set) var plotsList: [Plot] = []
+    private(set) var mode: PlotPresentationMode = .vr
     
     
     // MARK: Callbacks
@@ -33,6 +36,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didAddPlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didRemovePlot: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didSetPlotList: (_ list: [Plot]) -> () = { _ in }
+    var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () = { _ in }
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     
     
@@ -52,6 +56,11 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     func setPlotList(_ list: [Plot]) {
         self.plotsList = list
         didSetPlotList(list)
+    }
+    
+    func setMode(_ mode: PlotPresentationMode) {
+        self.mode = mode
+        didSetPresentationMode(mode)
     }
     
     func updatePlotEquation(at index: Int, newEquation: String) {

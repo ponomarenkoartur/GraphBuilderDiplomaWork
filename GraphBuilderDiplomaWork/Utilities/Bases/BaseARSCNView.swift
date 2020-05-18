@@ -1,22 +1,23 @@
 //
-//  BaseSCNView.swift
+//  BaseARSCNView.swift
 //  GraphBuilderDiplomaWork
 //
-//  Created by Artur on 29.04.2020.
+//  Created by Artur on 15.05.2020.
 //  Copyright © 2020 Artur. All rights reserved.
 //
 
-import SceneKit
+
+import ARKit
 import RxSwift
 
 
-class BaseSCNView: SCNView {
+class BaseARSCNView: ARSCNView {
     
 
     // MARK: - Properties
     
     let bag = DisposeBag()
-    var rootNode: SCNNode { scene!.rootNode }
+    var rootNode: SCNNode { scene.rootNode }
     
 
     // MARK: - Initialization
@@ -39,10 +40,8 @@ class BaseSCNView: SCNView {
     }
     
     private func commonInit() {
-        setupUI()
         setupScene()
         setupLight()
-        setupGestures()
     }
     
     
@@ -51,19 +50,5 @@ class BaseSCNView: SCNView {
     func setupScene() {}
     
     func setupLight() {}
-    
-    func setupGestures() {}
-    
-    
-    /// Call 'addSubview' methods before caliing super.setupUI()
-    /// in overrided methods
-    func setupUI() {
-        addSubviews()
-        setupConstraints()
-    }
-    
-    func addSubviews() {}
-    
-    func setupConstraints() {}
 }
 

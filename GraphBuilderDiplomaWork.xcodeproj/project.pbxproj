@@ -258,6 +258,8 @@
 		04AE7B59244DBD6700AF4AB5 /* TopicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */; };
 		04AE7B5B244DBD8100AF4AB5 /* TopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B5A244DBD8100AF4AB5 /* TopicVC.swift */; };
 		04AE7B5F244DF45100AF4AB5 /* TopicSubheaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */; };
+		04B83676246F16F300426FEC /* ARPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83675246F16F300426FEC /* ARPlotView.swift */; };
+		04B83678246F175400426FEC /* BaseARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83677246F175400426FEC /* BaseARSCNView.swift */; };
 		04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1168F2450483100C0CF49 /* TopicFooterView.swift */; };
 		04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1169124504CDB00C0CF49 /* CGRect extension.swift */; };
 		04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1E244B11E8006B19B0 /* Error extension.swift */; };
@@ -454,6 +456,8 @@
 		04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVM.swift; sourceTree = "<group>"; };
 		04AE7B5A244DBD8100AF4AB5 /* TopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVC.swift; sourceTree = "<group>"; };
 		04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicSubheaderCell.swift; sourceTree = "<group>"; };
+		04B83675246F16F300426FEC /* ARPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlotView.swift; sourceTree = "<group>"; };
+		04B83677246F175400426FEC /* BaseARSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseARSCNView.swift; sourceTree = "<group>"; };
 		04C1168F2450483100C0CF49 /* TopicFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFooterView.swift; sourceTree = "<group>"; };
 		04C1169124504CDB00C0CF49 /* CGRect extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect extension.swift"; sourceTree = "<group>"; };
 		04CE0E1E244B11E8006B19B0 /* Error extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error extension.swift"; sourceTree = "<group>"; };
@@ -557,6 +561,7 @@
 				041CAC6B246DAB67003CEC34 /* GridBounds.swift */,
 				041CAC6D246DB009003CEC34 /* GridBoundable.swift */,
 				041CAC6F246DB451003CEC34 /* ValuesBounds.swift */,
+				04B83675246F16F300426FEC /* ARPlotView.swift */,
 			);
 			path = PlotView;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 				04CE0E3E244B1468006B19B0 /* ViewModelProtocol.swift */,
 				048C4924245192D500C430B3 /* ViewModelViewDataBinderProtocol.swift */,
 				0420882D24617F6E00078B80 /* BaseSCNNode.swift */,
+				04B83677246F175400426FEC /* BaseARSCNView.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -1582,6 +1588,7 @@
 				0412E69A24597F3300AAB427 /* PlotView.swift in Sources */,
 				04D1F8DD2451D139004155FC /* PlotParameterCellConfigurator.swift in Sources */,
 				046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */,
+				04B83676246F16F300426FEC /* ARPlotView.swift in Sources */,
 				0462065F2451901000012C91 /* BaseVMWithVC.swift in Sources */,
 				04A7859424549464005D717A /* SandboxEquationCellConfigurator.swift in Sources */,
 				04CE0E30244B1227006B19B0 /* BezierArtist.swift in Sources */,
@@ -1604,6 +1611,7 @@
 				048C4925245192D500C430B3 /* ViewModelViewDataBinderProtocol.swift in Sources */,
 				04AE7B5F244DF45100AF4AB5 /* TopicSubheaderCell.swift in Sources */,
 				040A2BF1245B828A00BDA83D /* ExpressionEvalutaion.swift in Sources */,
+				04B83678246F175400426FEC /* BaseARSCNView.swift in Sources */,
 				046E98D1244B563000611091 /* TopicCell.swift in Sources */,
 				04CE0E40244B1468006B19B0 /* BaseCollectionViewCell.swift in Sources */,
 				0411CC9F246485A9001A3183 /* Dictionary extension.swift in Sources */,
