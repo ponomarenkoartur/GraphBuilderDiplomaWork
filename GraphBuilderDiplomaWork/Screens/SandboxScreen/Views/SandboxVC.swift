@@ -62,7 +62,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         set { isSettingsHiddenSubject.onNext(newValue) }
     }
     
-    private let plotScene = PlotScene()
+    private let plotScenes = [PlotScene(), PlotScene()]
     
     
     /// Index of row that caused appearing of `plotColorPicker`
@@ -116,13 +116,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     // MARK: Views
     
-    private lazy var scnPlotView: PlotView = {
-        let view = PlotView(scene: plotScene)
-//        #warning("View is hidden")
-//        view.isHidden = true
-        return view
-    }()
-    private lazy var arscnPlotView = ARPlotView(scene: plotScene)
+    private lazy var scnPlotView = PlotView(scene: plotScenes[0])
+    private lazy var arscnPlotView = ARPlotView(scene: plotScenes[1])
     
     private lazy var buttonBack: UIButton = {
         let button = UIButton()
@@ -489,7 +484,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         plotsList.append(plot)
         
         equationsTableView.reloadData()
-        plotScene.add(plot)
+        plotScenes.forEach { $0.add(plot) }
     }
     
     func removePlot(at index: Int) {
@@ -504,14 +499,18 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             self.equationsTableView.reloadData()
         })
         
-        plotScene.deletePlot(at: index)
+        plotScenes.forEach { $0.deletePlot(at: index) }
     }
     
     func setPlotList(_ list: [Plot]) {
         plotsList = list
-        plotScene.deleteAll()
+        plotScenes.forEach { $0.deleteAll() }
         
-        plotsList.forEach { plotScene.add($0) }
+        plotsList.forEach { plot in
+            plotScenes.forEach {
+                scene in scene.add(plot)
+            }
+        }
         equationsTableView.reloadData()
     }
     
