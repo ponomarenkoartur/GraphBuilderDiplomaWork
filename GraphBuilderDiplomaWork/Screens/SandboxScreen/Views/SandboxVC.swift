@@ -27,6 +27,7 @@ protocol SandboxVCProtocol: UIViewController {
     func removePlot(at index: Int)
     func setPlotList(_ list: [Plot])
     func updateParametersOfPlot(at index: Int)
+    func setPresentationMode(_ mode: PlotPresentationMode)
 }
 
 
@@ -53,6 +54,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         get { try! isColorPickerHiddenSubject.value() }
         set { isColorPickerHiddenSubject.onNext(newValue) }
     }
+    
+    private let isSettingsHiddenSubject =
+        BehaviorSubject<Bool>(value: true)
+    private var isSettingsHidden: Bool {
+        get { try! isSettingsHiddenSubject.value() }
+        set { isSettingsHiddenSubject.onNext(newValue) }
+    }
+    
     private let plotScene = PlotScene()
     
     
@@ -109,8 +118,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private lazy var scnPlotView: PlotView = {
         let view = PlotView(scene: plotScene)
-        #warning("View is hidden")
-        view.isHidden = true
+//        #warning("View is hidden")
+//        view.isHidden = true
         return view
     }()
     private lazy var arscnPlotView = ARPlotView(scene: plotScene)
@@ -143,7 +152,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
         button.setImage(Image.settings())
-        button.rx.tap.subscribe(onNext: { _ in self.didTapSettingsButton() })
+        button.rx.tap
+            .subscribe(onNext: {
+                _ in self.didTapSettingsButton()
+                self.isSettingsHidden = !self.isSettingsHidden
+            })
             .disposed(by: bag)
         return button
     }()
@@ -238,6 +251,43 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return plotColorPicker
     }()
     
+    
+    // MARK: Settings Views
+    
+    private lazy var settingsContainerView = UIView()
+    private lazy var settingsBackgroundView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Image.settingsBubble()
+        return imageView
+    }()
+    private lazy var arModeSettingsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    private lazy var arModeLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = "AR mode"
+            .withFont(Font.sfProDisplayRegular(size: 18)!)
+            .withTextColor(.black)
+        return label
+    }()
+    private lazy var presentationModeSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isOn = false
+        switchControl.onTintColor = Color.turquoise()
+        switchControl.rx.isOn
+            .subscribe(onNext: { isOn in
+                self.didTapChangeMode(isOn ? .ar : .vr)
+            })
+            .disposed(by: bag)
+        return switchControl
+    }()
+    
+
+    
     // MARK: Constaints
     
     private var tableViewTopToSuperviewBottomConstraint: NSLayoutConstraint?
@@ -275,7 +325,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
             equationsTableView,
-            plotColorPicker
+            plotColorPicker,
+            settingsContainerView
         ])
         topRightButtonStackView.addArrangedSubviews([
             takePhotoButton,
@@ -285,6 +336,13 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         bottomButtonStackView.addArrangedSubviews([
             manipilationModeSwitchButton, xyzControl, openHidePlotEditorButton
         ])
+        settingsContainerView.addSubviews(
+            settingsBackgroundView,
+            arModeSettingsStackView
+        )
+        arModeSettingsStackView.addArrangedSubviews(
+            arModeLabel, presentationModeSwitch
+        )
     }
     
     override func setupConstraints() {
@@ -323,6 +381,20 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.leading.equalToSuperview().offset(63)
             $0.top.equalToSuperview()
         }
+        settingsContainerView.snp.makeConstraints {
+            $0.centerY.equalTo(settingsButton.snp.centerY)
+            $0.trailing.equalTo(settingsButton.snp.leading).offset(4)
+            $0.width.equalTo(236)
+            $0.height.equalTo(60)
+        }
+        settingsBackgroundView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        arModeSettingsStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(14.5)
+            $0.trailing.equalToSuperview().offset(-23)
+        }
     }
     
     override func setupBinding() {
@@ -358,20 +430,32 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         
-        
+        isSettingsHiddenSubject
+            .subscribe(onNext: { isHidden in
+                UIView.animate(withDuration: 0.2) {
+                    self.settingsContainerView.alpha = isHidden ? 0 : 1
+                }
+            })
+            .disposed(by: bag)
     }
     
     private func setupGestureRecognizers() {
         view.rx
             .panGesture()
             .when(.recognized)
-            .subscribe(onNext: { _ in self.isColorPickerHidden = true })
+            .subscribe(onNext: { _ in
+                self.isColorPickerHidden = true
+                self.isSettingsHidden = true
+            })
             .disposed(by: bag)
         equationsTableView
             .rx
             .tapGesture()
             .when(.recognized)
-            .subscribe(onNext: { _ in self.isColorPickerHidden = true })
+            .subscribe(onNext: { _ in
+                self.isColorPickerHidden = true
+                self.isSettingsHidden = true
+            })
             .disposed(by: bag)
     }
     
@@ -419,6 +503,16 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         equationsTableView.reloadSection(section)
     }
     
+    func setPresentationMode(_ mode: PlotPresentationMode) {
+        switch mode {
+        case .vr:
+            pauseARSession()
+            arscnPlotView.isHidden = true
+        case .ar:
+            startARSession()
+            arscnPlotView.isHidden = false
+        }
+    }
     
     // MARK: - Other Methods
     
@@ -529,6 +623,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private func startARSession() {
         arscnPlotView.session.run(ARWorldTrackingConfiguration())
+    }
+    
+    private func pauseARSession() {
+        arscnPlotView.session.pause()
     }
 }
 

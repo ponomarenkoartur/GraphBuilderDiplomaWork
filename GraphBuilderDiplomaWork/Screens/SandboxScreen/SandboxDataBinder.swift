@@ -35,6 +35,11 @@ class SandboxDataBinder<ViewModel>:
                 self.views.forEach { $0.updateParametersOfPlot(at: index) }
             }
         }
+        viewModel.didSetPresentationMode = { mode in
+            DispatchQueue.main.async {
+                self.views.forEach { $0.setPresentationMode(mode) }
+            }
+        }
         
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in
@@ -56,6 +61,9 @@ class SandboxDataBinder<ViewModel>:
             }
             view.didChangeEquationText = { plot, index, text in
                 self.viewModel.updatePlotEquation(at: index, newEquation: text)
+            }
+            view.didTapChangeMode = { mode in
+                self.viewModel.setMode(mode)
             }
         }
     }
