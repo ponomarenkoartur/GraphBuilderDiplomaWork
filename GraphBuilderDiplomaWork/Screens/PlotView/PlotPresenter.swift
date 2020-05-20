@@ -42,7 +42,11 @@ protocol PlotPresenter: GridBoundable {
     func setBounds(x: ValuesBounds?, y: ValuesBounds?, z: ValuesBounds?)
     /// Changes grid bounds
     func setBounds(_ bounds: ValuesBounds)
-    /// Reset the scale of the grid to its initial state. Doesn't change physical size of a node.
+    /// Moves in physycal world the whole root node
+    func setRootPosition(x: Float?, y: Float?, z: Float?)
+    /// Moves in physycal world the whole root node
+    func setRootPosition(_ position: SCNVector3)
+    /// Resets the scale of the grid to its initial state. Doesn't change physical size of a node.
     func resetGridScale(animationDuration: TimeInterval)
     /// Returns a picture of plots on the grid.
     func screenshot() -> UIImage
@@ -77,5 +81,9 @@ extension PlotPresenter {
 
     func setBounds(_ bounds: ValuesBounds) {
         setBounds(x: bounds, y: bounds, z: bounds)
+    }
+    
+    func setRootPosition(_ position: SCNVector3) {
+        setRootPosition(x: position.x, y: position.y, z: position.z)
     }
 }

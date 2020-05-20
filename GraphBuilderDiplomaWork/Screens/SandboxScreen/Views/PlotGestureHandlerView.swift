@@ -28,8 +28,10 @@ class PlotGestureHandlerView: BaseView {
     
     /// Scale of scene before pinch gesture began
     private var initialScales: [SCNVector3] = []
-    /// Grid bound before pinch gesture began
+    /// Grid bounds before pinch or pan gesture began
     private var initialGridBoundsList: [GridBounds] = []
+    /// Plot position before pan gesture began
+    private var initialPositions: [SCNVector3] = []
     
     
     // MARK: - Initialization
@@ -48,12 +50,6 @@ class PlotGestureHandlerView: BaseView {
     
     override func setupGesturesRecognizers() {
         super.setupGesturesRecognizers()
-        
-        rx.swipeGesture([.down, .left, .right, .up])
-            .when(.ended)
-            .subscribe(onNext: { self.handleSwipe($0) })
-            .disposed(by: bag)
-        
         rx.panGesture()
             .when(.began, .ended)
             .subscribe(onNext: { self.handlePan($0) })
@@ -86,22 +82,46 @@ class PlotGestureHandlerView: BaseView {
         
     }
     
-    private func handleSwipe(_ gr: UISwipeGestureRecognizer) {
-        print("Handling swipe. State: \(gr.state).")
-    }
-    
     private func handlePan(_ gr: UIPanGestureRecognizer) {
         switch gr.state {
         case .began:
             initialGridBoundsList = scenes.map { $0.gridBounds }
+            initialPositions = scenes.map { $0.plotsAndGridWrapperPosition }
         case .changed:
             switch manipulationMode {
             case .world:
-//                let targetScale = initialScale * Float(gr.scale)
-//                scene.scaleNode(x: shouldHandleAxis.x ? targetScale.x : nil,
-//                                y: shouldHandleAxis.y ? targetScale.y : nil,
-//                                z: shouldHandleAxis.z ? targetScale.z : nil)
-                break
+                let k: Float = 100
+                
+                let xOffset = Float(gr.translation(in: self).x) / k
+                let yOffset = Float(gr.translation(in: self).y) / k
+                
+                var targetPositions = initialPositions
+                
+                //
+                //  Condition (x, y, z) |    x    |    y    |    z    |
+                //  ____________________|_________|_________|_________|
+                //           111        | xOffset | yOffset |    -    |
+                //           110        | xOffset | yOffset |    -    |
+                //           101        | xOffset |    -    | yOffset |
+                //           100        | xOffset |    -    |    -    |
+                //           011        |    -    | yOffset | xOffset |
+                //           010        |    -    | yOffset |    -    |
+                //           001        |    -    |    -    | yOffset |
+                //           000        |    -    |    -    |    -    |
+                //
+                for (i, _) in targetPositions.enumerated() {
+                    if shouldHandleAxis.x {
+                        targetPositions[i].x += xOffset
+                    }
+                    if shouldHandleAxis.y {
+                        targetPositions[i].y += -yOffset
+                    }
+                    if shouldHandleAxis.z &&
+                        (!shouldHandleAxis.x || !shouldHandleAxis.y) {
+                        targetPositions[i].z += shouldHandleAxis.y ? xOffset : yOffset
+                    }
+                }
+                setPositions(targetPositions)
             case .local:
                 let k: Double = 100
                 
@@ -135,7 +155,6 @@ class PlotGestureHandlerView: BaseView {
                     }
                 }
                 setBoundsList(targetBoundsList)
-                print()
             }
         case .ended:
             break
@@ -204,6 +223,16 @@ class PlotGestureHandlerView: BaseView {
                 x: shouldHandleAxis.x ? targetScale.x : nil,
                 y: shouldHandleAxis.y ? targetScale.y : nil,
                 z: shouldHandleAxis.z ? targetScale.z : nil)
+        }
+    }
+    
+    func setPositions(_ targetPositions: [SCNVector3]) {
+        scenes.combined(targetPositions).forEach {
+            scene, targetPosition in
+            scene.setRootPosition(
+                x: shouldHandleAxis.x ? targetPosition.x : nil,
+                y: shouldHandleAxis.y ? targetPosition.y : nil,
+                z: shouldHandleAxis.z ? targetPosition.z : nil)
         }
     }
     

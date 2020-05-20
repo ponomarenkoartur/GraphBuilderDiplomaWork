@@ -25,11 +25,16 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         set { gridBoundsSubject.onNext(newValue) }
     }
     
+    var plotsAndGridWrapperPosition: SCNVector3 {
+        plotsAndGridWrapper.position
+    }
+    
     
     private var plotsNodes: [Plot: SCNNode] = [:]
     private var equationTransformator = EquationTransformator()
     
-    
+    /// Node that contains all nodes except camera
+    private lazy var plotsAndGridWrapper = SCNNode()
     private let plotWrapperNode: SCNNode = {
         let node = SCNNode()
         node.name = "plotWrapperNode"
@@ -61,7 +66,8 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     override func setupNodes() {
         super.setupNodes()
-        rootNode.addNodes(gridNode, plotWrapperNode, cameraNode)
+        rootNode.addNodes(plotsAndGridWrapper, cameraNode)
+        plotsAndGridWrapper.addNodes(gridNode, plotWrapperNode)
     }
     
     override func setupBinding() {
@@ -150,6 +156,12 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     
     func screenshot() -> UIImage { UIImage() }
+    
+    func setRootPosition(x: Float?, y: Float?, z: Float?) {
+        plotsAndGridWrapper.position.x = x ?? rootNode.position.x
+        plotsAndGridWrapper.position.y = y ?? rootNode.position.y
+        plotsAndGridWrapper.position.z = z ?? rootNode.position.z
+    }
 
     
     // MARK: - Private Methods
