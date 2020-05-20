@@ -93,9 +93,9 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                     node.position.y = -Float(gridBounds.y.mid) * Float(defaultBoxSize / gridBounds.y.delta)
                     node.position.z = -Float(gridBounds.z.mid) * Float(defaultBoxSize / gridBounds.z.delta)
                     
-                    node.scale.x *= Float(defaultBoxSize / gridBounds.x.delta)
-                    node.scale.y *= Float(defaultBoxSize / gridBounds.y.delta)
-                    node.scale.z *= Float(defaultBoxSize / gridBounds.z.delta)
+                    node.scale.x = Float(defaultBoxSize / gridBounds.x.delta)
+                    node.scale.y = Float(defaultBoxSize / gridBounds.y.delta)
+                    node.scale.z = Float(defaultBoxSize / gridBounds.z.delta)
                 }
             })
             .disposed(by: bag)
@@ -188,10 +188,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             geometry.firstMaterial?.diffuse.contents = plot.color
             node.geometry = geometry
             node.opacity = 0.7
-            
-            let gridBoundsScale = SCNVector3(
-                gridBounds.x.upper, gridBounds.y.upper, gridBounds.z.upper)
-            node.scale = 1 / gridBoundsScale
             plot.error = nil
         } catch let error {
             plot.error = error

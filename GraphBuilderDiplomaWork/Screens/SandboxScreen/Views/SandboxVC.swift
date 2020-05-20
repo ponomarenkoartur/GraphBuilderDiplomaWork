@@ -310,9 +310,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         setupGestureRecognizers()
         
         plotScenes.forEach {
-            $0.add(Plot(equation: "x^2+z^2"))
+            $0.add(Plot(equation: "x^2+z^2", color: .green))
 //            $0.scaleNode(0.75)
-//            $0.setBounds(x: -2...0)
+//            $0.setBounds(y: -2...2)
         }
     }
     
