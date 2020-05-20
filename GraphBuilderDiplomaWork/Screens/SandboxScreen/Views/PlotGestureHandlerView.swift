@@ -19,10 +19,16 @@ class PlotGestureHandlerView: BaseView {
     private(set) var scenes: [PlotScene] = []
     var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
-    fileprivate var modeSubject = BehaviorSubject(value: ManipulationMode.bounds)
-    var mode: ManipulationMode {
-        get { try! modeSubject.value() }
-        set { modeSubject.onNext(newValue) }
+    fileprivate var pinchGestureModeSubject = BehaviorSubject(value: PinchGestureMode.bounds)
+    var pinchGestureMode: PinchGestureMode {
+        get { try! pinchGestureModeSubject.value() }
+        set { pinchGestureModeSubject.onNext(newValue) }
+    }
+    
+    fileprivate var panGestureModeSubject = BehaviorSubject(value: PanGestureMode.rotate)
+    var panGestureMode: PanGestureMode {
+        get { try! panGestureModeSubject.value() }
+        set { panGestureModeSubject.onNext(newValue) }
     }
     
     
@@ -102,7 +108,7 @@ class PlotGestureHandlerView: BaseView {
         case .began:
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
-            switch mode {
+            switch pinchGestureMode {
             case .scale:
 //                let targetScale = initialScale * Float(gr.scale)
 //                scene.scaleNode(x: shouldHandleAxis.x ? targetScale.x : nil,
@@ -165,7 +171,7 @@ class PlotGestureHandlerView: BaseView {
             initialScales = scenes.map { $0.nodeScale }
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
-            switch mode {
+            switch pinchGestureMode {
             case .scale:
                 setScales(initialScales.map { $0 * Float(gr.scale) })
             case .bounds:
@@ -201,12 +207,21 @@ class PlotGestureHandlerView: BaseView {
     
     // MARK: - API Methods
     
-    func switchMode() {
-        switch mode {
+    func switchPinchGestureMode() {
+        switch pinchGestureMode {
         case .bounds:
-            mode = .scale
+            pinchGestureMode = .scale
         case .scale:
-            mode = .bounds
+            pinchGestureMode = .bounds
+        }
+    }
+    
+    func switchPanGestureMode() {
+        switch panGestureMode {
+        case .drag:
+            panGestureMode = .rotate
+        case .rotate:
+            panGestureMode = .drag
         }
     }
     
@@ -240,7 +255,10 @@ class PlotGestureHandlerView: BaseView {
 // MARK: - Rx
 
 extension Reactive where Base == PlotGestureHandlerView {
-    var mode: Observable<ManipulationMode> {
-        base.modeSubject.asObservable()
+    var pinchGestureMode: Observable<PinchGestureMode> {
+        base.pinchGestureModeSubject.asObservable()
+    }
+    var panGestureMode: Observable<PanGestureMode> {
+        base.panGestureModeSubject.asObservable()
     }
 }

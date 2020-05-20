@@ -173,14 +173,25 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return stackView
     }()
     
-    private lazy var manipilationModeSwitchButton: UIButton = {
+    private lazy var pinchGestureModeSwitchButton: UIButton = {
         let button = UIButton()
         button.tintColor = Color.inverseText()
         button.setImage(Image.cube3D(), for: .normal)
-        button.setImage(Image.cube3DDotted(), for: .selected)
         button.rx.tap
             .subscribe(onNext: { _ in
-                self.gestureHandlerView.switchMode()
+                self.gestureHandlerView.switchPinchGestureMode()
+            })
+            .disposed(by: bag)
+        return button
+    }()
+    
+    private lazy var panGestureModeSwitchButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = Color.inverseText()
+        button.setImage(Image.rotate())
+        button.rx.tap
+            .subscribe(onNext: { _ in
+                self.gestureHandlerView.switchPanGestureMode()
             })
             .disposed(by: bag)
         return button
@@ -332,7 +343,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             bottomButtonStackView,
             equationsTableView,
             plotColorPicker,
-            settingsContainerView
+            settingsContainerView,
+            panGestureModeSwitchButton
         ])
         topRightButtonStackView.addArrangedSubviews([
             takePhotoButton,
@@ -340,7 +352,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             homeButton,
         ])
         bottomButtonStackView.addArrangedSubviews([
-            manipilationModeSwitchButton, xyzControl, openHidePlotEditorButton
+            pinchGestureModeSwitchButton, xyzControl, openHidePlotEditorButton
         ])
         settingsContainerView.addSubviews(
             settingsBackgroundView,
@@ -402,6 +414,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.leading.equalToSuperview().offset(14.5)
             $0.trailing.equalToSuperview().offset(-23)
         }
+        panGestureModeSwitchButton.snp.makeConstraints {
+            $0.centerX.equalTo(pinchGestureModeSwitchButton.snp.centerX)
+            $0.bottom.equalTo(pinchGestureModeSwitchButton.snp.top).offset(-10)
+        }
     }
     
     override func setupBinding() {
@@ -437,17 +453,31 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         
-        gestureHandlerView.rx.mode
+        gestureHandlerView.rx.pinchGestureMode
             .subscribe(onNext: {
-                self.manipilationModeSwitchButton.isSelected = $0 == .bounds
+                self.pinchGestureModeSwitchButton
+                    .setImage($0 == .bounds ? Image.cube3DDotted() : Image.cube3D())
                 let transition = CATransition()
                 transition.type = .fade
                 transition.duration = 0.3
                 transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
-                self.manipilationModeSwitchButton.layer
+                self.pinchGestureModeSwitchButton.layer
                     .add(transition, forKey: nil)
             })
             .disposed(by: bag)
+        
+        gestureHandlerView.rx.panGestureMode
+            .subscribe(onNext: {
+                self.panGestureModeSwitchButton
+                    .setImage($0 == .drag ? Image.drag() : Image.rotate())
+                let transition = CATransition()
+                transition.type = .fade
+                transition.duration = 0.3
+                transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
+                self.panGestureModeSwitchButton.layer.add(transition, forKey: nil)
+            })
+            .disposed(by: bag)
+        
         isSettingsHiddenSubject
             .subscribe(onNext: { isHidden in
                 UIView.animate(withDuration: 0.2) {

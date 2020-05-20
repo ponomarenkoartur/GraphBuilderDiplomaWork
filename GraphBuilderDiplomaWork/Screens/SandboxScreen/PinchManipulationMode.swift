@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Enums
 
-enum ManipulationMode {
+enum PinchGestureMode {
     /// Mode when physical size or position is being chaged
     case scale
     /// Mode when max and min values of every axis is being changed

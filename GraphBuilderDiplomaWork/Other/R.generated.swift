@@ -309,7 +309,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 29 images.
+  /// This `R.image` struct is generated, and contains static references to 31 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -337,6 +337,8 @@ struct R: Rswift.Validatable {
     static let doubleArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "doubleArrowDown")
     /// Image `doubleArrowUp`.
     static let doubleArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "doubleArrowUp")
+    /// Image `drag`.
+    static let drag = Rswift.ImageResource(bundle: R.hostingBundle, name: "drag")
     /// Image `enterButton`.
     static let enterButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "enterButton")
     /// Image `home`.
@@ -353,6 +355,8 @@ struct R: Rswift.Validatable {
     static let plusButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "plusButton")
     /// Image `prevPlot`.
     static let prevPlot = Rswift.ImageResource(bundle: R.hostingBundle, name: "prevPlot")
+    /// Image `rotate`.
+    static let rotate = Rswift.ImageResource(bundle: R.hostingBundle, name: "rotate")
     /// Image `sandbox`.
     static let sandbox = Rswift.ImageResource(bundle: R.hostingBundle, name: "sandbox")
     /// Image `settingsBubble`.
@@ -462,6 +466,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "drag", bundle: ..., traitCollection: ...)`
+    static func drag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.drag, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "enterButton", bundle: ..., traitCollection: ...)`
     static func enterButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.enterButton, compatibleWith: traitCollection)
@@ -514,6 +525,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "prevPlot", bundle: ..., traitCollection: ...)`
     static func prevPlot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.prevPlot, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "rotate", bundle: ..., traitCollection: ...)`
+    static func rotate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rotate, compatibleWith: traitCollection)
     }
     #endif
 

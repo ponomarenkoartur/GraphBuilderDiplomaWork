@@ -102,7 +102,7 @@
 		041CAC6C246DAB67003CEC34 /* GridBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6B246DAB67003CEC34 /* GridBounds.swift */; };
 		041CAC6E246DB009003CEC34 /* GridBoundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6D246DB009003CEC34 /* GridBoundable.swift */; };
 		041CAC70246DB451003CEC34 /* ValuesBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6F246DB451003CEC34 /* ValuesBounds.swift */; };
-		041CAC72246DC535003CEC34 /* ManipulationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC71246DC535003CEC34 /* ManipulationMode.swift */; };
+		041CAC72246DC535003CEC34 /* PinchManipulationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC71246DC535003CEC34 /* PinchManipulationMode.swift */; };
 		042088232461671300078B80 /* SandboxAddPlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042088222461671300078B80 /* SandboxAddPlotCell.swift */; };
 		0420882524616CDA00078B80 /* PlotFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882424616CDA00078B80 /* PlotFabric.swift */; };
 		0420882724617DD200078B80 /* BaseSCNScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882624617DD200078B80 /* BaseSCNScene.swift */; };
@@ -263,6 +263,7 @@
 		04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1168F2450483100C0CF49 /* TopicFooterView.swift */; };
 		04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1169124504CDB00C0CF49 /* CGRect extension.swift */; };
 		04CD857824752DB900532E17 /* ConstantsAndValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857724752DB900532E17 /* ConstantsAndValues.swift */; };
+		04CD857A24759F9500532E17 /* PanGestureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857924759F9500532E17 /* PanGestureMode.swift */; };
 		04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1E244B11E8006B19B0 /* Error extension.swift */; };
 		04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */; };
 		04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
@@ -387,7 +388,7 @@
 		041CAC6B246DAB67003CEC34 /* GridBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBounds.swift; sourceTree = "<group>"; };
 		041CAC6D246DB009003CEC34 /* GridBoundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBoundable.swift; sourceTree = "<group>"; };
 		041CAC6F246DB451003CEC34 /* ValuesBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesBounds.swift; sourceTree = "<group>"; };
-		041CAC71246DC535003CEC34 /* ManipulationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManipulationMode.swift; sourceTree = "<group>"; };
+		041CAC71246DC535003CEC34 /* PinchManipulationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchManipulationMode.swift; sourceTree = "<group>"; };
 		042088222461671300078B80 /* SandboxAddPlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxAddPlotCell.swift; sourceTree = "<group>"; };
 		0420882424616CDA00078B80 /* PlotFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotFabric.swift; sourceTree = "<group>"; };
 		0420882624617DD200078B80 /* BaseSCNScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNScene.swift; sourceTree = "<group>"; };
@@ -462,6 +463,7 @@
 		04C1168F2450483100C0CF49 /* TopicFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFooterView.swift; sourceTree = "<group>"; };
 		04C1169124504CDB00C0CF49 /* CGRect extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect extension.swift"; sourceTree = "<group>"; };
 		04CD857724752DB900532E17 /* ConstantsAndValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsAndValues.swift; sourceTree = "<group>"; };
+		04CD857924759F9500532E17 /* PanGestureMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureMode.swift; sourceTree = "<group>"; };
 		04CE0E1E244B11E8006B19B0 /* Error extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error extension.swift"; sourceTree = "<group>"; };
 		04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecognitionResult extension.swift"; sourceTree = "<group>"; };
 		04CE0E20244B11E8006B19B0 /* Array extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array extension.swift"; sourceTree = "<group>"; };
@@ -843,7 +845,8 @@
 				04A7D16D2453187600503CAE /* Views */,
 				048D6D0B245465BD0001FC7D /* SandboxVM.swift */,
 				048D6D0D245465C40001FC7D /* SandboxDataBinder.swift */,
-				041CAC71246DC535003CEC34 /* ManipulationMode.swift */,
+				041CAC71246DC535003CEC34 /* PinchManipulationMode.swift */,
+				04CD857924759F9500532E17 /* PanGestureMode.swift */,
 			);
 			path = SandboxScreen;
 			sourceTree = "<group>";
@@ -1562,6 +1565,7 @@
 				0418708C241AE3C000897335 /* RecognitionContentView.swift in Sources */,
 				04CE0E72244B1839006B19B0 /* UIStackView extension.swift in Sources */,
 				04CE0E52244B179F006B19B0 /* Router.swift in Sources */,
+				04CD857A24759F9500532E17 /* PanGestureMode.swift in Sources */,
 				04CE0E54244B179F006B19B0 /* Coordinator.swift in Sources */,
 				04CE0E2A244B11E8006B19B0 /* Number extension.swift in Sources */,
 				0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */,
@@ -1644,7 +1648,7 @@
 				040A2BEF245B824800BDA83D /* Eval.m in Sources */,
 				0461F42A2457100F0099159B /* PlotColorPickerView.swift in Sources */,
 				04FCDE9224600CCB00422848 /* HandyFunctions.swift in Sources */,
-				041CAC72246DC535003CEC34 /* ManipulationMode.swift in Sources */,
+				041CAC72246DC535003CEC34 /* PinchManipulationMode.swift in Sources */,
 				04CE0E3F244B1468006B19B0 /* BaseView.swift in Sources */,
 				04CE0E66244B1839006B19B0 /* UINavigationController extension.swift in Sources */,
 				04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */,

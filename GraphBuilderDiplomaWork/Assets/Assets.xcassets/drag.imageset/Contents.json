@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "cube3DDotted.png",
+      "filename" : "drag.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3DDottedBlack.png",
+      "filename" : "dragBlack.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,12 +23,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DDotted-1.png",
+      "filename" : "drag-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cube3DDotted@2x.png",
+      "filename" : "drag@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -39,7 +39,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3DDottedBlack@2x.png",
+      "filename" : "dragBlack@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -50,12 +50,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DDotted@2x-1.png",
+      "filename" : "drag@2x-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cube3DDotted@3x.png",
+      "filename" : "drag@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -66,7 +66,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "cube3DDottedBlack@3x.png",
+      "filename" : "dragBlack@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -77,7 +77,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cube3DDotted@3x-1.png",
+      "filename" : "drag@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
