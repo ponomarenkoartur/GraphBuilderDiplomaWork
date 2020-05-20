@@ -44,10 +44,14 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         let node = SCNNode()
         node.name = "Camera"
         node.position.z = 2
-        let camera = SCNCamera()
         node.camera = camera
-        camera.zNear = 0
         return node
+    }()
+    private lazy var camera: SCNCamera = {
+        let camera = SCNCamera()
+        camera.zNear = 0
+        camera.usesOrthographicProjection = true
+        return camera
     }()
     
     
