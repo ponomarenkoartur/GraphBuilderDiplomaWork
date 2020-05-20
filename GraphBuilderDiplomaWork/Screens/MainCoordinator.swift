@@ -65,7 +65,7 @@ class MainCoordinator: BaseCoordinator {
         vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         let vc = SandboxVC()
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
-//        dataBinder.bind()
+        dataBinder.bind()
         
         
         vm.setPlotList([

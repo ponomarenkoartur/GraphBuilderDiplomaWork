@@ -62,22 +62,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     override func setupNodes() {
         super.setupNodes()
         rootNode.addNodes(gridNode, plotWrapperNode, cameraNode)
-        
-        #warning("Remove test box")
-        let boxGeometry = SCNBox(width: 2, height: 2, length: 2, chamferRadius: 0)
-        boxGeometry.firstMaterial?.diffuse.contents = UIColor.red
-        let box = SCNNode(geometry: boxGeometry)
-        
-        box.opacity = 0.2
-        rootNode.addNodes(box)
-        
-        
-        let boxGeometry0 = SCNBox(width: 2 * 0.75, height: 2 * 0.75, length: 2 * 0.75, chamferRadius: 0)
-        boxGeometry0.firstMaterial?.diffuse.contents = UIColor.red
-        let box0 = SCNNode(geometry: boxGeometry0)
-        
-        box0.opacity = 0.2
-        rootNode.addNodes(box0)
     }
     
     override func setupBinding() {
