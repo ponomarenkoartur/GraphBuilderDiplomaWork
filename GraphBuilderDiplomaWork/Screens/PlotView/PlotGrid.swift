@@ -42,11 +42,6 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         } else {
             fatalError("Can't initialize axises")
         }
-        
-//        let xAxisNode = node.childNode(withName: "x-axis", recursively: true)!
-//        let yAxisNode = node.childNode(withName: "y-axis", recursively: true)!
-//        let zAxisNode = node.childNode(withName: "z-axis", recursively: true)!
-//        axises = (xAxisNode, yAxisNode, zAxisNode)
     }
     
     
@@ -56,16 +51,38 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         axises.x.setScale(scale.x, animationDuration: animationDuration)
         axises.y.setScale(scale.y, animationDuration: animationDuration)
         axises.z.setScale(scale.z, animationDuration: animationDuration)
+        updateAxisesPosition()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func updateAxisesPosition() {
+        let minOffset = SCNVector3(
+            -Float(defaultBoxSize / 2) * axises.x.axisScale,
+            -Float(defaultBoxSize / 2) * axises.y.axisScale,
+            -Float(defaultBoxSize / 2) * axises.z.axisScale)
+        let maxOffset = SCNVector3(
+            Float(defaultBoxSize / 2) * axises.x.axisScale,
+            Float(defaultBoxSize / 2) * axises.y.axisScale,
+            Float(defaultBoxSize / 2) * axises.z.axisScale)
+        
+        let target = SCNVector3(
+            -Float(axises.x.valuesBounds.mid * defaultBoxSize /
+                axises.x.valuesBounds.delta) * axises.x.axisScale,
+            -Float(axises.y.valuesBounds.mid * defaultBoxSize /
+                axises.y.valuesBounds.delta) * axises.y.axisScale,
+            -Float(axises.z.valuesBounds.mid * defaultBoxSize /
+                axises.z.valuesBounds.delta) * axises.y.axisScale)
         
         
-        axises.y.position.x = -Float(axises.x.valuesBounds.mid * defaultBoxSize / axises.x.valuesBounds.delta) * scale.x
-        axises.z.position.x = -Float(axises.x.valuesBounds.mid * defaultBoxSize / axises.x.valuesBounds.delta) * scale.x
-
-        axises.x.position.y = -Float(axises.y.valuesBounds.mid * defaultBoxSize / axises.y.valuesBounds.delta) * scale.y
-        axises.z.position.y = -Float(axises.y.valuesBounds.mid * defaultBoxSize / axises.y.valuesBounds.delta) * scale.y
-
-        axises.x.position.z = -Float(axises.z.valuesBounds.mid * defaultBoxSize / axises.z.valuesBounds.delta) * scale.z
-        axises.y.position.z = -Float(axises.z.valuesBounds.mid * defaultBoxSize / axises.z.valuesBounds.delta) * scale.z
+        axises.y.position.x = min(maxOffset.x, max(minOffset.x, target.x))
+        axises.z.position.x = min(maxOffset.x, max(minOffset.x, target.x))
+    
+        axises.x.position.y = min(maxOffset.y, max(minOffset.y, target.y))
+        axises.z.position.y = min(maxOffset.y, max(minOffset.y, target.y))
+        
+        axises.x.position.z = min(maxOffset.z, max(minOffset.z, target.z))
+        axises.y.position.z = min(maxOffset.z, max(minOffset.z, target.z))
     }
 }
 
@@ -76,21 +93,13 @@ extension PlotGrid: GridBoundable {
     func setBounds(x: ValuesBounds?, y: ValuesBounds?, z: ValuesBounds?) {
         if let x = x {
             axises.x.setBounds(x)
-    
-            axises.y.position.x = -Float(x.mid * defaultBoxSize / x.delta) * axises.x.axisScale
-            axises.z.position.x = -Float(x.mid * defaultBoxSize / x.delta) * axises.x.axisScale
         }
         if let y = y {
             axises.y.setBounds(y)
-    
-            axises.x.position.y = -Float(y.mid * defaultBoxSize / y.delta) * axises.y.axisScale
-            axises.z.position.y = -Float(y.mid * defaultBoxSize / y.delta) * axises.y.axisScale
         }
         if let z = z {
             axises.z.setBounds(z)
-    
-            axises.x.position.z = -Float(z.mid * defaultBoxSize / z.delta) * axises.z.axisScale
-            axises.y.position.z = -Float(z.mid * defaultBoxSize / z.delta) * axises.z.axisScale
         }
+        updateAxisesPosition()
     }
 }

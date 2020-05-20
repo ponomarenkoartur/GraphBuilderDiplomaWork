@@ -311,8 +311,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
         plotScenes.forEach {
             $0.add(Plot(equation: "x^2+z^2"))
-            $0.scaleNode(0.75)
-            $0.setBounds(0...1)
+//            $0.scaleNode(0.75)
+//            $0.setBounds(x: -2...0)
         }
     }
     
