@@ -262,6 +262,7 @@
 		04B83678246F175400426FEC /* BaseARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83677246F175400426FEC /* BaseARSCNView.swift */; };
 		04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1168F2450483100C0CF49 /* TopicFooterView.swift */; };
 		04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1169124504CDB00C0CF49 /* CGRect extension.swift */; };
+		04CD857824752DB900532E17 /* ConstantsAndValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857724752DB900532E17 /* ConstantsAndValues.swift */; };
 		04CE0E25244B11E8006B19B0 /* Error extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1E244B11E8006B19B0 /* Error extension.swift */; };
 		04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */; };
 		04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
@@ -460,6 +461,7 @@
 		04B83677246F175400426FEC /* BaseARSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseARSCNView.swift; sourceTree = "<group>"; };
 		04C1168F2450483100C0CF49 /* TopicFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFooterView.swift; sourceTree = "<group>"; };
 		04C1169124504CDB00C0CF49 /* CGRect extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect extension.swift"; sourceTree = "<group>"; };
+		04CD857724752DB900532E17 /* ConstantsAndValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsAndValues.swift; sourceTree = "<group>"; };
 		04CE0E1E244B11E8006B19B0 /* Error extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error extension.swift"; sourceTree = "<group>"; };
 		04CE0E1F244B11E8006B19B0 /* RecognitionResult extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecognitionResult extension.swift"; sourceTree = "<group>"; };
 		04CE0E20244B11E8006B19B0 /* Array extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array extension.swift"; sourceTree = "<group>"; };
@@ -792,6 +794,7 @@
 				04AD87B7245C4DB70065404F /* CustomTextField.swift */,
 				04AD87B9245C59B00065404F /* NumberTextField.swift */,
 				04FCDE9124600CCB00422848 /* HandyFunctions.swift */,
+				04CD857724752DB900532E17 /* ConstantsAndValues.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1658,6 +1661,7 @@
 				04187088241AE3C000897335 /* VectorAdapeter.swift in Sources */,
 				04CE0E7A244B186B006B19B0 /* Single extension.swift in Sources */,
 				0456B1072451A2FE007AB1D9 /* TopicPlotInfoCell.swift in Sources */,
+				04CD857824752DB900532E17 /* ConstantsAndValues.swift in Sources */,
 				0418708B241AE3C000897335 /* EquationCell.swift in Sources */,
 				045033362450472200C6F763 /* IndexPath extension.swift in Sources */,
 				0462065B24518EA600012C91 /* TopicPlotsVM.swift in Sources */,

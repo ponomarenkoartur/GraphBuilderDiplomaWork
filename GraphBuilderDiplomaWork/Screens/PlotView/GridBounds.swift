@@ -6,14 +6,20 @@
 //  Copyright © 2020 Artur. All rights reserved.
 //
 
-import Foundation
+import SceneKit
 
 
 struct GridBounds {
     
+    
+    // MARK: - Properties
+    
     var x: ValuesBounds
     var y: ValuesBounds
     var z: ValuesBounds
+    
+    
+    var mid: SCNVector3 { SCNVector3(x.mid, y.mid, z.mid) }
     
     
     static func *(_ multiplier: Double, _ bound: GridBounds) -> GridBounds {

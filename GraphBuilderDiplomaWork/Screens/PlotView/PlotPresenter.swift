@@ -38,6 +38,10 @@ protocol PlotPresenter: GridBoundable {
     /// Changes physical size of the grid and the plot, but the grid scale is still be the same.
     /// - Parameter scale: scale for every axis
     func scaleNode(_ scale: Float, animationDuration: TimeInterval)
+    /// Changes grid bounds
+    func setBounds(x: ValuesBounds?, y: ValuesBounds?, z: ValuesBounds?)
+    /// Changes grid bounds
+    func setBounds(_ bounds: ValuesBounds)
     /// Reset the scale of the grid to its initial state. Doesn't change physical size of a node.
     func resetGridScale(animationDuration: TimeInterval)
     /// Returns a picture of plots on the grid.
@@ -69,5 +73,9 @@ extension PlotPresenter {
     func rebuild(_ plot: Plot, at index: Int) {
         deletePlot(at: index)
         add(plot)
+    }
+
+    func setBounds(_ bounds: ValuesBounds) {
+        setBounds(x: bounds, y: bounds, z: bounds)
     }
 }

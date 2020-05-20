@@ -65,12 +65,12 @@ class MainCoordinator: BaseCoordinator {
         vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         let vc = SandboxVC()
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
-        dataBinder.bind()
+//        dataBinder.bind()
         
         
         vm.setPlotList([
 //            Plot(title: "", equation: Equation(latex: "x^2+z^2"         ,   function: "(x^2)+(z^2)"  )),
-            Plot(title: "", equation: Equation(equation: "x^2+z^2")),
+            Plot(equation: "x^2+z^2", color: .green),
 //            Plot(title: "", equation: Equation(equation: "sin(x)+cos(z)+a")),
 //            Plot(title: "", equation: Equation(equation: "sin(x*cos(z))")),
 //            Plot(title: "", equation: Equation(equation: "sin(x)+sin(z)")),

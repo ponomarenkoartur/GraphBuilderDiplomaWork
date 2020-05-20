@@ -19,7 +19,6 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
     // MARK: - Properties
     
     private var axises: (x: AxisNode, y: AxisNode, z: AxisNode)!
-    private var axisesScale = SCNVector3(1, 1, 1)
     
     
     // MARK: - Setup Methods
@@ -57,6 +56,16 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         axises.x.setScale(scale.x, animationDuration: animationDuration)
         axises.y.setScale(scale.y, animationDuration: animationDuration)
         axises.z.setScale(scale.z, animationDuration: animationDuration)
+        
+        
+        axises.y.position.x = -Float(axises.x.valuesBounds.mid * defaultBoxSize / axises.x.valuesBounds.delta) * scale.x
+        axises.z.position.x = -Float(axises.x.valuesBounds.mid * defaultBoxSize / axises.x.valuesBounds.delta) * scale.x
+
+        axises.x.position.y = -Float(axises.y.valuesBounds.mid * defaultBoxSize / axises.y.valuesBounds.delta) * scale.y
+        axises.z.position.y = -Float(axises.y.valuesBounds.mid * defaultBoxSize / axises.y.valuesBounds.delta) * scale.y
+
+        axises.x.position.z = -Float(axises.z.valuesBounds.mid * defaultBoxSize / axises.z.valuesBounds.delta) * scale.z
+        axises.y.position.z = -Float(axises.z.valuesBounds.mid * defaultBoxSize / axises.z.valuesBounds.delta) * scale.z
     }
 }
 
@@ -68,20 +77,20 @@ extension PlotGrid: GridBoundable {
         if let x = x {
             axises.x.setBounds(x)
     
-            axises.y.position.x = -Float(x.mid)
-            axises.z.position.x = -Float(x.mid)
+            axises.y.position.x = -Float(x.mid * defaultBoxSize / x.delta) * axises.x.axisScale
+            axises.z.position.x = -Float(x.mid * defaultBoxSize / x.delta) * axises.x.axisScale
         }
         if let y = y {
             axises.y.setBounds(y)
     
-            axises.x.position.y = -Float(y.mid)
-            axises.z.position.y = -Float(y.mid)
+            axises.x.position.y = -Float(y.mid * defaultBoxSize / y.delta) * axises.y.axisScale
+            axises.z.position.y = -Float(y.mid * defaultBoxSize / y.delta) * axises.y.axisScale
         }
         if let z = z {
             axises.z.setBounds(z)
     
-            axises.x.position.z = -Float(z.mid)
-            axises.y.position.z = -Float(z.mid)
+            axises.x.position.z = -Float(z.mid * defaultBoxSize / z.delta) * axises.z.axisScale
+            axises.y.position.z = -Float(z.mid * defaultBoxSize / z.delta) * axises.z.axisScale
         }
     }
 }

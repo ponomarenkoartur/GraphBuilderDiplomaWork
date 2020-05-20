@@ -12,7 +12,15 @@ typealias ValuesBounds = ClosedRange<Double>
 
 extension ValuesBounds {
     var mid: Double {
-        (self.upperBound + self.lowerBound) / 2
+        (upperBound + lowerBound) / 2
+    }
+    
+    var absDelta: Double {
+        abs(delta)
+    }
+    
+    var delta: Double {
+        upperBound - lowerBound
     }
     
     init(lower: Double, upper: Double) {

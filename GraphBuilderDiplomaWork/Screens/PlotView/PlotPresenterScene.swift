@@ -43,13 +43,14 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     private lazy var cameraNode: SCNNode = {
         let node = SCNNode()
         node.name = "Camera"
-        node.position.z = 2
+        node.position.z = 3
         node.camera = camera
         return node
     }()
     private lazy var camera: SCNCamera = {
         let camera = SCNCamera()
         camera.zNear = 0
+        camera.orthographicScale = 2.5
         camera.usesOrthographicProjection = true
         return camera
     }()
@@ -61,6 +62,22 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     override func setupNodes() {
         super.setupNodes()
         rootNode.addNodes(gridNode, plotWrapperNode, cameraNode)
+        
+        #warning("Remove test box")
+        let boxGeometry = SCNBox(width: 2, height: 2, length: 2, chamferRadius: 0)
+        boxGeometry.firstMaterial?.diffuse.contents = UIColor.red
+        let box = SCNNode(geometry: boxGeometry)
+        
+        box.opacity = 0.2
+        rootNode.addNodes(box)
+        
+        
+        let boxGeometry0 = SCNBox(width: 2 * 0.75, height: 2 * 0.75, length: 2 * 0.75, chamferRadius: 0)
+        boxGeometry0.firstMaterial?.diffuse.contents = UIColor.red
+        let box0 = SCNNode(geometry: boxGeometry0)
+        
+        box0.opacity = 0.2
+        rootNode.addNodes(box0)
     }
     
     override func setupBinding() {
@@ -72,9 +89,13 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                 self.plotsNodes.forEach { plot, node in
                     self.updateGeometry(with: plot, of: node)
                     
-                    node.position.x = -Float(gridBounds.x.mid)
-                    node.position.y = -Float(gridBounds.y.mid)
-                    node.position.z = -Float(gridBounds.z.mid)
+                    node.position.x = -Float(gridBounds.x.mid) * Float(defaultBoxSize / gridBounds.x.delta)
+                    node.position.y = -Float(gridBounds.y.mid) * Float(defaultBoxSize / gridBounds.y.delta)
+                    node.position.z = -Float(gridBounds.z.mid) * Float(defaultBoxSize / gridBounds.z.delta)
+                    
+                    node.scale.x *= Float(defaultBoxSize / gridBounds.x.delta)
+                    node.scale.y *= Float(defaultBoxSize / gridBounds.y.delta)
+                    node.scale.z *= Float(defaultBoxSize / gridBounds.z.delta)
                 }
             })
             .disposed(by: bag)

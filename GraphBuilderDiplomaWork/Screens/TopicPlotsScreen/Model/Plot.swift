@@ -53,6 +53,13 @@ class Plot {
         colorSubject = BehaviorSubject(value: color)
         isHiddenSubject = BehaviorSubject(value: isHidden)
     }
+    
+    convenience init(title: String = "", equation: String,
+         color: UIColor = PlotColorPickerView.randomColor(),
+         isHidden: Bool = false) {
+        self.init(title: title, equation: Equation(equation: equation),
+                  color: color, isHidden: isHidden)
+    }
 }
 
 

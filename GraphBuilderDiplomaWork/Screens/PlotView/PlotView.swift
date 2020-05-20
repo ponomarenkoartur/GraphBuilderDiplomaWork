@@ -22,6 +22,7 @@ class PlotView: BaseSCNView {
     override func setupScene() {
         super.setupScene()
         backgroundColor = Color.grayBackground()
+        debugOptions = [.renderAsWireframe]
     }
     
     override func setupLight() {

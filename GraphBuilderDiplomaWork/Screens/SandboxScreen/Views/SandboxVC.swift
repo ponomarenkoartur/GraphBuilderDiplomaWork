@@ -308,6 +308,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         super.setupUI()
         shouldPresentNavigationBar = false
         setupGestureRecognizers()
+        
+        plotScenes.forEach {
+            $0.add(Plot(equation: "x^2+z^2"))
+            $0.scaleNode(0.75)
+            $0.setBounds(0...1)
+        }
     }
     
     override func setupUIAfterLayoutSubviews() {
