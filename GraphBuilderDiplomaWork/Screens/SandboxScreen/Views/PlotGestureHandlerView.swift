@@ -19,16 +19,10 @@ class PlotGestureHandlerView: BaseView {
     private(set) var scenes: [PlotScene] = []
     var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
-    fileprivate var pinchGestureModeSubject = BehaviorSubject(value: PinchGestureMode.bounds)
-    var pinchGestureMode: PinchGestureMode {
-        get { try! pinchGestureModeSubject.value() }
-        set { pinchGestureModeSubject.onNext(newValue) }
-    }
-    
-    fileprivate var panGestureModeSubject = BehaviorSubject(value: PanGestureMode.rotate)
-    var panGestureMode: PanGestureMode {
-        get { try! panGestureModeSubject.value() }
-        set { panGestureModeSubject.onNext(newValue) }
+    fileprivate var manipulationModeSubject = BehaviorSubject(value: PlotManipulationMode.local)
+    var manipulationMode: PlotManipulationMode {
+        get { try! manipulationModeSubject.value() }
+        set { manipulationModeSubject.onNext(newValue) }
     }
     
     
@@ -97,25 +91,18 @@ class PlotGestureHandlerView: BaseView {
     }
     
     private func handlePan(_ gr: UIPanGestureRecognizer) {
-//        print("""
-//            Handling pan.
-//            State: \(gr.state).
-//            Translation: \(gr.translation(in: self)).
-//            Velocity: \(gr.velocity(in: self))
-//            """)
-        
         switch gr.state {
         case .began:
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
-            switch pinchGestureMode {
-            case .scale:
+            switch manipulationMode {
+            case .world:
 //                let targetScale = initialScale * Float(gr.scale)
 //                scene.scaleNode(x: shouldHandleAxis.x ? targetScale.x : nil,
 //                                y: shouldHandleAxis.y ? targetScale.y : nil,
 //                                z: shouldHandleAxis.z ? targetScale.z : nil)
                 break
-            case .bounds:
+            case .local:
                 let k: Double = 100
                 
                 let xOffset = Double(gr.translation(in: self).x) / k
@@ -171,34 +158,14 @@ class PlotGestureHandlerView: BaseView {
             initialScales = scenes.map { $0.nodeScale }
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
-            switch pinchGestureMode {
-            case .scale:
+            switch manipulationMode {
+            case .world:
                 setScales(initialScales.map { $0 * Float(gr.scale) })
-            case .bounds:
+            case .local:
                 setBoundsList(
                     initialGridBoundsList.map { $0 / Double(gr.scale) }
                 )
             }
-            
-        case .ended:
-            //            let velocity = Double(max(1, min(100, abs(gr.velocity))))
-            //
-            //            let animationDuration = GraphBuilderDiplomaWork
-            //                .convert(abs(Double(gr.velocity)),
-            //                         from: 0...100,
-            //                         to: Scale(lower: 0.5, upper: 0.05))
-            ////            velocity = GraphBuilderDiplomaWork
-            ////                .convert(velocity, from: 1...100, to: 1...100)
-            //
-            //            var targetScale = sceneInitialScale.x * Float(gr.scale)
-            //            if gr.velocity < 0 {
-            //                targetScale /= Float(velocity)
-            //            } else {
-            //                targetScale *= Float(velocity)
-            //            }
-            //
-            //            self.scene.scaleNode(targetScale, animationDuration: animationDuration)
-            break
         default:
             break
         }
@@ -207,21 +174,12 @@ class PlotGestureHandlerView: BaseView {
     
     // MARK: - API Methods
     
-    func switchPinchGestureMode() {
-        switch pinchGestureMode {
-        case .bounds:
-            pinchGestureMode = .scale
-        case .scale:
-            pinchGestureMode = .bounds
-        }
-    }
-    
-    func switchPanGestureMode() {
-        switch panGestureMode {
-        case .drag:
-            panGestureMode = .rotate
-        case .rotate:
-            panGestureMode = .drag
+    func switchManipulationMode() {
+        switch manipulationMode {
+        case .local:
+            manipulationMode = .world
+        case .world:
+            manipulationMode = .local
         }
     }
     
@@ -255,10 +213,7 @@ class PlotGestureHandlerView: BaseView {
 // MARK: - Rx
 
 extension Reactive where Base == PlotGestureHandlerView {
-    var pinchGestureMode: Observable<PinchGestureMode> {
-        base.pinchGestureModeSubject.asObservable()
-    }
-    var panGestureMode: Observable<PanGestureMode> {
-        base.panGestureModeSubject.asObservable()
+    var manipulationMode: Observable<PlotManipulationMode> {
+        base.manipulationModeSubject.asObservable()
     }
 }
