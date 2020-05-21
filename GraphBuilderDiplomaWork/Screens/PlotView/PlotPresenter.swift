@@ -54,7 +54,10 @@ protocol PlotPresenter: GridBoundable {
     /// Rotates whole plot
     func setRotation(_ rotation: SCNVector3)
     /// Resets the scale of the grid to its initial state. Doesn't change physical size of a node.
-    func resetGridScale(animationDuration: TimeInterval)
+    func resetNodeScale(animationDuration: TimeInterval)
+    func resetRotation(animationDuration: TimeInterval)
+    func resetRootPosition(animationDuration: TimeInterval)
+    func resetBounds(animationDuration: TimeInterval)
     /// Returns a picture of plots on the grid.
     func screenshot() -> UIImage
 }

@@ -180,6 +180,22 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                                           y ?? axisesRotationAngles.y,
                                           z ?? axisesRotationAngles.z)
     }
+    
+    func resetNodeScale(animationDuration: TimeInterval = 0) {
+        scaleNode(1)
+    }
+    
+    func resetRotation(animationDuration: TimeInterval = 0) {
+        setRotation(x: 0, y: 0, z: 0)
+    }
+    
+    func resetRootPosition(animationDuration: TimeInterval = 0) {
+        setRootPosition(x: 0, y: 0, z: 0)
+    }
+    
+    func resetBounds(animationDuration: TimeInterval = 0) {
+        setBounds(-1...1)
+    }
 
     
     // MARK: - Private Methods

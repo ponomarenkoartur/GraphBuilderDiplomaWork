@@ -160,7 +160,15 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         let button = UIButton()
         button.setImage(Image.home())
         button.tintColor = Color.inverseText()
-        button.rx.tap.subscribe(onNext: { _ in self.didTapHomeButton() })
+        button.rx.tap.subscribe(onNext: {
+                _ in self.didTapHomeButton()
+                self.plotScenes.forEach {
+                    $0.resetNodeScale()
+                    $0.resetRotation()
+                    $0.resetRootPosition()
+                    $0.resetBounds()
+                }
+            })
             .disposed(by: bag)
         return button
     }()
