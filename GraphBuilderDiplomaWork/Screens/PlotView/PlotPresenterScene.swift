@@ -24,9 +24,15 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         get { try! gridBoundsSubject.value() }
         set { gridBoundsSubject.onNext(newValue) }
     }
-    
     var plotsAndGridWrapperPosition: SCNVector3 {
         plotsAndGridWrapper.position
+    }
+    
+    private var axisesRotationAnglesSubject =
+        BehaviorSubject(value: SCNVector3(0, 0, 0))
+    var axisesRotationAngles: SCNVector3 {
+        get { try! axisesRotationAnglesSubject.value() }
+        set { axisesRotationAnglesSubject.onNext(newValue) }
     }
     
     
@@ -88,6 +94,10 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                     node.scale.z = Float(defaultBoxSize / gridBounds.z.delta)
                 }
             })
+            .disposed(by: bag)
+        
+        axisesRotationAnglesSubject
+            .subscribe(onNext: { self.plotsAndGridWrapper.eulerAngles = $0 })
             .disposed(by: bag)
     }
     
@@ -164,9 +174,9 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     }
     
     func setRotation(x: Float?, y: Float?, z: Float?) {
-        plotsAndGridWrapper.eulerAngles.x = x ?? plotsAndGridWrapper.eulerAngles.x
-        plotsAndGridWrapper.eulerAngles.y = y ?? plotsAndGridWrapper.eulerAngles.y
-        plotsAndGridWrapper.eulerAngles.z = z ?? plotsAndGridWrapper.eulerAngles.z
+        axisesRotationAngles = SCNVector3(x ?? axisesRotationAngles.x,
+                                          y ?? axisesRotationAngles.y,
+                                          z ?? axisesRotationAngles.z)
     }
 
     

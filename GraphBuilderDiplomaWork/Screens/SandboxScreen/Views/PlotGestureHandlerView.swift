@@ -32,6 +32,8 @@ class PlotGestureHandlerView: BaseView {
     private var initialGridBoundsList: [GridBounds] = []
     /// Plot position before pan gesture began
     private var initialPositions: [SCNVector3] = []
+    /// Plot rotations before rotation gesture began
+    private var initialAxisesRotation: [SCNVector3] = []
     
     
     // MARK: - Initialization
@@ -75,6 +77,17 @@ class PlotGestureHandlerView: BaseView {
         rx.tapGesture()
             .when(.ended)
             .subscribe(onNext: { self.handleTap($0) })
+            .disposed(by: bag)
+        
+        rx.rotationGesture()
+            .when(.began, .ended)
+            .subscribe(onNext: { self.handleRotation($0) })
+            .disposed(by: bag)
+        
+        rx.rotationGesture()
+            .when(.changed)
+            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { self.handleRotation($0) })
             .disposed(by: bag)
     }
     
@@ -190,6 +203,30 @@ class PlotGestureHandlerView: BaseView {
         }
     }
     
+    private func handleRotation(_ gr: UIRotationGestureRecognizer) {
+        switch gr.state {
+        case .began:
+            initialAxisesRotation = scenes.map { $0.axisesRotationAngles }
+        case .changed:
+            let k: Float = 6
+            let rotationAngle = Float(gr.rotation.radiansToDegrees) / k
+            let targetAxisesRotation = initialAxisesRotation.map { (angle: SCNVector3) -> SCNVector3 in
+                var angle = angle
+                if shouldHandleAxis.x {
+                    angle.x += rotationAngle
+                } else if shouldHandleAxis.y {
+                    angle.y += rotationAngle
+                } else if shouldHandleAxis.z  {
+                    angle.z += rotationAngle
+                }
+                return angle
+            }
+            setAxisesRotationList(targetAxisesRotation)
+        default:
+            break
+        }
+    }
+    
     
     // MARK: - API Methods
     
@@ -206,7 +243,10 @@ class PlotGestureHandlerView: BaseView {
         scenes.append(contentsOf: scenesToAdd)
     }
     
-    func setBoundsList(_ targetBoundsList: [GridBounds]) {
+    
+    // MARK: - Private Methods
+    
+    private func setBoundsList(_ targetBoundsList: [GridBounds]) {
         scenes.combined(with: targetBoundsList).forEach {
             scene, targetBounds in
             scene.setBounds(
@@ -216,7 +256,7 @@ class PlotGestureHandlerView: BaseView {
         }
     }
     
-    func setScales(_ targetScales: [SCNVector3]) {
+    private func setScales(_ targetScales: [SCNVector3]) {
         scenes.combined(with: targetScales).forEach {
             scene, targetScale in
             scene.scaleNode(
@@ -227,7 +267,7 @@ class PlotGestureHandlerView: BaseView {
         }
     }
     
-    func setPositions(_ targetPositions: [SCNVector3]) {
+    private func setPositions(_ targetPositions: [SCNVector3]) {
         scenes.combined(with: targetPositions).forEach {
             scene, targetPosition in
             scene.setRootPosition(
@@ -237,6 +277,12 @@ class PlotGestureHandlerView: BaseView {
         }
     }
     
+    private func setAxisesRotationList(_ rotationsList: [SCNVector3]) {
+        scenes.combined(with: rotationsList).forEach {
+            scene, axisesRotation in
+            scene.setRotation(axisesRotation)
+        }
+    }
 }
 
 

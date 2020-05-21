@@ -65,6 +65,16 @@ func +(left: SCNVector3, right: SCNVector3) -> SCNVector3 {
                left.z + right.z)
 }
 
+func +(vector: SCNVector3, number: Float) -> SCNVector3 {
+    SCNVector3(vector.x + number,
+               vector.y + number,
+               vector.z + number)
+}
+
+func +(number: Float, vector: SCNVector3) -> SCNVector3 {
+    vector + number
+}
+
 func +=(left: inout SCNVector3, right: SCNVector3) {
     left = left + right
 }
@@ -73,6 +83,12 @@ func -(left: SCNVector3, right: SCNVector3) -> SCNVector3 {
     SCNVector3(left.x - right.x,
                left.y - right.y,
                left.z - right.z)
+}
+
+func -(vector: SCNVector3, number: Float) -> SCNVector3 {
+    SCNVector3(vector.x - number,
+               vector.y - number,
+               vector.z - number)
 }
 
 func -=(left: inout SCNVector3, right: SCNVector3) {
