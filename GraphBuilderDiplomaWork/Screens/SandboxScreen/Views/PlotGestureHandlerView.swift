@@ -36,9 +36,6 @@ class PlotGestureHandlerView: BaseView {
     private var initialAxisesRotation: [SCNVector3] = []
     
     
-    // MARK: - Initialization
-    
-    
     // MARK: - Setup Methods
     
     override func setupUI() {
@@ -52,47 +49,23 @@ class PlotGestureHandlerView: BaseView {
     
     override func setupGesturesRecognizers() {
         super.setupGesturesRecognizers()
-        rx.panGesture()
-            .when(.began, .ended)
-            .subscribe(onNext: { self.handlePan($0) })
-            .disposed(by: bag)
-        
-        rx.panGesture()
-            .when(.changed)
-            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.handlePan($0) })
-            .disposed(by: bag)
-        
-        rx.pinchGesture()
-            .when(.began, .ended)
-            .subscribe(onNext: { self.handlePinch($0) })
-            .disposed(by: bag)
-        
-        rx.pinchGesture()
-            .when(.changed)
-            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.handlePinch($0) })
-            .disposed(by: bag)
-        
-        rx.tapGesture()
-            .when(.ended)
-            .subscribe(onNext: { self.handleTap($0) })
-            .disposed(by: bag)
-        
         rx.rotationGesture()
-            .when(.began, .ended)
-            .subscribe(onNext: { self.handleRotation($0) })
-            .disposed(by: bag)
-        
-        rx.rotationGesture()
-            .when(.changed)
+            .when(.began, .changed, .ended)
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { self.handleRotation($0) })
             .disposed(by: bag)
-    }
-    
-    private func handleTap(_ gr: UITapGestureRecognizer) {
-        
+
+        rx.pinchGesture()
+            .when(.began, .changed, .ended)
+            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { self.handlePinch($0) })
+            .disposed(by: bag)
+
+        rx.panGesture()
+            .when(.began, .changed, .ended)
+            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { self.handlePan($0) })
+            .disposed(by: bag)
     }
     
     private func handlePan(_ gr: UIPanGestureRecognizer) {
@@ -136,7 +109,7 @@ class PlotGestureHandlerView: BaseView {
                 }
                 setPositions(targetPositions)
             case .local:
-                let k: Double = 100
+                let k: Double = 50
                 
                 let xOffset = Double(gr.translation(in: self).x) / k
                 let yOffset = Double(gr.translation(in: self).y) / k
@@ -169,22 +142,12 @@ class PlotGestureHandlerView: BaseView {
                 }
                 setBoundsList(targetBoundsList)
             }
-        case .ended:
-            break
         default:
             break
         }
-        
     }
     
     private func handlePinch(_ gr: UIPinchGestureRecognizer) {
-        print("""
-            Handling pinch.
-            State: \(gr.state).
-            Scale: \(gr.scale).
-            Velocity: \(gr.velocity)
-            """)
-        
         switch gr.state {
         case .began:
             initialScales = scenes.map { $0.nodeScale }
@@ -210,17 +173,8 @@ class PlotGestureHandlerView: BaseView {
         case .changed:
             let k: Float = 6
             let rotationAngle = Float(gr.rotation.radiansToDegrees) / k
-            let targetAxisesRotation = initialAxisesRotation.map { (angle: SCNVector3) -> SCNVector3 in
-                var angle = angle
-                if shouldHandleAxis.x {
-                    angle.x += rotationAngle
-                } else if shouldHandleAxis.y {
-                    angle.y += rotationAngle
-                } else if shouldHandleAxis.z  {
-                    angle.z += rotationAngle
-                }
-                return angle
-            }
+            let targetAxisesRotation = initialAxisesRotation
+                .map { SCNVector3($0.x, $0.y + rotationAngle, $0.z) }
             setAxisesRotationList(targetAxisesRotation)
         default:
             break

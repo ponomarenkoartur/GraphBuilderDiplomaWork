@@ -97,7 +97,9 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             .disposed(by: bag)
         
         axisesRotationAnglesSubject
-            .subscribe(onNext: { self.plotsAndGridWrapper.eulerAngles = $0 })
+            .subscribe(onNext: {
+                self.plotsAndGridWrapper.eulerAngles = $0
+            })
             .disposed(by: bag)
     }
     
