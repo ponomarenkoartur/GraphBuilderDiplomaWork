@@ -75,12 +75,12 @@ extension Array {
         }
     }
     
-    func combined<OtherElement>(_ array: Array<OtherElement>)
+    func combined<OtherElement>(with array: Array<OtherElement>)
         -> [(Element, OtherElement)] {
-            Array<Any>.combine(self, array)
+            Array<Any>.combine(self, with: array)
     }
     
-    static func combine<E0, E1>(_ array0: Array<E0>, _ array1: Array<E1>)
+    static func combine<E0, E1>(_ array0: Array<E0>, with array1: Array<E1>)
         -> [(E0, E1)] {
             var resultArray: [(E0, E1)] = []
             let count = Swift.min(array0.count, array1.count)

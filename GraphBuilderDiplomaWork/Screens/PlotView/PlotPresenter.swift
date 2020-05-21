@@ -12,6 +12,8 @@ import SceneKit
 
 protocol PlotPresenter: GridBoundable {
     var plots: [Plot] { get }
+    var gridBounds: GridBounds { get }
+    var plotsAndGridWrapperPosition: SCNVector3 { get }
     var nodeScale: SCNVector3 { get }
     /// Adds a plot to the grid.
     /// - Parameter plot: plot to build

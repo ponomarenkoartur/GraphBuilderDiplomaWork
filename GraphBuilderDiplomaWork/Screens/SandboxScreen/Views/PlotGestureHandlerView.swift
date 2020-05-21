@@ -16,7 +16,7 @@ class PlotGestureHandlerView: BaseView {
     
     // MARK: - Properties
     
-    private(set) var scenes: [PlotScene] = []
+    private(set) var scenes: [PlotPresenter] = []
     var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
     fileprivate var manipulationModeSubject = BehaviorSubject(value: PlotManipulationMode.local)
@@ -207,7 +207,7 @@ class PlotGestureHandlerView: BaseView {
     }
     
     func setBoundsList(_ targetBoundsList: [GridBounds]) {
-        scenes.combined(targetBoundsList).forEach {
+        scenes.combined(with: targetBoundsList).forEach {
             scene, targetBounds in
             scene.setBounds(
                 x: shouldHandleAxis.x ? targetBounds.x : nil,
@@ -217,17 +217,18 @@ class PlotGestureHandlerView: BaseView {
     }
     
     func setScales(_ targetScales: [SCNVector3]) {
-        scenes.combined(targetScales).forEach {
+        scenes.combined(with: targetScales).forEach {
             scene, targetScale in
             scene.scaleNode(
                 x: shouldHandleAxis.x ? targetScale.x : nil,
                 y: shouldHandleAxis.y ? targetScale.y : nil,
-                z: shouldHandleAxis.z ? targetScale.z : nil)
+                z: shouldHandleAxis.z ? targetScale.z : nil,
+                animationDuration: 0)
         }
     }
     
     func setPositions(_ targetPositions: [SCNVector3]) {
-        scenes.combined(targetPositions).forEach {
+        scenes.combined(with: targetPositions).forEach {
             scene, targetPosition in
             scene.setRootPosition(
                 x: shouldHandleAxis.x ? targetPosition.x : nil,
