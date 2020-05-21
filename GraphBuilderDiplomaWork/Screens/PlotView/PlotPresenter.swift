@@ -46,6 +46,10 @@ protocol PlotPresenter: GridBoundable {
     func setRootPosition(x: Float?, y: Float?, z: Float?)
     /// Moves in physycal world the whole root node
     func setRootPosition(_ position: SCNVector3)
+    /// Rotates whole plot
+    func setRotation(x: Float?, y: Float?, z: Float?)
+    /// Rotates whole plot
+    func setRotation(_ rotation: SCNVector3)
     /// Resets the scale of the grid to its initial state. Doesn't change physical size of a node.
     func resetGridScale(animationDuration: TimeInterval)
     /// Returns a picture of plots on the grid.
@@ -85,5 +89,9 @@ extension PlotPresenter {
     
     func setRootPosition(_ position: SCNVector3) {
         setRootPosition(x: position.x, y: position.y, z: position.z)
+    }
+    
+    func setRotation(_ rotation: SCNVector3) {
+        setRotation(x: rotation.x, y: rotation.y, z: rotation.z)
     }
 }

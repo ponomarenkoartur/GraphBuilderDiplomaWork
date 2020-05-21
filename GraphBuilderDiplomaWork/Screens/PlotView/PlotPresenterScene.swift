@@ -162,6 +162,12 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         plotsAndGridWrapper.position.y = y ?? rootNode.position.y
         plotsAndGridWrapper.position.z = z ?? rootNode.position.z
     }
+    
+    func setRotation(x: Float?, y: Float?, z: Float?) {
+        plotsAndGridWrapper.eulerAngles.x = x ?? plotsAndGridWrapper.eulerAngles.x
+        plotsAndGridWrapper.eulerAngles.y = y ?? plotsAndGridWrapper.eulerAngles.y
+        plotsAndGridWrapper.eulerAngles.z = z ?? plotsAndGridWrapper.eulerAngles.z
+    }
 
     
     // MARK: - Private Methods
