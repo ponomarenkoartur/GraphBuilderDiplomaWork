@@ -119,10 +119,6 @@ class PlotGestureHandlerView: BaseView {
                     if shouldHandleAxis.y {
                         targetPositions[i].y += -yOffset
                     }
-                    if shouldHandleAxis.z &&
-                        (!shouldHandleAxis.x || !shouldHandleAxis.y) {
-                        targetPositions[i].z += shouldHandleAxis.y ? xOffset : yOffset
-                    }
                 }
                 setPositions(targetPositions)
             case .local:
@@ -154,10 +150,12 @@ class PlotGestureHandlerView: BaseView {
                         targetBoundsList[i].y +=
                             yOffset * targetBoundsList[i].y.absDelta
                     }
-                    if shouldHandleAxis.z &&
-                        (!shouldHandleAxis.x || !shouldHandleAxis.y) {
+                    if shouldHandleAxis.z && !shouldHandleAxis.x {
+                        targetBoundsList[i].z += (-xOffset + yOffset) / 2 *
+                            targetBoundsList[i].z.absDelta
+                    } else if shouldHandleAxis.z && !shouldHandleAxis.y {
                         targetBoundsList[i].z +=
-                            (shouldHandleAxis.y ? -xOffset : yOffset) * targetBoundsList[i].z.absDelta
+                            -xOffset * targetBoundsList[i].z.absDelta
                     }
                 }
                 setBoundsList(targetBoundsList)
