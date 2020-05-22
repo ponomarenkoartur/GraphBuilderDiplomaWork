@@ -309,7 +309,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 31 images.
+  /// This `R.image` struct is generated, and contains static references to 32 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -343,6 +343,8 @@ struct R: Rswift.Validatable {
     static let enterButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "enterButton")
     /// Image `home`.
     static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "home")
+    /// Image `icn_tick_main_share`.
+    static let icn_tick_main_share = Rswift.ImageResource(bundle: R.hostingBundle, name: "icn_tick_main_share")
     /// Image `left-arrow-welcome-menu`.
     static let leftArrowWelcomeMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-arrow-welcome-menu")
     /// Image `nextPlot`.
@@ -483,6 +485,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
     static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icn_tick_main_share", bundle: ..., traitCollection: ...)`
+    static func icn_tick_main_share(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icn_tick_main_share, compatibleWith: traitCollection)
     }
     #endif
 

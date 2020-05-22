@@ -40,6 +40,11 @@ class SandboxDataBinder<ViewModel>:
                 self.views.forEach { $0.setPresentationMode(mode) }
             }
         }
+        viewModel.didSavePhoto = {
+            DispatchQueue.main.async {
+                self.views.forEach { $0.performPhotoSavedAnimationAndSound() }
+            }
+        }
         
         
         views.forEach { (view) in

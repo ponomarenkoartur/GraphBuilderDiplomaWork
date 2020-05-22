@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import ARKit
 import RxKeyboard
+import AVFoundation
 
 
 protocol SandboxVCProtocol: UIViewController {
@@ -27,6 +28,7 @@ protocol SandboxVCProtocol: UIViewController {
     func setPlotList(_ list: [Plot])
     func updateParametersOfPlot(at index: Int)
     func setPresentationMode(_ mode: PlotPresentationMode)
+    func performPhotoSavedAnimationAndSound()
 }
 
 
@@ -36,7 +38,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     // MARK: - Properties
     
     private var plotsList: [Plot] = []
-
+    
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
     private var isEquationTableHidden: Bool {
@@ -162,14 +164,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         button.setImage(Image.home())
         button.tintColor = Color.inverseText()
         button.rx.tap.subscribe(onNext: {
-                _ in self.didTapHomeButton()
-                self.plotScenes.forEach {
-                    $0.resetNodeScale()
-                    $0.resetRotation()
-                    $0.resetRootPosition()
-                    $0.resetBounds()
-                }
-            })
+            _ in self.didTapHomeButton()
+            self.plotScenes.forEach {
+                $0.resetNodeScale()
+                $0.resetRotation()
+                $0.resetRootPosition()
+                $0.resetBounds()
+            }
+        })
             .disposed(by: bag)
         return button
     }()
@@ -259,6 +261,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return view
     }()
     
+    private lazy var photoSavedImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Image.icn_tick_main_share()
+        imageView.alpha = 0
+        return imageView
+    }()
+    
+    
     // MARK: Settings Views
     
     private lazy var settingsContainerView = UIView()
@@ -293,7 +303,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return switchControl
     }()
     
-
+    
     
     // MARK: Constaints
     
@@ -330,6 +340,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             scnPlotView,
             arscnPlotView,
             gestureHandlerView,
+            photoSavedImageView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
             equationsTableView,
@@ -379,7 +390,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         equationsTableView.snp.makeConstraints {
             $0.height.equalTo(
                 -tableViewVissibleOffset + WindowSafeArea.insets.bottom
-                + equationsTableView.layer.cornerRadius)
+                    + equationsTableView.layer.cornerRadius)
             $0.width.centerX.equalToSuperview()
         }
         tableViewTopToSuperviewBottomConstraint = equationsTableView.topAnchor
@@ -403,6 +414,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(14.5)
             $0.trailing.equalToSuperview().offset(-23)
+        }
+        photoSavedImageView.snp.makeConstraints {
+            $0.edges.equalTo(takePhotoButton.snp.edges)
         }
     }
     
@@ -541,6 +555,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
     }
     
+    func performPhotoSavedAnimationAndSound() {
+        AudioServicesPlaySystemSound(1108)
+        performCameraButtonAnimation()
+        performDoneImageAnimation()
+    }
+    
     // MARK: - Other Methods
     
     private func saveScreenshot() {
@@ -552,6 +572,71 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             image = arscnPlotView.snapshot()
         }
         didTakePhoto(image)
+    }
+    
+    private func performCameraButtonAnimation() {
+        takePhotoButton.isEnabled = false
+        // scale changes order:
+        // 120ms:   changes form 100% to 60%
+        // 1360ms:  static 60%
+        // 160ms:   changes from 60% to 100%
+        takePhotoButton.transform = CGAffineTransform.identity
+        UIView.animate(withDuration: 0.120, animations: {
+            self.takePhotoButton.transform =
+                CGAffineTransform(scaleX: 0.6, y: 0.6)
+        }) { (success) in
+            UIView.animate(withDuration: 0.160, delay: 1.360, animations: {
+                self.takePhotoButton.transform = CGAffineTransform.identity
+            })
+        }
+        
+        // opacity changes order:
+        // 80ms:    static 100%
+        // 40ms:    changes from 100% to 0%
+        // 1400ms:  static 0%
+        // 40ms:    changes from 0% to 100%
+        takePhotoButton.alpha = 1
+        UIView.animate(withDuration: 0.04, delay: 0.08, animations: {
+            self.takePhotoButton.alpha = 0
+        }) { (success) in
+            UIView.animate(withDuration: 0.04, delay: 1.4, animations: {
+                self.takePhotoButton.alpha = 1
+            }, completion: { (success) in
+                self.takePhotoButton.isEnabled = true
+            })
+        }
+    }
+    
+    private func performDoneImageAnimation() {
+        // scale changes order:
+        // 80ms:    static 60%
+        // 200ms:   changes from 60% to 100%
+        // 1040ms:  static 100%
+        // 200ms:   changes from 100% to 60%
+        photoSavedImageView.transform =
+            CGAffineTransform(scaleX: 0.6, y: 0.6)
+        UIView.animate(withDuration: 0.2, delay: 0.08, animations: {
+            self.photoSavedImageView.transform = CGAffineTransform.identity
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.2, delay: 1.04, animations: {
+                self.photoSavedImageView.transform =
+                    CGAffineTransform(scaleX: 0.6, y: 0.6)
+            })
+        })
+        
+        // opacity changes order:
+        // 80ms:    static 0%
+        // 40ms:    changes from 0% to 100%
+        // 1400ms:  static 100%
+        // 40ms:    changes from 100% to 0%
+        photoSavedImageView.alpha = 0
+        UIView.animate(withDuration: 0.04, delay: 0.08, animations: {
+            self.photoSavedImageView.alpha = 1
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.04, delay: 1.4, animations: {
+                self.photoSavedImageView.alpha = 0
+            })
+        })
     }
     
     private enum ButtonDirection { case up, down }
@@ -608,7 +693,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
         let minPickerOffset =
             equationsTableView.frame.minY - plotColorPicker.frame.height / 2
-            + equationsTableView.rowHeight / 2
+                + equationsTableView.rowHeight / 2
         let maxPickerOffset =
             view.frame.height - plotColorPicker.frame.height
                 - WindowSafeArea.insets.bottom - 5
@@ -626,7 +711,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             colorPickerYOffset = minPickerOffset
             let scrollOffset =
                 equationsTableView.tableHeaderView!.frame.height +
-                equationsTableView.rowHeight * (CGFloat(index))
+                    equationsTableView.rowHeight * (CGFloat(index))
             equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
                                                 animated: true)
         }
@@ -699,7 +784,7 @@ extension SandboxVC: UITableViewDataSource {
         
         let plotIndex = getPlotIndex(from: indexPath)
         let plot = plotsList[plotIndex]
-
+        
         if isEquationSection(indexPath.section) {
             let cell = tableView
                 .dequeue(SandboxEquationCell.self, for: indexPath) ??
@@ -729,9 +814,9 @@ extension SandboxVC: UITableViewDelegate {
                 return UISwipeActionsConfiguration(actions: [])
             }
             let deleteAction = UIContextualAction(
-                style: .destructive, title: "Delete") { (_, _, _) in
-                    let plotIndex = self.getPlotIndex(from: indexPath)
-                    self.didTapDeleteEquation(plotIndex)
+            style: .destructive, title: "Delete") { (_, _, _) in
+                let plotIndex = self.getPlotIndex(from: indexPath)
+                self.didTapDeleteEquation(plotIndex)
             }
             deleteAction.backgroundColor = Color.turquoise()
             return UISwipeActionsConfiguration(actions: [deleteAction])

@@ -15,6 +15,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didSetPlotList: (_ list: [Plot]) -> () { get set }
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () { get set }
     var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () { get set }
+    var didSavePhoto: () -> () { get set }
     var plotsList: [Plot] { get }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
@@ -39,6 +40,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didSetPlotList: (_ list: [Plot]) -> () = { _ in }
     var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () = { _ in }
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
+    var didSavePhoto: () -> () = {}
     
     
     // MARK: - API Methods
@@ -76,6 +78,13 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     }
     
     func savePhotoToCameraRoll(_ image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSavedHandler), nil)
+    }
+    
+    @objc
+    private func imageSavedHandler(_ image: UIImage, error: NSError?, contextInfo: Any) {
+        if error == nil {
+            didSavePhoto()
+        }
     }
 }
