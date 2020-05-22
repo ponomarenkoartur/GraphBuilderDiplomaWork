@@ -27,7 +27,6 @@ class AxisNodeFabric {
         }
         
         let scaleMarkers = scaleMarkersContainer.childNodes
-        
         let axisNode = AxisNode(cylinder: cylinder, coneArrow: cone,
                                 scaleMarkers: scaleMarkers)
         axisNode.addChildNode(node)

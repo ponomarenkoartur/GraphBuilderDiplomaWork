@@ -18,7 +18,7 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
     
     // MARK: - Properties
     
-    private var axises: (x: AxisNode, y: AxisNode, z: AxisNode)!
+    private(set) var axises: (x: AxisNode, y: AxisNode, z: AxisNode)!
     
     
     // MARK: - Setup Methods
@@ -52,6 +52,12 @@ class PlotGrid: BaseSCNNode, PlotGridProtocol {
         axises.y.setScale(scale.y, animationDuration: animationDuration)
         axises.z.setScale(scale.z, animationDuration: animationDuration)
         updateAxisesPosition()
+    }
+    
+    func setTextNodesConstraints(_ constraints: [SCNConstraint]) {
+        axises.x.setTextNodesConstraints(constraints)
+//        axises.y.setTextNodesConstraints(constraints)
+        axises.z.setTextNodesConstraints(constraints)
     }
     
     // MARK: - Private Methods

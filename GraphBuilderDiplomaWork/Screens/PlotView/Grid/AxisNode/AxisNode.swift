@@ -43,7 +43,10 @@ class AxisNode: BaseSCNNode {
     
     let cylinder: SCNNode
     let coneArrow: SCNNode
-    let scaleMarkers: [SCNNode]
+    let scaleMarkersControls: [ScaleMarkerControl]
+    var scaleMarkers: [SCNNode] {
+        scaleMarkersControls.map { $0.node }
+    }
     
     private var cylinderGeometry: SCNCylinder {
         cylinder.geometry as! SCNCylinder
@@ -55,10 +58,12 @@ class AxisNode: BaseSCNNode {
     
     // MARK: - Initialization
     
-    init(cylinder: SCNNode, coneArrow: SCNNode, scaleMarkers: [SCNNode]) {
+    init(cylinder: SCNNode, coneArrow: SCNNode,
+         scaleMarkers: [SCNNode]) {
         self.cylinder = cylinder
         self.coneArrow = coneArrow
-        self.scaleMarkers = scaleMarkers
+        self.scaleMarkersControls = scaleMarkers
+            .map { ScaleMarkerControl(node: $0) }
         super.init()
     }
     
@@ -79,6 +84,8 @@ class AxisNode: BaseSCNNode {
                 }
                 for (i, position) in realPositions.enumerated() {
                     let marker = self.scaleMarkers[safe: i]
+                    let markerControl = self.scaleMarkersControls[safe: i]
+                    markerControl?.setTextValue(markersValues[i])
                     marker?.isHidden = false
                     marker?.position.x = Float(position) * self.cylinder.scale.y
                 }
@@ -102,6 +109,12 @@ class AxisNode: BaseSCNNode {
     
     func setBounds(_ bounds: ValuesBounds, animationDuration: TimeInterval = 0) {
         valuesBounds = bounds
+    }
+    
+    func setTextNodesConstraints(_ constraints: [SCNConstraint]) {
+        scaleMarkersControls.forEach {
+            $0.textNode.constraints = constraints
+        }
     }
     
     

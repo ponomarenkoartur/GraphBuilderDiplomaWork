@@ -51,7 +51,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         node.name = "gridNode"
         return node
     }()
-    private lazy var cameraNode: SCNNode = {
+    lazy var cameraNode: SCNNode = {
         let node = SCNNode()
         node.name = "Camera"
         node.position.z = 3
@@ -74,6 +74,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         super.setupNodes()
         rootNode.addNodes(plotsAndGridWrapper, cameraNode)
         plotsAndGridWrapper.addNodes(gridNode, plotWrapperNode)
+        setupTextConstraints()
     }
     
     override func setupBinding() {
@@ -101,6 +102,12 @@ class PlotScene: BaseSCNScene, PlotPresenter {
                 self.plotsAndGridWrapper.eulerAngles = $0
             })
             .disposed(by: bag)
+    }
+    
+    private func setupTextConstraints() {
+        let constraint = SCNLookAtConstraint(target: cameraNode)
+        constraint.localFront = SCNVector3(0, 0, 1)
+        gridNode.setTextNodesConstraints([constraint])
     }
     
     // MARK: - API Methods

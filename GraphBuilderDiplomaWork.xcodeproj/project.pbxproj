@@ -322,6 +322,7 @@
 		04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D182241AE0E100C4FBEB /* AppDelegate.swift */; };
 		04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18B241AE0E200C4FBEB /* Assets.xcassets */; };
 		04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */; };
+		04F8073C2477DE3100B3FC96 /* ScaleMarkerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F8073B2477DE3100B3FC96 /* ScaleMarkerControl.swift */; };
 		04FCDE9224600CCB00422848 /* HandyFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCDE9124600CCB00422848 /* HandyFunctions.swift */; };
 		88B62756AFDA75C0B31915AA /* Pods_GraphBuilderDiplomaWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC68D48CC498D0D67B6625E5 /* Pods_GraphBuilderDiplomaWork.framework */; };
 		BEDF3B0D9DFC63D934EDF358 /* Pods_GraphBuilderDiplomaWorkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86AC8B01AEDEA56B5F4E9A4F /* Pods_GraphBuilderDiplomaWorkTests.framework */; };
@@ -524,6 +525,7 @@
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F3D18E241AE0E200C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04F3D190241AE0E200C4FBEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04F8073B2477DE3100B3FC96 /* ScaleMarkerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleMarkerControl.swift; sourceTree = "<group>"; };
 		04FCDE9124600CCB00422848 /* HandyFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyFunctions.swift; sourceTree = "<group>"; };
 		237CF2C5EA8B45138E1FDEC4 /* Pods-GraphBuilderDiplomaWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphBuilderDiplomaWork.release.xcconfig"; path = "Target Support Files/Pods-GraphBuilderDiplomaWork/Pods-GraphBuilderDiplomaWork.release.xcconfig"; sourceTree = "<group>"; };
 		6C15D5C1BA33ECEDDCBB76C3 /* Pods-GraphBuilderDiplomaWorkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphBuilderDiplomaWorkTests.release.xcconfig"; path = "Target Support Files/Pods-GraphBuilderDiplomaWorkTests/Pods-GraphBuilderDiplomaWorkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 			children = (
 				0420B70D246D53EB0042408F /* AxisNode.swift */,
 				041CAC69246D88A6003CEC34 /* AxisNodeFabric.swift */,
+				04F8073B2477DE3100B3FC96 /* ScaleMarkerControl.swift */,
 			);
 			path = AxisNode;
 			sourceTree = "<group>";
@@ -1701,6 +1704,7 @@
 				0412E69C2459810B00AAB427 /* BaseSCNView.swift in Sources */,
 				04D1F8E22451D694004155FC /* EquationParameter.swift in Sources */,
 				04AD87B8245C4DB70065404F /* CustomTextField.swift in Sources */,
+				04F8073C2477DE3100B3FC96 /* ScaleMarkerControl.swift in Sources */,
 				04CE0E7C244B186B006B19B0 /* SingleEvent extension.swift in Sources */,
 				0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */,
 				048C4923245192C400C430B3 /* BaseViewModelViewDataBinder.swift in Sources */,
