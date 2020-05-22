@@ -78,11 +78,7 @@ class EquationTransformator {
                     points.append(nil)
                     continue
                 }
-                if y < minY || y > maxY {
-                    points.append(nil)
-                } else {
-                    points.append(Vector3(x: Float(x), y: Float(y), z: Float(z)))   
-                }
+              points.append(Vector3(x: Float(x), y: Float(y), z: Float(z)))   
             }
         }
         
