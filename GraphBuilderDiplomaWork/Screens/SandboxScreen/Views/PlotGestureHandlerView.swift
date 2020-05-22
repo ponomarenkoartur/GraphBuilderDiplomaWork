@@ -27,13 +27,16 @@ class PlotGestureHandlerView: BaseView {
     
     
     /// Scale of scene before pinch gesture began
-    private var initialScales: [SCNVector3] = []
+    private var initialScales: [SCNVector3]?
     /// Grid bounds before pinch or pan gesture began
-    private var initialGridBoundsList: [GridBounds] = []
+    private var initialGridBoundsList: [GridBounds]?
     /// Plot position before pan gesture began
-    private var initialPositions: [SCNVector3] = []
+    private var initialPositions: [SCNVector3]?
     /// Plot rotations before rotation gesture began
-    private var initialAxisesRotation: [SCNVector3] = []
+    private var initialAxisesRotation: [SCNVector3]?
+    
+    
+    private var isThreeFingersGestureOn = false
     
     
     // MARK: - Setup Methods
@@ -49,37 +52,51 @@ class PlotGestureHandlerView: BaseView {
     
     override func setupGesturesRecognizers() {
         super.setupGesturesRecognizers()
-        rx.rotationGesture()
-            .when(.began, .changed, .ended)
+
+        rx.panGesture(configuration: { (gr, _) in
+                gr.minimumNumberOfTouches = 3
+                gr.maximumNumberOfTouches = 3
+            })
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.handleRotation($0) })
+            .subscribe(onNext: { self.handlePan($0) })
             .disposed(by: bag)
 
         rx.pinchGesture()
-            .when(.began, .changed, .ended)
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.handlePinch($0) })
+            .subscribe(onNext: { gr in self.handlePinch(gr) })
             .disposed(by: bag)
 
-        rx.panGesture()
-            .when(.began, .changed, .ended)
+        rx.panGesture(configuration: { gr, _ in gr.maximumNumberOfTouches = 1 })
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { self.handlePan($0) })
             .disposed(by: bag)
     }
     
     private func handlePan(_ gr: UIPanGestureRecognizer) {
+        if gr.numberOfTouches == 1 {
+            handlePanToMove(gr)
+        } else {
+            handlePanToRotate(gr)
+        }
+    }
+    
+    private func handlePanToMove(_ gr: UIPanGestureRecognizer) {
         switch gr.state {
         case .began:
             initialGridBoundsList = scenes.map { $0.gridBounds }
             initialPositions = scenes.map { $0.plotsAndGridWrapperPosition }
         case .changed:
+            guard let initialGridBoundsList = initialGridBoundsList,
+                let initialPositions = initialPositions else {
+                return
+            }
+            
             switch manipulationMode {
             case .world:
-                let k: Float = 100
+                let k: Float = 1 / 100
                 
-                let xOffset = Float(gr.translation(in: self).x) / k
-                let yOffset = Float(gr.translation(in: self).y) / k
+                let xOffset = Float(gr.translation(in: self).x) * k
+                let yOffset = Float(gr.translation(in: self).y) * k
                 
                 var targetPositions = initialPositions
                 
@@ -109,10 +126,10 @@ class PlotGestureHandlerView: BaseView {
                 }
                 setPositions(targetPositions)
             case .local:
-                let k: Double = 50
+                let k: Double = 1 / 200
                 
-                let xOffset = Double(gr.translation(in: self).x) / k
-                let yOffset = Double(gr.translation(in: self).y) / k
+                let xOffset = Double(gr.translation(in: self).x) * k
+                let yOffset = Double(gr.translation(in: self).y) * k
                 
                 var targetBoundsList = initialGridBoundsList
                 
@@ -130,20 +147,48 @@ class PlotGestureHandlerView: BaseView {
                 //
                 for (i, _) in targetBoundsList.enumerated() {
                     if shouldHandleAxis.x {
-                        targetBoundsList[i].x += -xOffset
+                        targetBoundsList[i].x +=
+                            -xOffset * targetBoundsList[i].x.absDelta
                     }
                     if shouldHandleAxis.y {
-                        targetBoundsList[i].y += yOffset
+                        targetBoundsList[i].y +=
+                            yOffset * targetBoundsList[i].y.absDelta
                     }
                     if shouldHandleAxis.z &&
                         (!shouldHandleAxis.x || !shouldHandleAxis.y) {
-                        targetBoundsList[i].z += shouldHandleAxis.y ? xOffset : yOffset
+                        targetBoundsList[i].z +=
+                            (shouldHandleAxis.y ? -xOffset : yOffset) * targetBoundsList[i].z.absDelta
                     }
                 }
                 setBoundsList(targetBoundsList)
             }
+        case .ended:
+            initialGridBoundsList = nil
+            initialPositions = nil
         default:
             break
+        }
+    }
+    
+    private func handlePanToRotate(_ gr: UIPanGestureRecognizer) {
+        switch gr.state {
+        case .began:
+            isThreeFingersGestureOn = true
+            initialAxisesRotation = scenes.map { $0.axisesRotationAngles }
+        case .changed:
+            guard let initialAxisesRotation = initialAxisesRotation else {
+                return
+            }
+            let k: Float = 100
+            let rotationAngleX = Float(gr.translation(in: self).y) / k
+            let rotationAngleY = Float(gr.translation(in: self).x) / k
+            let targetAxisesRotation = initialAxisesRotation.map {
+                SCNVector3($0.x + rotationAngleX, $0.y + rotationAngleY, $0.z)
+            }
+            setAxisesRotationList(targetAxisesRotation)
+        default:
+            isThreeFingersGestureOn = false
+            initialAxisesRotation = nil
         }
     }
     
@@ -153,6 +198,12 @@ class PlotGestureHandlerView: BaseView {
             initialScales = scenes.map { $0.nodeScale }
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
+            guard let initialScales = initialScales,
+                let initialGridBoundsList = initialGridBoundsList,
+                !isThreeFingersGestureOn else {
+                return
+            }
+            
             switch manipulationMode {
             case .world:
                 setScales(initialScales.map { $0 * Float(gr.scale) })
@@ -162,7 +213,8 @@ class PlotGestureHandlerView: BaseView {
                 )
             }
         default:
-            break
+            initialScales = nil
+            initialGridBoundsList = nil
         }
     }
     
@@ -171,13 +223,16 @@ class PlotGestureHandlerView: BaseView {
         case .began:
             initialAxisesRotation = scenes.map { $0.axisesRotationAngles }
         case .changed:
+            guard let initialAxisesRotation = initialAxisesRotation else {
+                return
+            }
             let k: Float = 6
             let rotationAngle = Float(gr.rotation.radiansToDegrees) / k
             let targetAxisesRotation = initialAxisesRotation
                 .map { SCNVector3($0.x, $0.y + rotationAngle, $0.z) }
             setAxisesRotationList(targetAxisesRotation)
         default:
-            break
+            initialAxisesRotation = nil
         }
     }
     
