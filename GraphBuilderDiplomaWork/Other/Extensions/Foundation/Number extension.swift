@@ -25,17 +25,23 @@ extension Double {
     }
     
     func digitsCountAfterDot() -> Int {
+        let decimalSeparator = "."
+        let numberFormatter = NumberFormatter()
+        numberFormatter.decimalSeparator = decimalSeparator
+        numberFormatter.numberStyle = .decimal
+
+        
         if Double(Int(self)) == self {
             return 0
         } else {
-            let string = String(self)
+            let string = numberFormatter.string(from: NSNumber(value: self))!
             var count = 0
             var isAfterDot = false
             for c in string {
                 if isAfterDot {
                     count += 1
                 }
-                if String(c) == NumberFormatter().decimalSeparator! {
+                if String(c) == decimalSeparator {
                    isAfterDot = true
                 }
             }

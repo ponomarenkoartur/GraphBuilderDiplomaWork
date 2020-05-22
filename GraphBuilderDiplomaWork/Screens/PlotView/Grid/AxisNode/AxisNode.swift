@@ -141,7 +141,7 @@ class AxisNode: BaseSCNNode {
 
         let submultipliers: [Double] = [1, 2, 2.5]
         for submultiplier in submultipliers {
-            if (5...14).contains(stepCount) {
+            if (5...9).contains(stepCount) {
                 break
             }
             step /= submultiplier

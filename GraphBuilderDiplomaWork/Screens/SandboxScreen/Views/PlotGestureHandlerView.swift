@@ -119,6 +119,11 @@ class PlotGestureHandlerView: BaseView {
                     if shouldHandleAxis.y {
                         targetPositions[i].y += -yOffset
                     }
+                    if shouldHandleAxis.z && !shouldHandleAxis.x {
+                        targetPositions[i].z += (-xOffset + yOffset) / 2
+                    } else if shouldHandleAxis.z && !shouldHandleAxis.y {
+                        targetPositions[i].z += -xOffset
+                    }
                 }
                 setPositions(targetPositions)
             case .local:

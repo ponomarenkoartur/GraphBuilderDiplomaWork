@@ -177,9 +177,9 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     func screenshot() -> UIImage { UIImage() }
     
     func setRootPosition(x: Float?, y: Float?, z: Float?) {
-        plotsAndGridWrapper.position.x = x ?? rootNode.position.x
-        plotsAndGridWrapper.position.y = y ?? rootNode.position.y
-        plotsAndGridWrapper.position.z = z ?? rootNode.position.z
+        plotsAndGridWrapper.position.x = x ?? plotsAndGridWrapper.position.x
+        plotsAndGridWrapper.position.y = y ?? plotsAndGridWrapper.position.y
+        plotsAndGridWrapper.position.z = z ?? plotsAndGridWrapper.position.z
     }
     
     func setRotation(x: Float?, y: Float?, z: Float?) {
