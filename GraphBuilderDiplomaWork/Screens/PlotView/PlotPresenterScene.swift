@@ -74,7 +74,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         super.setupNodes()
         rootNode.addNodes(plotsAndGridWrapper, cameraNode)
         plotsAndGridWrapper.addNodes(gridNode, plotWrapperNode)
-        setupTextConstraints()
+//        setupTextConstraints()
     }
     
     override func setupBinding() {

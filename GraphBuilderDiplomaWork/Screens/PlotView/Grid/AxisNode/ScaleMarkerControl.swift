@@ -39,7 +39,12 @@ class ScaleMarkerControl {
     // MARK: - API Methods
     
     func setTextValue(_ value: Double) {
-        let text = String(value.rounded(toPlaces: 2))
+        let text: String
+        if Double(Int(value)) == value {
+            text = String(Int(value))
+        } else {
+            text = String(value.rounded(toPlaces: 2))
+        }
         let textGeometry = SCNText(string: text, extrusionDepth: 0.2)
         textGeometry.firstMaterial?.diffuse.contents = Color.defaultText()
         textNode.geometry = textGeometry

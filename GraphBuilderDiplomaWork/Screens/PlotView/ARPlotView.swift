@@ -16,13 +16,21 @@ class ARPlotView: BaseARSCNView {
     
     var plotScene: PlotScene { scene as! PlotScene }
     
+    override var scene: SCNScene {
+        didSet {
+            if let _ = scene as? PlotScene {
+                plotScene.cameraNode = pointOfView!
+            }
+        }
+    }
+    
     
     // MARK: - Setup Methods
     
-//    override func setupScene() {
-//        super.setupScene()
-//        backgroundColor = Color.grayBackground()
-//    }
+    override func setupScene() {
+        super.setupScene()
+        rootNode.position = SCNVector3(0, -1, -1)
+    }
 //
 //    override func setupLight() {
 //        super.setupLight()
