@@ -22,14 +22,9 @@ class BaseARSCNView: ARSCNView {
 
     // MARK: - Initialization
     
-    convenience init(scene: SCNScene = SCNScene(), frame: CGRect = .zero) {
-        self.init(frame: frame, options: nil)
+    init(scene: SCNScene = SCNScene(), frame: CGRect = .zero) {
+        super.init(frame: frame, options: nil)
         self.scene = scene
-    }
-    
-    override init(frame: CGRect = .zero, options: [String : Any]? = nil) {
-        super.init(frame: frame, options: options)
-        self.scene = SCNScene()
         commonInit()
     }
     

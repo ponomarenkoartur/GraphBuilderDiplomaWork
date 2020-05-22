@@ -224,7 +224,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             geometry.firstMaterial?.isDoubleSided = true
             geometry.firstMaterial?.diffuse.contents = plot.color
             node.geometry = geometry
-            node.opacity = 0.7
+            node.opacity = 0.9
             plot.error = nil
         } catch let error {
             plot.error = error

@@ -29,27 +29,7 @@ class ARPlotView: BaseARSCNView {
     
     override func setupScene() {
         super.setupScene()
-        rootNode.position = SCNVector3(0, -1, -1)
+        autoenablesDefaultLighting = true
     }
-//
-//    override func setupLight() {
-//        super.setupLight()
-//        let light = SCNLight()
-//        light.type = .directional
-//
-//        let topLightNode = SCNNode()
-//        topLightNode.name = "Top light node"
-//        topLightNode.light = light
-//        topLightNode.position.y = 10
-//        topLightNode.eulerAngles.x = -.pi / 2
-//
-//        let bottomLightNode = SCNNode()
-//        bottomLightNode.name = "Bottom light node"
-//        bottomLightNode.light = light
-//        bottomLightNode.position.y = -10
-//        bottomLightNode.eulerAngles.x = .pi / 2
-//
-//        rootNode.addNodes(topLightNode, bottomLightNode)
-//    }
 
 }
