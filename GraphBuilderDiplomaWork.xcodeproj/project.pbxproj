@@ -556,15 +556,10 @@
 		0412E6962459792700AAB427 /* PlotView */ = {
 			isa = PBXGroup;
 			children = (
-				0420B70F246D54560042408F /* AxisNode */,
+				04F0D2F62477D0E000A74652 /* Grid */,
 				0412E6972459793A00AAB427 /* PlotPresenter.swift */,
 				0412E69924597F3300AAB427 /* PlotView.swift */,
 				04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */,
-				0420882B24617F3D00078B80 /* PlotGrid.swift */,
-				0420882F246188C600078B80 /* Grid.scn */,
-				041CAC6B246DAB67003CEC34 /* GridBounds.swift */,
-				041CAC6D246DB009003CEC34 /* GridBoundable.swift */,
-				041CAC6F246DB451003CEC34 /* ValuesBounds.swift */,
 				04B83675246F16F300426FEC /* ARPlotView.swift */,
 			);
 			path = PlotView;
@@ -1119,6 +1114,19 @@
 				04D1F8E32451DE04004155FC /* TopicPlotParameterHeaderView.swift */,
 			);
 			path = TopicPlotParameterCell;
+			sourceTree = "<group>";
+		};
+		04F0D2F62477D0E000A74652 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				0420B70F246D54560042408F /* AxisNode */,
+				0420882B24617F3D00078B80 /* PlotGrid.swift */,
+				0420882F246188C600078B80 /* Grid.scn */,
+				041CAC6B246DAB67003CEC34 /* GridBounds.swift */,
+				041CAC6D246DB009003CEC34 /* GridBoundable.swift */,
+				041CAC6F246DB451003CEC34 /* ValuesBounds.swift */,
+			);
+			path = Grid;
 			sourceTree = "<group>";
 		};
 		04F3D176241AE0E100C4FBEB = {
