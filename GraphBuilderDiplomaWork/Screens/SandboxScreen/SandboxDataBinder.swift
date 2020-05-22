@@ -41,6 +41,7 @@ class SandboxDataBinder<ViewModel>:
             }
         }
         
+        
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in
                 self.viewModel.plotsList[index].isHidden = !show
@@ -64,6 +65,9 @@ class SandboxDataBinder<ViewModel>:
             }
             view.didTapChangeMode = { mode in
                 self.viewModel.setMode(mode)
+            }
+            view.didTakePhoto = { image in
+                self.viewModel.savePhotoToCameraRoll(image)
             }
         }
     }

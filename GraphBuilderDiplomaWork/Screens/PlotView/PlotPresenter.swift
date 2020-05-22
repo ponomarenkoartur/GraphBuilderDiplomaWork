@@ -58,8 +58,6 @@ protocol PlotPresenter: GridBoundable {
     func resetRotation(animationDuration: TimeInterval)
     func resetRootPosition(animationDuration: TimeInterval)
     func resetBounds(animationDuration: TimeInterval)
-    /// Returns a picture of plots on the grid.
-    func screenshot() -> UIImage
 }
 
 

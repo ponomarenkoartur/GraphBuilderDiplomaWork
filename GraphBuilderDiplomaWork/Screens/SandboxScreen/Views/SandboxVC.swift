@@ -13,9 +13,8 @@ import RxKeyboard
 
 
 protocol SandboxVCProtocol: UIViewController {
-    var didTapHomeButton: () -> () { get set }
+    var didTakePhoto: (_ image: UIImage) -> () { get set }
     var didTapSettingsButton: () -> () { get set }
-    var didTapCameraButton: () -> () { get set }
     var didTapAddPlot: () -> () { get set }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
@@ -99,12 +98,14 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
     }
     
+    private(set) var mode: PlotPresentationMode = .vr
+    
     
     // MARK: - Callbacks
     
     var didTapHomeButton: () -> () = { }
     var didTapSettingsButton: () -> () = { }
-    var didTapCameraButton: () -> () = { }
+    var didTakePhoto: (_ image: UIImage) -> () = { _ in }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () = { _ in }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () = { _, _ in }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () = { _, _ in }
@@ -139,7 +140,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private lazy var takePhotoButton: UIButton = {
         let button = UIButton()
         button.setImage(Image.camera())
-        button.rx.tap.subscribe(onNext: { _ in self.didTapCameraButton() })
+        button.rx.tap.subscribe(onNext: { _ in self.saveScreenshot() })
             .disposed(by: bag)
         return button
     }()
@@ -315,12 +316,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         super.setupUI()
         shouldPresentNavigationBar = false
         setupGestureRecognizers()
-        
-        plotScenes.forEach {
-            $0.add(Plot(equation: "x^2+z^2", color: .green))
-//            $0.scaleNode(0.75)
-//            $0.setBounds(y: -2...2)
-        }
     }
     
     override func setupUIAfterLayoutSubviews() {
@@ -535,6 +530,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     func setPresentationMode(_ mode: PlotPresentationMode) {
+        self.mode = mode
         switch mode {
         case .vr:
             pauseARSession()
@@ -546,6 +542,17 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     // MARK: - Other Methods
+    
+    private func saveScreenshot() {
+        let image: UIImage
+        switch mode {
+        case .vr:
+            image = scnPlotView.snapshot()
+        case .ar:
+            image = arscnPlotView.snapshot()
+        }
+        didTakePhoto(image)
+    }
     
     private enum ButtonDirection { case up, down }
     private func setOpenHidePlotButtonDirection(_ direction: ButtonDirection) {

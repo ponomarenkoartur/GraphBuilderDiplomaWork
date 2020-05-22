@@ -20,6 +20,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     func removePlot(at index: Int)
     func updatePlotEquation(at index: Int, newEquation: String)
     func setMode(_ mode: PlotPresentationMode)
+    func savePhotoToCameraRoll(_ image: UIImage)
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -72,5 +73,9 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
         if oldParameters != newParameters {
             didUpdateParameterList(plot, index)
         }
+    }
+    
+    func savePhotoToCameraRoll(_ image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 }

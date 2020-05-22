@@ -173,9 +173,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         gridNode.scale(targetScale, animationDuration: animationDuration)
     }
     
-    
-    func screenshot() -> UIImage { UIImage() }
-    
     func setRootPosition(x: Float?, y: Float?, z: Float?) {
         plotsAndGridWrapper.position.x = x ?? plotsAndGridWrapper.position.x
         plotsAndGridWrapper.position.y = y ?? plotsAndGridWrapper.position.y
