@@ -268,6 +268,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return imageView
     }()
     
+    private lazy var scanFloorView = ScanFloorView()
+    
     
     // MARK: Settings Views
     
@@ -340,6 +342,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             scnPlotView,
             arscnPlotView,
             gestureHandlerView,
+            scanFloorView,
             photoSavedImageView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
@@ -417,6 +420,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
         photoSavedImageView.snp.makeConstraints {
             $0.edges.equalTo(takePhotoButton.snp.edges)
+        }
+        scanFloorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     

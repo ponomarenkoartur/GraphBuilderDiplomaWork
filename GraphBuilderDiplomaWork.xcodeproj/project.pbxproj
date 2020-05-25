@@ -230,6 +230,7 @@
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
 		04806AC5246C140D0005B559 /* PlotGestureHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */; };
 		04806AC7246C382C0005B559 /* SCNAction extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC6246C382C0005B559 /* SCNAction extension.swift */; };
+		048862AA247C1B79004CCE52 /* ScanFloorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862A9247C1B79004CCE52 /* ScanFloorView.swift */; };
 		048A96FE245054FC00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
 		048A970E2450564200161936 /* SerialPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A970D2450564200161936 /* SerialPositionTests.swift */; };
 		048A970F2450565C00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
@@ -430,6 +431,7 @@
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
 		04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGestureHandlerView.swift; sourceTree = "<group>"; };
 		04806AC6246C382C0005B559 /* SCNAction extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNAction extension.swift"; sourceTree = "<group>"; };
+		048862A9247C1B79004CCE52 /* ScanFloorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanFloorView.swift; sourceTree = "<group>"; };
 		048A96FD245054FC00161936 /* SerialPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialPosition.swift; sourceTree = "<group>"; };
 		048A97032450563400161936 /* GraphBuilderDiplomaWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphBuilderDiplomaWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048A97072450563400161936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 				04A7F3AB2456CCC800E8E85B /* Cell */,
 				04A7D1642453015E00503CAE /* SandboxVC.swift */,
 				04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */,
+				048862A9247C1B79004CCE52 /* ScanFloorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1598,6 +1601,7 @@
 				041CAC6A246D88A6003CEC34 /* AxisNodeFabric.swift in Sources */,
 				04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */,
 				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
+				048862AA247C1B79004CCE52 /* ScanFloorView.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
 				040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */,
 				04CE0E69244B1839006B19B0 /* UIColor extension.swift in Sources */,
