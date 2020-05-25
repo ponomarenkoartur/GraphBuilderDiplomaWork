@@ -101,6 +101,7 @@ class ARPlotView: BaseARSCNView {
             .subscribe(onNext: { state in
                 DispatchQueue.main.async {
                     self.scanFloorView.isHidden = state != .scanning
+                    self.plotScene.rootWrapperNode.isHidden = state == .scanning
                 }
             })
             .disposed(by: bag)
@@ -109,8 +110,9 @@ class ARPlotView: BaseARSCNView {
     
     // MARK: - API Methods
     
-    func startScan() {
-        
+    func startOrResetScan() {
+        state = .scanning
+        frameCount = 0
     }
     
     func placeNode() {

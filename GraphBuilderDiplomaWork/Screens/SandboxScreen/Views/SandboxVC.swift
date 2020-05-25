@@ -552,7 +552,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             arscnPlotView.isHidden = true
         case .ar:
             startARSession()
-            arscnPlotView.startScan()
+            arscnPlotView.startOrResetScan()
             arscnPlotView.isHidden = false
         }
     }
