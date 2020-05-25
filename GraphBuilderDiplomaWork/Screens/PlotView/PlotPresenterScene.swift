@@ -15,6 +15,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     // MARK: - Properties
     
+    var rootWrapperNode = SCNNode()
     var plots: [Plot] = []
     var nodeScale: SCNVector3 { plotWrapperNode.scale }
     
@@ -72,7 +73,8 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     override func setupNodes() {
         super.setupNodes()
-        rootNode.addNodes(plotsAndGridWrapper, cameraNode)
+        rootNode.addNodes(rootWrapperNode)
+        rootWrapperNode.addNodes(plotsAndGridWrapper, cameraNode)
         plotsAndGridWrapper.addNodes(gridNode, plotWrapperNode)
 //        setupTextConstraints()
     }

@@ -25,6 +25,19 @@ extension SCNVector3 {
         let distance = Float(sqrt(xd * xd + zd * zd))
         return abs(distance)
     }
+    
+    func modifying(_ axis: Axis, to value: Float) -> SCNVector3 {
+        var vector = self
+        switch axis {
+        case .x:
+            vector.x = value
+        case .y:
+            vector.y = value
+        case .z:
+            vector.z = value
+        }
+        return vector
+    }
 }
 
 
@@ -93,4 +106,8 @@ func -(vector: SCNVector3, number: Float) -> SCNVector3 {
 
 func -=(left: inout SCNVector3, right: SCNVector3) {
     left = left - right
+}
+
+prefix func -(vector: SCNVector3) -> SCNVector3 {
+    return SCNVector3(-vector.x, -vector.y, -vector.z)
 }

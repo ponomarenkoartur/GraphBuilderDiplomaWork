@@ -26,6 +26,13 @@ class PlotGestureHandlerView: BaseView {
     }
     
     
+    // MARK: Callbacks
+    
+    var didTap: () -> () = {}
+    
+    
+    // MARK: Gesture properties
+    
     /// Scale of scene before pinch gesture began
     private var initialScales: [SCNVector3]?
     /// Grid bounds before pinch or pan gesture began
@@ -69,6 +76,10 @@ class PlotGestureHandlerView: BaseView {
         rx.panGesture(configuration: { gr, _ in gr.maximumNumberOfTouches = 1 })
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { self.handlePan($0) })
+            .disposed(by: bag)
+        
+        rx.tapGesture()
+            .subscribe(onNext: { _ in self.didTap() })
             .disposed(by: bag)
     }
     

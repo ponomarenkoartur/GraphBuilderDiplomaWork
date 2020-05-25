@@ -231,6 +231,7 @@
 		04806AC5246C140D0005B559 /* PlotGestureHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */; };
 		04806AC7246C382C0005B559 /* SCNAction extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC6246C382C0005B559 /* SCNAction extension.swift */; };
 		048862AA247C1B79004CCE52 /* ScanFloorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862A9247C1B79004CCE52 /* ScanFloorView.swift */; };
+		048862AD247C24A3004CCE52 /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862AC247C24A3004CCE52 /* ARAnchor extension.swift */; };
 		048A96FE245054FC00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
 		048A970E2450564200161936 /* SerialPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A970D2450564200161936 /* SerialPositionTests.swift */; };
 		048A970F2450565C00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
@@ -432,6 +433,7 @@
 		04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGestureHandlerView.swift; sourceTree = "<group>"; };
 		04806AC6246C382C0005B559 /* SCNAction extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNAction extension.swift"; sourceTree = "<group>"; };
 		048862A9247C1B79004CCE52 /* ScanFloorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanFloorView.swift; sourceTree = "<group>"; };
+		048862AC247C24A3004CCE52 /* ARAnchor extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARAnchor extension.swift"; sourceTree = "<group>"; };
 		048A96FD245054FC00161936 /* SerialPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialPosition.swift; sourceTree = "<group>"; };
 		048A97032450563400161936 /* GraphBuilderDiplomaWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphBuilderDiplomaWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048A97072450563400161936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -817,6 +819,14 @@
 			path = Pod;
 			sourceTree = "<group>";
 		};
+		048862AB247C2496004CCE52 /* ARKit */ = {
+			isa = PBXGroup;
+			children = (
+				048862AC247C24A3004CCE52 /* ARAnchor extension.swift */,
+			);
+			path = ARKit;
+			sourceTree = "<group>";
+		};
 		048A97042450563400161936 /* GraphBuilderDiplomaWorkTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -947,6 +957,7 @@
 		04CE0E1D244B11DE006B19B0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				048862AB247C2496004CCE52 /* ARKit */,
 				0420882824617E2500078B80 /* SceneKit */,
 				04C1169324504D1200C0CF49 /* CoreGraphics */,
 				04CE0E7D244B1873006B19B0 /* Foundation */,
@@ -1675,6 +1686,7 @@
 				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
 				04187092241AE3F800897335 /* Function.swift in Sources */,
 				040FE8232451A3C100F42C24 /* Configurator.swift in Sources */,
+				048862AD247C24A3004CCE52 /* ARAnchor extension.swift in Sources */,
 				04CE0E67244B1839006B19B0 /* UIView extension.swift in Sources */,
 				04CE0E7F244B1893006B19B0 /* Set extension.swift in Sources */,
 				04187088241AE3C000897335 /* VectorAdapeter.swift in Sources */,

@@ -258,6 +258,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private(set) lazy var gestureHandlerView: PlotGestureHandlerView = {
         let view = PlotGestureHandlerView()
         view.addScenes(plotScenes)
+        view.didTap = { self.arscnPlotView.placeNode() }
         return view
     }()
     
@@ -267,8 +268,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         imageView.alpha = 0
         return imageView
     }()
-    
-    private lazy var scanFloorView = ScanFloorView()
     
     
     // MARK: Settings Views
@@ -342,7 +341,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             scnPlotView,
             arscnPlotView,
             gestureHandlerView,
-            scanFloorView,
             photoSavedImageView,
             buttonBack, topRightButtonStackView,
             bottomButtonStackView,
@@ -420,9 +418,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
         photoSavedImageView.snp.makeConstraints {
             $0.edges.equalTo(takePhotoButton.snp.edges)
-        }
-        scanFloorView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
     
@@ -557,6 +552,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             arscnPlotView.isHidden = true
         case .ar:
             startARSession()
+            arscnPlotView.startScan()
             arscnPlotView.isHidden = false
         }
     }
@@ -751,11 +747,11 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     private func startARSession() {
-        arscnPlotView.session.run(ARWorldTrackingConfiguration())
+        arscnPlotView.run()
     }
     
     private func pauseARSession() {
-        arscnPlotView.session.pause()
+        arscnPlotView.pause()
     }
 }
 

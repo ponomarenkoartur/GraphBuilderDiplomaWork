@@ -35,15 +35,36 @@ class BaseARSCNView: ARSCNView {
     }
     
     private func commonInit() {
+        setupDelegates()
         setupScene()
         setupLight()
+        setupUI()
+        setupBinding()
+        setupGesturesRecognizers()
     }
     
     
     // MARK: - Setup Methods
     
+    /// Call 'addSubview' methods before caliing super.setupUI()
+    /// in overrided methods
+    func setupUI() {
+        addSubviews()
+        setupConstraints()
+    }
+    
     func setupScene() {}
     
     func setupLight() {}
+    
+    func setupDelegates() {}
+    
+    func addSubviews() {}
+    
+    func setupConstraints() {}
+    
+    func setupBinding() {}
+    
+    func setupGesturesRecognizers() {}
 }
 

@@ -11,6 +11,7 @@ import SceneKit
 
 
 protocol PlotPresenter: GridBoundable {
+    var rootWrapperNode: SCNNode { get }
     var plots: [Plot] { get }
     var gridBounds: GridBounds { get }
     var plotsAndGridWrapperPosition: SCNVector3 { get }
