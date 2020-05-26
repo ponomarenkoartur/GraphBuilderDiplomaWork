@@ -111,6 +111,7 @@
 		0420882E24617F6E00078B80 /* BaseSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420882D24617F6E00078B80 /* BaseSCNNode.swift */; };
 		04208830246188C700078B80 /* Grid.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0420882F246188C600078B80 /* Grid.scn */; };
 		0420B70E246D53EB0042408F /* AxisNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420B70D246D53EB0042408F /* AxisNode.swift */; };
+		0425DC67247D12E300A3D66F /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC66247D12E300A3D66F /* ARAnchor extension.swift */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -231,7 +232,6 @@
 		04806AC5246C140D0005B559 /* PlotGestureHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */; };
 		04806AC7246C382C0005B559 /* SCNAction extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC6246C382C0005B559 /* SCNAction extension.swift */; };
 		048862AA247C1B79004CCE52 /* ScanFloorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862A9247C1B79004CCE52 /* ScanFloorView.swift */; };
-		048862AD247C24A3004CCE52 /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862AC247C24A3004CCE52 /* ARAnchor extension.swift */; };
 		048A96FE245054FC00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
 		048A970E2450564200161936 /* SerialPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A970D2450564200161936 /* SerialPositionTests.swift */; };
 		048A970F2450565C00161936 /* SerialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048A96FD245054FC00161936 /* SerialPosition.swift */; };
@@ -400,6 +400,7 @@
 		0420882D24617F6E00078B80 /* BaseSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSCNNode.swift; sourceTree = "<group>"; };
 		0420882F246188C600078B80 /* Grid.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Grid.scn; sourceTree = "<group>"; };
 		0420B70D246D53EB0042408F /* AxisNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisNode.swift; sourceTree = "<group>"; };
+		0425DC66247D12E300A3D66F /* ARAnchor extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARAnchor extension.swift"; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -433,7 +434,6 @@
 		04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGestureHandlerView.swift; sourceTree = "<group>"; };
 		04806AC6246C382C0005B559 /* SCNAction extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNAction extension.swift"; sourceTree = "<group>"; };
 		048862A9247C1B79004CCE52 /* ScanFloorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanFloorView.swift; sourceTree = "<group>"; };
-		048862AC247C24A3004CCE52 /* ARAnchor extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARAnchor extension.swift"; sourceTree = "<group>"; };
 		048A96FD245054FC00161936 /* SerialPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialPosition.swift; sourceTree = "<group>"; };
 		048A97032450563400161936 /* GraphBuilderDiplomaWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphBuilderDiplomaWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048A97072450563400161936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -822,7 +822,7 @@
 		048862AB247C2496004CCE52 /* ARKit */ = {
 			isa = PBXGroup;
 			children = (
-				048862AC247C24A3004CCE52 /* ARAnchor extension.swift */,
+				0425DC66247D12E300A3D66F /* ARAnchor extension.swift */,
 			);
 			path = ARKit;
 			sourceTree = "<group>";
@@ -1686,7 +1686,7 @@
 				043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */,
 				04187092241AE3F800897335 /* Function.swift in Sources */,
 				040FE8232451A3C100F42C24 /* Configurator.swift in Sources */,
-				048862AD247C24A3004CCE52 /* ARAnchor extension.swift in Sources */,
+				0425DC67247D12E300A3D66F /* ARAnchor extension.swift in Sources */,
 				04CE0E67244B1839006B19B0 /* UIView extension.swift in Sources */,
 				04CE0E7F244B1893006B19B0 /* Set extension.swift in Sources */,
 				04187088241AE3C000897335 /* VectorAdapeter.swift in Sources */,

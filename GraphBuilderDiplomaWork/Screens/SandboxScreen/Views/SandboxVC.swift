@@ -304,6 +304,12 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return switchControl
     }()
     
+    private lazy var recognizeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Image.recognition())
+        return button
+    }()
+    
     
     
     // MARK: Constaints
@@ -352,6 +358,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             takePhotoButton,
             settingsButton,
             homeButton,
+            recognizeButton,
         ])
         bottomButtonStackView.addArrangedSubviews([
             manipulationModeSwitchButton, xyzControl, openHidePlotEditorButton
