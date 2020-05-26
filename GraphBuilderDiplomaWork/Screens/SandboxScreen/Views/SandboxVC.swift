@@ -558,7 +558,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     }
     
     func updateParametersOfPlot(at index: Int) {
-        let section = index + 1
+        let section = getParametersCellsSection(from: index)
         equationsTableView.reloadSection(section)
     }
     
