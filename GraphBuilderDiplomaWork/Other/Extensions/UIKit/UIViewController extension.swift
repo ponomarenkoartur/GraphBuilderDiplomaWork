@@ -13,12 +13,17 @@ import UIKit
 
 extension UIViewController {
     func presentOkAlert(title: String? = nil, message: String? = nil,
-                        _ completion: @escaping () -> Void = {}) {
+                        completion: @escaping () -> Void = {}) {
         let alert = AlertBuilder(title: title, message: message)
             .addOkButton() { _ in completion() }
             .build()
         alert.view.tintColor = UIColor(fromHexString: "50B7FF")
         present(alert, animated: true)
+    }
+    
+    func showLoading(_ show: Bool) {
+        show ? LoadingViewPresenter.shared.present() :
+            LoadingViewPresenter.shared.hide()
     }
 }
 

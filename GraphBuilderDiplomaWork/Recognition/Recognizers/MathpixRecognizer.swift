@@ -14,9 +14,17 @@ class MathpixRecognizer: EquationRecognizer {
         _ image: UIImage,
         completion: @escaping ((Result<[Equation], Error>) -> Void) = { _ in }) {
         MathpixClient.recognize(
-        image: image, outputFormats: [FormatLatex.simplified, FormatWolfram.on]) {
+        image: image, outputFormats: [FormatLatex.simplified]) {
             error, result in
-            completion(Result.success([]))
+            if let result = result {
+                let resultArray = result.toLatexStringArray().map {
+                    Equation(equation: $0)
+                }
+                completion(Result.success(resultArray))
+            } else {
+                let error = error ?? EquationRecognitionError.noEquationFound
+                completion(Result.failure(error))
+            }
         }
     }
 }

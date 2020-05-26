@@ -112,6 +112,7 @@
 		04208830246188C700078B80 /* Grid.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0420882F246188C600078B80 /* Grid.scn */; };
 		0420B70E246D53EB0042408F /* AxisNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420B70D246D53EB0042408F /* AxisNode.swift */; };
 		0425DC67247D12E300A3D66F /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC66247D12E300A3D66F /* ARAnchor extension.swift */; };
+		0425DC69247D1E9400A3D66F /* LoadingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -401,6 +402,7 @@
 		0420882F246188C600078B80 /* Grid.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Grid.scn; sourceTree = "<group>"; };
 		0420B70D246D53EB0042408F /* AxisNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisNode.swift; sourceTree = "<group>"; };
 		0425DC66247D12E300A3D66F /* ARAnchor extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARAnchor extension.swift"; sourceTree = "<group>"; };
+		0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewPresenter.swift; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 				04AD87B9245C59B00065404F /* NumberTextField.swift */,
 				04FCDE9124600CCB00422848 /* HandyFunctions.swift */,
 				04CD857724752DB900532E17 /* ConstantsAndValues.swift */,
+				0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1652,6 +1655,7 @@
 				04CE0E42244B1468006B19B0 /* BaseVM.swift in Sources */,
 				048D6D0C245465BD0001FC7D /* SandboxVM.swift in Sources */,
 				04CE0E83244B18A7006B19B0 /* String extension.swift in Sources */,
+				0425DC69247D1E9400A3D66F /* LoadingViewPresenter.swift in Sources */,
 				04CE0E7B244B186B006B19B0 /* CompletableEvent extension.swift in Sources */,
 				04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */,
 				04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */,

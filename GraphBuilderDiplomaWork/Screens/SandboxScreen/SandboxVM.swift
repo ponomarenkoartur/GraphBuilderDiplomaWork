@@ -16,12 +16,18 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () { get set }
     var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didSavePhoto: () -> () { get set }
+    var didRequestPictureRecognitionVC: () -> () { get set }
     var plotsList: [Plot] { get }
+    var recognitionErrorText: Observable<String?> { get }
+    var isLoading: Observable<Bool> { get }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
     func updatePlotEquation(at index: Int, newEquation: String)
     func setMode(_ mode: PlotPresentationMode)
     func savePhotoToCameraRoll(_ image: UIImage)
+    func takePictureToRecognize()
+    func addPlot(fromImage image: UIImage)
+    func discardError()
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -31,6 +37,16 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     
     private(set) var plotsList: [Plot] = []
     private(set) var mode: PlotPresentationMode = .vr
+    private let equationRecognizer: EquationRecognizer = MathpixRecognizer()
+    
+    private let recognitionErrorTextSubject: BehaviorSubject<String?> =
+        BehaviorSubject(value: nil)
+    var recognitionErrorText: Observable<String?> {
+        recognitionErrorTextSubject.asObservable()
+    }
+    
+    private let isLoadingSubject = BehaviorSubject(value: false)
+    var isLoading: Observable<Bool> { isLoadingSubject.asObservable() }
     
     
     // MARK: Callbacks
@@ -41,6 +57,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () = { _ in }
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didSavePhoto: () -> () = {}
+    var didRequestPictureRecognitionVC: () -> () = {}
     
     
     // MARK: - API Methods
@@ -86,5 +103,32 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
         if error == nil {
             didSavePhoto()
         }
+    }
+    
+    func takePictureToRecognize() {
+        switch mode {
+        case .ar:
+            break
+        case .vr:
+            didRequestPictureRecognitionVC()
+        }
+    }
+    
+    func addPlot(fromImage image: UIImage) {
+        isLoadingSubject.onNext(true)
+        equationRecognizer.recognize(image) { (result) in
+            self.isLoadingSubject.onNext(false)
+            if case .success(let equations) = result,
+                let equation = equations.first {
+                self.addPlot(Plot(equation: equation))
+            } else {
+                self.recognitionErrorTextSubject
+                    .onNext("Can't recognize equation from image")
+            }
+        }
+    }
+    
+    func discardError() {
+        recognitionErrorTextSubject.onNext(nil)
     }
 }

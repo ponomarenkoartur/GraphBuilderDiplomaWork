@@ -15,6 +15,10 @@ protocol EquationRecognizer {
         completion: @escaping ((_ result: Result<[Equation], Error>) -> Void))
 }
 
+enum EquationRecognitionError: String, Error {
+    case noEquationFound
+}
+
 
 
 extension CustomStringConvertible where Self: EquationRecognizer {

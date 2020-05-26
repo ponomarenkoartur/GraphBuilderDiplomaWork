@@ -16,6 +16,7 @@ import AVFoundation
 protocol SandboxVCProtocol: UIViewController {
     var didTakePhoto: (_ image: UIImage) -> () { get set }
     var didTapSettingsButton: () -> () { get set }
+    var didTapRecognizeButton: () -> () { get set }
     var didTapAddPlot: () -> () { get set }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
@@ -116,6 +117,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didTapAddPlot: () -> () = {}
     var didChangeEquationText:
         (_ plot: Plot, _ index: Int, _ text: String) -> () = { _, _, _ in }
+    var didTapRecognizeButton: () -> () = {}
     
     // MARK: Views
     
@@ -269,6 +271,20 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return imageView
     }()
     
+    private lazy var recognizeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Image.recognition())
+        button.rx.tap
+            .subscribe(onNext: { _ in
+                let title = "Take a clear picture of the equation you want to be" +
+                    " recognized"
+                self.presentOkAlert(title: title,
+                                    completion: self.didTapRecognizeButton)
+            })
+            .disposed(by: bag)
+        return button
+    }()
+    
     
     // MARK: Settings Views
     
@@ -302,12 +318,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             })
             .disposed(by: bag)
         return switchControl
-    }()
-    
-    private lazy var recognizeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Image.recognition())
-        return button
     }()
     
     

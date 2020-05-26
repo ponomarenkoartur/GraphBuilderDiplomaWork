@@ -7,14 +7,14 @@
 //
 
 
-//import MathpixClient
-//
-//extension RecognitionResult {
-//    func toLatexString() -> String? {
-//        return self.parsed?["latex"] as? String
-//    }
-//    
-//    func toLatexStringArray() -> [String] {
-//        return self.parsed?["latex_list"] as? [String] ?? []
-//    }
-//}
+import MathpixClient
+
+extension RecognitionResult {
+    func toLatexString() -> String? {
+        self.parsed?["latex"] as? String
+    }
+    
+    func toLatexStringArray() -> [String] {
+        self.parsed?["latex_list"] as? [String] ?? []
+    }
+}

@@ -309,7 +309,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 227 images.
+  /// This `R.image` struct is generated, and contains static references to 257 images.
   struct image {
     /// Image `AR graph logo`.
     static let arGraphLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AR graph logo")
@@ -325,6 +325,66 @@ struct R: Rswift.Validatable {
     static let backButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "backButton")
     /// Image `camera`.
     static let camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "camera")
+    /// Image `circle_0`.
+    static let circle_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_0")
+    /// Image `circle_10`.
+    static let circle_10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_10")
+    /// Image `circle_11`.
+    static let circle_11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_11")
+    /// Image `circle_12`.
+    static let circle_12 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_12")
+    /// Image `circle_13`.
+    static let circle_13 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_13")
+    /// Image `circle_14`.
+    static let circle_14 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_14")
+    /// Image `circle_15`.
+    static let circle_15 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_15")
+    /// Image `circle_16`.
+    static let circle_16 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_16")
+    /// Image `circle_17`.
+    static let circle_17 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_17")
+    /// Image `circle_18`.
+    static let circle_18 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_18")
+    /// Image `circle_19`.
+    static let circle_19 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_19")
+    /// Image `circle_1`.
+    static let circle_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_1")
+    /// Image `circle_20`.
+    static let circle_20 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_20")
+    /// Image `circle_21`.
+    static let circle_21 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_21")
+    /// Image `circle_22`.
+    static let circle_22 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_22")
+    /// Image `circle_23`.
+    static let circle_23 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_23")
+    /// Image `circle_24`.
+    static let circle_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_24")
+    /// Image `circle_25`.
+    static let circle_25 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_25")
+    /// Image `circle_26`.
+    static let circle_26 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_26")
+    /// Image `circle_27`.
+    static let circle_27 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_27")
+    /// Image `circle_28`.
+    static let circle_28 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_28")
+    /// Image `circle_29`.
+    static let circle_29 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_29")
+    /// Image `circle_2`.
+    static let circle_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_2")
+    /// Image `circle_3`.
+    static let circle_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_3")
+    /// Image `circle_4`.
+    static let circle_4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_4")
+    /// Image `circle_5`.
+    static let circle_5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_5")
+    /// Image `circle_6`.
+    static let circle_6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_6")
+    /// Image `circle_7`.
+    static let circle_7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_7")
+    /// Image `circle_8`.
+    static let circle_8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_8")
+    /// Image `circle_9`.
+    static let circle_9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "circle_9")
     /// Image `cube3DDotted`.
     static let cube3DDotted = Rswift.ImageResource(bundle: R.hostingBundle, name: "cube3DDotted")
     /// Image `cube3D`.
@@ -812,6 +872,216 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "camera", bundle: ..., traitCollection: ...)`
     static func camera(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.camera, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_0", bundle: ..., traitCollection: ...)`
+    static func circle_0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_0, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_1", bundle: ..., traitCollection: ...)`
+    static func circle_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_10", bundle: ..., traitCollection: ...)`
+    static func circle_10(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_10, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_11", bundle: ..., traitCollection: ...)`
+    static func circle_11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_11, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_12", bundle: ..., traitCollection: ...)`
+    static func circle_12(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_12, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_13", bundle: ..., traitCollection: ...)`
+    static func circle_13(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_13, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_14", bundle: ..., traitCollection: ...)`
+    static func circle_14(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_14, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_15", bundle: ..., traitCollection: ...)`
+    static func circle_15(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_15, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_16", bundle: ..., traitCollection: ...)`
+    static func circle_16(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_16, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_17", bundle: ..., traitCollection: ...)`
+    static func circle_17(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_17, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_18", bundle: ..., traitCollection: ...)`
+    static func circle_18(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_18, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_19", bundle: ..., traitCollection: ...)`
+    static func circle_19(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_19, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_2", bundle: ..., traitCollection: ...)`
+    static func circle_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_20", bundle: ..., traitCollection: ...)`
+    static func circle_20(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_20, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_21", bundle: ..., traitCollection: ...)`
+    static func circle_21(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_21, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_22", bundle: ..., traitCollection: ...)`
+    static func circle_22(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_22, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_23", bundle: ..., traitCollection: ...)`
+    static func circle_23(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_23, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_24", bundle: ..., traitCollection: ...)`
+    static func circle_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_24, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_25", bundle: ..., traitCollection: ...)`
+    static func circle_25(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_25, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_26", bundle: ..., traitCollection: ...)`
+    static func circle_26(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_26, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_27", bundle: ..., traitCollection: ...)`
+    static func circle_27(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_27, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_28", bundle: ..., traitCollection: ...)`
+    static func circle_28(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_28, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_29", bundle: ..., traitCollection: ...)`
+    static func circle_29(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_29, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_3", bundle: ..., traitCollection: ...)`
+    static func circle_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_4", bundle: ..., traitCollection: ...)`
+    static func circle_4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_5", bundle: ..., traitCollection: ...)`
+    static func circle_5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_5, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_6", bundle: ..., traitCollection: ...)`
+    static func circle_6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_6, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_7", bundle: ..., traitCollection: ...)`
+    static func circle_7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_7, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_8", bundle: ..., traitCollection: ...)`
+    static func circle_8(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_8, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "circle_9", bundle: ..., traitCollection: ...)`
+    static func circle_9(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.circle_9, compatibleWith: traitCollection)
     }
     #endif
 

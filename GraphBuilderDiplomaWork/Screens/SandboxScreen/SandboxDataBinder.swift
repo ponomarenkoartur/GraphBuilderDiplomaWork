@@ -45,7 +45,23 @@ class SandboxDataBinder<ViewModel>:
                 self.views.forEach { $0.performPhotoSavedAnimationAndSound() }
             }
         }
-        
+        viewModel.recognitionErrorText
+            .subscribe(onNext: { errorText in
+                guard let errorText = errorText else { return }
+                self.views.forEach { view in
+                    DispatchQueue.main.async {
+                        view.presentOkAlert(title: errorText) {
+                            self.viewModel.discardError()
+                        }
+                    }
+                }
+            })
+            .disposed(by: bag)
+        viewModel.isLoading
+            .subscribe(onNext: { isLoading in
+                self.views.forEach { $0.showLoading(isLoading) }
+            })
+            .disposed(by: bag)
         
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in
@@ -73,6 +89,9 @@ class SandboxDataBinder<ViewModel>:
             }
             view.didTakePhoto = { image in
                 self.viewModel.savePhotoToCameraRoll(image)
+            }
+            view.didTapRecognizeButton = {
+                self.viewModel.takePictureToRecognize()
             }
         }
     }

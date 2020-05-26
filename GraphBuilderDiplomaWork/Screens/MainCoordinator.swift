@@ -16,6 +16,7 @@ class MainCoordinator: BaseCoordinator {
     // MARK: - Properties
     
     private let bag = DisposeBag()
+    private var imagePickerCompletion: (_ image: UIImage) -> () = { _ in }
     
     
     // MARK: - API Methods
@@ -67,7 +68,6 @@ class MainCoordinator: BaseCoordinator {
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
-        
         vm.setPlotList([
 //            Plot(title: "", equation: Equation(latex: "x^2+z^2"         ,   function: "(x^2)+(z^2)"  )),
             Plot(equation: "x^2+z^2", color: .green),
@@ -91,6 +91,13 @@ class MainCoordinator: BaseCoordinator {
 //            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
 //            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
         ])
+        vm.didRequestPictureRecognitionVC = {
+            self.pushImagePickerScreen { (image) in
+                if let image = image {
+                    vm.addPlot(fromImage: image)
+                }
+            }
+        }
         navVC.push(vc)
     }
 
@@ -131,6 +138,14 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(TestViewController())
     }
     
+    private func pushImagePickerScreen(
+        _ completion: @escaping (_ takenImage: UIImage?) -> ()) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePickerCompletion = completion
+        navVC.present(imagePicker, animated: true)
+    }
 }
 
 
@@ -148,5 +163,24 @@ extension MainCoordinator {
             navigationController.navigationBar.prefersLargeTitles =
                 vc.shouldPreferLargeTitle
         }
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension MainCoordinator: UIImagePickerControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo
+        info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            imagePickerCompletion(image)
+        }
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }
