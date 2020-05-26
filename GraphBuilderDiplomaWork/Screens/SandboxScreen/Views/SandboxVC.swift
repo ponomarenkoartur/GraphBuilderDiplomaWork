@@ -24,6 +24,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didChangeEquationText: (_ plot: Plot, _ index: Int, _ text: String) -> () { get set }
     var didTapDeleteEquation: (_ index: Int) -> () { get set }
     var didTapBack: () -> () { get set }
+    var isEquationTableHidden: Bool { get set }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
     func setPlotList(_ list: [Plot])
@@ -42,7 +43,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private let isEquationTableHiddenSubject =
         BehaviorSubject<Bool>(value: true)
-    private var isEquationTableHidden: Bool {
+    var isEquationTableHidden: Bool {
         get { try! isEquationTableHiddenSubject.value() }
         set { isEquationTableHiddenSubject.onNext(newValue) }
     }

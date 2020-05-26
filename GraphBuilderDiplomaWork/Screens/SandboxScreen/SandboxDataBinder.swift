@@ -62,6 +62,10 @@ class SandboxDataBinder<ViewModel>:
                 self.views.forEach { $0.showLoading(isLoading) }
             })
             .disposed(by: bag)
+        viewModel.didAddEquationRecognizedFromImage = {
+            self.views.forEach { $0.isEquationTableHidden = false }
+        }
+        
         
         views.forEach { (view) in
             view.didTapShowPlot = { show, index in

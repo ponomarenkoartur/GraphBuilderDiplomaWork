@@ -17,6 +17,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didSetPresentationMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didSavePhoto: () -> () { get set }
     var didRequestPictureRecognitionVC: () -> () { get set }
+    var didAddEquationRecognizedFromImage: () -> () { get set }
     var plotsList: [Plot] { get }
     var recognitionErrorText: Observable<String?> { get }
     var isLoading: Observable<Bool> { get }
@@ -26,7 +27,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     func setMode(_ mode: PlotPresentationMode)
     func savePhotoToCameraRoll(_ image: UIImage)
     func takePictureToRecognize()
-    func addPlot(fromImage image: UIImage)
+    func addPlots(fromImage image: UIImage)
     func discardError()
 }
 
@@ -58,6 +59,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didUpdateParameterList: (_ plot: Plot, _ index: Int) -> () = { _, _ in }
     var didSavePhoto: () -> () = {}
     var didRequestPictureRecognitionVC: () -> () = {}
+    var didAddEquationRecognizedFromImage: () -> () = {}
     
     
     // MARK: - API Methods
@@ -106,24 +108,19 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     }
     
     func takePictureToRecognize() {
-        switch mode {
-        case .ar:
-            break
-        case .vr:
-            didRequestPictureRecognitionVC()
-        }
+        didRequestPictureRecognitionVC()
     }
     
-    func addPlot(fromImage image: UIImage) {
+    func addPlots(fromImage image: UIImage) {
         isLoadingSubject.onNext(true)
         equationRecognizer.recognize(image) { (result) in
             self.isLoadingSubject.onNext(false)
-            if case .success(let equations) = result,
-                let equation = equations.first {
-                self.addPlot(Plot(equation: equation))
+            if case .success(let equations) = result, !equations.isEmpty {
+                equations.forEach { self.addPlot(Plot(equation: $0)) }
+                self.didAddEquationRecognizedFromImage()
             } else {
                 self.recognitionErrorTextSubject
-                    .onNext("Can't recognize equation from image")
+                    .onNext("No equation is recognized from the image")
             }
         }
     }

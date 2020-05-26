@@ -44,10 +44,13 @@ extension UITableView {
     
     func deleteSections(_ sections: [Int]) {
         deleteSections(IndexSet(sections), with: .automatic)
+        
     }
-    
+
     func reloadSection(_ index: Int,
                        animationStyle: RowAnimation = .automatic) {
-        reloadSections([index], animationStyle: animationStyle)
+        var indexSet = IndexSet()
+        indexSet.insert(index)
+        reloadSections(indexSet, with: animationStyle)
     }
 }

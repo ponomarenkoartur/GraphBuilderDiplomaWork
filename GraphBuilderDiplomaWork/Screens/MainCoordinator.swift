@@ -94,7 +94,7 @@ class MainCoordinator: BaseCoordinator {
         vm.didRequestPictureRecognitionVC = {
             self.pushImagePickerScreen { (image) in
                 if let image = image {
-                    vm.addPlot(fromImage: image)
+                    vm.addPlots(fromImage: image)
                 }
             }
         }
