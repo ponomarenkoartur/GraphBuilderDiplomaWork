@@ -10,12 +10,22 @@ import UIKit
 import RxSwift
 
 
-class TopicsListVC: BaseVC {
+protocol TopicsListVCProtocol: UIViewController {
+    var didSelectTopic: (_ index: Int) -> () { get set }
+    var topics: [Topic] { get set }
+}
+
+class TopicsListVC: BaseVC, TopicsListVCProtocol {
     
     
     // MARK: - Properties
     
-    var topicsList: Observable<[Topic]>
+    private var topicsSubject = BehaviorSubject<[Topic]>(value: [])
+    var topics: [Topic] {
+        get { try! topicsSubject.value() }
+        set { topicsSubject.onNext(newValue) }
+    }
+    
     
     
     // MARK: Callbacks
@@ -29,25 +39,15 @@ class TopicsListVC: BaseVC {
         let tableView = UITableView()
         tableView.register(TopicCell.self)
         tableView.delegate = self
+        topicsSubject.bind(to: tableView.rx.items) {
+            (tableView: UITableView, index: Int, topic: Topic) in
+            let cell =
+                tableView.dequeue(TopicCell.self, for: index) ?? TopicCell()
+            TopicCellConfigurator(cell: cell).configure(with: topic)
+            return cell
+        }.disposed(by: bag)
         return tableView
     }()
-    
-    
-    // MARK: - Initialization
-    
-    
-    init(topicsList: Observable<[Topic]>) {
-        self.topicsList = topicsList
-        super.init()
-    }
-    
-    required init() {
-        fatalError("Use init(topicsList:) instead")
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("Use init(topicsList:) instead")
-    }
     
 
     // MARK: - Setup Methods
@@ -66,17 +66,6 @@ class TopicsListVC: BaseVC {
         super.setupConstraints()
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
         view.layoutIfNeeded()
-    }
-    
-    override func setupBinding() {
-        super.setupBinding()
-        topicsList.bind(to: tableView.rx.items) {
-            (tableView: UITableView, index: Int, topic: Topic) in
-            let cell =
-                tableView.dequeue(TopicCell.self, for: index) ?? TopicCell()
-            TopicCellConfigurator(cell: cell).configure(with: topic)
-            return cell
-        }.disposed(by: bag)
     }
 }
 

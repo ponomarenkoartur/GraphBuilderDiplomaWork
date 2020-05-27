@@ -1,5 +1,5 @@
 //
-//  DataService.swift
+//  EquationDataService.swift
 //  GraphBuilderDiplomaWork
 //
 //  Created by Artur on 27.05.2020.
@@ -9,14 +9,15 @@
 import Foundation
 
 
-protocol DataServiceProtocol {
+protocol EquationDataServiceProtocol {
     func getEquations() -> [Equation]
     func addEquation(_ equation: Equation)
     func removeEquation(at index: Int)
+    func fetchData()
     func commitChanges()
 }
 
-class DataService: DataServiceProtocol {
+class EquationDataService: EquationDataServiceProtocol {
     
     
     // MARK: - Constants
@@ -26,7 +27,7 @@ class DataService: DataServiceProtocol {
     
     // MARK: - Singleton
     
-    static let shared = DataService()
+    static let shared = EquationDataService()
     private init() {}
     
     

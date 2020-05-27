@@ -133,6 +133,6 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     func saveEquation(at index: Int) {
         guard let plot = plotsList[safe: index] else { return }
         let equation = plot.equation
-        DataService.shared.addEquation(equation)
+        EquationDataService.shared.addEquation(equation)
     }
 }

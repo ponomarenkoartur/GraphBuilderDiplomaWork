@@ -44,7 +44,7 @@ class SavedEquationsVM: BaseVM<SavedEquationsVM.FinishReason>, SavedEquationsVMP
     // MARK: - Setup Methods
     
     private func fetchEquations() {
-        equations = DataService.shared.getEquations()
+        equations = EquationDataService.shared.getEquations()
     }
     
     
@@ -52,7 +52,7 @@ class SavedEquationsVM: BaseVM<SavedEquationsVM.FinishReason>, SavedEquationsVMP
     
     func deleteEquation(at index: Int) {
         equations.remove(at: index)
-        DataService.shared.removeEquation(at: index)
+        EquationDataService.shared.removeEquation(at: index)
     }
     
 }

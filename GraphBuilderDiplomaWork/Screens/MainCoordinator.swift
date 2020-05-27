@@ -55,12 +55,16 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopicsList() {
         let vm = TopicsListVM()
+        let vc = TopicsListVC()
+        let dataBinder = TopicsListDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
         vm.finishCompletion = { reason in
             if case .didSelectTopic(_, let position) = reason {
-                self.pushTopicsContainer(vm.topicsList, selectedTopicIndex: position)
+                self.pushTopicsContainer(vm.rx.topics, selectedTopicIndex: position)
             }
         }
-        navVC.push(vm.viewController!)
+        navVC.push(vc)
     }
     
     private func pushSandbox(with equations: [Equation] = []) {
@@ -117,19 +121,6 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushTopicPlots() {
         let vm = TopicPlotsVM()
-//        vm.setPlotList([
-//            Plot(title: "Hello", equation: Equation(latex: "y=x^2+sqrt(z)", function: NSNull()),
-//                 parameters: [.init(name: "a", value: -2),
-//                              .init(name: "b", value: -4),
-//                              .init(name: "c", value: 0),
-//                              .init(name: "d", value: 10),]),
-//            Plot(title: "Hello", equation: Equation(latex: "y=x^5", function: NSNull()),
-//                 parameters: [.init(name: "w", value: 2),
-//                              .init(name: "r", value: 5)]),
-//            Plot(title: "Hello", equation: Equation(latex: "y=sin(x^z)", function: NSNull()),
-//                 parameters: [.init(name: "a", value: -2),
-//                              .init(name: "b", value: -4)]),
-//        ])
         let vc = TopicPlotsVC()
         let dataBinder = TopicPlotsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()

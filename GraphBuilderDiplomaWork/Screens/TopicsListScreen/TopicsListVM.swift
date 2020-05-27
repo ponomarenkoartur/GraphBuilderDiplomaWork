@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class TopicsListVM: BaseVMWithVC<TopicsListVC, TopicsListVM.FinishCompletionReason> {
+class TopicsListVM: BaseVM<TopicsListVM.FinishCompletionReason> {
     
     
     // MARK: - Enums
@@ -21,58 +21,53 @@ class TopicsListVM: BaseVMWithVC<TopicsListVC, TopicsListVM.FinishCompletionReas
     
     // MARK: - Properties
     
-    let topicsListSubject = BehaviorSubject<[Topic]>(value:
-        [
-            Topic(title: "Hello",
-                  shortDescription: "This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. ",
-                  content: [
-                      TopicSubheader(text: "Subheader of Hello"),
-                  ]),
-            
-            Topic(title: "World",
-                  shortDescription: "This is short description of \"World\" topic",
-                  content: [
-                    TopicSubheader(text: "Subheader of World"),
-                    TopicParagraph(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-                    TopicIllustration(image: Image.topicPlaceholder()!, height: 100),
-                    TopicProccedToPlotBuildingItem(graph: "y+2"),
-                ]
-            ),
-            Topic(title: "!",
-                  shortDescription: "This is short description of \"!\" topic.",
-                  content: [
-                    TopicSubheader(text: "Subheader of !"),
-                ]),
-        ]
+    fileprivate let topicsSubject = BehaviorSubject<[Topic]>(value:
+        TopicsDataService.shared.getTopics()
     )
     
-    var topicsList: Observable<[Topic]> {
-        topicsListSubject.asObservable()
+    var topics: [Topic] {
+        get { try! topicsSubject.value() }
+        set { topicsSubject.onNext(newValue) }
     }
     
-    private var topicsListValue: [Topic] {
-        (try? topicsListSubject.value()) ?? []
+    
+    fileprivate let isLoadingSubject = BehaviorSubject(value: false)
+    var isLoading: Bool {
+        get { try! isLoadingSubject.value() }
+        set { isLoadingSubject.onNext(newValue) }
+    }
+    
+    fileprivate let errorSubject = BehaviorSubject<Error?>(value: nil)
+    var error: Error? {
+        get { try! errorSubject.value() }
+        set { errorSubject.onNext(newValue) }
     }
     
     
     // MARK: - Initialization
     
-    init() {
-        super.init(viewController:
-            TopicsListVC(topicsList: topicsListSubject.asObservable()))
-        setupCallbacks()
-    }
-    
-    
-    private func setupCallbacks() {
-        viewController?.didSelectTopic = { index in
-            
-            if let topic = self.topicsListValue[safe: index] {
-                self.finishCompletion(
-                    .didSelectTopic(topic: topic, index: index))
-            }
+    override init() {
+        super.init()
+        isLoading = true
+        TopicsDataService.shared.fetchData { error in
+            self.error = error
+            self.isLoading = false
+            self.topics = TopicsDataService.shared.getTopics()
         }
     }
-    
-    
+}
+
+
+// MARK: - Rx
+
+extension Reactive where Base == TopicsListVM {
+    var topics: Observable<[Topic]> {
+        base.topicsSubject.asObservable()
+    }
+    var isLoading: Observable<Bool> {
+        base.isLoadingSubject.asObservable()
+    }
+    var error: Observable<Error?> {
+        base.errorSubject.asObservable()
+    }
 }

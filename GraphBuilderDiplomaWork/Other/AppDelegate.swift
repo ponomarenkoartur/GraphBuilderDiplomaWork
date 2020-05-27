@@ -36,19 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupServices() {
         MathpixClient.setApiKeys(appId: "arthur_ponomar_gmail_com",
                                  appKey: "2b4fa7b7db3ebfee5b70")
-        DataService.shared.fetchData()
+        EquationDataService.shared.fetchData()
     }
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        DataService.shared.commitChanges()
+        EquationDataService.shared.commitChanges()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        DataService.shared.commitChanges()
+        EquationDataService.shared.commitChanges()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        DataService.shared.commitChanges()
+        EquationDataService.shared.commitChanges()
     }
 }
 

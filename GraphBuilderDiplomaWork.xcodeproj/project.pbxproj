@@ -232,8 +232,11 @@
 		046E98CE244B549100611091 /* TopicsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CD244B549100611091 /* TopicsListVM.swift */; };
 		046E98D1244B563000611091 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98D0244B563000611091 /* TopicCell.swift */; };
 		046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */; };
-		0471B791247E6D7800BDC147 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B790247E6D7800BDC147 /* DataService.swift */; };
+		0471B791247E6D7800BDC147 /* EquationDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B790247E6D7800BDC147 /* EquationDataService.swift */; };
 		0471B793247E72C000BDC147 /* WelcomeScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */; };
+		0471B798247ECE8600BDC147 /* TopicsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B797247ECE8600BDC147 /* TopicsDataService.swift */; };
+		0471B79C247ED10400BDC147 /* TopicsListDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */; };
+		0471B79D247ED10700BDC147 /* TopicsListDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */; };
 		0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FA244B20700065BB63 /* Shortcuts.swift */; };
 		0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FC244B326E0065BB63 /* WelcomeVM.swift */; };
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
@@ -442,8 +445,10 @@
 		046E98CD244B549100611091 /* TopicsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVM.swift; sourceTree = "<group>"; };
 		046E98D0244B563000611091 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
-		0471B790247E6D7800BDC147 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		0471B790247E6D7800BDC147 /* EquationDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationDataService.swift; sourceTree = "<group>"; };
 		0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenDataBinder.swift; sourceTree = "<group>"; };
+		0471B797247ECE8600BDC147 /* TopicsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataService.swift; sourceTree = "<group>"; };
+		0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListDataBinder.swift; sourceTree = "<group>"; };
 		0473F3FA244B20700065BB63 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		0473F3FC244B326E0065BB63 /* WelcomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
@@ -806,6 +811,7 @@
 				04AE7B52244DAB8600AF4AB5 /* Model */,
 				046E98CF244B561E00611091 /* Views */,
 				046E98CD244B549100611091 /* TopicsListVM.swift */,
+				0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */,
 			);
 			path = TopicsListScreen;
 			sourceTree = "<group>";
@@ -823,7 +829,8 @@
 		0471B78F247E6D6C00BDC147 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0471B790247E6D7800BDC147 /* DataService.swift */,
+				0471B790247E6D7800BDC147 /* EquationDataService.swift */,
+				0471B797247ECE8600BDC147 /* TopicsDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1507,6 +1514,7 @@
 				0411CC8924646297001A3183 /* TopicPlotsDataBinder.swift in Sources */,
 				0411CC8A24646297001A3183 /* PlotColorPickerView.swift in Sources */,
 				0411CC8B24646297001A3183 /* PlotColorPickerCell.swift in Sources */,
+				0471B79D247ED10700BDC147 /* TopicsListDataBinder.swift in Sources */,
 				0411CC8C24646297001A3183 /* SandboxKeyboard.swift in Sources */,
 				0411CC8D24646297001A3183 /* SandboxKeyboardButton.swift in Sources */,
 				0411CC8E24646297001A3183 /* SandboxEquationCell.swift in Sources */,
@@ -1705,6 +1713,7 @@
 				04CE0E83244B18A7006B19B0 /* String extension.swift in Sources */,
 				0425DC69247D1E9400A3D66F /* LoadingViewPresenter.swift in Sources */,
 				04CE0E7B244B186B006B19B0 /* CompletableEvent extension.swift in Sources */,
+				0471B79C247ED10400BDC147 /* TopicsListDataBinder.swift in Sources */,
 				0425DC6E247D490700A3D66F /* SavedEquationsVM.swift in Sources */,
 				04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */,
 				04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */,
@@ -1717,6 +1726,7 @@
 				0420882524616CDA00078B80 /* PlotFabric.swift in Sources */,
 				042BC5A424505E8400950B15 /* TopicsContainerVC.swift in Sources */,
 				04A7D1652453015E00503CAE /* SandboxVC.swift in Sources */,
+				0471B798247ECE8600BDC147 /* TopicsDataService.swift in Sources */,
 				048C4921245192B800C430B3 /* TopicPlotsDataBinder.swift in Sources */,
 				04CE0E6F244B1839006B19B0 /* UITableView extension.swift in Sources */,
 				04CE0E79244B186B006B19B0 /* Completable extension.swift in Sources */,
@@ -1784,7 +1794,7 @@
 				04CE0E85244B18CA006B19B0 /* Storyboardable.swift in Sources */,
 				048A96FE245054FC00161936 /* SerialPosition.swift in Sources */,
 				04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */,
-				0471B791247E6D7800BDC147 /* DataService.swift in Sources */,
+				0471B791247E6D7800BDC147 /* EquationDataService.swift in Sources */,
 				04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */,
 				040A2BEB245B81D800BDA83D /* Point.swift in Sources */,
 				04D1F8E02451D672004155FC /* Plot.swift in Sources */,
