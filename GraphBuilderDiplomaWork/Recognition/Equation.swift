@@ -21,31 +21,8 @@ struct Equation {
     // MARK: - Properties
     
     private(set) var latex: String
-    var function: String {
-        var equation = latex as NSString
-        var sortedRangesParameters = self.sortedRangesParameters
-        for i in (0..<sortedRangesParameters.count) {
-            let rangeParameter = sortedRangesParameters[i]
-            let variableName = rangeParameter.parameter.name
-            let value = "\(rangeParameter.parameter.value)"
-            let subtitutedValueLengthDifference =
-                value.count - variableName.count
-
-            let range = rangeParameter.range
-            equation = equation.replacingCharacters(in: range, with: value)
-                as NSString
-            
-            sortedRangesParameters
-                .map { $0.range }
-                .enumerated()
-                .forEach { j, range in
-                    guard j > i else { return }
-                    sortedRangesParameters[j].range.location =
-                        range.location + subtitutedValueLengthDifference
-                }
-        }
-        return equation as String
-    }
+    var function: String?
+    
     private var parametersRanges: [(parameter: EquationParameter, ranges: [NSRange])] = []
     var parameters: [EquationParameter] {
         parametersRanges
@@ -75,6 +52,7 @@ struct Equation {
     init(equation: String) {
         self.latex = equation
         parseParameters()
+        function = try? getValidExpression(fromEquationString: latex)
     }
     
     
@@ -83,6 +61,7 @@ struct Equation {
     mutating func setEquation(_ equation: String) {
         latex = equation
         parseParameters()
+        function = try? getValidExpression(fromEquationString: latex)
     }
     
     
@@ -102,7 +81,7 @@ struct Equation {
         results
             .removingAllIntersection(with: parametersRanges) {
                 $0.group == $1.parameter.name &&
-                [$0.range] == $1.ranges
+                    [$0.range] == $1.ranges
             }
             .forEach { match in
                 let parameter = EquationParameter(
@@ -116,5 +95,90 @@ struct Equation {
                     parametersRanges.append((parameter, [match.range]))
                 }
             }
+    }
+    
+    private func getValidExpression(
+        fromEquationString equationString: String) throws -> String {
+        var equationNSString = equationString as NSString
+        var sortedRangesParameters = self.sortedRangesParameters
+        for i in (0..<sortedRangesParameters.count) {
+            let rangeParameter = sortedRangesParameters[i]
+            let variableName = rangeParameter.parameter.name
+            let value = "\(rangeParameter.parameter.value)"
+            let subtitutedValueLengthDifference =
+                value.count - variableName.count
+            
+            let range = rangeParameter.range
+            equationNSString = equationNSString.replacingCharacters(in: range, with: value)
+                as NSString
+            
+            sortedRangesParameters
+                .map { $0.range }
+                .enumerated()
+                .forEach { j, range in
+                    guard j > i else { return }
+                    sortedRangesParameters[j].range.location =
+                        range.location + subtitutedValueLengthDifference
+            }
+        }
+        
+        let equationString = equationNSString as String
+        
+        guard equationString.countOccurrence(of: "(") ==
+            equationString.countOccurrence(of: ")") else {
+                throw EvalError.unableToParse
+        }
+        
+        
+        var equation = equationString
+            .replacingOccurrences(of: "^", with: "**")
+        
+        let functions = ["sin", "cos", "tan", "cot"]
+        
+        for function in functions {
+            let stringToFind = "\(function)("
+            while equation.contains(stringToFind) {
+                let argumentStartIndex =
+                    equation.range(of: stringToFind)!.upperBound
+                
+                var argumentCharacters: [Character] = []
+                var bracketCount = 0
+                let stringFromArgumentStartToStringEnd =
+                    equation[argumentStartIndex..<equation.endIndex]
+                
+                var offset = 0
+                for char in stringFromArgumentStartToStringEnd {
+                    if char == ")", bracketCount == 0 {
+                        break
+                    }
+                    argumentCharacters.append(char)
+                    if char == "(" {
+                        bracketCount += 1
+                    }
+                    if char == ")" {
+                        bracketCount -= 1
+                    }
+                    offset += 1
+                }
+                let argumentEndIndex = equation
+                    .index(argumentStartIndex, offsetBy: offset)
+                
+                let argumentString = String(argumentCharacters)
+                
+                let uuid = UUID().uuidString
+                
+                equation.replaceSubrange(
+                    argumentStartIndex..<argumentEndIndex, with: uuid)
+                
+                equation = equation
+                    .replacingOccurrences(
+                        of: "\(function)\\(([^()]+)\\)",
+                        with: "function($1, '\(function)')",
+                        options: [.regularExpression])
+                    .replacingOccurrences(of: uuid, with: argumentString)
+            }
+        }
+        
+        return equation
     }
 }
