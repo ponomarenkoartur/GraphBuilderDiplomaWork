@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Lifecycle
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupServices()
         
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -35,6 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupServices() {
         MathpixClient.setApiKeys(appId: "arthur_ponomar_gmail_com",
                                  appKey: "2b4fa7b7db3ebfee5b70")
+        DataService.shared.fetchData()
+    }
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        DataService.shared.commitChanges()
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        DataService.shared.commitChanges()
     }
 }
 

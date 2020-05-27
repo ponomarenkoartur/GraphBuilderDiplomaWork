@@ -29,6 +29,7 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SavedEquationsCell.self)
+        tableView.tableFooterView = UIView()
         tableView.delegate = self
         
         equationsSubject.bind(to: tableView.rx.items) {
