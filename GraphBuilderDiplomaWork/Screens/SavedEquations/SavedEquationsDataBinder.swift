@@ -24,6 +24,12 @@ class SavedEquationsDataBinder:
             view.didTapDeleteEquationAt = { index in
                 self.viewModel.deleteEquation(at: index)
             }
+            view.didSelectEquationAt = { index in
+                guard let equation = self.viewModel.equations[safe: index]
+                    else { return }
+                self.viewModel
+                    .finishCompletion(.didSelectEquation(equation: equation))
+            }
         }
         
     }

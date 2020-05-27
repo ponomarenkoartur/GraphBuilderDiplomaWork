@@ -71,29 +71,28 @@ class MainCoordinator: BaseCoordinator {
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
-        vm.setPlotList([
-//            Plot(title: "", equation: Equation(latex: "x^2+z^2"         ,   function: "(x^2)+(z^2)"  )),
-            Plot(equation: "x^2+z^2", color: .green),
-//            Plot(title: "", equation: Equation(equation: "sin(x)+cos(z)+a")),
-//            Plot(title: "", equation: Equation(equation: "sin(x*cos(z))")),
-//            Plot(title: "", equation: Equation(equation: "sin(x)+sin(z)")),
-//            Plot(title: "", equation: Equation(equation: "cos(x)+cos(z)")),
-//            Plot(title: "", equation: Equation(equation: "tan(x)+tan(z)")),
-//
-//            Plot(title: "", equation: Equation(latex: "sin(x^z)"    ,   function: { (x: Float, z: Float) in tgamma(pow(x,z) + 1) }    )),
-//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
-//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
-//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
-//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
-//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
-//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
-//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
-//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
-//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
-//            Plot(title: "", equation: Equation(equation: "x^2+sqrt(z)")),
-//            Plot(title: "", equation: Equation(equation: "x^5+z"      )),
-//            Plot(title: "", equation: Equation(equation: "sin(x^z)"   )),
-        ])
+        vm.setPlotList(equations.map { Plot(equation: $0) })
+        
+//        vm.setPlotList([
+//            Plot(equation: "x^2+z^2", color: .green),
+//            Plot(equation: "sin(x)+cos(z)+a"),
+//            Plot(equation: "sin(x*cos(z))"),
+//            Plot(equation: "sin(x)+sin(z)"),
+//            Plot(equation: "cos(x)+cos(z)"),
+//            Plot(equation: "tan(x)+tan(z)"),
+//            Plot(equation: "x^2+sqrt(z)"),
+//            Plot(equation: "x^5+z"      ),
+//            Plot(equation: "sin(x^z)"   ),
+//            Plot(equation: "x^2+sqrt(z)"),
+//            Plot(equation: "x^5+z"      ),
+//            Plot(equation: "sin(x^z)"   ),
+//            Plot(equation: "x^2+sqrt(z)"),
+//            Plot(equation: "x^5+z"      ),
+//            Plot(equation: "sin(x^z)"   ),
+//            Plot(equation: "x^2+sqrt(z)"),
+//            Plot(equation: "x^5+z"      ),
+//            Plot(equation: "sin(x^z)"   ),
+//        ])
         vm.didRequestPictureRecognitionVC = {
             self.pushImagePickerScreen { (image) in
                 if let image = image {
@@ -155,6 +154,14 @@ class MainCoordinator: BaseCoordinator {
         let vc = SavedEquationsVC()
         let dataBinder = SavedEquationsDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
+        
+        vm.finishCompletion = { reason in
+            switch reason {
+            case .didSelectEquation(let equation):
+                self.pushSandbox(with: [equation])
+            }
+        }
+        
         navVC.push(vc)
     }
 }

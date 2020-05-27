@@ -12,6 +12,7 @@ import RxSwift
 
 protocol SavedEquationsVCProtocol: UIViewController {
     var didTapDeleteEquationAt: (_ index: Int) -> () { get set }
+    var didSelectEquationAt: (_ index: Int) -> () { get set }
     func setEquations(_ equations: [Equation])
 }
 
@@ -21,6 +22,7 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
     // MARK: - Properties
     
     var didTapDeleteEquationAt: (_ index: Int) -> () = { _ in }
+    var didSelectEquationAt: (_ index: Int) -> () = { _ in }
     private let equationsSubject = BehaviorSubject<[Equation]>(value: [])
     
     
@@ -31,6 +33,8 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
         tableView.register(SavedEquationsCell.self)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
+        tableView.allowsSelection = true
+        tableView.allowsMultipleSelection = false
         
         equationsSubject.bind(to: tableView.rx.items) {
             (tableView: UITableView, index: Int, equation: Equation)
@@ -84,5 +88,11 @@ extension SavedEquationsVC: UITableViewDelegate {
             }
             deleteAction.backgroundColor = Color.turquoise()
             return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        didSelectEquationAt(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

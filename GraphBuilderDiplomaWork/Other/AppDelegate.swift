@@ -46,5 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         DataService.shared.commitChanges()
     }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        DataService.shared.commitChanges()
+    }
 }
 

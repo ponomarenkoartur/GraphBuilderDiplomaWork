@@ -691,7 +691,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             self.triggeredKeyboardCellIndexPath = indexPath
         }
         cell.didTapSaveEquation = {
-            self.didTapSaveEquationAt(indexPath.row)
+            let index = self.getPlotIndex(from: indexPath)
+            self.didTapSaveEquationAt(index)
         }
     }
     

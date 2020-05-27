@@ -55,9 +55,9 @@ class DataService: DataServiceProtocol {
     
     func fetchData() {
         equations =
-        UserDefaults.standard.array(forKey: savedEquationsKey)?
-            .compactMap { $0 as? String }
-            .map { Equation(equation: $0) } ?? []
+            UserDefaults.standard.array(forKey: savedEquationsKey)?
+                .compactMap { $0 as? String }
+                .map { Equation(equation: $0) } ?? []
     }
     
     func commitChanges() {
