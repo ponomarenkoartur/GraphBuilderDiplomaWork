@@ -24,6 +24,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didChangeEquationText: (_ plot: Plot, _ index: Int, _ text: String) -> () { get set }
     var didTapDeleteEquation: (_ index: Int) -> () { get set }
     var didTapBack: () -> () { get set }
+    var didTapSaveEquationAt: (_ index: Int) -> () { get set }
     var isEquationTableHidden: Bool { get set }
     func addPlot(_ plot: Plot)
     func removePlot(at index: Int)
@@ -119,6 +120,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     var didChangeEquationText:
         (_ plot: Plot, _ index: Int, _ text: String) -> () = { _, _, _ in }
     var didTapRecognizeButton: () -> () = {}
+    var didTapSaveEquationAt: (_ index: Int) -> () = { _ in }
     
     // MARK: Views
     
@@ -688,7 +690,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             self.equationsTableView.scroll(section: section)
             self.triggeredKeyboardCellIndexPath = indexPath
         }
-        
+        cell.didTapSaveEquation = {
+            self.didTapSaveEquationAt(indexPath.row)
+        }
     }
     
     private func prepare(_ cell: PlotParameterCell,

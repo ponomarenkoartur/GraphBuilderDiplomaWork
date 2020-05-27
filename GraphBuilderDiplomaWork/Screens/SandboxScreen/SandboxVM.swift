@@ -29,6 +29,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     func takePictureToRecognize()
     func addPlots(fromImage image: UIImage)
     func discardError()
+    func saveEquation(at index: Int)
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -127,5 +128,11 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     
     func discardError() {
         recognitionErrorTextSubject.onNext(nil)
+    }
+    
+    func saveEquation(at index: Int) {
+        guard let plot = plotsList[safe: index] else { return }
+        let equation = plot.equation
+        DataService.shared.addEquation(equation)
     }
 }

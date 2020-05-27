@@ -97,6 +97,9 @@ class SandboxDataBinder<ViewModel>:
             view.didTapRecognizeButton = {
                 self.viewModel.takePictureToRecognize()
             }
+            view.didTapSaveEquationAt = { index in
+                self.viewModel.saveEquation(at: index)
+            }
         }
     }
 }

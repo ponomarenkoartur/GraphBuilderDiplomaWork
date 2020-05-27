@@ -16,6 +16,7 @@ protocol SandboxEquationCellProtocol {
     var didLongPressPlotImageButton: () -> () { get set }
     var didDoubleTap: () -> () { get set }
     var didChangeEquationText: (_ text: String) -> () { get set }
+    var didTapSaveEquation: () -> () { get set }
     func setOrderNumber(_ number: Int)
     func setPlotImageColor(_ color: UIColor)
     func setPlotImageTransparancy(_ alpha: CGFloat)
@@ -41,6 +42,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     var didDoubleTap: () -> () = {}
     var didChangeEquationText: (_ text: String) -> () = { _ in }
     var didBeginEquationTextEditing: () -> () = {}
+    var didTapSaveEquation: () -> () = {}
     
     // MARK: Views
     
@@ -105,6 +107,30 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return textField
     }()
     
+    private lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = Color.turquoise()
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(Image.saveIcon())
+        button.rx.tap
+            .subscribe(onNext: {
+                self.didTapSaveEquation()
+                self.performSaveButtonAnimation()
+                self.performImageSavedAnimation()
+            })
+            .disposed(by: bag)
+        return button
+    }()
+    
+    private lazy var equationsSavedImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = Image.equationSaved()
+        imageView.tintColor = Color.turquoise()
+        imageView.alpha = 0
+        return imageView
+    }()
+    
     
     // MARK: - Setup Methods
     
@@ -116,14 +142,15 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     override func addSubviews() {
         super.addSubviews()
-        addSubviews(horizontalStackView, latexLabel)
+        addSubviews(horizontalStackView, latexLabel, equationsSavedImageView)
         horizontalStackView.addArrangedSubviews([
             numberLabel,
             UIView.createSpacer(w: 3),
             plotImageView,
             UIView.createSpacer(w: 17),
             equationTextField,
-            UIView()
+            UIView(),
+            saveButton,
         ])
     }
     
@@ -133,10 +160,18 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         horizontalStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview().offset(-30)
+            $0.height.equalToSuperview().offset(-10)
         }
         latexLabel.snp.makeConstraints {
             $0.centerY.equalTo(equationTextField.snp.centerY)
             $0.leading.equalTo(equationTextField.snp.leading)
+        }
+        saveButton.snp.makeConstraints {
+            $0.size.equalTo(horizontalStackView.snp.height).offset(-15)
+        }
+        equationsSavedImageView.snp.makeConstraints {
+            $0.center.equalTo(saveButton.snp.center)
+            $0.size.equalTo(saveButton.snp.size).offset(10)
         }
     }
     
@@ -185,6 +220,74 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         equationTextField.text = equation.latex
         isLatexLabelHidden =
             equation.latex.isEmpty || equationTextField.isFirstResponder
+    }
+    
+    
+    // MARK: - Private Methods
+    
+    private func performSaveButtonAnimation() {
+        saveButton.isEnabled = false
+        // scale changes order:
+        // 120ms:   changes form 100% to 60%
+        // 1360ms:  static 60%
+        // 160ms:   changes from 60% to 100%
+        saveButton.transform = CGAffineTransform.identity
+        UIView.animate(withDuration: 0.120, animations: {
+            self.saveButton.transform =
+                CGAffineTransform(scaleX: 0.6, y: 0.6)
+        }) { (success) in
+            UIView.animate(withDuration: 0.160, delay: 1.360, animations: {
+                self.saveButton.transform = CGAffineTransform.identity
+            })
+        }
+        
+        // opacity changes order:
+        // 80ms:    static 100%
+        // 40ms:    changes from 100% to 0%
+        // 1400ms:  static 0%
+        // 40ms:    changes from 0% to 100%
+        saveButton.alpha = 1
+        UIView.animate(withDuration: 0.04, delay: 0.08, animations: {
+            self.saveButton.alpha = 0
+        }) { (success) in
+            UIView.animate(withDuration: 0.04, delay: 1.4, animations: {
+                self.saveButton.alpha = 1
+            }, completion: { (success) in
+                self.saveButton.isEnabled = true
+            })
+        }
+    }
+    
+    private func performImageSavedAnimation() {
+        // scale changes order:
+        // 80ms:    static 60%
+        // 200ms:   changes from 60% to 100%
+        // 1040ms:  static 100%
+        // 200ms:   changes from 100% to 60%
+        equationsSavedImageView.transform =
+            CGAffineTransform(scaleX: 0.6, y: 0.6)
+        UIView.animate(withDuration: 0.2, delay: 0.08, animations: {
+            self.equationsSavedImageView.transform = CGAffineTransform.identity
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.2, delay: 1.04, animations: {
+                self.equationsSavedImageView.transform =
+                    CGAffineTransform(scaleX: 0.6, y: 0.6)
+            })
+        })
+        
+        // opacity changes order:
+        // 80ms:    static 0%
+        // 40ms:    changes from 0% to 100%
+        // 1400ms:  static 100%
+        // 40ms:    changes from 100% to 0%
+        equationsSavedImageView.alpha = 0
+        UIView.animate(withDuration: 0.04, delay: 0.08, animations: {
+            self.equationsSavedImageView.alpha = 1
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.04, delay: 1.4, animations: {
+                self.equationsSavedImageView.alpha = 0
+            })
+        })
     }
 }
 
