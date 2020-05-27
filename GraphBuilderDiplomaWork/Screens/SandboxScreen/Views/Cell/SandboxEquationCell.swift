@@ -107,21 +107,6 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return textField
     }()
     
-    private lazy var saveButton: UIButton = {
-        let button = UIButton()
-        button.tintColor = Color.turquoise()
-        button.imageView?.contentMode = .scaleAspectFit
-        button.setImage(Image.saveIcon())
-        button.rx.tap
-            .subscribe(onNext: {
-                self.didTapSaveEquation()
-                self.performSaveButtonAnimation()
-                self.performImageSavedAnimation()
-            })
-            .disposed(by: bag)
-        return button
-    }()
-    
     private lazy var equationsSavedImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -150,7 +135,6 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             UIView.createSpacer(w: 17),
             equationTextField,
             UIView(),
-            saveButton,
         ])
     }
     
@@ -166,12 +150,10 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             $0.centerY.equalTo(equationTextField.snp.centerY)
             $0.leading.equalTo(equationTextField.snp.leading)
         }
-        saveButton.snp.makeConstraints {
-            $0.size.equalTo(horizontalStackView.snp.height).offset(-15)
-        }
         equationsSavedImageView.snp.makeConstraints {
-            $0.center.equalTo(saveButton.snp.center)
-            $0.size.equalTo(saveButton.snp.size).offset(10)
+            $0.centerY.equalTo(horizontalStackView.snp.centerY)
+            $0.trailing.equalTo(horizontalStackView.snp.trailing)
+            $0.size.equalTo(horizontalStackView.snp.height)
         }
     }
     
@@ -225,40 +207,7 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     // MARK: - Private Methods
     
-    private func performSaveButtonAnimation() {
-        saveButton.isEnabled = false
-        // scale changes order:
-        // 120ms:   changes form 100% to 60%
-        // 1360ms:  static 60%
-        // 160ms:   changes from 60% to 100%
-        saveButton.transform = CGAffineTransform.identity
-        UIView.animate(withDuration: 0.120, animations: {
-            self.saveButton.transform =
-                CGAffineTransform(scaleX: 0.6, y: 0.6)
-        }) { (success) in
-            UIView.animate(withDuration: 0.160, delay: 1.360, animations: {
-                self.saveButton.transform = CGAffineTransform.identity
-            })
-        }
-        
-        // opacity changes order:
-        // 80ms:    static 100%
-        // 40ms:    changes from 100% to 0%
-        // 1400ms:  static 0%
-        // 40ms:    changes from 0% to 100%
-        saveButton.alpha = 1
-        UIView.animate(withDuration: 0.04, delay: 0.08, animations: {
-            self.saveButton.alpha = 0
-        }) { (success) in
-            UIView.animate(withDuration: 0.04, delay: 1.4, animations: {
-                self.saveButton.alpha = 1
-            }, completion: { (success) in
-                self.saveButton.isEnabled = true
-            })
-        }
-    }
-    
-    private func performImageSavedAnimation() {
+    func performSavedAnimation() {
         // scale changes order:
         // 80ms:    static 60%
         // 200ms:   changes from 60% to 100%

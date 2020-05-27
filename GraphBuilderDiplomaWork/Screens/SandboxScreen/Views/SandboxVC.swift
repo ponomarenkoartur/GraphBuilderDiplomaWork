@@ -835,15 +835,24 @@ extension SandboxVC: UITableViewDelegate {
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-            guard isEquationSection(indexPath.section) else {
+            guard isEquationSection(indexPath.section),
+                let cell = tableView.cellForRow(at: indexPath)
+                    as? SandboxEquationCell
+                else {
                 return UISwipeActionsConfiguration(actions: [])
             }
+            let plotIndex = self.getPlotIndex(from: indexPath)
+            let saveAction = UIContextualAction(
+            style: .normal, title: "Save") { (_, _, _) in
+                cell.performSavedAnimation()
+                self.didTapSaveEquationAt(plotIndex)
+            }
             let deleteAction = UIContextualAction(
-            style: .destructive, title: "Delete") { (_, _, _) in
-                let plotIndex = self.getPlotIndex(from: indexPath)
+            style: .destructive, title: "Delete") { _, _, _ in
                 self.didTapDeleteEquation(plotIndex)
             }
-            deleteAction.backgroundColor = Color.turquoise()
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+            saveAction.backgroundColor = Color.turquoise()
+            return UISwipeActionsConfiguration(
+                actions: [deleteAction, saveAction])
     }
 }
