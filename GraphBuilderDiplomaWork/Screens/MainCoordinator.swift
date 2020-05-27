@@ -24,10 +24,6 @@ class MainCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        
-        pushSandbox()
-        return;
-        
         pushWelcomeScreen()
     }
     
@@ -40,15 +36,21 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushWelcomeScreen() {
         let vm = WelcomeVM()
+        let vc = WelcomeVC()
+        let dataBinder = WelcomeScreenDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
         vm.finishCompletion = { reason in
             switch reason {
             case .didTapSandbox:
                 self.pushSandbox()
             case .didTapTopics:
                 self.pushTopicsList()
+            case .didTapSavedEquations:
+                self.pushSavedEquations()
             }
         }
-        navVC.push(vm.viewController!)
+        navVC.push(vc)
     }
     
     private func pushTopicsList() {
@@ -61,8 +63,9 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(vm.viewController!)
     }
     
-    private func pushSandbox() {
+    private func pushSandbox(with equations: [Equation] = []) {
         let vm = SandboxVM()
+        equations.forEach { vm.addPlot(Plot(equation: $0)) }
         vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         let vc = SandboxVC()
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
@@ -145,6 +148,14 @@ class MainCoordinator: BaseCoordinator {
         imagePicker.sourceType = .camera
         imagePickerCompletion = completion
         navVC.present(imagePicker, animated: true)
+    }
+    
+    private func pushSavedEquations() {
+        let vm = SavedEquationsVM()
+        let vc = SavedEquationsVC()
+        let dataBinder = SavedEquationsDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        navVC.push(vc)
     }
 }
 

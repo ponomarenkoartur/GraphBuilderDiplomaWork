@@ -9,38 +9,30 @@
 import RxSwift
 
 
-class WelcomeVM: BaseVMWithVC<WelcomeVC, WelcomeVM.FinishCompletionReason> {
+protocol WelcomeVMProtocol: ViewModelProtocol, ReactiveCompatible {
+    func finishWithReason(at index: Int)
+}
+
+class WelcomeVM: BaseVM<WelcomeVM.FinishCompletionReason>, WelcomeVMProtocol {
     
     enum FinishCompletionReason {
-        case didTapTopics, didTapSandbox
+        case didTapTopics, didTapSandbox, didTapSavedEquations
     }
     
     
     // MARK: - Properties
     
-    let menuItems = ["Topics", "Sandbox"]
+    let menuItems = ["Topics", "Sandbox", "Saved equations"]
     
     
-    // MARK: - Initialization
+    // MARK: - API Methods
     
-    override init(viewController: WelcomeVC? = WelcomeVC()) {
-        super.init(viewController: viewController)
-        viewController?.menuItems = menuItems
-        setupCallbacks()
-    }
-    
-    
-    // MARK: - Setup Methods
-    
-    private func setupCallbacks() {
-        viewController?.didSelectRow = { index in
-            if let item = self.menuItems[safe: index],
-                let reason = self.finishCompletionReason(for: item) {
-                self.finishCompletion(reason)
-            }
+    func finishWithReason(at index: Int) {
+        if let item = self.menuItems[safe: index],
+            let reason = self.finishCompletionReason(for: item) {
+            self.finishCompletion(reason)
         }
     }
-    
     
     // MARK: - Private Methods
     
@@ -51,8 +43,19 @@ class WelcomeVM: BaseVMWithVC<WelcomeVC, WelcomeVM.FinishCompletionReason> {
             return .didTapTopics
         case menuItems[1]:
             return .didTapSandbox
+        case menuItems[2]:
+            return .didTapSavedEquations
         default:
             return nil            
         }
+    }
+}
+
+
+// MARK: - Rx
+
+extension Reactive where Base == WelcomeVM {
+    var menuItems: Observable<[String]> {
+        Observable.just(base.menuItems)
     }
 }

@@ -113,6 +113,11 @@
 		0420B70E246D53EB0042408F /* AxisNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420B70D246D53EB0042408F /* AxisNode.swift */; };
 		0425DC67247D12E300A3D66F /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC66247D12E300A3D66F /* ARAnchor extension.swift */; };
 		0425DC69247D1E9400A3D66F /* LoadingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */; };
+		0425DC6C247D48F700A3D66F /* SavedEquationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6B247D48F700A3D66F /* SavedEquationsVC.swift */; };
+		0425DC6E247D490700A3D66F /* SavedEquationsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6D247D490700A3D66F /* SavedEquationsVM.swift */; };
+		0425DC70247D491C00A3D66F /* SavedEquationsDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6F247D491C00A3D66F /* SavedEquationsDataBinder.swift */; };
+		0425DC73247D4F4000A3D66F /* SavedEquationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC72247D4F4000A3D66F /* SavedEquationsCell.swift */; };
+		0425DC75247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC74247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift */; };
 		042BC54A245058B100950B15 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E20244B11E8006B19B0 /* Array extension.swift */; };
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
@@ -227,6 +232,8 @@
 		046E98CE244B549100611091 /* TopicsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98CD244B549100611091 /* TopicsListVM.swift */; };
 		046E98D1244B563000611091 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E98D0244B563000611091 /* TopicCell.swift */; };
 		046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */; };
+		0471B791247E6D7800BDC147 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B790247E6D7800BDC147 /* DataService.swift */; };
+		0471B793247E72C000BDC147 /* WelcomeScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */; };
 		0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FA244B20700065BB63 /* Shortcuts.swift */; };
 		0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FC244B326E0065BB63 /* WelcomeVM.swift */; };
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
@@ -403,6 +410,11 @@
 		0420B70D246D53EB0042408F /* AxisNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisNode.swift; sourceTree = "<group>"; };
 		0425DC66247D12E300A3D66F /* ARAnchor extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARAnchor extension.swift"; sourceTree = "<group>"; };
 		0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewPresenter.swift; sourceTree = "<group>"; };
+		0425DC6B247D48F700A3D66F /* SavedEquationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEquationsVC.swift; sourceTree = "<group>"; };
+		0425DC6D247D490700A3D66F /* SavedEquationsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEquationsVM.swift; sourceTree = "<group>"; };
+		0425DC6F247D491C00A3D66F /* SavedEquationsDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEquationsDataBinder.swift; sourceTree = "<group>"; };
+		0425DC72247D4F4000A3D66F /* SavedEquationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEquationsCell.swift; sourceTree = "<group>"; };
+		0425DC74247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEquationsCellConfigurator.swift; sourceTree = "<group>"; };
 		042BC5A324505E8400950B15 /* TopicsContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVC.swift; sourceTree = "<group>"; };
 		042BC5A62450637200950B15 /* TopicsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerCell.swift; sourceTree = "<group>"; };
 		042CB6AC245B866400E33AB9 /* NSNumber+NSNumber_extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSNumber_extension.h"; sourceTree = "<group>"; };
@@ -430,6 +442,8 @@
 		046E98CD244B549100611091 /* TopicsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListVM.swift; sourceTree = "<group>"; };
 		046E98D0244B563000611091 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		046E98D2244B575C00611091 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		0471B790247E6D7800BDC147 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenDataBinder.swift; sourceTree = "<group>"; };
 		0473F3FA244B20700065BB63 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		0473F3FC244B326E0065BB63 /* WelcomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
@@ -668,6 +682,26 @@
 			path = AxisNode;
 			sourceTree = "<group>";
 		};
+		0425DC6A247D48E700A3D66F /* SavedEquations */ = {
+			isa = PBXGroup;
+			children = (
+				0425DC71247D4F3500A3D66F /* Views */,
+				0425DC6D247D490700A3D66F /* SavedEquationsVM.swift */,
+				0425DC6F247D491C00A3D66F /* SavedEquationsDataBinder.swift */,
+			);
+			path = SavedEquations;
+			sourceTree = "<group>";
+		};
+		0425DC71247D4F3500A3D66F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0425DC6B247D48F700A3D66F /* SavedEquationsVC.swift */,
+				0425DC72247D4F4000A3D66F /* SavedEquationsCell.swift */,
+				0425DC74247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		042BC5A224505E6B00950B15 /* TopicsContainerScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +820,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0471B78F247E6D6C00BDC147 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0471B790247E6D7800BDC147 /* DataService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0473F3F9244B1FCC0065BB63 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,6 +853,7 @@
 			children = (
 				04CE0E34244B13F0006B19B0 /* WelcomeVC.swift */,
 				0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */,
+				0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1005,6 +1048,7 @@
 				0462065824518E8D00012C91 /* TopicPlotsScreen */,
 				04A7D1632453013E00503CAE /* SandboxScreen */,
 				0412E6962459792700AAB427 /* PlotView */,
+				0425DC6A247D48E700A3D66F /* SavedEquations */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1173,6 +1217,7 @@
 		04F3D181241AE0E100C4FBEB /* GraphBuilderDiplomaWork */ = {
 			isa = PBXGroup;
 			children = (
+				0471B78F247E6D6C00BDC147 /* Services */,
 				0418707B241AE3C000897335 /* Model */,
 				044B6592244B36B10037D904 /* Assets */,
 				0473F3F9244B1FCC0065BB63 /* Utilities */,
@@ -1601,7 +1646,9 @@
 				04A7F3B22456D91D00E8E85B /* BaseButton.swift in Sources */,
 				0420882C24617F3D00078B80 /* PlotGrid.swift in Sources */,
 				0462065D24518FA500012C91 /* TopicPlotsVC.swift in Sources */,
+				0425DC6C247D48F700A3D66F /* SavedEquationsVC.swift in Sources */,
 				04CE0E43244B1468006B19B0 /* BaseTableViewCell.swift in Sources */,
+				0471B793247E72C000BDC147 /* WelcomeScreenDataBinder.swift in Sources */,
 				04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */,
 				04CE0E56244B17CF006B19B0 /* MainCoordinator.swift in Sources */,
 				04CE0E49244B174B006B19B0 /* SafeAreaInsets.swift in Sources */,
@@ -1620,6 +1667,7 @@
 				040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */,
 				04CE0E69244B1839006B19B0 /* UIColor extension.swift in Sources */,
 				046E98CA244B50B200611091 /* TopicsListVC.swift in Sources */,
+				0425DC75247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift in Sources */,
 				04187090241AE3E500897335 /* Equation.swift in Sources */,
 				0412E69A24597F3300AAB427 /* PlotView.swift in Sources */,
 				04D1F8DD2451D139004155FC /* PlotParameterCellConfigurator.swift in Sources */,
@@ -1657,6 +1705,7 @@
 				04CE0E83244B18A7006B19B0 /* String extension.swift in Sources */,
 				0425DC69247D1E9400A3D66F /* LoadingViewPresenter.swift in Sources */,
 				04CE0E7B244B186B006B19B0 /* CompletableEvent extension.swift in Sources */,
+				0425DC6E247D490700A3D66F /* SavedEquationsVM.swift in Sources */,
 				04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */,
 				04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */,
 				04AE7B5B244DBD8100AF4AB5 /* TopicVC.swift in Sources */,
@@ -1716,6 +1765,7 @@
 				04CE0E29244B11E8006B19B0 /* Double.swift in Sources */,
 				0420882A24617E3600078B80 /* SCNScene extension.swift in Sources */,
 				04D1F8E42451DE04004155FC /* TopicPlotParameterHeaderView.swift in Sources */,
+				0425DC70247D491C00A3D66F /* SavedEquationsDataBinder.swift in Sources */,
 				04187062241AE3B400897335 /* AlertBuilder.swift in Sources */,
 				04CE0E26244B11E8006B19B0 /* RecognitionResult extension.swift in Sources */,
 				0450332D24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift in Sources */,
@@ -1726,6 +1776,7 @@
 				04AD87B8245C4DB70065404F /* CustomTextField.swift in Sources */,
 				04F8073C2477DE3100B3FC96 /* ScaleMarkerControl.swift in Sources */,
 				04CE0E7C244B186B006B19B0 /* SingleEvent extension.swift in Sources */,
+				0425DC73247D4F4000A3D66F /* SavedEquationsCell.swift in Sources */,
 				0418708E241AE3D900897335 /* FakeRecognizer.swift in Sources */,
 				048C4923245192C400C430B3 /* BaseViewModelViewDataBinder.swift in Sources */,
 				04CE0E31244B1227006B19B0 /* PlotGeometryCreator.swift in Sources */,
@@ -1733,6 +1784,7 @@
 				04CE0E85244B18CA006B19B0 /* Storyboardable.swift in Sources */,
 				048A96FE245054FC00161936 /* SerialPosition.swift in Sources */,
 				04CE0E27244B11E8006B19B0 /* Array extension.swift in Sources */,
+				0471B791247E6D7800BDC147 /* DataService.swift in Sources */,
 				04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */,
 				040A2BEB245B81D800BDA83D /* Point.swift in Sources */,
 				04D1F8E02451D672004155FC /* Plot.swift in Sources */,

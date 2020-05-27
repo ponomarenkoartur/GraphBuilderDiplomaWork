@@ -11,7 +11,12 @@ import AttributedString
 import RxSwift
 
 
-class WelcomeVC: BaseVC {
+protocol WelcomeVCProtocol: UIViewController {
+    var menuItems: [String]? { get set }
+    var didSelectRow: (_ index: Int) -> () { get set }
+}
+
+class WelcomeVC: BaseVC, WelcomeVCProtocol {
     
     
     // MARK: - Properties
@@ -85,7 +90,7 @@ class WelcomeVC: BaseVC {
             $0.bottom.lessThanOrEqualTo(tableView.snp.top).offset(-20)
         }
         tableView.snp.makeConstraints {
-            $0.height.equalTo(122)
+            $0.height.equalTo(tableView.rowHeight * 3)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-92)
                 .priority(998)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom)
