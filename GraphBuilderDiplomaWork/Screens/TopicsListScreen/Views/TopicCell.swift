@@ -86,8 +86,7 @@ class TopicCell: BaseTableViewCell {
         let label = UILabel()
         label.font = Font.sfProDisplayRegular(size: 13)
         label.textAlignment = .justified
-        label.textColor = UIColor(fromHexString: "#3C3C43")
-            .withAlphaComponent(0.6)
+        label.textColor = Color.grayText()
         label.numberOfLines = 0
         return label
     }()
