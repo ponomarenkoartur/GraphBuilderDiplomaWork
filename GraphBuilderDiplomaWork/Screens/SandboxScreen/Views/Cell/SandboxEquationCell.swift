@@ -34,6 +34,12 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         set { isLatexLabelHiddenSubject.onNext(newValue) }
     }
     
+    private let hasErrorSubject = BehaviorSubject(value: false)
+    private var hasError: Bool {
+        get { try! hasErrorSubject.value() }
+        set { hasErrorSubject.onNext(newValue) }
+    }
+    
     
     // MARK: Callbacks
     
@@ -116,6 +122,13 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         return imageView
     }()
     
+    private lazy var errorImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Image.error()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     
     // MARK: - Setup Methods
     
@@ -127,7 +140,8 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
     
     override func addSubviews() {
         super.addSubviews()
-        addSubviews(horizontalStackView, latexLabel, equationsSavedImageView)
+        addSubviews(horizontalStackView, latexLabel, equationsSavedImageView,
+                    errorImageView)
         horizontalStackView.addArrangedSubviews([
             numberLabel,
             UIView.createSpacer(w: 3),
@@ -155,6 +169,11 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
             $0.trailing.equalTo(horizontalStackView.snp.trailing)
             $0.size.equalTo(horizontalStackView.snp.height)
         }
+        errorImageView.snp.makeConstraints {
+            $0.top.equalTo(horizontalStackView.snp.top)
+            $0.trailing.equalTo(horizontalStackView.snp.trailing)
+            $0.size.equalTo(15)
+        }
     }
     
     private func setupGestures() {
@@ -180,6 +199,11 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
                 self.latexLabel.isHidden = isHidden
                 self.equationTextField.isHidden = !isHidden
             }).disposed(by: bag)
+        
+        hasErrorSubject
+            .subscribe(onNext: { hasError in
+                self.errorImageView.isHidden = !hasError
+            }).disposed(by: bag)
     }
     
     
@@ -202,6 +226,10 @@ class SandboxEquationCell: BaseTableViewCell, SandboxEquationCellProtocol {
         equationTextField.text = equation.latex
         isLatexLabelHidden =
             equation.latex.isEmpty || equationTextField.isFirstResponder
+    }
+    
+    func setError(_ isError: Bool) {
+        hasError = isError
     }
     
     

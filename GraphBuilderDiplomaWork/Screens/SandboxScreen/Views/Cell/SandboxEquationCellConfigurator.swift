@@ -26,6 +26,9 @@ class SandboxEquationCellConfigurator:
         data.plot.rx.isHidden
             .subscribe(onNext: { cell.setPlotImageTransparancy($0 ? 0.1 : 1) })
             .disposed(by: cell.externalBindingBag)
+        data.plot.rx.error
+            .subscribe(onNext: { cell.setError($0 != nil) })
+            .disposed(by: cell.externalBindingBag)
     }
     
 }

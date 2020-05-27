@@ -847,12 +847,15 @@ extension SandboxVC: UITableViewDelegate {
                 cell.performSavedAnimation()
                 self.didTapSaveEquationAt(plotIndex)
             }
+            saveAction.backgroundColor = Color.turquoise()
             let deleteAction = UIContextualAction(
             style: .destructive, title: "Delete") { _, _, _ in
                 self.didTapDeleteEquation(plotIndex)
             }
-            saveAction.backgroundColor = Color.turquoise()
-            return UISwipeActionsConfiguration(
-                actions: [deleteAction, saveAction])
+            
+            let plot = plotsList[plotIndex]
+            let actions =
+                plot.error == nil ? [deleteAction, saveAction] : [deleteAction]
+            return UISwipeActionsConfiguration(actions: actions)
     }
 }
