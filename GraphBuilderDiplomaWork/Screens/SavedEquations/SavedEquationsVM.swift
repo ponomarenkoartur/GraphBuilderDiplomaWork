@@ -11,6 +11,7 @@ import RxSwift
 
 protocol SavedEquationsVMProtocol: ViewModelProtocol, ReactiveCompatible {
     var equations: [Equation] { get }
+    func deleteEquation(at index: Int)
 }
 
 class SavedEquationsVM: BaseVM<SavedEquationsVM.FinishReason>, SavedEquationsVMProtocol {
@@ -45,14 +46,19 @@ class SavedEquationsVM: BaseVM<SavedEquationsVM.FinishReason>, SavedEquationsVMP
     private func fetchEquations() {
         equations = DataService.shared.getEquations()
     }
+    
+    
+    // MARK: - API Methods
+    
+    func deleteEquation(at index: Int) {
+        equations.remove(at: index)
+        DataService.shared.removeEquation(at: index)
+    }
+    
 }
 
 
 // MARK: - Rx
-
-extension Reactive where Base: SavedEquationsVMProtocol  {
-    var equations: Observable<[Equation]> { fatalError() }
-}
 
 extension Reactive where Base == SavedEquationsVM  {
     var equations: Observable<[Equation]> {

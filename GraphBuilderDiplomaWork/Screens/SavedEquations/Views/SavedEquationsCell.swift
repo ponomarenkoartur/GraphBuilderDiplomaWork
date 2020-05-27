@@ -44,7 +44,6 @@ class SavedEquationsCell: BaseTableViewCell {
     
     override func setupUI() {
         super.setupUI()
-        backgroundColor = Color.grayBackground()
     }
     
     override func addSubviews() {

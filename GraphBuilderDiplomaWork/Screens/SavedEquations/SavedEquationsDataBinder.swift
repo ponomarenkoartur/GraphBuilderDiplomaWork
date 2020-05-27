@@ -20,5 +20,11 @@ class SavedEquationsDataBinder:
             })
             .disposed(by: bag)
         
+        views.forEach { view in
+            view.didTapDeleteEquationAt = { index in
+                self.viewModel.deleteEquation(at: index)
+            }
+        }
+        
     }
 }

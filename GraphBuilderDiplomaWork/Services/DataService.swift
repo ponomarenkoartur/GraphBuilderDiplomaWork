@@ -27,7 +27,13 @@ class DataService: DataServiceProtocol {
     // MARK: - API Methods
     
     func getEquations() -> [Equation] {
-        []
+        [
+            Equation(equation: "x^2"),
+            Equation(equation: "x^2"),
+            Equation(equation: "x^2+sin(z)"),
+            Equation(equation: "x^2-sin(z)"),
+            Equation(equation: "x^2"),
+        ]
     }
     
     func addEquation(_ equation: Equation) {
