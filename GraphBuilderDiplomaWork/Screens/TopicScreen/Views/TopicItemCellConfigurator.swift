@@ -65,10 +65,9 @@ struct TopicItemCellConfigurator {
         if let image = illustration.image {
             cell.illustrationImage = image
         } else if let url = illustration.imageURL {
-            cell.setImage(byURL: url)
-        }
-        cell.didUpdateSize = {
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            cell.setImage(byURL: url) {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
     

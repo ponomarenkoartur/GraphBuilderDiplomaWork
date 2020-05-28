@@ -106,17 +106,17 @@ class TopicsContainerVC: BaseVC {
             .bind(to: collectionView.rx.items(cellIdentifier: cellID)) {
                 (index: Int, topic: Topic, cell: UICollectionViewCell) in
                 guard let cell = cell as? TopicsContainerCell else { return }
-                cell.viewController.topic = Observable<Topic>.just(topic)
                 let serialPosition = SerialPosition
                     .get(forIndex: index, in: self.lastTopicsListValue)
-                cell.viewController.serialPosition =
-                    Observable.just(serialPosition)
-                cell.viewController.didTapPreviousTopic = {
-                    self.didTapPreviousTopic()
-                }
-                cell.viewController.didTapNextTopic = {
-                    self.didTapNextTopic()
-                }
+                
+                let vm = TopicVM(topic: topic, position: serialPosition)
+                let vc = cell.viewController
+                let dataBinder = TopicScreenDataBinder(viewModel: vm,
+                                                       views: [vc])
+                dataBinder.bind()
+                
+                vc.didTapPreviousTopic = self.didTapPreviousTopic
+                vc.didTapNextTopic = self.didTapNextTopic
             }
             .disposed(by: bag)
         

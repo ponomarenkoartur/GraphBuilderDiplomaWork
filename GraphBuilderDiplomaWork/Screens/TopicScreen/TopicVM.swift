@@ -9,37 +9,41 @@
 import RxSwift
 
 
-class TopicVM: BaseVMWithVC<TopicVC, NSNull> {
+class TopicVM: BaseVM<NSNull> {
     
     
     // MARK: - Properties
     
-    private let topicSubject: BehaviorSubject<Topic>
-    var topic: Observable<Topic> { topicSubject.asObservable() }
-    var topicItems: Observable<[TopicContentItem]> { topic.map { $0.content } }
+    fileprivate let topicSubject: BehaviorSubject<Topic>
+    var topic: Topic {
+        get { try! topicSubject.value() }
+        set { topicSubject.onNext(newValue) }
+    }
     
-    private let serialPositionSubject: BehaviorSubject<SerialPosition?>
+    fileprivate let serialPositionSubject: BehaviorSubject<SerialPosition?>
+    var serialPosition: SerialPosition? {
+        get { try! serialPositionSubject.value() }
+        set { serialPositionSubject.onNext(newValue) }
+    }
+    
+    
+    init(topic: Topic, position: SerialPosition?) {
+        topicSubject = BehaviorSubject(value: topic)
+        serialPositionSubject = BehaviorSubject(value: position)
+    }
+}
+
+
+// MARK: - Rx
+
+extension Reactive where Base == TopicVM {
     var serialPosition: Observable<SerialPosition?> {
-        serialPositionSubject.asObservable()
+        base.serialPositionSubject.asObservable()
     }
-    
-    
-    // MARK: - Initialization
-    
-    init(topic: Topic, serialPosition: SerialPosition?,
-         viewController: TopicVC? = TopicVC()) {
-        self.serialPositionSubject = BehaviorSubject(value: serialPosition)
-        self.topicSubject = BehaviorSubject(value: topic)
-        super.init(viewController: viewController)
-        setupViewController(viewController)
+    var topic: Observable<Topic> {
+        base.topicSubject.asObservable()
     }
-    
-    
-    // MARK: - Setup Methods
-    
-    private func setupViewController(_ vc: TopicVC?) {
-        vc?.topic = self.topic
-        vc?.serialPosition = serialPosition
+    var topicItems: Observable<[TopicContentItem]> {
+        topic.map { $0.content }
     }
-    
 }

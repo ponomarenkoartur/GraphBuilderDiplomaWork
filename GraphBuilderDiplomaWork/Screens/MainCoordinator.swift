@@ -108,8 +108,12 @@ class MainCoordinator: BaseCoordinator {
     }
 
     private func pushTopic(_ topic: Topic, serialPosition: SerialPosition?) {
-        let vm = TopicVM(topic: topic, serialPosition: serialPosition)
-        navVC.push(vm.viewController!)
+        let vm = TopicVM(topic: topic, position: serialPosition)
+        let vc = TopicVC()
+        let dataBinder = TopicScreenDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
+        navVC.push(vc)
     }
     
     private func pushTopicsContainer(_ topicsList: Observable<[Topic]>,

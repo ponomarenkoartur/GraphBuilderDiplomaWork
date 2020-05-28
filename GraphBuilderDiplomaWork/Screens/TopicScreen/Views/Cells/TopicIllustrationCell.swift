@@ -18,13 +18,8 @@ class TopicIllustrationCell: BaseTableViewCell {
         get { illustrationImageView.image }
         set {
             illustrationImageView.image = newValue
-            updateImageViewHeightConstraint()
         }
     }
-    
-    // MARK: Callbacks
-    
-    var didUpdateSize: () -> () = {}
     
     
     // MARK: Views
@@ -51,41 +46,14 @@ class TopicIllustrationCell: BaseTableViewCell {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview().offset(-20)
             $0.height.equalToSuperview().offset(-20)
+            $0.height.equalTo(200)
         }
     }
     
     
     // MARK: - API Methods
     
-    func setImage(byURL url: URL) {
-        illustrationImageView.setImage(byURL: url, placeholderImage: nil) {
-            self.updateImageViewHeightConstraint()
-        }
-    }
-    
-    
-    // MARK: - Private Methods
-    
-    private func updateImageViewHeightConstraint() {
-        let height: CGFloat
-        if let image = illustrationImage {
-            height = illustrationImageView.frame.width * image.size.aspectRatio
-        } else {
-            height = 0
-        }
-        
-        // Update size of imageView
-        if illustrationImageView.constraints.contains(where: {
-            $0.firstAnchor == illustrationImageView.heightAnchor
-        }) {
-            illustrationImageView.snp.updateConstraints {
-                $0.height.equalTo(height)
-            }
-        } else {
-            illustrationImageView.snp.makeConstraints {
-                $0.height.equalTo(height)
-            }
-        }
-        didUpdateSize()
+    func setImage(byURL url: URL, completion: @escaping () -> ()) {
+        illustrationImageView.setImage(byURL: url, placeholderImage: nil)
     }
 }

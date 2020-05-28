@@ -336,6 +336,7 @@
 		04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF62450331600034A89 /* TopicIllustrationCell.swift */; };
 		04D43FF9245035ED00034A89 /* TopicContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF8245035ED00034A89 /* TopicContentItem.swift */; };
 		04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FFA2450384F00034A89 /* TopicIllustration.swift */; };
+		04DD162E247FDA0E00D271F6 /* TopicScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */; };
 		04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D182241AE0E100C4FBEB /* AppDelegate.swift */; };
 		04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18B241AE0E200C4FBEB /* Assets.xcassets */; };
 		04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */; };
@@ -553,6 +554,7 @@
 		04D43FF62450331600034A89 /* TopicIllustrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustrationCell.swift; sourceTree = "<group>"; };
 		04D43FF8245035ED00034A89 /* TopicContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentItem.swift; sourceTree = "<group>"; };
 		04D43FFA2450384F00034A89 /* TopicIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustration.swift; sourceTree = "<group>"; };
+		04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicScreenDataBinder.swift; sourceTree = "<group>"; };
 		04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphBuilderDiplomaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F3D182241AE0E100C4FBEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 				04A0FE61244DFF08000C9F6E /* Model */,
 				04AE7B5C244DF43400AF4AB5 /* Views */,
 				04AE7B58244DBD6700AF4AB5 /* TopicVM.swift */,
+				04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */,
 			);
 			path = TopicScreen;
 			sourceTree = "<group>";
@@ -1692,6 +1695,7 @@
 				04187090241AE3E500897335 /* Equation.swift in Sources */,
 				0412E69A24597F3300AAB427 /* PlotView.swift in Sources */,
 				04D1F8DD2451D139004155FC /* PlotParameterCellConfigurator.swift in Sources */,
+				04DD162E247FDA0E00D271F6 /* TopicScreenDataBinder.swift in Sources */,
 				046E98CC244B532500611091 /* NavigationBarPresenter.swift in Sources */,
 				04B83676246F16F300426FEC /* ARPlotView.swift in Sources */,
 				0462065F2451901000012C91 /* BaseVMWithVC.swift in Sources */,

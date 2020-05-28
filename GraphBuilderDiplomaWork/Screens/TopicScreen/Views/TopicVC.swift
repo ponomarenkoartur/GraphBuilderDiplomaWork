@@ -11,34 +11,23 @@ import RxSwift
 import RxDataSources
 
 
-class TopicVC: BaseVC {
+protocol TopicVCProtocol: UIViewController {
+    var topic: Topic? { get set }
+    func setSerialPosition(_ serialPosition: SerialPosition?)
+}
+
+
+class TopicVC: BaseVC, TopicVCProtocol {
     
     
     // MARK: - Properties
     
     
     
-    private var topicSubscription: Disposable?
-    private var topicItemsTableSubscription: Disposable?
-    var topic: Observable<Topic>? {
-        didSet {
-            topicSubscription?.dispose()
-            topicItemsTableSubscription?.dispose()
-            setupTopicBinding()
-            setupTableViewDataBinding()
-        }
-    }
-    var topicItems: Observable<[TopicContentItem]>? {
-        topic?.map { $0.content }
-    }
-    
-    
-    private var serialPositionSubscription: Disposable?
-    var serialPosition: Observable<SerialPosition?>? {
-        didSet {
-            serialPositionSubscription?.dispose()
-            setupSerialPositionBinding()
-        }
+    fileprivate let topicSubject = BehaviorSubject<Topic?>(value: nil)
+    var topic: Topic? {
+        get { try! topicSubject.value() }
+        set { topicSubject.onNext(newValue) }
     }
     
     var didTapProceedToPlotBuildingItem:
@@ -82,32 +71,23 @@ class TopicVC: BaseVC {
     override func setupBinding() {
         super.setupBinding()
         setupTopicBinding()
-        setupSerialPositionBinding()
         setupTableViewDataBinding()
     }
     
     private func setupTopicBinding() {
-        topicSubscription = topic?
+        topicSubject
             .subscribe(onNext: { topic in
+                guard let topic = topic else { return }
                 self.title = topic.title
                 topic.content
                     .compactMap { TopicItemCellConfigurator.cellClass(for: $0) }
                     .forEach { self.tableView.register($0) }
-                
             })
-        topicSubscription?.disposed(by: bag)
-    }
-    
-    private func setupSerialPositionBinding() {
-        serialPositionSubscription = serialPosition?
-            .subscribe(onNext: {
-                self.tableViewFooter.buttons = self.getFooterButtons(for: $0)
-            })
-        serialPositionSubscription?.disposed(by: bag)
+            .disposed(by: bag)
     }
     
     private func setupTableViewDataBinding() {
-        topicItemsTableSubscription = topicItems?
+        topicSubject.compactMap { $0?.content }
             .bind(to: tableView.rx.items) {
                 (tableView: UITableView, index: Int, item: TopicContentItem) in
                 
@@ -124,9 +104,7 @@ class TopicVC: BaseVC {
                 }
                 
                 return cell
-        }
-            
-        topicItemsTableSubscription?.disposed(by: bag)
+        }.disposed(by: bag)
     }
     
     
@@ -147,9 +125,18 @@ class TopicVC: BaseVC {
     }
     
     
-    private func disposeAllSubscriptions() {
-        topicSubscription?.dispose()
-        topicItemsTableSubscription?.dispose()
-        serialPositionSubscription?.dispose()
+    // MARK: - API Methods
+    
+    func setSerialPosition(_ serialPosition: SerialPosition?) {
+        tableViewFooter.buttons = getFooterButtons(for: serialPosition)
+    }
+}
+
+
+// MARK: - Rx
+
+extension Reactive where Base == TopicVC {
+    var topic: Observable<Topic?> {
+        base.topicSubject.asObservable()
     }
 }
