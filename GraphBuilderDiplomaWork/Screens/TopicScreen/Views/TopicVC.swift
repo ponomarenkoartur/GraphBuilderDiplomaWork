@@ -12,6 +12,8 @@ import RxDataSources
 
 
 protocol TopicVCProtocol: UIViewController {
+    var didTapProceedToPlotBuildingItem:
+        (_ item: TopicProccedToPlotBuildingItem) -> () { get set }
     var topic: Topic? { get set }
     func setSerialPosition(_ serialPosition: SerialPosition?)
 }

@@ -54,30 +54,6 @@ class TopicsDataService: TopicsDataServiceProtocol {
             }
             completion(nil)
         }
-        
-//        topics = [
-//            Topic(title: "Hello",
-//                  shortDescription: "This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. This is short description of \"Hello\" topic. ",
-//                  content: [
-//                    TopicSubheader(text: "Subheader of Hello"),
-//            ]),
-//
-//            Topic(title: "World",
-//                  shortDescription: "This is short description of \"World\" topic",
-//                  content: [
-//                    TopicSubheader(text: "Subheader of World"),
-//                    TopicParagraph(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-//                    TopicIllustration(image: Image.topicPlaceholder()!, height: 100),
-//                    TopicProccedToPlotBuildingItem(graph: "y+2"),
-//                ]
-//            ),
-//            Topic(title: "!",
-//                  shortDescription: "This is short description of \"!\" topic.",
-//                  content: [
-//                    TopicSubheader(text: "Subheader of !"),
-//            ]),
-//        ]
-//        completion(nil)
     }
 }
 

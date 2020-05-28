@@ -124,6 +124,13 @@ class MainCoordinator: BaseCoordinator {
         let dataBinder = TopicsContainerDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
+        vm.finishCompletion = { reason in
+            switch reason {
+            case .didTapBuildPlotInSandbox(let item):
+                self.pushSandbox(with: [Equation(equation: item.graph)])
+            }
+        }
+        
         navVC.push(vc)
     }
     

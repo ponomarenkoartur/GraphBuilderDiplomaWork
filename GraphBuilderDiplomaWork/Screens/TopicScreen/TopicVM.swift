@@ -9,7 +9,14 @@
 import RxSwift
 
 
-class TopicVM: BaseVM<NSNull> {
+class TopicVM: BaseVM<TopicVM.FinishCompletionReason> {
+    
+    
+    // MARK: - Enums
+    
+    enum FinishCompletionReason {
+        case didTapBuildPlotInSandbox(item: TopicProccedToPlotBuildingItem)
+    }
     
     
     // MARK: - Properties

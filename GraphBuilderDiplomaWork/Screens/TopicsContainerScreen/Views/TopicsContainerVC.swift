@@ -14,6 +14,8 @@ protocol TopicsContainerVCProtocol: UIViewController {
     var didTapPreviousTopic: () -> () { get set }
     var didTapNextTopic: () -> () { get set }
     var didScrollToPage: (_ index: Int) -> () { get set }
+    var didTapProceedToPlotBuildingItem:
+        (_ item: TopicProccedToPlotBuildingItem) -> () { get set }
     var topicsList: [Topic] { get set }
     var selectedTopicIndex: Int? { get set }
 }
@@ -47,6 +49,8 @@ class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
     var didTapPreviousTopic: () -> () = {}
     var didTapNextTopic: () -> () = {}
     var didScrollToPage: (_ index: Int) -> () = { _ in }
+    var didTapProceedToPlotBuildingItem:
+        (_ item: TopicProccedToPlotBuildingItem) -> () = { _ in }
     
     
     // MARK: Views
@@ -105,6 +109,11 @@ class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
                     .get(forIndex: index, in: self.topicsList)
                 
                 let vm = TopicVM(topic: topic, position: serialPosition)
+                vm.finishCompletion = { reason in
+                    if case .didTapBuildPlotInSandbox(let item) = reason {
+                        self.didTapProceedToPlotBuildingItem(item)
+                    }
+                }
                 let vc = cell.viewController
                 let dataBinder = TopicScreenDataBinder(viewModel: vm,
                                                        views: [vc])

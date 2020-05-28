@@ -28,7 +28,7 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
         button.layer.cornerRadius = 10
         button.backgroundColor = Color.turquoise()
         
-        let title = "To graph building".uppercased()
+        let title = "See plot in sandbox".uppercased()
             .withFont(Font.sfProDisplayMedium(size: 15)!)
             .withTextColor(Color.inverseText()!)
         button.setAttributedTitle(title)

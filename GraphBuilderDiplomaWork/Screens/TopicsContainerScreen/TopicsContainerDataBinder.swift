@@ -30,6 +30,10 @@ class TopicsContainerDataBinder:
             view.didScrollToPage = { index in
                 self.viewModel.selectedTopicIndex = index
             }
+            view.didTapProceedToPlotBuildingItem = { item in
+                self.viewModel
+                    .finishCompletion(.didTapBuildPlotInSandbox(item: item))
+            }
         }
     }
 }

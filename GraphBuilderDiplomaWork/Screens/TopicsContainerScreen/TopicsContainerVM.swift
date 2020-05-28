@@ -14,7 +14,9 @@ class TopicsContainerVM: BaseVM<TopicsContainerVM.FinishCompletionReason> {
     
     // MARK: - Enums
     
-    enum FinishCompletionReason {}
+    enum FinishCompletionReason {
+        case didTapBuildPlotInSandbox(item: TopicProccedToPlotBuildingItem)
+    }
     
     
     // MARK: - Properties
