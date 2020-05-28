@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyAttributes
+import iosMath
 
 
 class TopicProccedToPlotBuildingCell: BaseTableViewCell {
@@ -21,6 +22,23 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
     var didTap: () -> () = {}
     
     // MARK: Views
+    
+    private lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 15
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private lazy var latexLabel: MTMathUILabel = {
+        let label = MTMathUILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = MTFontManager().xitsFont(withSize: 15)
+        return label
+    }()
     
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -49,15 +67,26 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
     
     override func addSubviews() {
         super.addSubviews()
-        contentView.addSubview(button)
+        contentView.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubviews(latexLabel, button)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-        button.snp.makeConstraints {
+        verticalStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.height.equalToSuperview().offset(-10)
             $0.width.equalToSuperview().offset(-20)
+            $0.height.equalToSuperview().offset(-20)
         }
+        button.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
+    }
+    
+    
+    // MARK: - API Methods
+    
+    func setLatex(_ latex: String) {
+        latexLabel.latex = latex
     }
 }

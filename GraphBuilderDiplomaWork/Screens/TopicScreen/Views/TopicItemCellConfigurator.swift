@@ -35,6 +35,9 @@ struct TopicItemCellConfigurator {
               let illustration as TopicIllustration):
             configureIllustrationCell(cell, illustration: illustration,
                                       indexPath: indexPath)
+        case (let cell as TopicProccedToPlotBuildingCell,
+              let item as TopicProccedToPlotBuildingItem):
+            cell.setLatex(item.graph)
         default:
             break
         }
