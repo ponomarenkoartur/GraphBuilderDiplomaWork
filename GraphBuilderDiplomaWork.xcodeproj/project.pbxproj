@@ -337,6 +337,8 @@
 		04D43FF9245035ED00034A89 /* TopicContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FF8245035ED00034A89 /* TopicContentItem.swift */; };
 		04D43FFB2450384F00034A89 /* TopicIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D43FFA2450384F00034A89 /* TopicIllustration.swift */; };
 		04DD162E247FDA0E00D271F6 /* TopicScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */; };
+		04DD1630247FDFF600D271F6 /* TopicsContainerDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD162F247FDFF600D271F6 /* TopicsContainerDataBinder.swift */; };
+		04DD1631247FE4DC00D271F6 /* WelcomeScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */; };
 		04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3D182241AE0E100C4FBEB /* AppDelegate.swift */; };
 		04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18B241AE0E200C4FBEB /* Assets.xcassets */; };
 		04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3D18D241AE0E200C4FBEB /* LaunchScreen.storyboard */; };
@@ -555,6 +557,7 @@
 		04D43FF8245035ED00034A89 /* TopicContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentItem.swift; sourceTree = "<group>"; };
 		04D43FFA2450384F00034A89 /* TopicIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustration.swift; sourceTree = "<group>"; };
 		04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicScreenDataBinder.swift; sourceTree = "<group>"; };
+		04DD162F247FDFF600D271F6 /* TopicsContainerDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerDataBinder.swift; sourceTree = "<group>"; };
 		04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphBuilderDiplomaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F3D182241AE0E100C4FBEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -722,6 +725,7 @@
 			children = (
 				042BC5A52450635D00950B15 /* Views */,
 				043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */,
+				04DD162F247FDFF600D271F6 /* TopicsContainerDataBinder.swift */,
 			);
 			path = TopicsContainerScreen;
 			sourceTree = "<group>";
@@ -870,7 +874,6 @@
 			children = (
 				04CE0E34244B13F0006B19B0 /* WelcomeVC.swift */,
 				0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */,
-				0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1078,6 +1081,7 @@
 			children = (
 				0473F3FE244B340D0065BB63 /* Views */,
 				0473F3FC244B326E0065BB63 /* WelcomeVM.swift */,
+				0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -1570,6 +1574,7 @@
 				042BC57624505B5E00950B15 /* TopicSubheaderCell.swift in Sources */,
 				042BC57724505B5E00950B15 /* TopicParagraphCell.swift in Sources */,
 				042BC57824505B5E00950B15 /* TopicIllustrationCell.swift in Sources */,
+				04DD1631247FE4DC00D271F6 /* WelcomeScreenDataBinder.swift in Sources */,
 				042BC57924505B5E00950B15 /* TopicProccedToPlotBuildingCell.swift in Sources */,
 				042BC57A24505B5E00950B15 /* TopicFooterView.swift in Sources */,
 				042BC57B24505B5E00950B15 /* TopicItemCellConfigurator.swift in Sources */,
@@ -1705,6 +1710,7 @@
 				04187076241AE3BC00897335 /* EquationRecognizer.swift in Sources */,
 				0420882724617DD200078B80 /* BaseSCNScene.swift in Sources */,
 				04015C6F24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift in Sources */,
+				04DD1630247FDFF600D271F6 /* TopicsContainerDataBinder.swift in Sources */,
 				04806AC7246C382C0005B559 /* SCNAction extension.swift in Sources */,
 				040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */,
 				0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */,

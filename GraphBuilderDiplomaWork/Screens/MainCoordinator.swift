@@ -61,7 +61,7 @@ class MainCoordinator: BaseCoordinator {
         
         vm.finishCompletion = { reason in
             if case .didSelectTopic(_, let position) = reason {
-                self.pushTopicsContainer(vm.rx.topics, selectedTopicIndex: position)
+                self.pushTopicsContainer(vm.topics, selectedTopicIndex: position)
             }
         }
         navVC.push(vc)
@@ -116,11 +116,15 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(vc)
     }
     
-    private func pushTopicsContainer(_ topicsList: Observable<[Topic]>,
+    private func pushTopicsContainer(_ topicsList: [Topic],
                                      selectedTopicIndex: Int) {
         let vm = TopicsContainerVM(topicsList: topicsList,
                                    selectedTopicIndex: selectedTopicIndex)
-        navVC.push(vm.viewController!)
+        let vc = TopicsContainerVC()
+        let dataBinder = TopicsContainerDataBinder(viewModel: vm, views: [vc])
+        dataBinder.bind()
+        
+        navVC.push(vc)
     }
     
     private func pushTopicPlots() {

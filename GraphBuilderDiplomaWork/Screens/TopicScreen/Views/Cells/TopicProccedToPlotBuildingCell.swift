@@ -35,7 +35,6 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
         
         button.snp.makeConstraints {
             $0.height.equalTo(36)
-            $0.width.equalTo(181)
         }
         
         button.rx.tap
@@ -58,6 +57,7 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
         button.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalToSuperview().offset(-10)
+            $0.width.equalToSuperview().offset(-20)
         }
     }
 }

@@ -10,7 +10,15 @@ import UIKit
 import RxSwift
 
 
-class TopicsContainerVC: BaseVC {
+protocol TopicsContainerVCProtocol: UIViewController {
+    var didTapPreviousTopic: () -> () { get set }
+    var didTapNextTopic: () -> () { get set }
+    var didScrollToPage: (_ index: Int) -> () { get set }
+    var topicsList: [Topic] { get set }
+    var selectedTopicIndex: Int? { get set }
+}
+
+class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
     
     
     // MARK: - Constants
@@ -20,9 +28,18 @@ class TopicsContainerVC: BaseVC {
     
     // MARK: - Properties
     
-    var topicsList: Observable<[Topic]>
-    var selectedTopicIndex: Observable<Int>?
-    private var lastTopicsListValue: [Topic] = []
+    private var topicsListSubject = BehaviorSubject<[Topic]>(value: [])
+    var topicsList: [Topic] {
+        get { try! topicsListSubject.value() }
+        set { topicsListSubject.onNext(newValue) }
+    }
+    
+    fileprivate var selectedTopicIndexSubject =
+        BehaviorSubject<Int?>(value: nil)
+    var selectedTopicIndex: Int? {
+        get { try! selectedTopicIndexSubject.value() }
+        set { selectedTopicIndexSubject.onNext(newValue) }
+    }
     
     
     // MARK: Callbacks
@@ -58,29 +75,10 @@ class TopicsContainerVC: BaseVC {
     }()
     
     
-    // MARK: - Initialization
-    
-    init(topicsList: Observable<[Topic]>,
-         selectedTopicIndex: Observable<Int>? = nil) {
-        self.selectedTopicIndex = selectedTopicIndex
-        self.topicsList = topicsList
-        super.init()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(topicsList:) must be used")
-    }
-    
-    required init() {
-        fatalError("init(topicsList:) must be used")
-    }
-    
-    
     // MARK: - Setup Methods
     
     override func setupUI() {
         super.setupUI()
-        title = "Hello"
         shouldPreferLargeTitle = false
     }
     
@@ -99,15 +97,12 @@ class TopicsContainerVC: BaseVC {
     
     override func setupBinding() {
         super.setupBinding()
-        topicsList
-            .subscribe(onNext: { self.lastTopicsListValue = $0 })
-            .disposed(by: bag)
-        topicsList
+        topicsListSubject
             .bind(to: collectionView.rx.items(cellIdentifier: cellID)) {
                 (index: Int, topic: Topic, cell: UICollectionViewCell) in
                 guard let cell = cell as? TopicsContainerCell else { return }
                 let serialPosition = SerialPosition
-                    .get(forIndex: index, in: self.lastTopicsListValue)
+                    .get(forIndex: index, in: self.topicsList)
                 
                 let vm = TopicVM(topic: topic, position: serialPosition)
                 let vc = cell.viewController
@@ -120,16 +115,25 @@ class TopicsContainerVC: BaseVC {
             }
             .disposed(by: bag)
         
-        selectedTopicIndex?
-        .subscribe(onNext: { index in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.collectionView.scroll(to: index, animated: self.didAppear)
-                
-            }
-            
-        })
-        .disposed(by: bag)
+        selectedTopicIndexSubject
+            .subscribe(onNext: { index in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, let index = index else { return }
+                    self.collectionView.scroll(to: index,
+                                               animated: self.didAppear)
+                }
+            })
+            .disposed(by: bag)
+        
+        Observable.combineLatest(topicsListSubject, selectedTopicIndexSubject)
+            .subscribe(onNext: { topics, selectedTopicIndex in
+                if let selectedTopicIndex = selectedTopicIndex {
+                    self.title = topics[selectedTopicIndex].title
+                } else {
+                    self.title = ""
+                }
+            })
+            .disposed(by: bag)
     }
 }
 

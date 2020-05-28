@@ -9,7 +9,7 @@
 import RxSwift
 
 
-class TopicsContainerVM: BaseVMWithVC<TopicsContainerVC, TopicsContainerVM.FinishCompletionReason> {
+class TopicsContainerVM: BaseVM<TopicsContainerVM.FinishCompletionReason> {
     
     
     // MARK: - Enums
@@ -19,33 +19,24 @@ class TopicsContainerVM: BaseVMWithVC<TopicsContainerVC, TopicsContainerVM.Finis
     
     // MARK: - Properties
     
-    var topicsList: Observable<[Topic]>
-    private var selectedTopicIndexSubject: BehaviorSubject<Int>
-    var selectedTopicIndex: Observable<Int> {
-        selectedTopicIndexSubject.asObservable()
+    fileprivate var topicsListSubject: BehaviorSubject<[Topic]>
+    var topicsList: [Topic] {
+        get { try! topicsListSubject.value() }
+        set { topicsListSubject.onNext(newValue) }
+    }
+    fileprivate var selectedTopicIndexSubject: BehaviorSubject<Int>
+    var selectedTopicIndex: Int {
+        get { try! selectedTopicIndexSubject.value() }
+        set { selectedTopicIndexSubject.onNext(newValue) }
     }
     var selectedTopicIndexValue: Int? { try? selectedTopicIndexSubject.value() }
     
     
     // MARK: - Initialization
     
-    init(topicsList: Observable<[Topic]>, selectedTopicIndex: Int) {
+    init(topicsList: [Topic], selectedTopicIndex: Int) {
+        topicsListSubject = BehaviorSubject(value: topicsList)
         selectedTopicIndexSubject = BehaviorSubject(value: selectedTopicIndex)
-        self.topicsList = topicsList
-        super.init(viewController: TopicsContainerVC(topicsList: topicsList))
-        setupViewController()
-    }
-    
-    
-    // MARK: - Setup Methods
-    
-    private func setupViewController() {
-        viewController?.selectedTopicIndex = self.selectedTopicIndex
-        viewController?.didTapPreviousTopic = previousTopic
-        viewController?.didTapNextTopic = nextTopic
-        viewController?.didScrollToPage = { index in
-            self.selectedTopicIndexSubject.onNext(index)
-        }
     }
     
     
@@ -61,3 +52,18 @@ class TopicsContainerVM: BaseVMWithVC<TopicsContainerVC, TopicsContainerVM.Finis
         self.selectedTopicIndexSubject.onNext(index - 1)
     }
 }
+
+
+
+// MARK: - Rx
+
+
+extension Reactive where Base == TopicsContainerVM {
+    var selectedTopicIndex: Observable<Int> {
+        base.selectedTopicIndexSubject.asObservable()
+    }
+    var topicsList: Observable<[Topic]> {
+        base.topicsListSubject.asObservable()
+    }
+}
+
