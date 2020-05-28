@@ -88,12 +88,14 @@ class AxisNode: BaseSCNNode {
                     markerControl?.setTextValue(markersValues[i])
                     marker?.isHidden = false
                     marker?.position.x = Float(position) * self.cylinder.scale.y
+                    marker?.scale = SCNVector3(axisScale)
                 }
                 self.scaleMarkers[safe: realPositions.count...]?.forEach {
                     $0.isHidden = true
                 }
                 
-                self.cylinder.scale.y = axisScale
+                self.cylinder.scale = SCNVector3(axisScale)
+                self.coneArrow.scale = SCNVector3(axisScale)
                 self.coneArrow.position.x =
                     Float(self.cylinderGeometry.height) * axisScale / 2
             })
@@ -132,16 +134,16 @@ class AxisNode: BaseSCNNode {
     
     private static func getGridStep(for length: Double) -> Double {
         var step: Double = 1
-        var stepCount: Double { length / step }
+        var stepCount: Int { Int(length / step) }
 
         let multiplier = length > 1 ? 10 : 0.1
         while !(1..<10).contains(stepCount) {
             step *= multiplier
         }
 
-        let submultipliers: [Double] = [1, 2, 2.5]
+        let submultipliers: [Double] = [2, 2.5, 2]
         for submultiplier in submultipliers {
-            if (5...9).contains(stepCount) {
+            if (4...10).contains(stepCount) {
                 break
             }
             step /= submultiplier
