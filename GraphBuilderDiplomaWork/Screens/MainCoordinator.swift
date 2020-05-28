@@ -104,6 +104,9 @@ class MainCoordinator: BaseCoordinator {
                 }
             }
         }
+        vm.finishCompletion = { _ in
+            self.navVC.popViewController(animated: true)
+        }
         navVC.push(vc)
     }
 

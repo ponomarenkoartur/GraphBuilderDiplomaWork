@@ -9,8 +9,15 @@
 import UIKit
 
 extension UIButton {
-    func setImage(_ image: UIImage?) {
+    func setImage(_ image: UIImage?, animated: Bool = false) {
         setImage(image, for: .normal)
+        if animated {
+            let transition = CATransition()
+            transition.type = .fade
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
+            self.layer.add(transition, forKey: nil)
+        }
     }
     
     func setTitle(_ title: String?) {

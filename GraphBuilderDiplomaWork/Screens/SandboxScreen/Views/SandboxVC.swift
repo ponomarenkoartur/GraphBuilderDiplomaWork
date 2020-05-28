@@ -288,6 +288,16 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         return button
     }()
     
+    private lazy var dragRotateButton: UIButton = {
+        let button = UIButton()
+        button.rx.tap
+            .subscribe(onNext: {
+                self.gestureHandlerView.switchDragRotateMode()
+            })
+            .disposed(by: bag)
+        return button
+    }()
+    
     
     // MARK: Settings Views
     
@@ -356,7 +366,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     override func addSubviews() {
         super.addSubviews()
-        view.addSubviews([
+        view.addSubviews(
             scnPlotView,
             arscnPlotView,
             gestureHandlerView,
@@ -366,7 +376,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             equationsTableView,
             plotColorPicker,
             settingsContainerView,
-        ])
+            dragRotateButton
+        )
         topRightButtonStackView.addArrangedSubviews([
             takePhotoButton,
             settingsButton,
@@ -439,6 +450,10 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         photoSavedImageView.snp.makeConstraints {
             $0.edges.equalTo(takePhotoButton.snp.edges)
         }
+        dragRotateButton.snp.makeConstraints {
+            $0.centerX.equalTo(manipulationModeSwitchButton.snp.centerX)
+            $0.bottom.equalTo(manipulationModeSwitchButton.snp.top).offset(-20)
+        }
     }
     
     override func setupBinding() {
@@ -476,14 +491,16 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         
         gestureHandlerView.rx.manipulationMode
             .subscribe(onNext: {
+                let image = $0 == .local ? Image.cube3DDotted() : Image.cube3D()
                 self.manipulationModeSwitchButton
-                    .setImage($0 == .local ? Image.cube3DDotted() : Image.cube3D())
-                let transition = CATransition()
-                transition.type = .fade
-                transition.duration = 0.3
-                transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
-                self.manipulationModeSwitchButton.layer
-                    .add(transition, forKey: nil)
+                    .setImage(image, animated: true)
+            })
+            .disposed(by: bag)
+        
+        gestureHandlerView.rx.dragRotateMode
+            .subscribe(onNext: {
+                let image = $0 == .drag ? Image.drag() : Image.rotate()
+                self.dragRotateButton.setImage(image, animated: true)
             })
             .disposed(by: bag)
         

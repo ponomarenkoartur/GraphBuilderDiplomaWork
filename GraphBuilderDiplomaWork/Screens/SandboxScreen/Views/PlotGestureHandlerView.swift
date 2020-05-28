@@ -25,6 +25,16 @@ class PlotGestureHandlerView: BaseView {
         set { manipulationModeSubject.onNext(newValue) }
     }
     
+    enum DragRotateMode {
+        case drag, rotate
+    }
+    fileprivate var dragRotateModeSubject =
+        BehaviorSubject(value: DragRotateMode.drag)
+    var dragRotateMode: DragRotateMode {
+        get { try! dragRotateModeSubject.value() }
+        set { dragRotateModeSubject.onNext(newValue) }
+    }
+    
     
     // MARK: Callbacks
     
@@ -43,9 +53,6 @@ class PlotGestureHandlerView: BaseView {
     private var initialAxisesRotation: [SCNVector3]?
     
     
-    private var isThreeFingersGestureOn = false
-    
-    
     // MARK: - Setup Methods
     
     override func setupUI() {
@@ -60,20 +67,12 @@ class PlotGestureHandlerView: BaseView {
     override func setupGesturesRecognizers() {
         super.setupGesturesRecognizers()
 
-        rx.panGesture(configuration: { (gr, _) in
-                gr.minimumNumberOfTouches = 3
-                gr.maximumNumberOfTouches = 3
-            })
-            .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.handlePan($0) })
-            .disposed(by: bag)
-
         rx.pinchGesture()
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { gr in self.handlePinch(gr) })
             .disposed(by: bag)
 
-        rx.panGesture(configuration: { gr, _ in gr.maximumNumberOfTouches = 1 })
+        rx.panGesture()
             .throttle(.milliseconds(40), scheduler: MainScheduler.instance)
             .subscribe(onNext: { self.handlePan($0) })
             .disposed(by: bag)
@@ -84,9 +83,10 @@ class PlotGestureHandlerView: BaseView {
     }
     
     private func handlePan(_ gr: UIPanGestureRecognizer) {
-        if gr.numberOfTouches == 1 {
+        switch dragRotateMode {
+        case .drag:
             handlePanToMove(gr)
-        } else {
+        case .rotate:
             handlePanToRotate(gr)
         }
     }
@@ -187,7 +187,6 @@ class PlotGestureHandlerView: BaseView {
     private func handlePanToRotate(_ gr: UIPanGestureRecognizer) {
         switch gr.state {
         case .began:
-            isThreeFingersGestureOn = true
             initialAxisesRotation = scenes.map { $0.axisesRotationAngles }
         case .changed:
             guard let initialAxisesRotation = initialAxisesRotation else {
@@ -201,7 +200,6 @@ class PlotGestureHandlerView: BaseView {
             }
             setAxisesRotationList(targetAxisesRotation)
         default:
-            isThreeFingersGestureOn = false
             initialAxisesRotation = nil
         }
     }
@@ -213,8 +211,7 @@ class PlotGestureHandlerView: BaseView {
             initialGridBoundsList = scenes.map { $0.gridBounds }
         case .changed:
             guard let initialScales = initialScales,
-                let initialGridBoundsList = initialGridBoundsList,
-                !isThreeFingersGestureOn else {
+                let initialGridBoundsList = initialGridBoundsList else {
                 return
             }
             
@@ -259,6 +256,15 @@ class PlotGestureHandlerView: BaseView {
             manipulationMode = .world
         case .world:
             manipulationMode = .local
+        }
+    }
+    
+    func switchDragRotateMode() {
+        switch dragRotateMode {
+        case .drag:
+            dragRotateMode = .rotate
+        case .rotate:
+            dragRotateMode = .drag
         }
     }
     
@@ -314,5 +320,8 @@ class PlotGestureHandlerView: BaseView {
 extension Reactive where Base == PlotGestureHandlerView {
     var manipulationMode: Observable<PlotManipulationMode> {
         base.manipulationModeSubject.asObservable()
+    }
+    var dragRotateMode: Observable<PlotGestureHandlerView.DragRotateMode> {
+        base.dragRotateModeSubject.asObservable()
     }
 }
