@@ -22,14 +22,12 @@ class TopicsListVM: BaseVM<TopicsListVM.FinishCompletionReason> {
     // MARK: - Properties
     
     fileprivate let topicsSubject = BehaviorSubject<[Topic]>(value:
-        TopicsDataService.shared.getTopics()
+        TopicsDataService.shared.topics
     )
-    
     var topics: [Topic] {
         get { try! topicsSubject.value() }
         set { topicsSubject.onNext(newValue) }
     }
-    
     
     fileprivate let isLoadingSubject = BehaviorSubject(value: false)
     var isLoading: Bool {
@@ -52,8 +50,14 @@ class TopicsListVM: BaseVM<TopicsListVM.FinishCompletionReason> {
         TopicsDataService.shared.fetchData { error in
             self.error = error
             self.isLoading = false
-            self.topics = TopicsDataService.shared.getTopics()
         }
+        setupBinding()
+    }
+    
+    private func setupBinding() {
+        TopicsDataService.shared.rx.topics
+            .subscribe(onNext: { self.topics = $0 })
+            .disposed(by: bag)
     }
 }
 

@@ -33,6 +33,11 @@ inhibit_all_warnings!
     pod 'RxGesture'
     pod 'RxKeyboard'
     pod 'RxDataSources', '~> 4.0'
+
+    # Other
+
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
     
     
     # Defining Swift version

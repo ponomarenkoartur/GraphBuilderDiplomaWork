@@ -8,6 +8,8 @@
 
 import UIKit
 import MathpixClient
+import Firebase
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MathpixClient.setApiKeys(appId: "arthur_ponomar_gmail_com",
                                  appKey: "2b4fa7b7db3ebfee5b70")
         EquationDataService.shared.fetchData()
+        FirebaseApp.configure()
     }
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {

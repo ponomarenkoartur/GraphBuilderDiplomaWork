@@ -222,8 +222,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
+    /// Resource file `GoogleService-Info.plist`.
+    static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
     /// Resource file `Grid.scn`.
     static let gridScn = Rswift.FileResource(bundle: R.hostingBundle, name: "Grid", pathExtension: "scn")
     /// Resource file `SF-Pro-Display-Bold.otf`.
@@ -234,6 +236,12 @@ struct R: Rswift.Validatable {
     static let sfProDisplayRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Regular", pathExtension: "otf")
     /// Resource file `SF-Pro-Display-Semibold.otf`.
     static let sfProDisplaySemiboldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SF-Pro-Display-Semibold", pathExtension: "otf")
+
+    /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
+    static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.googleServiceInfoPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "Grid", withExtension: "scn")`
     static func gridScn(_: Void = ()) -> Foundation.URL? {

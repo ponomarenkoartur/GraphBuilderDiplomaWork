@@ -237,6 +237,8 @@
 		0471B798247ECE8600BDC147 /* TopicsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B797247ECE8600BDC147 /* TopicsDataService.swift */; };
 		0471B79C247ED10400BDC147 /* TopicsListDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */; };
 		0471B79D247ED10700BDC147 /* TopicsListDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */; };
+		0471B79F247ED70300BDC147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0471B79E247ED70300BDC147 /* GoogleService-Info.plist */; };
+		0471B7A1247EDA6A00BDC147 /* TopicFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B7A0247EDA6A00BDC147 /* TopicFabric.swift */; };
 		0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FA244B20700065BB63 /* Shortcuts.swift */; };
 		0473F3FD244B326E0065BB63 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FC244B326E0065BB63 /* WelcomeVM.swift */; };
 		0473F400244B34140065BB63 /* WelcomeScreenMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */; };
@@ -449,6 +451,8 @@
 		0471B792247E72C000BDC147 /* WelcomeScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenDataBinder.swift; sourceTree = "<group>"; };
 		0471B797247ECE8600BDC147 /* TopicsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDataService.swift; sourceTree = "<group>"; };
 		0471B79B247ED10400BDC147 /* TopicsListDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsListDataBinder.swift; sourceTree = "<group>"; };
+		0471B79E247ED70300BDC147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0471B7A0247EDA6A00BDC147 /* TopicFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFabric.swift; sourceTree = "<group>"; };
 		0473F3FA244B20700065BB63 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		0473F3FC244B326E0065BB63 /* WelcomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
 		0473F3FF244B34140065BB63 /* WelcomeScreenMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenMenuCell.swift; sourceTree = "<group>"; };
@@ -962,6 +966,7 @@
 			children = (
 				04AE7B53244DAB8C00AF4AB5 /* Topic.swift */,
 				048A96FD245054FC00161936 /* SerialPosition.swift */,
+				0471B7A0247EDA6A00BDC147 /* TopicFabric.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1229,6 +1234,7 @@
 				044B6592244B36B10037D904 /* Assets */,
 				0473F3F9244B1FCC0065BB63 /* Utilities */,
 				04F3D190241AE0E200C4FBEB /* Info.plist */,
+				0471B79E247ED70300BDC147 /* GoogleService-Info.plist */,
 				04CE0E32244B13D4006B19B0 /* Screens */,
 				04CE0E2D244B1213006B19B0 /* GraphBuilding */,
 				04CE0E2C244B11FA006B19B0 /* Other */,
@@ -1357,6 +1363,7 @@
 			files = (
 				04208830246188C700078B80 /* Grid.scn in Resources */,
 				0450332F24503D4700C6F763 /* SF-Pro-Display-Medium.otf in Resources */,
+				0471B79F247ED70300BDC147 /* GoogleService-Info.plist in Resources */,
 				04F3D18F241AE0E200C4FBEB /* LaunchScreen.storyboard in Resources */,
 				04F3D18C241AE0E200C4FBEB /* Assets.xcassets in Resources */,
 				046E98D3244B576000611091 /* SF-Pro-Display-Semibold.otf in Resources */,
@@ -1758,6 +1765,7 @@
 				04CD857824752DB900532E17 /* ConstantsAndValues.swift in Sources */,
 				0418708B241AE3C000897335 /* EquationCell.swift in Sources */,
 				045033362450472200C6F763 /* IndexPath extension.swift in Sources */,
+				0471B7A1247EDA6A00BDC147 /* TopicFabric.swift in Sources */,
 				0462065B24518EA600012C91 /* TopicPlotsVM.swift in Sources */,
 				0456F22F2451D08C009E469C /* PlotParameterCell.swift in Sources */,
 				04CE0E68244B1839006B19B0 /* UIViewController extension.swift in Sources */,
