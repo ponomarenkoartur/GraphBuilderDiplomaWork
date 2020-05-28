@@ -7,6 +7,8 @@
 //
 
 import FirebaseDatabase
+import Foundation
+import Alamofire
 
 
 class TopicFabric {
@@ -15,7 +17,7 @@ class TopicFabric {
     // MARK: - Constants
     
     enum KeyPath: String {
-        case title, shortDescription
+        case title, shortDescription, content
     }
     
     
@@ -23,12 +25,36 @@ class TopicFabric {
     
     func createTopic(from snapshot: DataSnapshot) -> Topic? {
         guard let title = snapshot
-            .childSnapshot(forPath: KeyPath.title.rawValue).value as? String,
+            .childSnapshot(forPath: KeyPath.title).value as? String,
             let description = snapshot
-                .childSnapshot(forPath: KeyPath.shortDescription.rawValue)
+                .childSnapshot(forPath: KeyPath.shortDescription)
                 .value as? String else {
                     return nil
         }
-        return Topic(title: title, shortDescription: description)
+        
+        let content = parseContent(from: snapshot)
+        return Topic(title: title, shortDescription: description,
+                     content: content)
+    }
+    
+    
+    // MARK: - Private Methods
+    
+    private func parseContent(
+        from snapshot: DataSnapshot) -> [TopicContentItem] {
+        let contentSnapshot = snapshot.childSnapshot(forPath: KeyPath.content)
+        let fabric = TopicContentFabric()
+        return contentSnapshot.children.allObjects
+            .compactMap { $0 as? DataSnapshot }
+            .sorted { $0.key < $1.key }
+            .compactMap { fabric.create(from: $0) }
+    }
+}
+
+
+extension DataSnapshot {
+    func childSnapshot<T: RawRepresentable>(forPath path: T) -> DataSnapshot
+        where T.RawValue == String {
+        childSnapshot(forPath: path.rawValue)
     }
 }

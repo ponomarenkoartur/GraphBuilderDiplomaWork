@@ -11,6 +11,7 @@ import UIKit
 
 struct TopicItemCellConfigurator {
     
+    
     // MARK: - Properties
     
     let tableView: UITableView
@@ -32,7 +33,8 @@ struct TopicItemCellConfigurator {
             configureParagraphCell(cell, paragraph: paragraph)
         case (let cell as TopicIllustrationCell,
               let illustration as TopicIllustration):
-            configureIllustrationCell(cell, illustration: illustration)
+            configureIllustrationCell(cell, illustration: illustration,
+                                      indexPath: indexPath)
         default:
             break
         }
@@ -58,9 +60,16 @@ struct TopicItemCellConfigurator {
     }
     
     private func configureIllustrationCell(
-        _ cell: TopicIllustrationCell, illustration: TopicIllustration) {
-        cell.illustrationImage = illustration.image
-        cell.imageViewHeight = illustration.height
+        _ cell: TopicIllustrationCell, illustration: TopicIllustration,
+        indexPath: IndexPath) {
+        if let image = illustration.image {
+            cell.illustrationImage = image
+        } else if let url = illustration.imageURL {
+            cell.setImage(byURL: url)
+        }
+        cell.didUpdateSize = {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
     

@@ -82,10 +82,13 @@ class TopicsDataService: TopicsDataServiceProtocol {
 }
 
 
+
+// MARK: - Rx
+
+extension TopicsDataService: ReactiveCompatible {}
+
 extension Reactive where Base == TopicsDataService {
     var topics: Observable<[Topic]> {
         base.topicsSubject.asObservable()
     }
 }
-
-extension TopicsDataService: ReactiveCompatible {}

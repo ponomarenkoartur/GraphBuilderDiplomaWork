@@ -13,4 +13,9 @@ extension CGSize {
     init(sideLength: CGFloat) {
         self.init(width: sideLength, height: sideLength)
     }
+    
+    /// Aspect ratio of height to width
+    var aspectRatio: CGFloat {
+        height / width
+    }
 }

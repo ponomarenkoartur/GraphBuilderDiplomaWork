@@ -275,6 +275,8 @@
 		04AE7B5F244DF45100AF4AB5 /* TopicSubheaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */; };
 		04B83676246F16F300426FEC /* ARPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83675246F16F300426FEC /* ARPlotView.swift */; };
 		04B83678246F175400426FEC /* BaseARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83677246F175400426FEC /* BaseARSCNView.swift */; };
+		04B96926247FB7E2009832BF /* TopicContentFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96925247FB7E2009832BF /* TopicContentFabric.swift */; };
+		04B96934247FCA18009832BF /* UIImageView extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96933247FCA18009832BF /* UIImageView extension.swift */; };
 		04C116902450483100C0CF49 /* TopicFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1168F2450483100C0CF49 /* TopicFooterView.swift */; };
 		04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1169124504CDB00C0CF49 /* CGRect extension.swift */; };
 		04CD857824752DB900532E17 /* ConstantsAndValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857724752DB900532E17 /* ConstantsAndValues.swift */; };
@@ -490,6 +492,8 @@
 		04AE7B5E244DF45100AF4AB5 /* TopicSubheaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicSubheaderCell.swift; sourceTree = "<group>"; };
 		04B83675246F16F300426FEC /* ARPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlotView.swift; sourceTree = "<group>"; };
 		04B83677246F175400426FEC /* BaseARSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseARSCNView.swift; sourceTree = "<group>"; };
+		04B96925247FB7E2009832BF /* TopicContentFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentFabric.swift; sourceTree = "<group>"; };
+		04B96933247FCA18009832BF /* UIImageView extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView extension.swift"; sourceTree = "<group>"; };
 		04C1168F2450483100C0CF49 /* TopicFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFooterView.swift; sourceTree = "<group>"; };
 		04C1169124504CDB00C0CF49 /* CGRect extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect extension.swift"; sourceTree = "<group>"; };
 		04CD857724752DB900532E17 /* ConstantsAndValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsAndValues.swift; sourceTree = "<group>"; };
@@ -967,6 +971,7 @@
 				04AE7B53244DAB8C00AF4AB5 /* Topic.swift */,
 				048A96FD245054FC00161936 /* SerialPosition.swift */,
 				0471B7A0247EDA6A00BDC147 /* TopicFabric.swift */,
+				04B96925247FB7E2009832BF /* TopicContentFabric.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1130,6 +1135,7 @@
 				04CE0E5F244B1839006B19B0 /* UITapGestureRecognizer extension.swift */,
 				04CE0E59244B1839006B19B0 /* UIView extension.swift */,
 				04CE0E5A244B1839006B19B0 /* UIViewController extension.swift */,
+				04B96933247FCA18009832BF /* UIImageView extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1723,6 +1729,7 @@
 				0471B79C247ED10400BDC147 /* TopicsListDataBinder.swift in Sources */,
 				0425DC6E247D490700A3D66F /* SavedEquationsVM.swift in Sources */,
 				04C1169224504CDB00C0CF49 /* CGRect extension.swift in Sources */,
+				04B96926247FB7E2009832BF /* TopicContentFabric.swift in Sources */,
 				04F3D183241AE0E100C4FBEB /* AppDelegate.swift in Sources */,
 				04AE7B5B244DBD8100AF4AB5 /* TopicVC.swift in Sources */,
 				04A0FE60244DF78A000C9F6E /* TopicItemCellConfigurator.swift in Sources */,
@@ -1777,6 +1784,7 @@
 				046E98C7244B4DE400611091 /* Collection extension.swift in Sources */,
 				04A7F3AE2456CCDF00E8E85B /* SandboxKeyboard.swift in Sources */,
 				041CAC6C246DAB67003CEC34 /* GridBounds.swift in Sources */,
+				04B96934247FCA18009832BF /* UIImageView extension.swift in Sources */,
 				04CE0E6D244B1839006B19B0 /* UITapGestureRecognizer extension.swift in Sources */,
 				04AE7B54244DAB8C00AF4AB5 /* Topic.swift in Sources */,
 				04D1F8EB2451EFFE004155FC /* PlotPresentationMode.swift in Sources */,

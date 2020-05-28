@@ -14,28 +14,18 @@ class TopicIllustrationCell: BaseTableViewCell {
     
     // MARK: - Properties
     
-    var imageViewHeight: CGFloat? {
-        didSet {
-            guard let imageViewHeight = imageViewHeight else { return }
-            
-            // Check if constraint exists
-            if illustrationImageView.constraints.contains(where: {
-                $0.firstAnchor == illustrationImageView.heightAnchor
-            }) {
-                illustrationImageView.snp.updateConstraints {
-                    $0.height.equalTo(imageViewHeight)
-                }
-            } else {
-                illustrationImageView.snp.makeConstraints {
-                    $0.height.equalTo(imageViewHeight)
-                }
-            }
-        }
-    }
     var illustrationImage: UIImage? {
         get { illustrationImageView.image }
-        set { illustrationImageView.image = newValue }
+        set {
+            illustrationImageView.image = newValue
+            updateImageViewHeightConstraint()
+        }
     }
+    
+    // MARK: Callbacks
+    
+    var didUpdateSize: () -> () = {}
+    
     
     // MARK: Views
     
@@ -59,7 +49,43 @@ class TopicIllustrationCell: BaseTableViewCell {
         super.setupConstraints()
         illustrationImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.size.equalToSuperview().offset(-20)
+            $0.width.equalToSuperview().offset(-20)
+            $0.height.equalToSuperview().offset(-20)
         }
+    }
+    
+    
+    // MARK: - API Methods
+    
+    func setImage(byURL url: URL) {
+        illustrationImageView.setImage(byURL: url, placeholderImage: nil) {
+            self.updateImageViewHeightConstraint()
+        }
+    }
+    
+    
+    // MARK: - Private Methods
+    
+    private func updateImageViewHeightConstraint() {
+        let height: CGFloat
+        if let image = illustrationImage {
+            height = illustrationImageView.frame.width * image.size.aspectRatio
+        } else {
+            height = 0
+        }
+        
+        // Update size of imageView
+        if illustrationImageView.constraints.contains(where: {
+            $0.firstAnchor == illustrationImageView.heightAnchor
+        }) {
+            illustrationImageView.snp.updateConstraints {
+                $0.height.equalTo(height)
+            }
+        } else {
+            illustrationImageView.snp.makeConstraints {
+                $0.height.equalTo(height)
+            }
+        }
+        didUpdateSize()
     }
 }

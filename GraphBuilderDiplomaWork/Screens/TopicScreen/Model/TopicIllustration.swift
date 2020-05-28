@@ -14,8 +14,18 @@ struct TopicIllustration {
     
     // MARK: - Properties
     
-    let image: UIImage
-    let height: CGFloat
+    let image: UIImage?
+    let imageURL: URL?
+    let height: CGFloat?
+    
+    
+    // MARK: - Initialization
+    
+    init(image: UIImage? = nil, imageURL: URL? = nil, height: CGFloat? = nil) {
+        self.image = image
+        self.imageURL = imageURL
+        self.height = height
+    }
 }
 
 
