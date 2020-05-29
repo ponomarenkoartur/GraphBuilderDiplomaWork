@@ -22,6 +22,7 @@ class NumberTextField: CustomTextField {
     
     fileprivate let numberValueSubject = BehaviorSubject<Double>(value: 0)
     fileprivate let didBeginEditingSubject = PublishSubject<Bool>()
+    fileprivate let didReturnSubject = PublishSubject<Bool>()
     fileprivate let numberValueUserInputSubject =
         BehaviorSubject<Double?>(value: nil)
     var numberValue: Double {
@@ -30,6 +31,16 @@ class NumberTextField: CustomTextField {
     }
     private let bag = DisposeBag()
     private var hasDecimalSeparator = false
+    
+    override var delegate: UITextFieldDelegate? {
+        didSet {
+            if delegate !== self {
+                fatalError(
+                    "The `NumberTextField` class must be delegate of itself"
+                )
+            }
+        }
+    }
     
     
     // MARK: - Initialization
@@ -127,6 +138,11 @@ extension NumberTextField: UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        didReturnSubject.onNext(true)
+        return true
+    }
+    
 }
 
 
@@ -140,6 +156,9 @@ extension Reactive where Base == NumberTextField {
         base.numberValueUserInputSubject.asObservable()
     }
     var didBeginEditing: Observable<Bool> {
-        base.didBeginEditingSubject
+        base.didBeginEditingSubject.asObservable()
+    }
+    var didReturn: Observable<Bool> {
+        base.didReturnSubject.asObservable()
     }
 }

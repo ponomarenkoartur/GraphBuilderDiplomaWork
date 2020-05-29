@@ -521,6 +521,9 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                 self.isSettingsHidden = true
             })
             .disposed(by: bag)
+        view.rx.tapGesture()
+            .subscribe(onNext: { _ in self.view.endEditing(true) })
+            .disposed(by: bag)
         equationsTableView
             .rx
             .tapGesture()

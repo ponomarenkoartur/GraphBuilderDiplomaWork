@@ -50,6 +50,9 @@ class PlotParameterCell: BaseTableViewCell {
     private(set) lazy var parameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
         textField.font = Font.sfProDisplayRegular(size: 15)
+        textField.rx.didReturn
+            .subscribe(onNext: { _ in textField.endEditing(true) })
+            .disposed(by: bag)
         textField.rx.didBeginEditing
             .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
             .disposed(by: bag)
@@ -60,12 +63,18 @@ class PlotParameterCell: BaseTableViewCell {
         textField.rx.didBeginEditing
             .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
             .disposed(by: bag)
+        textField.rx.didReturn
+            .subscribe(onNext: { _ in textField.endEditing(true) })
+            .disposed(by: bag)
         return textField
     }()
     private(set) lazy var maxParameterValueTextField: NumberTextField = {
         let textField = Self.createNumberTextField()
         textField.rx.didBeginEditing
             .subscribe(onNext: { _ in self.didBeginEditingText(textField) })
+            .disposed(by: bag)
+        textField.rx.didReturn
+            .subscribe(onNext: { _ in textField.endEditing(true) })
             .disposed(by: bag)
         return textField
     }()
