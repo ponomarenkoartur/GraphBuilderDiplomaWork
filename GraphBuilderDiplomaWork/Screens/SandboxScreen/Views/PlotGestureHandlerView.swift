@@ -110,32 +110,40 @@ class PlotGestureHandlerView: BaseView {
                 let yOffset = Float(gr.translation(in: self).y) * k
                 
                 var targetPositions = initialPositions
-                
                 //
-                //  Condition (x, y, z) |    x    |    y    |    z    |
-                //  ____________________|_________|_________|_________|
-                //           111        | xOffset | yOffset |    -    |
-                //           110        | xOffset | yOffset |    -    |
-                //           101        | xOffset |    -    | yOffset |
-                //           100        | xOffset |    -    |    -    |
-                //           011        |    -    | yOffset | xOffset |
-                //           010        |    -    | yOffset |    -    |
-                //           001        |    -    |    -    | yOffset |
-                //           000        |    -    |    -    |    -    |
+                //  Condition (x, y, z) |      x      |      y      |      z      |
+                //  ____________________|_____________|_____________|_____________|
+                //           111        |   xOffset   |   yOffset   |      -      |
+                //           110        |   xOffset   |   yOffset   |      -      |
+                //           101        |   xOffset   |      -      |   yOffset   |
+                //           100        | (x+y)Offset |      -      |      -      |
+                //           011        |      -      |   yOffset   |   xOffset   |
+                //           010        |      -      | (x+y)Offset |      -      |
+                //           001        |      -      |      -      | (x+y)Offset |
+                //           000        |      -      |      -      |      -      |
                 //
                 for (i, _) in targetPositions.enumerated() {
-                    if shouldHandleAxis.x {
+                    switch shouldHandleAxis {
+                    case (x: true, y: true, z: _):
                         targetPositions[i].x += xOffset
-                    }
-                    if shouldHandleAxis.y {
                         targetPositions[i].y += -yOffset
-                    }
-                    if shouldHandleAxis.z && !shouldHandleAxis.x {
-                        targetPositions[i].z += (-xOffset + yOffset) / 2
-                    } else if shouldHandleAxis.z && !shouldHandleAxis.y {
-                        targetPositions[i].z += -xOffset
+                    case (x: true, y: false, z: true):
+                        targetPositions[i].x += xOffset
+                        targetPositions[i].z += -yOffset
+                    case (x: true, y: false, z: false):
+                        targetPositions[i].x += (xOffset + -yOffset) / 2
+                    case (x: false, y: true, z: true):
+                        targetPositions[i].y += -yOffset
+                        targetPositions[i].z += xOffset
+                    case (x: false, y: true, z: false):
+                        targetPositions[i].y += (xOffset + -yOffset) / 2
+                    case (x: false, y: false, z: true):
+                        targetPositions[i].z += (xOffset + -yOffset) / 2
+                    case (x: false, y: false, z: false):
+                        break
                     }
                 }
+                
                 setPositions(targetPositions)
             case .local:
                 let k: Double = 1 / 200
@@ -146,32 +154,45 @@ class PlotGestureHandlerView: BaseView {
                 var targetBoundsList = initialGridBoundsList
                 
                 //
-                //  Condition (x, y, z) |    x    |    y    |    z    |
-                //  ____________________|_________|_________|_________|
-                //           111        | xOffset | yOffset |    -    |
-                //           110        | xOffset | yOffset |    -    |
-                //           101        | xOffset |    -    | yOffset |
-                //           100        | xOffset |    -    |    -    |
-                //           011        |    -    | yOffset | xOffset |
-                //           010        |    -    | yOffset |    -    |
-                //           001        |    -    |    -    | yOffset |
-                //           000        |    -    |    -    |    -    |
+                //  Condition (x, y, z) |      x      |      y      |      z      |
+                //  ____________________|_____________|_____________|_____________|
+                //           111        |   xOffset   |   yOffset   |      -      | v
+                //           110        |   xOffset   |   yOffset   |      -      | v
+                //           101        |   xOffset   |      -      |   yOffset   | v
+                //           100        | (x+y)Offset |      -      |      -      | v
+                //           011        |      -      |   yOffset   |   xOffset   | v
+                //           010        |      -      | (x+y)Offset |      -      | v
+                //           001        |      -      |      -      | (x+y)Offset | v
+                //           000        |      -      |      -      |      -      |
                 //
                 for (i, _) in targetBoundsList.enumerated() {
-                    if shouldHandleAxis.x {
+                    switch shouldHandleAxis {
+                    case (x: true, y: true, z: _):
                         targetBoundsList[i].x +=
                             -xOffset * targetBoundsList[i].x.absDelta
-                    }
-                    if shouldHandleAxis.y {
                         targetBoundsList[i].y +=
                             yOffset * targetBoundsList[i].y.absDelta
-                    }
-                    if shouldHandleAxis.z && !shouldHandleAxis.x {
-                        targetBoundsList[i].z += (-xOffset + yOffset) / 2 *
-                            targetBoundsList[i].z.absDelta
-                    } else if shouldHandleAxis.z && !shouldHandleAxis.y {
+                    case (x: true, y: false, z: true):
+                        targetBoundsList[i].x +=
+                            -xOffset * targetBoundsList[i].x.absDelta
+                        targetBoundsList[i].z +=
+                            yOffset * targetBoundsList[i].z.absDelta
+                    case (x: true, y: false, z: false):
+                        targetBoundsList[i].x += (-xOffset + yOffset) / 2 *
+                            targetBoundsList[i].x.absDelta
+                    case (x: false, y: true, z: true):
+                        targetBoundsList[i].y +=
+                            yOffset * targetBoundsList[i].y.absDelta
                         targetBoundsList[i].z +=
                             -xOffset * targetBoundsList[i].z.absDelta
+                    case (x: false, y: true, z: false):
+                        targetBoundsList[i].y += (-xOffset + yOffset) / 2 *
+                            targetBoundsList[i].y.absDelta
+                    case (x: false, y: false, z: true):
+                        targetBoundsList[i].z += (-xOffset + yOffset) / 2 *
+                            targetBoundsList[i].z.absDelta
+                    case (x: false, y: false, z: false):
+                        break
                     }
                 }
                 setBoundsList(targetBoundsList)
