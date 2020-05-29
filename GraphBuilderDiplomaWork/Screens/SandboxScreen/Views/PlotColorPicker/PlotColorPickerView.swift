@@ -40,6 +40,7 @@ class PlotColorPickerView: BaseView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Color"
+        label.textColor = Color.defaultText()
         label.font = Font.sfProDisplayRegular(size: 13)
         return label
     }()
@@ -101,10 +102,10 @@ class PlotColorPickerView: BaseView {
     
     override func setupBinding() {
         super.setupBinding()
-        Observable.just(Self.colors).bind(to: colorCollectionView.rx.items(
-            cellIdentifier: cellID,
-            cellType: PlotColorPickerCell.self)) { index, color, cell  in
-                cell.color = color
+        Observable.just(Self.colors)
+            .bind(to: colorCollectionView.rx.items(
+                cellIdentifier: cellID, cellType: PlotColorPickerCell.self)) {
+            _, color, cell in cell.color = color
         }
         .disposed(by: bag)
     }

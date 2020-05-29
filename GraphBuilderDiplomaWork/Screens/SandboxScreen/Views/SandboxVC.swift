@@ -100,7 +100,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
                     return 0
                 }
         }
-        
     }
     
     private(set) var mode: PlotPresentationMode = .vr
@@ -516,7 +515,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     private func setupGestureRecognizers() {
         view.rx
             .panGesture()
-            .when(.recognized)
+            .when(.began)
             .subscribe(onNext: { _ in
                 self.isColorPickerHidden = true
                 self.isSettingsHidden = true
