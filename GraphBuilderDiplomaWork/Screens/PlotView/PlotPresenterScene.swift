@@ -84,17 +84,11 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         gridBoundsSubject
             .subscribe(onNext: { gridBounds in
                 self.gridNode.setBounds(gridBounds)
-                self.equationTransformator.setBounds(gridBounds)
                 self.plotsNodes.forEach { plot, node in
-                    self.updateGeometry(with: plot, of: node)
-                    
-                    node.position.x = -Float(gridBounds.x.mid) * Float(defaultBoxSize / gridBounds.x.delta)
-                    node.position.y = -Float(gridBounds.y.mid) * Float(defaultBoxSize / gridBounds.y.delta)
-                    node.position.z = -Float(gridBounds.z.mid) * Float(defaultBoxSize / gridBounds.z.delta)
-                    
-                    node.scale.x = Float(defaultBoxSize / gridBounds.x.delta)
-                    node.scale.y = Float(defaultBoxSize / gridBounds.y.delta)
-                    node.scale.z = Float(defaultBoxSize / gridBounds.z.delta)
+                    if !node.isHidden && plot.error == nil {
+                        self.updateGeometry(with: plot, of: node, inBounds: gridBounds)
+                        self.updatePositionAndScale(for: gridBounds, of: node)
+                    }
                 }
             })
             .disposed(by: bag)
@@ -131,10 +125,19 @@ class PlotScene: BaseSCNScene, PlotPresenter {
             })
             .disposed(by: bag)
         
+        plot.rx.isHidden
+            .subscribe(onNext: { isHidden in
+                if !isHidden {
+                    self.updateGeometry(with: plot, of: node, inBounds: self.gridBounds)
+                    self.updatePositionAndScale(for: self.gridBounds, of: node)
+                }
+            })
+            .disposed(by: bag)
+        
         var parametersDiposable: Disposable?
         plot.rx.equation
             .subscribe(onNext: { equation in
-                self.updateGeometry(with: plot, of: node)
+                self.updateGeometry(with: plot, of: node, inBounds: self.gridBounds)
                 parametersDiposable?.dispose()
                 parametersDiposable = self.observeParameters(plot, node: node)
             })
@@ -209,12 +212,13 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     private func observeParameters(_ plot: Plot, node: SCNNode) -> Disposable {
         Observable.combineLatest(plot.equation.parameters.map { $0.rx.value })
             .subscribe(onNext: { _ in
-                self.updateGeometry(with: plot, of: node)
+                self.updateGeometry(with: plot, of: node, inBounds: self.gridBounds)
             })
     }
     
-    private func updateGeometry(with plot: Plot, of node: SCNNode) {
+    private func updateGeometry(with plot: Plot, of node: SCNNode, inBounds bounds: GridBounds) {
         do {
+            equationTransformator.setBounds(bounds)
             let points = try self.equationTransformator
                 .getPoints(from: plot.equation)
             guard let geometry = try? PlotGeometryCreator().build(points)
@@ -228,5 +232,19 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         } catch let error {
             plot.error = error
         }
+    }
+    
+    private func updatePositionAndScale(for gridBounds: GridBounds,
+                                        of node: SCNNode) {
+        node.position.x = -Float(gridBounds.x.mid) *
+            Float(defaultBoxSize / gridBounds.x.delta)
+        node.position.y = -Float(gridBounds.y.mid) *
+            Float(defaultBoxSize / gridBounds.y.delta)
+        node.position.z = -Float(gridBounds.z.mid) *
+            Float(defaultBoxSize / gridBounds.z.delta)
+        
+        node.scale.x = Float(defaultBoxSize / gridBounds.x.delta)
+        node.scale.y = Float(defaultBoxSize / gridBounds.y.delta)
+        node.scale.z = Float(defaultBoxSize / gridBounds.z.delta)
     }
 }
