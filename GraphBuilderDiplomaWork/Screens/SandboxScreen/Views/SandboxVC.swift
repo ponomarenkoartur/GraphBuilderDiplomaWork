@@ -697,7 +697,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         cell.didLongPressPlotImageButton = {
             self.colorPickerRowTargetIndex = plotIndex
             self.isColorPickerHidden = false
-            self.moveColorPickerToCell(at: plotIndex)
+            self.moveColorPickerToCell(at: indexPath)
         }
         cell.didChangeEquationText = { text in
             self.didChangeEquationText(item, plotIndex, text)
@@ -724,38 +724,39 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         }
     }
     
-    private func moveColorPickerToCell(at index: Int) {
-        let rect = self.equationsTableView
-            .rectForRow(at: IndexPath(section: index))
+    private func moveColorPickerToCell(at indexPath: IndexPath) {
+        let rect = equationsTableView.rectForRow(at: indexPath)
         let rectOfCellInSuperview = equationsTableView.convert(rect, to: view)
         let absoluteYCellMiddle = rectOfCellInSuperview.midY
         
         var colorPickerYOffset =
             absoluteYCellMiddle - plotColorPicker.frame.height / 2
         
-        let minPickerOffset =
-            equationsTableView.frame.minY - plotColorPicker.frame.height / 2
-                + equationsTableView.rowHeight / 2
+        let minPickerOffset = equationsTableView.frame.minY + rect.height / 2
+            - plotColorPicker.frame.height / 2
         let maxPickerOffset =
             view.frame.height - plotColorPicker.frame.height
                 - WindowSafeArea.insets.bottom - 5
         
+        
         if colorPickerYOffset > maxPickerOffset {
             colorPickerYOffset = maxPickerOffset
-            let scrollOffset = equationsTableView.tableHeaderView!.frame.height
-                + equationsTableView.rowHeight * (CGFloat(index) + 1.5)
-                - equationsTableView.frame.height
-                + equationsTableView.layer.cornerRadius
-                + WindowSafeArea.insets.bottom * 2
+            
+            let targetPosition =
+                colorPickerYOffset + plotColorPicker.frame.height / 2
+            let targetPositionInTable = self.view
+                .convert(CGPoint(x: 0, y: targetPosition),
+                         to: equationsTableView).y
+            let startCellPosition = rect.midY
+            
+            let scrollOffset = startCellPosition - targetPositionInTable
+                + equationsTableView.contentOffset.y
             equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
                                                 animated: true)
         } else if colorPickerYOffset < minPickerOffset {
             colorPickerYOffset = minPickerOffset
-            let scrollOffset =
-                equationsTableView.tableHeaderView!.frame.height +
-                    equationsTableView.rowHeight * (CGFloat(index))
-            equationsTableView.setContentOffset(CGPoint(x: 0, y: scrollOffset),
-                                                animated: true)
+            equationsTableView.scrollToRow(at: indexPath,
+                                           at: .top, animated: true)
         }
         self.plotColorPicker.snp.updateConstraints {
             $0.top.equalToSuperview().offset(colorPickerYOffset)
@@ -778,6 +779,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         getPlotIndex(from: indexPath.section)
     }
     
+    /// - Parameter plotIndex: index of plot
+    /// - Returns: section of plot
     private func getPlotCellSection(from plotIndex: Int) -> Int {
         plotIndex * 2
     }
