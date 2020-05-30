@@ -560,7 +560,7 @@
 		04D43FFA2450384F00034A89 /* TopicIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicIllustration.swift; sourceTree = "<group>"; };
 		04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicScreenDataBinder.swift; sourceTree = "<group>"; };
 		04DD162F247FDFF600D271F6 /* TopicsContainerDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerDataBinder.swift; sourceTree = "<group>"; };
-		04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphBuilderDiplomaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F3D17F241AE0E100C4FBEB /* AR Plot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Plot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F3D182241AE0E100C4FBEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F3D18B241AE0E200C4FBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F3D18E241AE0E200C4FBEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1236,7 +1236,7 @@
 		04F3D180241AE0E100C4FBEB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */,
+				04F3D17F241AE0E100C4FBEB /* AR Plot.app */,
 				048A97032450563400161936 /* GraphBuilderDiplomaWorkTests.xctest */,
 			);
 			name = Products;
@@ -1322,7 +1322,7 @@
 			);
 			name = GraphBuilderDiplomaWork;
 			productName = GraphBuilderDiplomaWork;
-			productReference = 04F3D17F241AE0E100C4FBEB /* GraphBuilderDiplomaWork.app */;
+			productReference = 04F3D17F241AE0E100C4FBEB /* AR Plot.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2030,7 +2030,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "AR Plot";
 				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2053,7 +2053,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ponomarenko.artur.GraphBuilderDiplomaWork;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "AR Plot";
 				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
