@@ -39,11 +39,22 @@ class SavedEquationsCell: BaseTableViewCell {
         return label
     }()
     
+    private lazy var selectionDetectorImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Image.equationSaved()
+        imageView.tintColor = Color.turquoise()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        imageView.snp.makeConstraints { $0.size.equalTo(20) }
+        return imageView
+    }()
+    
     
     // MARK: - Setup Methods
     
     override func setupUI() {
         super.setupUI()
+        selectionStyle = .none
     }
     
     override func addSubviews() {
@@ -53,7 +64,8 @@ class SavedEquationsCell: BaseTableViewCell {
             numberLabel,
             UIView.createSpacer(w: 3),
             latexLabel,
-            UIView()
+            UIView(),
+            selectionDetectorImageView
         ])
     }
     
@@ -64,6 +76,11 @@ class SavedEquationsCell: BaseTableViewCell {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview().offset(-30)
         }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        selectionDetectorImageView.isHidden = !selected
     }
     
     

@@ -99,7 +99,6 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         
         axisesRotationAnglesSubject
             .subscribe(onNext: {
-                print($0.x.radiansToDegrees, $0.y.radiansToDegrees, $0.z.radiansToDegrees)
                 self.plotsAndGridWrapper.eulerAngles = $0
             })
             .disposed(by: bag)

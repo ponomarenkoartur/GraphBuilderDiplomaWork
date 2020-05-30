@@ -256,7 +256,6 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
             if let index = self.colorPickerRowTargetIndex {
                 self.didSelectColorForPlot(color, index)
             }
-            print("Color: \(color) selected")
         }
         return plotColorPicker
     }()

@@ -211,6 +211,7 @@
 		043DC8462450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */; };
 		043DC848245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
 		043DC849245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
+		043DE11024828AEB008C41CD /* SelectiveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DE10F24828AEB008C41CD /* SelectiveItem.swift */; };
 		04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */; };
 		04467A2C2459A4AE002DD9D8 /* SCNNode extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */; };
 		044B65AB244B36CC0037D904 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */; };
@@ -432,6 +433,7 @@
 		043DC842245091E700CBC58F /* NamedSwitchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedSwitchControl.swift; sourceTree = "<group>"; };
 		043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		043DC847245093DA00CBC58F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		043DE10F24828AEB008C41CD /* SelectiveItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveItem.swift; sourceTree = "<group>"; };
 		04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresenterScene.swift; sourceTree = "<group>"; };
 		04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode extension.swift"; sourceTree = "<group>"; };
 		044B6599244B36CC0037D904 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -706,6 +708,7 @@
 				0425DC71247D4F3500A3D66F /* Views */,
 				0425DC6D247D490700A3D66F /* SavedEquationsVM.swift */,
 				0425DC6F247D491C00A3D66F /* SavedEquationsDataBinder.swift */,
+				043DE10F24828AEB008C41CD /* SelectiveItem.swift */,
 			);
 			path = SavedEquations;
 			sourceTree = "<group>";
@@ -1682,6 +1685,7 @@
 				04CE0E56244B17CF006B19B0 /* MainCoordinator.swift in Sources */,
 				04CE0E49244B174B006B19B0 /* SafeAreaInsets.swift in Sources */,
 				04467A2C2459A4AE002DD9D8 /* SCNNode extension.swift in Sources */,
+				043DE11024828AEB008C41CD /* SelectiveItem.swift in Sources */,
 				04CE0E70244B1839006B19B0 /* UICollectionViewCell extension.swift in Sources */,
 				04187077241AE3BC00897335 /* MathpixRecognizer.swift in Sources */,
 				046E98CE244B549100611091 /* TopicsListVM.swift in Sources */,

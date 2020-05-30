@@ -13,7 +13,10 @@ import RxSwift
 protocol SavedEquationsVCProtocol: UIViewController {
     var didTapDeleteEquationAt: (_ index: Int) -> () { get set }
     var didSelectEquationAt: (_ index: Int) -> () { get set }
-    func setEquations(_ equations: [Equation])
+    var didDeselectEquationAt: (_ index: Int) -> () { get set }
+    var didTapConfirmSelection: () -> () { get set }
+    func setEquations(_ equations: [SelectiveItem<Equation>])
+    func setConfirmButtonEnabled(_ isEnabled: Bool)
 }
 
 class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
@@ -23,7 +26,10 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
     
     var didTapDeleteEquationAt: (_ index: Int) -> () = { _ in }
     var didSelectEquationAt: (_ index: Int) -> () = { _ in }
-    private let equationsSubject = BehaviorSubject<[Equation]>(value: [])
+    var didTapConfirmSelection: () -> () = {}
+    var didDeselectEquationAt: (_ index: Int) -> () = { _ in }
+    private let equationsSubject =
+        BehaviorSubject<[SelectiveItem<Equation>]>(value: [])
     
     
     // MARK: Views
@@ -34,18 +40,32 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.allowsSelection = true
-        tableView.allowsMultipleSelection = false
+        tableView.allowsMultipleSelection = true
         
         equationsSubject.bind(to: tableView.rx.items) {
-            (tableView: UITableView, index: Int, equation: Equation)
+            (tableView: UITableView, index: Int,
+            equation: SelectiveItem<Equation>)
             -> UITableViewCell in
             let cell = tableView.dequeue(SavedEquationsCell.self, for: index)
                 ?? SavedEquationsCell()
             let configurator = SavedEquationsCellConfigurator(cell: cell)
-            configurator.configure(with: (index + 1, equation))
+            configurator.configure(with: (index + 1, equation.item))
+            if equation.isSelected {
+                tableView.selectRow(at: IndexPath(row: index), animated: true,
+                                    scrollPosition: .none)
+            }
             return cell
         }.disposed(by: bag)
         return tableView
+    }()
+    
+    private lazy var confirmSelectionButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Confirm", style: .done,
+                                     target: nil, action: nil)
+        button.rx.tap.subscribe(onNext: self.didTapConfirmSelection)
+            .disposed(by: bag)
+        button.tintColor = Color.turquoise()
+        return button
     }()
     
     
@@ -53,6 +73,7 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
     
     override func setupUI() {
         super.setupUI()
+        navigationItem.rightBarButtonItem = confirmSelectionButton
         title = "Saved Equations"
     }
     
@@ -69,8 +90,12 @@ class SavedEquationsVC: BaseVC, SavedEquationsVCProtocol {
     
     // MARK: - API Methods
     
-    func setEquations(_ equations: [Equation]) {
+    func setEquations(_ equations: [SelectiveItem<Equation>]) {
         equationsSubject.onNext(equations)
+    }
+    
+    func setConfirmButtonEnabled(_ isEnabled: Bool) {
+        confirmSelectionButton.isEnabled = isEnabled
     }
 }
 
@@ -93,6 +118,10 @@ extension SavedEquationsVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         didSelectEquationAt(indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didDeselectRowAt indexPath: IndexPath) {
+        didDeselectEquationAt(indexPath.row)
     }
 }

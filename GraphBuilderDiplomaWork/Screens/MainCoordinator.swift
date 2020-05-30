@@ -47,8 +47,8 @@ class MainCoordinator: BaseCoordinator {
             case .didTapTopics:
                 self.pushTopicsList()
             case .didTapSavedEquations:
-                self.pushSavedEquations { selectedEquation in
-                    self.pushSandbox(with: [selectedEquation])
+                self.pushSavedEquations { selectedEquations in
+                    self.pushSandbox(with: selectedEquations)
                 }
             }
         }
@@ -78,9 +78,9 @@ class MainCoordinator: BaseCoordinator {
         vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         vm.setPlotList(equations.map { Plot(equation: $0) })
         vm.didRequireAddingEquationFromSaved = {
-            self.pushSavedEquations { (selectedEquation) in
+            self.pushSavedEquations { selectedEquations in
                 self.navVC.popViewController(animated: true)
-                vm.addPlot(Plot(equation: selectedEquation))
+                selectedEquations.forEach { vm.addPlot(Plot(equation: $0)) }
             }
         }
         
@@ -166,7 +166,7 @@ class MainCoordinator: BaseCoordinator {
     }
     
     private func pushSavedEquations(
-        completion: @escaping (_ selectedEquation: Equation) -> ()) {
+        completion: @escaping (_ selectedEquations: [Equation]) -> ()) {
         let vm = SavedEquationsVM()
         let vc = SavedEquationsVC()
         let dataBinder = SavedEquationsDataBinder(viewModel: vm, views: [vc])
@@ -174,8 +174,8 @@ class MainCoordinator: BaseCoordinator {
         
         vm.finishCompletion = { reason in
             switch reason {
-            case .didSelectEquation(let equation):
-                completion(equation)
+            case .didSelectEquations(let equations):
+                completion(equations)
             }
         }
         
