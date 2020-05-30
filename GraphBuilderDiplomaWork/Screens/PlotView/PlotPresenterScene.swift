@@ -28,6 +28,10 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     var plotsAndGridWrapperPosition: SCNVector3 {
         plotsAndGridWrapper.position
     }
+    var relativeAxisesPosition: SCNVector3 {
+        plotsAndGridWrapper.convertVector(plotsAndGridWrapperPosition,
+                                          from: rootWrapperNode)
+    }
     
     private var axisesRotationAnglesSubject =
         BehaviorSubject(value: SCNVector3(0, 0, 0))
@@ -41,7 +45,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     private var equationTransformator = EquationTransformator()
     
     /// Node that contains all nodes except camera
-    private lazy var plotsAndGridWrapper = SCNNode()
+    private(set) lazy var plotsAndGridWrapper = SCNNode()
     private let plotWrapperNode: SCNNode = {
         let node = SCNNode()
         node.name = "plotWrapperNode"
@@ -95,6 +99,7 @@ class PlotScene: BaseSCNScene, PlotPresenter {
         
         axisesRotationAnglesSubject
             .subscribe(onNext: {
+                print($0.x.radiansToDegrees, $0.y.radiansToDegrees, $0.z.radiansToDegrees)
                 self.plotsAndGridWrapper.eulerAngles = $0
             })
             .disposed(by: bag)
@@ -204,6 +209,11 @@ class PlotScene: BaseSCNScene, PlotPresenter {
     
     func resetBounds(animationDuration: TimeInterval = 0) {
         setBounds(-1...1)
+    }
+    
+    func setRelativeAxisesPosition(_ position: SCNVector3) {
+        plotsAndGridWrapper.position =
+            plotsAndGridWrapper.convertVector(position, to: rootWrapperNode)
     }
 
     

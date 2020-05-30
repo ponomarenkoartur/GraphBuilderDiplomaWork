@@ -14,9 +14,21 @@ import RxSwift
 class PlotGestureHandlerView: BaseView {
     
     
+    // MARK: - Enums
+    
+    enum PanMovingMode {
+        /// Pan gesture moves plot in absolute directions regardless of its euler angles
+        case absolute
+        /// Pan gesture moves plot in relative directions depending of its euler angles
+        /// That means that plot will be moved in directions of its axises
+        case relative
+    }
+    
+    
     // MARK: - Properties
     
     private(set) var scenes: [PlotPresenter] = []
+    private(set) var panMovingModes: [PanMovingMode] = []
     var shouldHandleAxis: (x: Bool, y: Bool, z: Bool) = (true, true, true)
     
     fileprivate var manipulationModeSubject = BehaviorSubject(value: PlotManipulationMode.local)
@@ -49,6 +61,9 @@ class PlotGestureHandlerView: BaseView {
     private var initialGridBoundsList: [GridBounds]?
     /// Plot position before pan gesture began
     private var initialPositions: [SCNVector3]?
+    
+    /// Relative positions of plots before pan gesture began
+    private var initialRelativeAxisesPositions: [SCNVector3]?
     /// Plot rotations before rotation gesture began
     private var initialAxisesRotation: [SCNVector3]?
     
@@ -96,9 +111,11 @@ class PlotGestureHandlerView: BaseView {
         case .began:
             initialGridBoundsList = scenes.map { $0.gridBounds }
             initialPositions = scenes.map { $0.plotsAndGridWrapperPosition }
+            initialRelativeAxisesPositions = scenes.map { $0.relativeAxisesPosition }
         case .changed:
             guard let initialGridBoundsList = initialGridBoundsList,
-                let initialPositions = initialPositions else {
+                let initialPositions = initialPositions,
+                let initialRelativeAxisesPositions = initialRelativeAxisesPositions else {
                 return
             }
             
@@ -108,8 +125,11 @@ class PlotGestureHandlerView: BaseView {
                 
                 let xOffset = Float(gr.translation(in: self).x) * k
                 let yOffset = Float(gr.translation(in: self).y) * k
+                let sumOffset = (xOffset - yOffset) / 2
                 
                 var targetPositions = initialPositions
+                var targetRelativeAxisesPositions = initialRelativeAxisesPositions
+                
                 //
                 //  Condition (x, y, z) |      x      |      y      |      z      |
                 //  ____________________|_____________|_____________|_____________|
@@ -127,24 +147,42 @@ class PlotGestureHandlerView: BaseView {
                     case (x: true, y: true, z: _):
                         targetPositions[i].x += xOffset
                         targetPositions[i].y += -yOffset
+                        
+                        targetRelativeAxisesPositions[i].x += xOffset
+                        targetRelativeAxisesPositions[i].y += -yOffset
                     case (x: true, y: false, z: true):
                         targetPositions[i].x += xOffset
                         targetPositions[i].z += -yOffset
+                        
+                        targetRelativeAxisesPositions[i].x += xOffset
+                        targetRelativeAxisesPositions[i].z += -yOffset
                     case (x: true, y: false, z: false):
-                        targetPositions[i].x += (xOffset + -yOffset) / 2
+                        targetPositions[i].x += sumOffset
+                        targetRelativeAxisesPositions[i].x += sumOffset
                     case (x: false, y: true, z: true):
                         targetPositions[i].y += -yOffset
                         targetPositions[i].z += xOffset
+                        
+                        targetRelativeAxisesPositions[i].y += -yOffset
+                        targetRelativeAxisesPositions[i].z += xOffset
                     case (x: false, y: true, z: false):
-                        targetPositions[i].y += (xOffset + -yOffset) / 2
+                        targetPositions[i].y += sumOffset
+                        targetRelativeAxisesPositions[i].y += sumOffset
                     case (x: false, y: false, z: true):
-                        targetPositions[i].z += (xOffset + -yOffset) / 2
+                        targetPositions[i].z += sumOffset
+                        targetRelativeAxisesPositions[i].z += sumOffset
                     case (x: false, y: false, z: false):
                         break
                     }
+                    
+                    switch panMovingModes[i] {
+                    case .absolute:
+                        scenes[i].setRootPosition(targetPositions[i])
+                    case .relative:
+                        scenes[i].setRelativeAxisesPosition(
+                            targetRelativeAxisesPositions[i])
+                    }
                 }
-                
-                setPositions(targetPositions)
             case .local:
                 let k: Double = 1 / 200
                 
@@ -289,9 +327,12 @@ class PlotGestureHandlerView: BaseView {
         }
     }
     
-    func addScenes(_ scenesToAdd: [PlotScene]) {
-        scenes.append(contentsOf: scenesToAdd)
+    func addScene(_ sceneToAdd: PlotScene, panMovingMode: PanMovingMode) {
+        scenes.append(sceneToAdd)
+        panMovingModes.append(panMovingMode)
     }
+    
+    
     
     
     // MARK: - Private Methods
@@ -320,10 +361,14 @@ class PlotGestureHandlerView: BaseView {
     private func setPositions(_ targetPositions: [SCNVector3]) {
         scenes.combined(with: targetPositions).forEach {
             scene, targetPosition in
-            scene.setRootPosition(
-                x: shouldHandleAxis.x ? targetPosition.x : nil,
-                y: shouldHandleAxis.y ? targetPosition.y : nil,
-                z: shouldHandleAxis.z ? targetPosition.z : nil)
+            scene.setRootPosition(targetPosition)
+        }
+    }
+    
+    private func setRelativeAxisesPositions(_ targetPositions: [SCNVector3]) {
+        scenes.combined(with: targetPositions).forEach {
+            scene, targetPosition in
+            scene.setRelativeAxisesPosition(targetPosition)
         }
     }
     

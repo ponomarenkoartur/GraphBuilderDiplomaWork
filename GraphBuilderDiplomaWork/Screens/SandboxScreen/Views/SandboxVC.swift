@@ -261,7 +261,8 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
     
     private(set) lazy var gestureHandlerView: PlotGestureHandlerView = {
         let view = PlotGestureHandlerView()
-        view.addScenes(plotScenes)
+        view.addScene(plotScenes[0], panMovingMode: .absolute)
+        view.addScene(plotScenes[1], panMovingMode: .relative)
         view.didTap = { self.arscnPlotView.placeNode() }
         return view
     }()

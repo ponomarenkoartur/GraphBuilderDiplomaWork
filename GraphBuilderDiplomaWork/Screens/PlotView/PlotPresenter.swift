@@ -16,6 +16,7 @@ protocol PlotPresenter: GridBoundable {
     var gridBounds: GridBounds { get }
     var plotsAndGridWrapperPosition: SCNVector3 { get }
     var axisesRotationAngles: SCNVector3 { get }
+    var relativeAxisesPosition: SCNVector3 { get }
     var nodeScale: SCNVector3 { get }
     /// Adds a plot to the grid.
     /// - Parameter plot: plot to build
@@ -59,6 +60,7 @@ protocol PlotPresenter: GridBoundable {
     func resetRotation(animationDuration: TimeInterval)
     func resetRootPosition(animationDuration: TimeInterval)
     func resetBounds(animationDuration: TimeInterval)
+    func setRelativeAxisesPosition(_ position: SCNVector3)
 }
 
 
