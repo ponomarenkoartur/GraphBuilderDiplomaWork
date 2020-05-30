@@ -18,6 +18,7 @@ protocol SandboxVCProtocol: UIViewController {
     var didTapSettingsButton: () -> () { get set }
     var didTapRecognizeButton: () -> () { get set }
     var didTapAddPlot: () -> () { get set }
+    var didTapAddEquationFromSaved: () -> () { get set }
     var didTapChangeMode: (_ mode: PlotPresentationMode) -> () { get set }
     var didTapShowPlot: (_ show: Bool, _ index: Int) -> () { get set }
     var didSelectColorForPlot: (_ color: UIColor, _ index: Int) -> () { get set }
@@ -120,6 +121,7 @@ class SandboxVC: BaseVC, SandboxVCProtocol {
         (_ plot: Plot, _ index: Int, _ text: String) -> () = { _, _, _ in }
     var didTapRecognizeButton: () -> () = {}
     var didTapSaveEquationAt: (_ index: Int) -> () = { _ in }
+    var didTapAddEquationFromSaved: () -> () = { }
     
     // MARK: Views
     
@@ -827,6 +829,7 @@ extension SandboxVC: UITableViewDataSource {
                 .dequeue(SandboxAddPlotCell.self, for: indexPath) ??
                 SandboxAddPlotCell()
             cell.didTap = didTapAddPlot
+            cell.didLongPress = didTapAddEquationFromSaved
             return cell
         }
         

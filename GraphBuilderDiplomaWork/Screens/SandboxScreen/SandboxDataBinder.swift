@@ -100,6 +100,9 @@ class SandboxDataBinder<ViewModel>:
             view.didTapSaveEquationAt = { index in
                 self.viewModel.saveEquation(at: index)
             }
+            view.didTapAddEquationFromSaved = {
+                self.viewModel.addEquationFromSaved()
+            }
         }
     }
 }

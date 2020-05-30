@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 
 class SandboxAddPlotCell: BaseTableViewCell {
@@ -17,6 +18,7 @@ class SandboxAddPlotCell: BaseTableViewCell {
     // MARK: Callbacks
     
     var didTap: () -> () = {}
+    var didLongPress: () -> () = {}
     
     // MARK: Views
     
@@ -57,5 +59,10 @@ class SandboxAddPlotCell: BaseTableViewCell {
     private func setupGestures() {
         contentView.rx.tapGesture().subscribe(onNext: { _ in self.didTap() })
             .disposed(by: bag)
+        contentView.rx
+            .longPressGesture()
+            .when(.began)
+            .subscribe(onNext: { _ in self.didLongPress() })
+        .disposed(by: bag)
     }
 }

@@ -47,7 +47,9 @@ class MainCoordinator: BaseCoordinator {
             case .didTapTopics:
                 self.pushTopicsList()
             case .didTapSavedEquations:
-                self.pushSavedEquations()
+                self.pushSavedEquations { selectedEquation in
+                    self.pushSandbox(with: [selectedEquation])
+                }
             }
         }
         navVC.push(vc)
@@ -69,13 +71,18 @@ class MainCoordinator: BaseCoordinator {
     
     private func pushSandbox(with equations: [Equation] = []) {
         let vm = SandboxVM()
-        equations.forEach { vm.addPlot(Plot(equation: $0)) }
-        vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         let vc = SandboxVC()
         let dataBinder = SandboxDataBinder(viewModel: vm, views: [vc])
         dataBinder.bind()
         
+        vm.finishCompletion = { self.navVC.popViewController(animated: true) }
         vm.setPlotList(equations.map { Plot(equation: $0) })
+        vm.didRequireAddingEquationFromSaved = {
+            self.pushSavedEquations { (selectedEquation) in
+                self.navVC.popViewController(animated: true)
+                vm.addPlot(Plot(equation: selectedEquation))
+            }
+        }
         
 //        vm.setPlotList([
 //            Plot(equation: "x^2+z^2", color: .green),
@@ -158,7 +165,8 @@ class MainCoordinator: BaseCoordinator {
         navVC.present(imagePicker, animated: true)
     }
     
-    private func pushSavedEquations() {
+    private func pushSavedEquations(
+        completion: @escaping (_ selectedEquation: Equation) -> ()) {
         let vm = SavedEquationsVM()
         let vc = SavedEquationsVC()
         let dataBinder = SavedEquationsDataBinder(viewModel: vm, views: [vc])
@@ -167,7 +175,7 @@ class MainCoordinator: BaseCoordinator {
         vm.finishCompletion = { reason in
             switch reason {
             case .didSelectEquation(let equation):
-                self.pushSandbox(with: [equation])
+                completion(equation)
             }
         }
         

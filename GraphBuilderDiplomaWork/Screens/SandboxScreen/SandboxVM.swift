@@ -18,6 +18,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     var didSavePhoto: () -> () { get set }
     var didRequestPictureRecognitionVC: () -> () { get set }
     var didAddEquationRecognizedFromImage: () -> () { get set }
+    var didRequireAddingEquationFromSaved: () -> () { get set }
     var plotsList: [Plot] { get }
     var recognitionErrorText: Observable<String?> { get }
     var isLoading: Observable<Bool> { get }
@@ -30,6 +31,7 @@ protocol SandboxVMProtocol: ViewModelProtocol where FinishCompletionReason == NS
     func addPlots(fromImage image: UIImage)
     func discardError()
     func saveEquation(at index: Int)
+    func addEquationFromSaved()
 }
 
 class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
@@ -61,6 +63,7 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
     var didSavePhoto: () -> () = {}
     var didRequestPictureRecognitionVC: () -> () = {}
     var didAddEquationRecognizedFromImage: () -> () = {}
+    var didRequireAddingEquationFromSaved: () -> () = {}
     
     
     // MARK: - API Methods
@@ -134,5 +137,9 @@ class SandboxVM: BaseVM<NSNull>, SandboxVMProtocol {
         guard let plot = plotsList[safe: index] else { return }
         let equation = plot.equation
         EquationDataService.shared.addEquation(equation)
+    }
+    
+    func addEquationFromSaved() {
+        didRequireAddingEquationFromSaved()
     }
 }
