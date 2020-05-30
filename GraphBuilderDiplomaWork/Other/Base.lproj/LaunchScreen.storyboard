@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -28,8 +29,8 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </view>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AR graph logo" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-Ww-cgP">
-                                <rect key="frame" x="0.0" y="218" width="414" height="140"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AR graph logo" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-Ww-cgP">
+                                <rect key="frame" x="20" y="218" width="374" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="Xv5-lm-333"/>
                                 </constraints>
@@ -42,7 +43,7 @@
                             <constraint firstItem="oqj-sR-XMZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PIs-Ww-cgP" secondAttribute="bottom" constant="20" id="Nx8-Xz-xyg"/>
                             <constraint firstItem="PIs-Ww-cgP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="998" constant="50" id="OEy-ur-3tN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oqj-sR-XMZ" secondAttribute="bottom" priority="998" constant="92" id="fVs-un-7jH"/>
-                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="irM-br-S06"/>
+                            <constraint firstItem="PIs-Ww-cgP" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" constant="-40" id="irM-br-S06"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oqj-sR-XMZ" secondAttribute="bottom" priority="999" constant="5" id="k4b-oo-770"/>
                             <constraint firstItem="PIs-Ww-cgP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="997" constant="174" id="ld4-oX-pJ3"/>
                             <constraint firstItem="PIs-Ww-cgP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="x4A-Dj-GEq"/>
@@ -57,7 +58,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AR graph logo" width="2777" height="923"/>
+        <image name="AR graph logo" width="1734" height="932"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

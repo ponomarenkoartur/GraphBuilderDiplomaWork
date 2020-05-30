@@ -42,7 +42,7 @@ class WelcomeVC: BaseVC, WelcomeVCProtocol {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.image = Image.arGraphLogo()
         return imageView
     }()
@@ -86,7 +86,8 @@ class WelcomeVC: BaseVC, WelcomeVCProtocol {
                 .offset(10)
             $0.top.greaterThanOrEqualTo(view.safeAreaLayoutGuide.snp.top)
                 .offset(10)
-            $0.width.centerX.equalToSuperview()
+            $0.width.equalToSuperview().offset(-40)
+            $0.centerX.equalToSuperview()
             $0.bottom.lessThanOrEqualTo(tableView.snp.top).offset(-20)
         }
         tableView.snp.makeConstraints {
