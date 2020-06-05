@@ -16,10 +16,7 @@ class TopicsListDataBinder:
     override func bind() {
         views.forEach { view in
             view.didSelectTopic = { index in
-                guard let topic = self.viewModel.topics[safe: index]
-                    else { return }
-                self.viewModel.finishCompletion(
-                    .didSelectTopic(topic: topic, index: index))
+                self.viewModel.selectTopic(at: index)
             }
         }
         

@@ -10,6 +10,35 @@
 		04015C6B245717B80094DFE6 /* PlotColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */; };
 		04015C6D245719430094DFE6 /* CGSize extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6C245719430094DFE6 /* CGSize extension.swift */; };
 		04015C6F24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */; };
+		0401BE2B248A4A13008BF176 /* EquationDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B790247E6D7800BDC147 /* EquationDataService.swift */; };
+		0401BE2C248A4A19008BF176 /* TopicScreenDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD162D247FDA0E00D271F6 /* TopicScreenDataBinder.swift */; };
+		0401BE2D248A4A22008BF176 /* ValuesBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6F246DB451003CEC34 /* ValuesBounds.swift */; };
+		0401BE2E248A4A29008BF176 /* TopicsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B797247ECE8600BDC147 /* TopicsDataService.swift */; };
+		0401BE2F248A4A30008BF176 /* TopicsContainerDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD162F247FDFF600D271F6 /* TopicsContainerDataBinder.swift */; };
+		0401BE30248A4A34008BF176 /* SavedEquationsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6D247D490700A3D66F /* SavedEquationsVM.swift */; };
+		0401BE31248A4A39008BF176 /* SavedEquationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6B247D48F700A3D66F /* SavedEquationsVC.swift */; };
+		0401BE32248A4A3D008BF176 /* LoadingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC68247D1E9400A3D66F /* LoadingViewPresenter.swift */; };
+		0401BE33248A4A45008BF176 /* GridBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6B246DAB67003CEC34 /* GridBounds.swift */; };
+		0401BE34248A4A5B008BF176 /* TopicFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471B7A0247EDA6A00BDC147 /* TopicFabric.swift */; };
+		0401BE35248A4A61008BF176 /* SavedEquationsDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC6F247D491C00A3D66F /* SavedEquationsDataBinder.swift */; };
+		0401BE36248A4A65008BF176 /* SelectiveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DE10F24828AEB008C41CD /* SelectiveItem.swift */; };
+		0401BE37248A4A6B008BF176 /* GridBoundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC6D246DB009003CEC34 /* GridBoundable.swift */; };
+		0401BE38248A4A83008BF176 /* TopicContentFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96925247FB7E2009832BF /* TopicContentFabric.swift */; };
+		0401BE39248A4A89008BF176 /* AxisNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420B70D246D53EB0042408F /* AxisNode.swift */; };
+		0401BE3A248A4A90008BF176 /* AxisNodeFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC69246D88A6003CEC34 /* AxisNodeFabric.swift */; };
+		0401BE3B248A4A95008BF176 /* ConstantsAndValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857724752DB900532E17 /* ConstantsAndValues.swift */; };
+		0401BE3C248A4A9B008BF176 /* SavedEquationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC72247D4F4000A3D66F /* SavedEquationsCell.swift */; };
+		0401BE3D248A4A9F008BF176 /* UIImageView extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96933247FCA18009832BF /* UIImageView extension.swift */; };
+		0401BE3E248A4AA6008BF176 /* ARPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83675246F16F300426FEC /* ARPlotView.swift */; };
+		0401BE3F248A4AAE008BF176 /* PlotGestureHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC4246C140D0005B559 /* PlotGestureHandlerView.swift */; };
+		0401BE40248A4B05008BF176 /* BaseARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B83677246F175400426FEC /* BaseARSCNView.swift */; };
+		0401BE41248A4B05008BF176 /* ScanFloorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048862A9247C1B79004CCE52 /* ScanFloorView.swift */; };
+		0401BE42248A4B05008BF176 /* PinchManipulationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAC71246DC535003CEC34 /* PinchManipulationMode.swift */; };
+		0401BE43248A4B05008BF176 /* PanGestureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD857924759F9500532E17 /* PanGestureMode.swift */; };
+		0401BE44248A4B05008BF176 /* ScaleMarkerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F8073B2477DE3100B3FC96 /* ScaleMarkerControl.swift */; };
+		0401BE45248A4B05008BF176 /* SavedEquationsCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC74247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift */; };
+		0401BE46248A4B05008BF176 /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC66247D12E300A3D66F /* ARAnchor extension.swift */; };
+		0401BE47248A4B05008BF176 /* SCNAction extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC6246C382C0005B559 /* SCNAction extension.swift */; };
 		040A2BEB245B81D800BDA83D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEA245B81D800BDA83D /* Point.swift */; };
 		040A2BEF245B824800BDA83D /* Eval.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEE245B824800BDA83D /* Eval.m */; };
 		040A2BF1245B828A00BDA83D /* ExpressionEvalutaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */; };
@@ -1496,6 +1525,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0401BE40248A4B05008BF176 /* BaseARSCNView.swift in Sources */,
+				0401BE41248A4B05008BF176 /* ScanFloorView.swift in Sources */,
+				0401BE42248A4B05008BF176 /* PinchManipulationMode.swift in Sources */,
+				0401BE43248A4B05008BF176 /* PanGestureMode.swift in Sources */,
+				0401BE44248A4B05008BF176 /* ScaleMarkerControl.swift in Sources */,
+				0401BE45248A4B05008BF176 /* SavedEquationsCellConfigurator.swift in Sources */,
+				0401BE46248A4B05008BF176 /* ARAnchor extension.swift in Sources */,
+				0401BE47248A4B05008BF176 /* SCNAction extension.swift in Sources */,
 				0411CC6324646296001A3183 /* Eval.h in Sources */,
 				0411CC6424646296001A3183 /* Eval.m in Sources */,
 				0411CC6524646296001A3183 /* GraphBuilderDiplomaWork-Bridging-Header.h in Sources */,
@@ -1518,20 +1555,24 @@
 				0411CC7624646296001A3183 /* CustomTextField.swift in Sources */,
 				0411CC7724646296001A3183 /* NumberTextField.swift in Sources */,
 				0411CC7824646296001A3183 /* HandyFunctions.swift in Sources */,
+				0401BE31248A4A39008BF176 /* SavedEquationsVC.swift in Sources */,
 				0411CC7924646296001A3183 /* TopicsContainerVC.swift in Sources */,
 				0411CC7A24646296001A3183 /* TopicsContainerCell.swift in Sources */,
 				0411CC7B24646296001A3183 /* TopicsContainerVM.swift in Sources */,
 				0411CC7C24646296001A3183 /* Plot.swift in Sources */,
 				0411CC7D24646296001A3183 /* EquationParameter.swift in Sources */,
+				0401BE39248A4A89008BF176 /* AxisNode.swift in Sources */,
 				0411CC7E24646297001A3183 /* PlotPresentationMode.swift in Sources */,
 				0411CC7F24646297001A3183 /* PlotFabric.swift in Sources */,
 				0411CC8024646297001A3183 /* PlotParameterCell.swift in Sources */,
 				0411CC8124646297001A3183 /* PlotParameterCellConfigurator.swift in Sources */,
+				0401BE37248A4A6B008BF176 /* GridBoundable.swift in Sources */,
 				0411CC8224646297001A3183 /* TopicPlotParameterHeaderView.swift in Sources */,
 				0411CC8324646297001A3183 /* TopicPlotInfoCell.swift in Sources */,
 				0411CC8424646297001A3183 /* TopicPlotInfoCellConfigurator.swift in Sources */,
 				0411CC8524646297001A3183 /* ProceedToSandboxCell.swift in Sources */,
 				0411CC8624646297001A3183 /* TopicPlotsVC.swift in Sources */,
+				0401BE2D248A4A22008BF176 /* ValuesBounds.swift in Sources */,
 				0411CC8724646297001A3183 /* TopicPlotsVCProtocol.swift in Sources */,
 				0411CC8824646297001A3183 /* TopicPlotsVM.swift in Sources */,
 				0411CC8924646297001A3183 /* TopicPlotsDataBinder.swift in Sources */,
@@ -1546,21 +1587,25 @@
 				0411CC9124646297001A3183 /* SandboxVC.swift in Sources */,
 				0411CC9224646297001A3183 /* SandboxVM.swift in Sources */,
 				0411CC9324646297001A3183 /* SandboxDataBinder.swift in Sources */,
+				0401BE3F248A4AAE008BF176 /* PlotGestureHandlerView.swift in Sources */,
 				0411CC9424646297001A3183 /* PlotPresenter.swift in Sources */,
 				0411CC9524646297001A3183 /* PlotView.swift in Sources */,
 				0411CC9624646297001A3183 /* PlotPresenterScene.swift in Sources */,
+				0401BE35248A4A61008BF176 /* SavedEquationsDataBinder.swift in Sources */,
 				0411CC9724646297001A3183 /* PlotGrid.swift in Sources */,
 				0411CC9824646297001A3183 /* Grid.scn in Sources */,
 				0411CC9924646297001A3183 /* NamedSwitchControl.swift in Sources */,
 				0411CC9A24646297001A3183 /* SCNNode extension.swift in Sources */,
 				0411CC9B24646297001A3183 /* SCNScene extension.swift in Sources */,
 				0411CCA0246487F3001A3183 /* Dictionary extension.swift in Sources */,
+				0401BE3C248A4A9B008BF176 /* SavedEquationsCell.swift in Sources */,
 				0411CC9C24646297001A3183 /* CGSize extension.swift in Sources */,
 				0411CC9D24646297001A3183 /* NSRegularExpression extension.swift in Sources */,
 				042BC56524505B5E00950B15 /* RecognitionViewController.swift in Sources */,
 				042BC56624505B5E00950B15 /* EquationTransformator.swift in Sources */,
 				042BC56824505B5E00950B15 /* VectorAdapeter.swift in Sources */,
 				042BC56924505B5E00950B15 /* GraphARSCNView.swift in Sources */,
+				0401BE38248A4A83008BF176 /* TopicContentFabric.swift in Sources */,
 				042BC56A24505B5E00950B15 /* EquationCell.xib in Sources */,
 				042BC56B24505B5E00950B15 /* EquationCell.swift in Sources */,
 				042BC56C24505B5E00950B15 /* RecognitionContentView.swift in Sources */,
@@ -1572,9 +1617,13 @@
 				042BC57224505B5E00950B15 /* TopicSubheader.swift in Sources */,
 				042BC57324505B5E00950B15 /* TopicParagraph.swift in Sources */,
 				0411CC622464625E001A3183 /* BaseVMWithVC.swift in Sources */,
+				0401BE3D248A4A9F008BF176 /* UIImageView extension.swift in Sources */,
 				042BC57424505B5E00950B15 /* TopicIllustration.swift in Sources */,
+				0401BE2B248A4A13008BF176 /* EquationDataService.swift in Sources */,
 				042BC57524505B5E00950B15 /* TopicProccedToPlotBuildingItem.swift in Sources */,
+				0401BE34248A4A5B008BF176 /* TopicFabric.swift in Sources */,
 				042BC57624505B5E00950B15 /* TopicSubheaderCell.swift in Sources */,
+				0401BE3B248A4A95008BF176 /* ConstantsAndValues.swift in Sources */,
 				042BC57724505B5E00950B15 /* TopicParagraphCell.swift in Sources */,
 				042BC57824505B5E00950B15 /* TopicIllustrationCell.swift in Sources */,
 				04DD1631247FE4DC00D271F6 /* WelcomeScreenDataBinder.swift in Sources */,
@@ -1583,6 +1632,7 @@
 				042BC57B24505B5E00950B15 /* TopicItemCellConfigurator.swift in Sources */,
 				042BC57C24505B5E00950B15 /* BezierArtist.swift in Sources */,
 				042BC57D24505B5E00950B15 /* PlotGeometryCreator.swift in Sources */,
+				0401BE33248A4A45008BF176 /* GridBounds.swift in Sources */,
 				042BC57E24505B5E00950B15 /* R.generated.swift in Sources */,
 				042BC57F24505B5E00950B15 /* LaunchScreen.storyboard in Sources */,
 				042BC58024505B5E00950B15 /* CGRect extension.swift in Sources */,
@@ -1603,6 +1653,7 @@
 				042BC59024505B5E00950B15 /* UICollectionViewCell extension.swift in Sources */,
 				042BC59124505B5E00950B15 /* UIColor extension.swift in Sources */,
 				042BC59224505B5E00950B15 /* UIEdgeInsets extension.swift in Sources */,
+				0401BE2C248A4A19008BF176 /* TopicScreenDataBinder.swift in Sources */,
 				042BC59324505B5E00950B15 /* UIImage extension.swift in Sources */,
 				042BC59424505B5E00950B15 /* UILabel extension.swift in Sources */,
 				042BC59524505B5E00950B15 /* UIStackView extension.swift in Sources */,
@@ -1612,12 +1663,14 @@
 				042BC59924505B5E00950B15 /* UIView extension.swift in Sources */,
 				042BC59A24505B5E00950B15 /* UIViewController extension.swift in Sources */,
 				042BC59B24505B5E00950B15 /* RecognitionResult extension.swift in Sources */,
+				0401BE30248A4A34008BF176 /* SavedEquationsVM.swift in Sources */,
 				042BC59C24505B5E00950B15 /* SCNVector3 extension.swift in Sources */,
 				042BC59D24505B5E00950B15 /* EquationRecognizer.swift in Sources */,
 				042BC59E24505B5E00950B15 /* MathpixRecognizer.swift in Sources */,
 				042BC59F24505B5E00950B15 /* FakeRecognizer.swift in Sources */,
 				042BC5A024505B5E00950B15 /* Equation.swift in Sources */,
 				042BC5A124505B5E00950B15 /* Function.swift in Sources */,
+				0401BE2F248A4A30008BF176 /* TopicsContainerDataBinder.swift in Sources */,
 				042BC55E24505B5200950B15 /* AlertBuilder.swift in Sources */,
 				042BC55F24505B5200950B15 /* Storyboardable.swift in Sources */,
 				042BC56024505B5200950B15 /* BaseCollectionViewCell.swift in Sources */,
@@ -1630,11 +1683,14 @@
 				042BC55524505AB800950B15 /* TopicVM.swift in Sources */,
 				043DC849245093DA00CBC58F /* TestViewController.swift in Sources */,
 				042BC55324505AB100950B15 /* WelcomeVM.swift in Sources */,
+				0401BE32248A4A3D008BF176 /* LoadingViewPresenter.swift in Sources */,
 				042BC55224505AAC00950B15 /* Topic.swift in Sources */,
 				042BC55D24505B1600950B15 /* SafeAreaInsets.swift in Sources */,
 				042BC55724505AC800950B15 /* TopicContentItem.swift in Sources */,
 				042BC54F24505A8D00950B15 /* BaseCoordinator.swift in Sources */,
+				0401BE3A248A4A90008BF176 /* AxisNodeFabric.swift in Sources */,
 				042BC55024505A9900950B15 /* Router.swift in Sources */,
+				0401BE2E248A4A29008BF176 /* TopicsDataService.swift in Sources */,
 				042BC55924505ADC00950B15 /* NavigationBarPresenter.swift in Sources */,
 				042BC55A24505AE100950B15 /* BaseVM.swift in Sources */,
 				0454520F2450587F00C45A5F /* AppDelegate.swift in Sources */,
@@ -1649,6 +1705,8 @@
 				042BC55824505AD000950B15 /* TopicVC.swift in Sources */,
 				042BC55B24505AFB00950B15 /* BaseVC.swift in Sources */,
 				042BC54D24505A7D00950B15 /* Coordinator.swift in Sources */,
+				0401BE3E248A4AA6008BF176 /* ARPlotView.swift in Sources */,
+				0401BE36248A4A65008BF176 /* SelectiveItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1874,7 +1932,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphBuilderDiplomaWork.app/GraphBuilderDiplomaWork";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR Plot.app/AR Plot";
 			};
 			name = Debug;
 		};
@@ -1897,7 +1955,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GraphBuilderDiplomaWork/Model/Eval/GraphBuilderDiplomaWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphBuilderDiplomaWork.app/GraphBuilderDiplomaWork";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR Plot.app/AR Plot";
 			};
 			name = Release;
 		};

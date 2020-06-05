@@ -20,6 +20,7 @@ class EquationTests: XCTestCase {
         let equation1 = Equation(equation: "sin(x)+sqrt(y)")
         let equation2 = Equation(equation: "sin(a*x)+sqrt(y)+a/a")
         var equation3 = Equation(equation: "sin(x)+cos(z)+a")
+        let equation4 = Equation(equation: "")
         equation3.parameters.filter { $0.name == "a" }.forEach { $0.value = 2 }
         equation3.setEquation("sin(x)+cos(z)+a+")
         
@@ -27,6 +28,7 @@ class EquationTests: XCTestCase {
         XCTAssertEqual(getParametersNames(from: equation1), [])
         XCTAssertEqual(getParametersNames(from: equation2), ["a"])
         XCTAssertEqual(getParametersNames(from: equation3), ["a"])
+        XCTAssertEqual(getParametersNames(from: equation4), [])
     }
     
     func testParametersSubtitution() {

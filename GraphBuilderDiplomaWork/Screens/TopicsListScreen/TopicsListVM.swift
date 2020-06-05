@@ -54,10 +54,21 @@ class TopicsListVM: BaseVM<TopicsListVM.FinishCompletionReason> {
         setupBinding()
     }
     
+    
+    // MARK: - Setup Methods
+    
     private func setupBinding() {
         TopicsDataService.shared.rx.topics
             .subscribe(onNext: { self.topics = $0 })
             .disposed(by: bag)
+    }
+    
+    
+    // MARK: - API Methods
+    
+    func selectTopic(at index: Int) {
+        guard let topic = topics[safe: index] else { return }
+        finishCompletion(.didSelectTopic(topic: topic, index: index))
     }
 }
 
