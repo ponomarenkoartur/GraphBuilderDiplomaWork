@@ -39,6 +39,8 @@
 		0401BE45248A4B05008BF176 /* SavedEquationsCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC74247D4F5200A3D66F /* SavedEquationsCellConfigurator.swift */; };
 		0401BE46248A4B05008BF176 /* ARAnchor extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC66247D12E300A3D66F /* ARAnchor extension.swift */; };
 		0401BE47248A4B05008BF176 /* SCNAction extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04806AC6246C382C0005B559 /* SCNAction extension.swift */; };
+		0401BE4F248A6D8A008BF176 /* AR_PlotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401BE4E248A6D8A008BF176 /* AR_PlotUITests.swift */; };
+		0401BE57248A6F67008BF176 /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401BE56248A6F67008BF176 /* XCTest+Utils.swift */; };
 		040A2BEB245B81D800BDA83D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEA245B81D800BDA83D /* Point.swift */; };
 		040A2BEF245B824800BDA83D /* Eval.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEE245B824800BDA83D /* Eval.m */; };
 		040A2BF1245B828A00BDA83D /* ExpressionEvalutaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */; };
@@ -379,6 +381,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0401BE51248A6D8A008BF176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04F3D177241AE0E100C4FBEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F3D17E241AE0E100C4FBEB;
+			remoteInfo = GraphBuilderDiplomaWork;
+		};
 		048A97082450563400161936 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04F3D177241AE0E100C4FBEB /* Project object */;
@@ -406,6 +415,10 @@
 		04015C6A245717B80094DFE6 /* PlotColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotColorPickerCell.swift; sourceTree = "<group>"; };
 		04015C6C245719430094DFE6 /* CGSize extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize extension.swift"; sourceTree = "<group>"; };
 		04015C6E24572F510094DFE6 /* BaseVMWithVoidFinishReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVMWithVoidFinishReason.swift; sourceTree = "<group>"; };
+		0401BE4C248A6D8A008BF176 /* AR PlotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AR PlotUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0401BE4E248A6D8A008BF176 /* AR_PlotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_PlotUITests.swift; sourceTree = "<group>"; };
+		0401BE50248A6D8A008BF176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0401BE56248A6F67008BF176 /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
 		040A2BEA245B81D800BDA83D /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		040A2BEC245B824700BDA83D /* GraphBuilderDiplomaWork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphBuilderDiplomaWork-Bridging-Header.h"; sourceTree = "<group>"; };
 		040A2BED245B824800BDA83D /* Eval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Eval.h; sourceTree = "<group>"; };
@@ -605,6 +618,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0401BE49248A6D8A008BF176 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		048A97002450563400161936 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -624,6 +644,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0401BE4D248A6D8A008BF176 /* AR PlotUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0401BE56248A6F67008BF176 /* XCTest+Utils.swift */,
+				0401BE4E248A6D8A008BF176 /* AR_PlotUITests.swift */,
+				0401BE50248A6D8A008BF176 /* Info.plist */,
+			);
+			path = "AR PlotUITests";
+			sourceTree = "<group>";
+		};
 		0412E6962459792700AAB427 /* PlotView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1255,6 +1285,7 @@
 			children = (
 				04F3D181241AE0E100C4FBEB /* GraphBuilderDiplomaWork */,
 				048A97042450563400161936 /* GraphBuilderDiplomaWorkTests */,
+				0401BE4D248A6D8A008BF176 /* AR PlotUITests */,
 				04F3D180241AE0E100C4FBEB /* Products */,
 				A893E208966DCC519B593018 /* Pods */,
 				3CBE016ED2AB5CF486F208CD /* Frameworks */,
@@ -1267,6 +1298,7 @@
 			children = (
 				04F3D17F241AE0E100C4FBEB /* AR Plot.app */,
 				048A97032450563400161936 /* GraphBuilderDiplomaWorkTests.xctest */,
+				0401BE4C248A6D8A008BF176 /* AR PlotUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1313,6 +1345,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0401BE4B248A6D8A008BF176 /* AR PlotUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0401BE55248A6D8A008BF176 /* Build configuration list for PBXNativeTarget "AR PlotUITests" */;
+			buildPhases = (
+				0401BE48248A6D8A008BF176 /* Sources */,
+				0401BE49248A6D8A008BF176 /* Frameworks */,
+				0401BE4A248A6D8A008BF176 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0401BE52248A6D8A008BF176 /* PBXTargetDependency */,
+			);
+			name = "AR PlotUITests";
+			productName = "AR PlotUITests";
+			productReference = 0401BE4C248A6D8A008BF176 /* AR PlotUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		048A97022450563400161936 /* GraphBuilderDiplomaWorkTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 048A970A2450563400161936 /* Build configuration list for PBXNativeTarget "GraphBuilderDiplomaWorkTests" */;
@@ -1360,10 +1410,14 @@
 		04F3D177241AE0E100C4FBEB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Artur;
 				TargetAttributes = {
+					0401BE4B248A6D8A008BF176 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 04F3D17E241AE0E100C4FBEB;
+					};
 					048A97022450563400161936 = {
 						CreatedOnToolsVersion = 11.4.1;
 						TestTargetID = 04F3D17E241AE0E100C4FBEB;
@@ -1389,11 +1443,19 @@
 			targets = (
 				04F3D17E241AE0E100C4FBEB /* GraphBuilderDiplomaWork */,
 				048A97022450563400161936 /* GraphBuilderDiplomaWorkTests */,
+				0401BE4B248A6D8A008BF176 /* AR PlotUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0401BE4A248A6D8A008BF176 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		048A97012450563400161936 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1521,6 +1583,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0401BE48248A6D8A008BF176 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0401BE57248A6F67008BF176 /* XCTest+Utils.swift in Sources */,
+				0401BE4F248A6D8A008BF176 /* AR_PlotUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		048A96FF2450563400161936 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1894,6 +1965,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0401BE52248A6D8A008BF176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04F3D17E241AE0E100C4FBEB /* GraphBuilderDiplomaWork */;
+			targetProxy = 0401BE51248A6D8A008BF176 /* PBXContainerItemProxy */;
+		};
 		048A97092450563400161936 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 04F3D17E241AE0E100C4FBEB /* GraphBuilderDiplomaWork */;
@@ -1913,6 +1989,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0401BE53248A6D8A008BF176 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6D4PZMC7DM;
+				INFOPLIST_FILE = "AR PlotUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ponomarenko.artur.AR-PlotUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GraphBuilderDiplomaWork;
+			};
+			name = Debug;
+		};
+		0401BE54248A6D8A008BF176 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6D4PZMC7DM;
+				INFOPLIST_FILE = "AR PlotUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ponomarenko.artur.AR-PlotUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GraphBuilderDiplomaWork;
+			};
+			name = Release;
+		};
 		048A970B2450563400161936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 998B6EA45FC5AA8C334588F1 /* Pods-GraphBuilderDiplomaWorkTests.debug.xcconfig */;
@@ -2009,7 +2125,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2063,7 +2179,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2121,6 +2237,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0401BE55248A6D8A008BF176 /* Build configuration list for PBXNativeTarget "AR PlotUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0401BE53248A6D8A008BF176 /* Debug */,
+				0401BE54248A6D8A008BF176 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		048A970A2450563400161936 /* Build configuration list for PBXNativeTarget "GraphBuilderDiplomaWorkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

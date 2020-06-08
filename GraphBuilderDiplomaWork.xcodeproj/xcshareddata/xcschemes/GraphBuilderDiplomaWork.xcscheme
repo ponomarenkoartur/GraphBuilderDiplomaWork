@@ -38,6 +38,16 @@
                ReferencedContainer = "container:GraphBuilderDiplomaWork.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0401BE4B248A6D8A008BF176"
+               BuildableName = "AR PlotUITests.xctest"
+               BlueprintName = "AR PlotUITests"
+               ReferencedContainer = "container:GraphBuilderDiplomaWork.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
