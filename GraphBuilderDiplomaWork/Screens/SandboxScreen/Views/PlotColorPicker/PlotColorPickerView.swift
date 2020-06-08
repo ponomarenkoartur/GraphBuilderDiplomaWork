@@ -105,7 +105,15 @@ class PlotColorPickerView: BaseView {
         Observable.just(Self.colors)
             .bind(to: colorCollectionView.rx.items(
                 cellIdentifier: cellID, cellType: PlotColorPickerCell.self)) {
-            _, color, cell in cell.color = color
+                    index, color, cell in
+                    cell.color = color
+                    cell.rx.tapGesture()
+                        .subscribe(onNext: { _ in
+                            if let color = Self.colors[safe: index] {
+                                self.didSelectColor(color)
+                            }
+                        })
+                        .disposed(by: self.bag)
         }
         .disposed(by: bag)
     }
@@ -123,14 +131,6 @@ class PlotColorPickerView: BaseView {
 
 extension PlotColorPickerView: UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        didSelectItemAt indexPath: IndexPath) {
-        if let color = Self.colors[safe: indexPath.row] {
-            didSelectColor(color)
-        }
-    }
-    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
