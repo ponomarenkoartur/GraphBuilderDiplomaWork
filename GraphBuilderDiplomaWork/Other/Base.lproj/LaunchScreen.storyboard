@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oqj-sR-XMZ">
-                                <rect key="frame" x="0.0" y="648" width="414" height="122"/>
+                                <rect key="frame" x="0.0" y="590" width="414" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="122" id="XY3-kv-Kxa"/>
+                                    <constraint firstAttribute="height" constant="180" id="XY3-kv-Kxa"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="ZcO-oh-F6x">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
