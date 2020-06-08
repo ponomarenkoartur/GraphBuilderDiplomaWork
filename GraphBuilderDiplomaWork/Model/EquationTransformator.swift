@@ -90,6 +90,10 @@ class EquationTransformator {
     
     func convertEquationStringToValidExpression(
         _ equationString: String) throws -> String {
+        let equationString = equationString
+            .replacingOccurrences(of: "{", with: "(")
+            .replacingOccurrences(of: "}", with: ")")
+        
         guard equationString.countOccurrence(of: "(") ==
             equationString.countOccurrence(of: ")") else {
                 throw EvalError.unableToParse
