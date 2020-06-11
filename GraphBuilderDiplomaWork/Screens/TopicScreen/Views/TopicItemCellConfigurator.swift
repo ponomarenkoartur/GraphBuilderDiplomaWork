@@ -35,9 +35,11 @@ struct TopicItemCellConfigurator {
               let illustration as TopicIllustration):
             configureIllustrationCell(cell, illustration: illustration,
                                       indexPath: indexPath)
-        case (let cell as TopicProccedToPlotBuildingCell,
-              let item as TopicProccedToPlotBuildingItem):
-            cell.setLatex(item.graph)
+        case is (TopicProccedToPlotBuildingCell,
+            TopicProccedToPlotBuildingItem):
+            break
+        case (let cell as TopicEquationCell, let item as TopicEquationItem):
+            cell.setLatex(item.equation)
         default:
             break
         }
@@ -87,6 +89,8 @@ struct TopicItemCellConfigurator {
             return TopicIllustrationCell.self
         case is TopicProccedToPlotBuildingItem:
             return TopicProccedToPlotBuildingCell.self
+        case is TopicEquationItem:
+            return TopicEquationCell.self
         default:
             return nil
         }

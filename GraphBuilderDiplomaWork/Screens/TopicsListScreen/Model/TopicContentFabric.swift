@@ -15,7 +15,8 @@ class TopicContentFabric {
     // MARK: - Enums
     
     private enum TopicContentKey: String {
-        case section, value, subheader, paragraph, imageURL, equation
+        case section, value, subheader, paragraph, imageURL, equation,
+            equationButton
     }
     
     
@@ -40,6 +41,8 @@ class TopicContentFabric {
         case TopicContentKey.imageURL.rawValue:
             return TopicIllustration(imageURL: URL(string: value))
         case TopicContentKey.equation.rawValue:
+            return TopicEquationItem(equation: value)
+        case TopicContentKey.equationButton.rawValue:
             return TopicProccedToPlotBuildingItem(graph: value)
         default:
             return nil

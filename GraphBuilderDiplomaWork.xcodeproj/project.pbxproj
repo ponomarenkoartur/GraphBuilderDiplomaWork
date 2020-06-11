@@ -43,6 +43,8 @@
 		040A2BEB245B81D800BDA83D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEA245B81D800BDA83D /* Point.swift */; };
 		040A2BEF245B824800BDA83D /* Eval.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BEE245B824800BDA83D /* Eval.m */; };
 		040A2BF1245B828A00BDA83D /* ExpressionEvalutaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */; };
+		040FAB2F2492592E00306123 /* TopicEquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FAB2E2492592E00306123 /* TopicEquationCell.swift */; };
+		040FAB31249259EC00306123 /* TopicEquationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FAB30249259EC00306123 /* TopicEquationItem.swift */; };
 		040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */; };
 		040FE8232451A3C100F42C24 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8222451A3C100F42C24 /* Configurator.swift */; };
 		040FE8252451A40200F42C24 /* BaseTableCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */; };
@@ -422,6 +424,8 @@
 		040A2BED245B824800BDA83D /* Eval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Eval.h; sourceTree = "<group>"; };
 		040A2BEE245B824800BDA83D /* Eval.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Eval.m; sourceTree = "<group>"; };
 		040A2BF0245B828A00BDA83D /* ExpressionEvalutaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionEvalutaion.swift; sourceTree = "<group>"; };
+		040FAB2E2492592E00306123 /* TopicEquationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEquationCell.swift; sourceTree = "<group>"; };
+		040FAB30249259EC00306123 /* TopicEquationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEquationItem.swift; sourceTree = "<group>"; };
 		040FE8202451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPlotInfoCellConfigurator.swift; sourceTree = "<group>"; };
 		040FE8222451A3C100F42C24 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		040FE8242451A40200F42C24 /* BaseTableCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCellConfigurator.swift; sourceTree = "<group>"; };
@@ -970,6 +974,7 @@
 				04A0FE64244E14BB000C9F6E /* TopicParagraph.swift */,
 				04D43FFA2450384F00034A89 /* TopicIllustration.swift */,
 				0450332A24503B9700C6F763 /* TopicProccedToPlotBuildingItem.swift */,
+				040FAB30249259EC00306123 /* TopicEquationItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1069,6 +1074,7 @@
 				04D43FF62450331600034A89 /* TopicIllustrationCell.swift */,
 				0450332C24503BD200C6F763 /* TopicProccedToPlotBuildingCell.swift */,
 				04C1168F2450483100C0CF49 /* TopicFooterView.swift */,
+				040FAB2E2492592E00306123 /* TopicEquationCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1848,6 +1854,7 @@
 				04A7D16F2453189000503CAE /* SandboxEquationCell.swift in Sources */,
 				0411CC5F24644B89001A3183 /* NSRegularExpression extension.swift in Sources */,
 				04015C6D245719430094DFE6 /* CGSize extension.swift in Sources */,
+				040FAB31249259EC00306123 /* TopicEquationItem.swift in Sources */,
 				04CE0E35244B13F0006B19B0 /* WelcomeVC.swift in Sources */,
 				04015C6B245717B80094DFE6 /* PlotColorPickerCell.swift in Sources */,
 				04CE0E73244B1839006B19B0 /* UICollectionView extension.swift in Sources */,
@@ -1882,6 +1889,7 @@
 				0471B798247ECE8600BDC147 /* TopicsDataService.swift in Sources */,
 				048C4921245192B800C430B3 /* TopicPlotsDataBinder.swift in Sources */,
 				04CE0E6F244B1839006B19B0 /* UITableView extension.swift in Sources */,
+				040FAB2F2492592E00306123 /* TopicEquationCell.swift in Sources */,
 				04CE0E79244B186B006B19B0 /* Completable extension.swift in Sources */,
 				04A0FE65244E14BB000C9F6E /* TopicParagraph.swift in Sources */,
 				04D1F8E62451DFED004155FC /* ProceedToSandboxCell.swift in Sources */,
