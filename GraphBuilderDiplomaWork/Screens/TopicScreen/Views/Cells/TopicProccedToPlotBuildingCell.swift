@@ -29,10 +29,10 @@ class TopicProccedToPlotBuildingCell: BaseTableViewCell {
         button.layer.cornerRadius = 10
         button.backgroundColor = Color.turquoise()
         
-        let title = "See plot in sandbox".uppercased()
-            .withFont(Font.sfProDisplayMedium(size: 15)!)
-            .withTextColor(Color.inverseText()!)
-        button.setAttributedTitle(title)
+        button.setTitle("See plot in sandbox".uppercased())
+        button.setTitleColor(Color.inverseText()!, for: .normal)
+        button.setTitleColor(Color.defaultText()!, for: .highlighted)
+        button.titleLabel?.font = Font.sfProDisplayMedium(size: 15)!
         
         button.snp.makeConstraints {
             $0.height.equalTo(36)
