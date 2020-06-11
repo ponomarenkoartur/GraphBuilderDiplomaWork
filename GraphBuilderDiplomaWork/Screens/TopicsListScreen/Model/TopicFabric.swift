@@ -46,7 +46,7 @@ class TopicFabric {
         let fabric = TopicContentFabric()
         return contentSnapshot.children.allObjects
             .compactMap { $0 as? DataSnapshot }
-            .sorted { $0.key < $1.key }
+            .sorted { (Int($0.key) ?? 0) < (Int($1.key) ?? 0) }
             .compactMap { fabric.create(from: $0) }
     }
 }
