@@ -59,7 +59,11 @@ class ARPlotView: BaseARSCNView {
     
     // MARK: Views
     
-    private lazy var scanFloorView = ScanFloorView()
+    private lazy var scanFloorView: ScanFloorView = {
+        let view = ScanFloorView()
+        view.isHidden = true
+        return view
+    }()
     
     
     // MARK: - Setup Methods
