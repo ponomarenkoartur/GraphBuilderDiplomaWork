@@ -83,27 +83,6 @@ class MainCoordinator: BaseCoordinator {
                 selectedEquations.forEach { vm.addPlot(Plot(equation: $0)) }
             }
         }
-        
-//        vm.setPlotList([
-//            Plot(equation: "x^2+z^2", color: .green),
-//            Plot(equation: "sin(x)+cos(z)+a"),
-//            Plot(equation: "sin(x*cos(z))"),
-//            Plot(equation: "sin(x)+sin(z)"),
-//            Plot(equation: "cos(x)+cos(z)"),
-//            Plot(equation: "tan(x)+tan(z)"),
-//            Plot(equation: "x^2+sqrt(z)"),
-//            Plot(equation: "x^5+z"      ),
-//            Plot(equation: "sin(x^z)"   ),
-//            Plot(equation: "x^2+sqrt(z)"),
-//            Plot(equation: "x^5+z"      ),
-//            Plot(equation: "sin(x^z)"   ),
-//            Plot(equation: "x^2+sqrt(z)"),
-//            Plot(equation: "x^5+z"      ),
-//            Plot(equation: "sin(x^z)"   ),
-//            Plot(equation: "x^2+sqrt(z)"),
-//            Plot(equation: "x^5+z"      ),
-//            Plot(equation: "sin(x^z)"   ),
-//        ])
         vm.didRequestPictureRecognitionVC = {
             self.pushImagePickerScreen { (image) in
                 if let image = image {
