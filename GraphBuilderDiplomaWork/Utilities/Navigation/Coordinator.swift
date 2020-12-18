@@ -12,7 +12,6 @@ import UIKit
 protocol Coordinator: class {
     var children: [Coordinator] { get set }
     func start()
-    func start(with option: DeepLinkOption?)
     func addDependency(_ coordinator: Coordinator)
     func removeDependency(_ coordinator: Coordinator)
     func removeAllDependencies()

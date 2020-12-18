@@ -32,7 +32,6 @@ class BaseCoordinator: NSObject, Coordinator, Router {
     }
     
     func start() {}
-    func start(with option: DeepLinkOption?) {}
 }
 
 

@@ -27,10 +27,6 @@ class MainCoordinator: BaseCoordinator {
         pushWelcomeScreen()
     }
     
-    override func start(with option: DeepLinkOption?) {
-        start()
-    }
-    
     
     // MARK: - Private Methods
     

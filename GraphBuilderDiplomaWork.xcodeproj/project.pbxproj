@@ -154,7 +154,6 @@
 		042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E55244B17CF006B19B0 /* MainCoordinator.swift */; };
 		042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
 		042BC54D24505A7D00950B15 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4F244B179F006B19B0 /* Coordinator.swift */; };
-		042BC54E24505A8300950B15 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4B244B179F006B19B0 /* DeepLinkOption.swift */; };
 		042BC54F24505A8D00950B15 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E3C244B1467006B19B0 /* BaseCoordinator.swift */; };
 		042BC55024505A9900950B15 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4D244B179F006B19B0 /* Router.swift */; };
 		042BC55124505A9D00950B15 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4E244B179F006B19B0 /* Typealiases.swift */; };
@@ -332,7 +331,6 @@
 		04CE0E44244B1468006B19B0 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E3C244B1467006B19B0 /* BaseCoordinator.swift */; };
 		04CE0E46244B1468006B19B0 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E3E244B1468006B19B0 /* ViewModelProtocol.swift */; };
 		04CE0E49244B174B006B19B0 /* SafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E48244B174B006B19B0 /* SafeAreaInsets.swift */; };
-		04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4B244B179F006B19B0 /* DeepLinkOption.swift */; };
 		04CE0E51244B179F006B19B0 /* InitialScreenSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */; };
 		04CE0E52244B179F006B19B0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4D244B179F006B19B0 /* Router.swift */; };
 		04CE0E53244B179F006B19B0 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0E4E244B179F006B19B0 /* Typealiases.swift */; };
@@ -565,7 +563,6 @@
 		04CE0E3C244B1467006B19B0 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		04CE0E3E244B1468006B19B0 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		04CE0E48244B174B006B19B0 /* SafeAreaInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeAreaInsets.swift; sourceTree = "<group>"; };
-		04CE0E4B244B179F006B19B0 /* DeepLinkOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkOption.swift; sourceTree = "<group>"; };
 		04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialScreenSetter.swift; sourceTree = "<group>"; };
 		04CE0E4D244B179F006B19B0 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		04CE0E4E244B179F006B19B0 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -1180,7 +1177,6 @@
 		04CE0E4A244B179F006B19B0 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				04CE0E4B244B179F006B19B0 /* DeepLinkOption.swift */,
 				04CE0E4C244B179F006B19B0 /* InitialScreenSetter.swift */,
 				04CE0E4D244B179F006B19B0 /* Router.swift */,
 				04CE0E4E244B179F006B19B0 /* Typealiases.swift */,
@@ -1770,7 +1766,6 @@
 				042BC55424505AB400950B15 /* TopicsListVM.swift in Sources */,
 				048A970E2450564200161936 /* SerialPositionTests.swift in Sources */,
 				042BC54C245058CE00950B15 /* InitialScreenSetter.swift in Sources */,
-				042BC54E24505A8300950B15 /* DeepLinkOption.swift in Sources */,
 				042BC55124505A9D00950B15 /* Typealiases.swift in Sources */,
 				042BC54B245058C800950B15 /* MainCoordinator.swift in Sources */,
 				048A970F2450565C00161936 /* SerialPosition.swift in Sources */,
@@ -1825,7 +1820,6 @@
 				04806AC5246C140D0005B559 /* PlotGestureHandlerView.swift in Sources */,
 				041CAC6A246D88A6003CEC34 /* AxisNodeFabric.swift in Sources */,
 				04A7F3B02456D90800E8E85B /* SandboxKeyboardButton.swift in Sources */,
-				04CE0E50244B179F006B19B0 /* DeepLinkOption.swift in Sources */,
 				048862AA247C1B79004CCE52 /* ScanFloorView.swift in Sources */,
 				0473F3FB244B20700065BB63 /* Shortcuts.swift in Sources */,
 				040FE8212451A3A500F42C24 /* TopicPlotInfoCellConfigurator.swift in Sources */,
