@@ -13,13 +13,13 @@ import RxSwift
 class PlotColorPickerView: BaseView {
     
     
-    // MARK: - Constants
-    
-    private let cellID = UUID().uuidString
-    private static let colors: [UIColor] = [
-        #colorLiteral(red: 0.7294117647, green: 0.04705882353, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.6352941176, green: 0.7294117647, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.7294117647, green: 0.537254902, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.04705882353, green: 0.7294117647, blue: 0.6470588235, alpha: 1),
-        #colorLiteral(red: 0.04705882353, green: 0.4, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.2235294118, green: 0.04705882353, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.5529411765, green: 0.04705882353, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.9882352941, green: 1, blue: 0.3450980392, alpha: 1),
-    ]
+    private enum Constants {
+        static let cellID = UUID().uuidString
+        static let colors: [UIColor] = [
+            #colorLiteral(red: 0.7294117647, green: 0.04705882353, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.6352941176, green: 0.7294117647, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.7294117647, green: 0.537254902, blue: 0.04705882353, alpha: 1), #colorLiteral(red: 0.04705882353, green: 0.7294117647, blue: 0.6470588235, alpha: 1),
+            #colorLiteral(red: 0.04705882353, green: 0.4, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.2235294118, green: 0.04705882353, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.5529411765, green: 0.04705882353, blue: 0.7294117647, alpha: 1), #colorLiteral(red: 0.9882352941, green: 1, blue: 0.3450980392, alpha: 1),
+        ]
+    }
     
     
     // MARK: - Properties
@@ -59,7 +59,7 @@ class PlotColorPickerView: BaseView {
             frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.delegate = self
         collectionView.register(PlotColorPickerCell.self,
-                                forCellWithReuseIdentifier: cellID)
+                                forCellWithReuseIdentifier: Constants.cellID)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled = false
@@ -102,14 +102,14 @@ class PlotColorPickerView: BaseView {
     
     override func setupBinding() {
         super.setupBinding()
-        Observable.just(Self.colors)
+        Observable.just(Constants.colors)
             .bind(to: colorCollectionView.rx.items(
-                cellIdentifier: cellID, cellType: PlotColorPickerCell.self)) {
+                cellIdentifier: Constants.cellID, cellType: PlotColorPickerCell.self)) {
                     index, color, cell in
                     cell.color = color
                     cell.rx.tapGesture()
                         .subscribe(onNext: { _ in
-                            if let color = Self.colors[safe: index] {
+                            if let color = Constants.colors[safe: index] {
                                 self.didSelectColor(color)
                             }
                         })
@@ -122,7 +122,7 @@ class PlotColorPickerView: BaseView {
     // MARK: Static Methods
     
     static func randomColor() -> UIColor {
-        colors.randomElement()!
+        Constants.colors.randomElement()!
     }
 }
 

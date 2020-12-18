@@ -19,10 +19,9 @@ protocol EquationDataServiceProtocol {
 
 class EquationDataService: EquationDataServiceProtocol {
     
-    
-    // MARK: - Constants
-    
-    private var savedEquationsKey = "SavedEquations"
+    private enum Constants {
+        static let savedEquationsKey = "SavedEquations"
+    }
     
     
     // MARK: - Singleton
@@ -56,13 +55,13 @@ class EquationDataService: EquationDataServiceProtocol {
     
     func fetchData() {
         equations =
-            UserDefaults.standard.array(forKey: savedEquationsKey)?
+            UserDefaults.standard.array(forKey: Constants.savedEquationsKey)?
                 .compactMap { $0 as? String }
                 .map { Equation(equation: $0) } ?? []
     }
     
     func commitChanges() {
         UserDefaults.standard.set(equations.map { $0.latex },
-                                  forKey: savedEquationsKey)
+                                  forKey: Constants.savedEquationsKey)
     }
 }

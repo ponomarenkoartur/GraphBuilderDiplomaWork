@@ -18,21 +18,21 @@ protocol TopicsDataServiceProtocol {
 class TopicsDataService: TopicsDataServiceProtocol {
     
     
+    private enum Constants {
+        static let topicsReferencePath = "topics"
+    }
+    
+    
     // MARK: - Singleton
     
     static let shared = TopicsDataService()
     private init() {}
     
     
-    // MARK: - Constants
-    
-    private static let topicsReferencePath = "topics"
-    
-    
     // MARK: - Properties
     
     private let ref = Database.database().reference()
-        .child(TopicsDataService.topicsReferencePath)
+        .child(Constants.topicsReferencePath)
     fileprivate let topicsSubject = BehaviorSubject<[Topic]>(value: [])
     private(set) var topics: [Topic] {
         get { try! topicsSubject.value() }

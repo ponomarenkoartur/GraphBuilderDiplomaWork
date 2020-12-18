@@ -29,11 +29,10 @@ protocol RecognitionContentViewDelegate: class {
 
 class RecognitionContentView: UIView {
     
-    
-    // MARK: - Constants
-    
-    private let resultViewFullHeight: CGFloat = 300
-    private let resultViewHiddenHeight: CGFloat = 40
+    private enum Contants {
+        static let resultViewFullHeight: CGFloat = 300
+        static let resultViewHiddenHeight: CGFloat = 40
+    }
     
     
     // MARK: - Outlets
@@ -130,7 +129,6 @@ class RecognitionContentView: UIView {
     // MARK: - Setup Methods
     
     private func setupTableView() {
-
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "EquationCell", bundle: nil), 
@@ -206,7 +204,7 @@ class RecognitionContentView: UIView {
     func setResultsViewHidden(_ isHidden: Bool, animated: Bool = true) {
         UIView.animate(withDuration: animated ? 0.3 : 0) {
 //            self.tableViewHeightConstraint.constant = isHidden ?
-//                self.resultViewHiddenHeight : self.resultViewFullHeight
+//                Constants.resultViewHiddenHeight : Constants.resultViewFullHeight
             self.resultViewIsHidden = isHidden
             self.layoutIfNeeded()
         }

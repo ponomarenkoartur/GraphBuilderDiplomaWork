@@ -44,9 +44,9 @@ class SandboxKeyboard: BaseView {
     }
     
     
-    // MARK: - Constants
-    
-    private let rowsCountInColumn = 4
+    private enum Constants {
+        static let rowsCountInColumn = 4
+    }
     
     
     // MARK: - Properties
@@ -209,7 +209,7 @@ class SandboxKeyboard: BaseView {
     }()
     
     private lazy var rowStackViews: [UIStackView] = {
-        let stackViews = (0..<columnStackViews.count * rowsCountInColumn).map {
+        let stackViews = (0..<columnStackViews.count * Constants.rowsCountInColumn).map {
             _ -> UIStackView in
             let stackView = UIStackView()
             stackView.distribution = .fillEqually
@@ -234,7 +234,7 @@ class SandboxKeyboard: BaseView {
         addSubview(superContainerStackView)
         superContainerStackView.addArrangedSubviews(columnStackViews)
         for (rowIndex, rowStackView) in rowStackViews.enumerated() {
-            let columnIndex = rowIndex / rowsCountInColumn
+            let columnIndex = rowIndex / Constants.rowsCountInColumn
             let columnStackView = columnStackViews[safe: columnIndex]
             columnStackView?.addArrangedSubview(rowStackView)
         }

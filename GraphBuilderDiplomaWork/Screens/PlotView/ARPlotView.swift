@@ -20,9 +20,9 @@ class ARPlotView: BaseARSCNView {
     }
     
     
-    // MARK: - Constants
-    
-    private let totalFrameCountToStart = 25
+    private enum Constants {
+        static let totalFrameCountToStart = 25
+    }
     
     
     // MARK: - Properties
@@ -161,7 +161,7 @@ class ARPlotView: BaseARSCNView {
     }
     
     private func getScanProgress(fromFrameCount frameCount: Int) -> Int {
-        min(100, Int(Double(frameCount) / Double(totalFrameCountToStart)))
+        min(100, Int(Double(frameCount) / Double(Constants.totalFrameCountToStart)))
     }
 }
 

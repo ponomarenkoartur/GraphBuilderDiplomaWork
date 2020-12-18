@@ -27,40 +27,36 @@ class NamedSwitchControl: BaseView {
         }
     }
     
-    
-    // MARK: - Constants
-    
-    // MARK: Sizes
-    
-    private let fixedHeight: CGFloat = 27.17
-    private let fixedWidth: CGFloat = 50.64
-    private let circleSideSize: CGFloat = 25.52
-    private let circleLeftPositionOffset: CGFloat = 0.85
-    private let circleRightPositionOffset: CGFloat = 24.29
-    private let labelCenterYOffsetFromEdge: CGFloat = 12.485
-    
-    
-    // MARK: Colors
-    
-    // Fill Colors
-    private let leftBackgroundColor = #colorLiteral(red: 0.3137254902, green: 0.7176470588, blue: 1, alpha: 1)
-    private let rightBackgroundColor = Color.background()
-    private let circleColor = UIColor.white
-    
-    // Text Colors
-    private let leftBackgroundTextColor = Color.defaultText()
-    private let rightBackgroundTextColor = UIColor.black
-    private let circleTextColor = UIColor.black
-    
-    // Other Colors
-    private let borderColor = #colorLiteral(red: 0.6156862745, green: 0.6156862745, blue: 0.6156862745, alpha: 0.5)
-    
-    // MARK: Fonts
-    
-    private let backgroundTextFont = Font.sfProDisplayRegular(size: 11)
-    private let textInCircleFont = Font.sfProDisplayBold(size: 11)
-    
-    
+    private enum Constants {
+        enum Sizes {
+            static let fixedHeight: CGFloat = 27.17
+            static let fixedWidth: CGFloat = 50.64
+            static let circleSideSize: CGFloat = 25.52
+            static let circleLeftPositionOffset: CGFloat = 0.85
+            static let circleRightPositionOffset: CGFloat = 24.29
+            static let labelCenterYOffsetFromEdge: CGFloat = 12.485
+        }
+        
+        enum Colors {
+            // Fill Colors
+            static let leftBackgroundColor = #colorLiteral(red: 0.3137254902, green: 0.7176470588, blue: 1, alpha: 1)
+            static let rightBackgroundColor = Color.background()
+            static let circleColor = UIColor.white
+            
+            // Text Colors
+            static let leftBackgroundTextColor = Color.defaultText()
+            static let rightBackgroundTextColor = UIColor.black
+            static let circleTextColor = UIColor.black
+            
+            // Other Colors
+            static let borderColor = #colorLiteral(red: 0.6156862745, green: 0.6156862745, blue: 0.6156862745, alpha: 0.5)
+        }
+        
+        enum Fonts {
+            static let backgroundTextFont = Font.sfProDisplayRegular(size: 11)
+            static let textInCircleFont = Font.sfProDisplayBold(size: 11)
+        }
+    }
     
     // MARK: - Properties
     
@@ -91,13 +87,13 @@ class NamedSwitchControl: BaseView {
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = leftBackgroundColor
-        view.layer.borderColor = borderColor.cgColor
+        view.backgroundColor = Constants.Colors.leftBackgroundColor
+        view.layer.borderColor = Constants.Colors.borderColor.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = fixedHeight / 2
+        view.layer.cornerRadius = Constants.Sizes.fixedHeight / 2
         view.snp.makeConstraints {
-            $0.height.equalTo(fixedHeight)
-            $0.width.equalTo(fixedWidth)
+            $0.height.equalTo(Constants.Sizes.fixedHeight)
+            $0.width.equalTo(Constants.Sizes.fixedWidth)
         }
         return view
     }()
@@ -105,31 +101,31 @@ class NamedSwitchControl: BaseView {
     private lazy var circleView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.borderColor = borderColor.cgColor
+        view.layer.borderColor = Constants.Colors.borderColor.cgColor
         view.layer.borderWidth = 1
-        view.snp.makeConstraints { $0.size.equalTo(circleSideSize) }
-        view.layer.cornerRadius = circleSideSize / 2
+        view.snp.makeConstraints { $0.size.equalTo(Constants.Sizes.circleSideSize) }
+        view.layer.cornerRadius = Constants.Sizes.circleSideSize / 2
         return view
     }()
     
     private lazy var leftBackgroundLabel: UILabel = {
         let label = UILabel()
-        label.textColor = leftBackgroundTextColor
-        label.font = backgroundTextFont
+        label.textColor = Constants.Colors.leftBackgroundTextColor
+        label.font = Constants.Fonts.backgroundTextFont
         return label
     }()
     
     private lazy var rightBackgroundLabel: UILabel = {
         let label = UILabel()
-        label.textColor = rightBackgroundTextColor
-        label.font = backgroundTextFont
+        label.textColor = Constants.Colors.rightBackgroundTextColor
+        label.font = Constants.Fonts.backgroundTextFont
         return label
     }()
     
     private lazy var labelOnCircle: UILabel = {
         let label = UILabel()
         label.text = "AR"
-        label.font = textInCircleFont
+        label.font = Constants.Fonts.textInCircleFont
         return label
     }()
     
@@ -142,12 +138,12 @@ class NamedSwitchControl: BaseView {
             !rightBackgroundLabel.constraints.isEmpty else { return }
         leftBackgroundLabel.snp.updateConstraints {
             $0.leading.equalToSuperview().offset(
-                labelCenterYOffsetFromEdge -
+                Constants.Sizes.labelCenterYOffsetFromEdge -
                     (leftBackgroundLabel.frame.width / 2))
         }
         rightBackgroundLabel.snp.updateConstraints {
             $0.trailing.equalToSuperview().offset(
-            (rightBackgroundLabel.frame.width / 2) - labelCenterYOffsetFromEdge)
+                (rightBackgroundLabel.frame.width / 2) - Constants.Sizes.labelCenterYOffsetFromEdge)
         }
     }
     
@@ -171,8 +167,8 @@ class NamedSwitchControl: BaseView {
     override func setupConstraints() {
         super.setupConstraints()
         self.snp.makeConstraints {
-            $0.height.equalTo(fixedHeight)
-            $0.width.equalTo(fixedWidth)
+            $0.height.equalTo(Constants.Sizes.fixedHeight)
+            $0.width.equalTo(Constants.Sizes.fixedWidth)
         }
         backgroundView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
@@ -180,18 +176,18 @@ class NamedSwitchControl: BaseView {
         leftBackgroundLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(
-                labelCenterYOffsetFromEdge -
+                Constants.Sizes.labelCenterYOffsetFromEdge -
                     (leftBackgroundLabel.frame.width / 2))
         }
         rightBackgroundLabel.layoutSubviews()
         rightBackgroundLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(
-                (rightBackgroundLabel.frame.width / 2) - labelCenterYOffsetFromEdge)
+                (rightBackgroundLabel.frame.width / 2) - Constants.Sizes.labelCenterYOffsetFromEdge)
         }
         circleView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(circleLeftPositionOffset)
+            $0.leading.equalToSuperview().offset(Constants.Sizes.circleLeftPositionOffset)
         }
         labelOnCircle.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -218,13 +214,13 @@ class NamedSwitchControl: BaseView {
                 self.didChangePosition(position)
                 UIView.animate(withDuration: 0.1, animations: {
                     self.circleView.snp.updateConstraints {
-                        $0.width.equalTo(self.circleSideSize * 1.5)
+                        $0.width.equalTo(Constants.Sizes.circleSideSize * 1.5)
                     }
                     self.layoutIfNeeded()
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.1, animations: {
                         self.circleView.snp.updateConstraints {
-                            $0.width.equalTo(self.circleSideSize)
+                            $0.width.equalTo(Constants.Sizes.circleSideSize)
                         }
                         self.layoutIfNeeded()
                     })
@@ -233,12 +229,12 @@ class NamedSwitchControl: BaseView {
                     self.circleView.snp.updateConstraints {
                         $0.leading.equalToSuperview()
                             .offset(position == .left ?
-                                self.circleLeftPositionOffset :
-                                self.circleRightPositionOffset)
+                                        Constants.Sizes.circleLeftPositionOffset :
+                                        Constants.Sizes.circleRightPositionOffset)
                     }
                     self.layoutIfNeeded()
                     self.backgroundView.backgroundColor = position == .left ?
-                        self.leftBackgroundColor : self.rightBackgroundColor
+                        Constants.Colors.leftBackgroundColor : Constants.Colors.rightBackgroundColor
                 }
             })
             .disposed(by: bag)

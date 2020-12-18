@@ -16,7 +16,7 @@ class TopicFabric {
     
     // MARK: - Constants
     
-    enum KeyPath: String {
+    private enum KeyPath: String {
         case title, shortDescription, content
     }
     

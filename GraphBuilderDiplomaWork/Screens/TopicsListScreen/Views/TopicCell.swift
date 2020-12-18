@@ -12,9 +12,9 @@ import UIKit
 class TopicCell: BaseTableViewCell {
     
     
-    // MARK: - Constants
-    
-    private let imagePlaceholder = Image.topicPlaceholder()
+    private enum Constants {
+        static let imagePlaceholder = Image.topicPlaceholder()
+    }
     
     
     // MARK: - Properties
@@ -39,11 +39,11 @@ class TopicCell: BaseTableViewCell {
     
     var topicImage: UIImage? {
         get {
-            topicImageView.image == imagePlaceholder ?
+            topicImageView.image == Constants.imagePlaceholder ?
                 nil : topicImageView.image
         }
         set {
-            topicImageView.image = newValue ?? imagePlaceholder
+            topicImageView.image = newValue ?? Constants.imagePlaceholder
         }
     }
     
@@ -70,7 +70,7 @@ class TopicCell: BaseTableViewCell {
     
     private lazy var topicImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = imagePlaceholder
+        imageView.image = Constants.imagePlaceholder
         imageView.snp.makeConstraints { $0.size.equalTo(48) }
         return imageView
     }()

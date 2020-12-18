@@ -13,9 +13,9 @@ import RxSwift
 class NumberTextField: CustomTextField {
     
     
-    // MARK: - Constants
-    
-    let decimalSeparator = NumberFormatter().decimalSeparator!
+    private enum Constants {
+        static let decimalSeparator = NumberFormatter().decimalSeparator!
+    }
     
     
     // MARK: - Properties
@@ -98,7 +98,7 @@ extension NumberTextField: UITextFieldDelegate {
         
         let oldText = self.text! as NSString
         var newText = oldText.replacingCharacters(in: range, with: string)
-        hasDecimalSeparator = newText.contains(decimalSeparator)
+        hasDecimalSeparator = newText.contains(Constants.decimalSeparator)
         
         if (oldText.contains("-") && string.contains("-")) ||
             newText.contains(where: { !"0987654321.-".contains($0) }) ||

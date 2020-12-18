@@ -23,9 +23,9 @@ protocol TopicsContainerVCProtocol: UIViewController {
 class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
     
     
-    // MARK: - Constants
-    
-    private let cellID = UUID().uuidString
+    private enum Constants {
+        static let cellID = UUID().uuidString
+    }
     
     
     // MARK: - Properties
@@ -70,7 +70,7 @@ class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
         collectionView.register(TopicsContainerCell.self,
-                                forCellWithReuseIdentifier: cellID)
+                                forCellWithReuseIdentifier: Constants.cellID)
         collectionView.backgroundColor = Color.background()
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentOffset = .zero
@@ -102,7 +102,7 @@ class TopicsContainerVC: BaseVC, TopicsContainerVCProtocol {
     override func setupBinding() {
         super.setupBinding()
         topicsListSubject
-            .bind(to: collectionView.rx.items(cellIdentifier: cellID)) {
+            .bind(to: collectionView.rx.items(cellIdentifier: Constants.cellID)) {
                 (index: Int, topic: Topic, cell: UICollectionViewCell) in
                 guard let cell = cell as? TopicsContainerCell else { return }
                 let serialPosition = SerialPosition
