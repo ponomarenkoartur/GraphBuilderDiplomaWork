@@ -240,8 +240,6 @@
 		043DC843245091E700CBC58F /* NamedSwitchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC842245091E700CBC58F /* NamedSwitchControl.swift */; };
 		043DC8452450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */; };
 		043DC8462450921B00CBC58F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */; };
-		043DC848245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
-		043DC849245093DA00CBC58F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DC847245093DA00CBC58F /* TestViewController.swift */; };
 		043DE11024828AEB008C41CD /* SelectiveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DE10F24828AEB008C41CD /* SelectiveItem.swift */; };
 		04467A2A2459A31C002DD9D8 /* PlotPresenterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */; };
 		04467A2C2459A4AE002DD9D8 /* SCNNode extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */; };
@@ -474,7 +472,6 @@
 		043DC7CC245078CE00CBC58F /* TopicsContainerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsContainerVM.swift; sourceTree = "<group>"; };
 		043DC842245091E700CBC58F /* NamedSwitchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedSwitchControl.swift; sourceTree = "<group>"; };
 		043DC8442450921B00CBC58F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
-		043DC847245093DA00CBC58F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		043DE10F24828AEB008C41CD /* SelectiveItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveItem.swift; sourceTree = "<group>"; };
 		04467A292459A31C002DD9D8 /* PlotPresenterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotPresenterScene.swift; sourceTree = "<group>"; };
 		04467A2B2459A4AE002DD9D8 /* SCNNode extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode extension.swift"; sourceTree = "<group>"; };
@@ -1315,7 +1312,6 @@
 				04CE0E2D244B1213006B19B0 /* GraphBuilding */,
 				04CE0E2C244B11FA006B19B0 /* Other */,
 				04187072241AE3BC00897335 /* Recognition */,
-				043DC847245093DA00CBC58F /* TestViewController.swift */,
 			);
 			path = GraphBuilderDiplomaWork;
 			sourceTree = "<group>";
@@ -1750,7 +1746,6 @@
 				042BC55624505AC100950B15 /* UINavigationController extension.swift in Sources */,
 				042BC54A245058B100950B15 /* Array extension.swift in Sources */,
 				042BC55524505AB800950B15 /* TopicVM.swift in Sources */,
-				043DC849245093DA00CBC58F /* TestViewController.swift in Sources */,
 				042BC55324505AB100950B15 /* WelcomeVM.swift in Sources */,
 				0401BE32248A4A3D008BF176 /* LoadingViewPresenter.swift in Sources */,
 				042BC55224505AAC00950B15 /* Topic.swift in Sources */,
@@ -1785,7 +1780,6 @@
 				04CE0E6E244B1839006B19B0 /* CALayer extension.swift in Sources */,
 				048D6D0E245465C40001FC7D /* SandboxDataBinder.swift in Sources */,
 				04D43FF72450331600034A89 /* TopicIllustrationCell.swift in Sources */,
-				043DC848245093DA00CBC58F /* TestViewController.swift in Sources */,
 				04A0FE63244DFF12000C9F6E /* TopicSubheader.swift in Sources */,
 				041CAC6E246DB009003CEC34 /* GridBoundable.swift in Sources */,
 				04CE0E53244B179F006B19B0 /* Typealiases.swift in Sources */,

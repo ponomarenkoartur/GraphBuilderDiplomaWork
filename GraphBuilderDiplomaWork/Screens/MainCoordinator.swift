@@ -127,10 +127,6 @@ class MainCoordinator: BaseCoordinator {
         navVC.push(vc)
     }
     
-    private func pushTestScreen() {
-        navVC.push(TestViewController())
-    }
-    
     private func pushImagePickerScreen(
         _ completion: @escaping (_ takenImage: UIImage?) -> ()) {
         let imagePicker = UIImagePickerController()
