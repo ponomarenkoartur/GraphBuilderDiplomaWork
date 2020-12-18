@@ -131,8 +131,7 @@ class RecognitionContentView: UIView {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "EquationCell", bundle: nil), 
-                           forCellReuseIdentifier: "EquationCell")
+        tableView.register(EquationCell.self)
     }
     
     private func setupActivityIndicator() {
@@ -222,9 +221,7 @@ extension RecognitionContentView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: "EquationCell",
-                                 for: indexPath) as? EquationCell else {
+        guard let cell = tableView.dequeue(EquationCell.self, for: indexPath) else {
             return UITableViewCell()
         }
         

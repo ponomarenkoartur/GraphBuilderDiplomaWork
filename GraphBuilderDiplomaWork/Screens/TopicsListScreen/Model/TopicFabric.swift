@@ -8,7 +8,6 @@
 
 import FirebaseDatabase
 import Foundation
-import Alamofire
 
 
 class TopicFabric {
